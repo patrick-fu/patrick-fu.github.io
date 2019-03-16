@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>示例页面 | 派大星星星星</title>
+  <title>判断一个 NSArray 是否为空 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -100,7 +100,7 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            <article id="page" class="post white-box article-type-page" itemscope itemprop="blogPost">
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
   
 <section class="meta">
   
@@ -108,7 +108,7 @@
   <div class="meta" id="header-meta">
     
       
-          <h1 class="title">示例页面</h1>
+          <h1 class="title">判断一个 NSArray 是否为空</h1>
       
     
 
@@ -125,10 +125,20 @@
         <div class="new-meta-item date">
           <a class="notlink">
             <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-01-28
+            2019-03-12
           </a>
         </div>
       
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
       
       
         
@@ -150,19 +160,72 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>这是示范页面。页面和博客文章不同，它的位置是固定的，通常会在站点导航栏显示。很多用户都创建一个“关于”页面，向访客介绍自己。例如：</p>
-<blockquote>
-<p>欢迎！我白天是个邮递员，晚上就是个有抱负的演员。这是我的网站。我住在天朝的帝都，有条叫做Jack的狗。</p>
-</blockquote>
-<p>……或这个：</p>
-<blockquote>
-<p>XYZ Doohickey公司成立于1971年，自从建立以来，我们一直向社会贡献着优秀doohickies。我们的公司总部位于天朝魔都，有着超过两千名员工，对魔都政府税收有着巨大贡献。</p>
-</blockquote>
-<p>而您，作为一个WordPress用户，我们建议您访问<a href="http://108.160.138.32/wordpress/wp-admin/" target="_blank" rel="noopener">控制板</a>，删除本页面，然后添加您自己的页面。祝您使用愉快！</p>
+        <pre><code>if ([array isKindOfClass:[NSArray class]] &amp;&amp; array.count &gt; 0)
+{
+    NSLog(@&quot;这是一个非空数组&quot;);
+}
+</code></pre><hr>
 
       </div>
         
+          <section class="meta" id="footer-meta">
+            <hr>
+            <div class="new-meta-box">
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-16T03:14:18+08:00">
+                  <a class="notlink">
+                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    2019-03-16
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Objective-C</a></div>
+              
+              
+            </div>
+          </section>
+        
 
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                            <h4>
+                                <a href="/hello-world/" rel="prev" title="Hello World">
+                                  
+                                      Hello World
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/iphone-pixel-point-size-scale/" rel="prev" title="iPhone屏幕各种尺寸分辨率（更新至XS）">
+                                    
+                                        iPhone屏幕各种尺寸分辨率（更新至XS）
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a> <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
         
 
     </section>
@@ -182,10 +245,11 @@
 
 <script>
     window.subData = {
-        title: '示例页面',
+        title: '判断一个 NSArray 是否为空',
         tools: true
     }
 </script>
+
 
         </div>
         <aside class='l_side'>

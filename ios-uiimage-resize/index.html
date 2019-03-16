@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>示例页面 | 派大星星星星</title>
+  <title>iOS修改UIImage图片尺寸大小逻辑分辨率 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -100,7 +100,7 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            <article id="page" class="post white-box article-type-page" itemscope itemprop="blogPost">
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
   
 <section class="meta">
   
@@ -108,7 +108,7 @@
   <div class="meta" id="header-meta">
     
       
-          <h1 class="title">示例页面</h1>
+          <h1 class="title">iOS修改UIImage图片尺寸大小逻辑分辨率</h1>
       
     
 
@@ -125,10 +125,20 @@
         <div class="new-meta-item date">
           <a class="notlink">
             <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-01-28
+            2019-02-01
           </a>
         </div>
       
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
       
       
         
@@ -150,19 +160,87 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>这是示范页面。页面和博客文章不同，它的位置是固定的，通常会在站点导航栏显示。很多用户都创建一个“关于”页面，向访客介绍自己。例如：</p>
-<blockquote>
-<p>欢迎！我白天是个邮递员，晚上就是个有抱负的演员。这是我的网站。我住在天朝的帝都，有条叫做Jack的狗。</p>
-</blockquote>
-<p>……或这个：</p>
-<blockquote>
-<p>XYZ Doohickey公司成立于1971年，自从建立以来，我们一直向社会贡献着优秀doohickies。我们的公司总部位于天朝魔都，有着超过两千名员工，对魔都政府税收有着巨大贡献。</p>
-</blockquote>
-<p>而您，作为一个WordPress用户，我们建议您访问<a href="http://108.160.138.32/wordpress/wp-admin/" target="_blank" rel="noopener">控制板</a>，删除本页面，然后添加您自己的页面。祝您使用愉快！</p>
+        <p>之前遇到的问题，给UITabbar item设置图片，然而素材的图片分辨率是87*87，填满了整个tabbar item的区域，很难看，又要考虑适配XS Max的三倍问题。 解决方法如下： 通过设置scale使生成的图片尺寸是逻辑分辨率pt单位，不用操心二倍三倍的问题。</p>
+<pre><code>+ (UIImage *)imageResize:(UIImage*)img andResizeTo:(CGSize)newSize {
+    CGFloat scale = [[UIScreen mainScreen]scale];
+    //UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, scale);
+    [img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+</code></pre><p>这样一来就能使tabbar item的图标始终是25pt*25pt，恰到好处。</p>
+<pre><code>childController.tabBarItem.selectedImage = [[SmallTools imageResize:[UIImage imageNamed:selected] andResizeTo:CGSizeMake(25, 25)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+</code></pre><p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1549072293345_888x213.gif" alt></p>
+<h3 id="另外关于上图中间图标的动画效果实现可参考此文章"><a href="#另外关于上图中间图标的动画效果实现可参考此文章" class="headerlink" title="另外关于上图中间图标的动画效果实现可参考此文章"></a>另外关于上图中间图标的动画效果实现可参考此文章</h3><p><a href="http://paaatrick.com/ios_uitabbar_touch_animation.html" title="iOS UITabbar图标点击动画效果实现" target="_blank" rel="noopener">iOS UITabbar图标点击动画效果实现</a>      </p>
+<hr>
 
       </div>
         
+          <section class="meta" id="footer-meta">
+            <hr>
+            <div class="new-meta-box">
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-16T03:14:18+08:00">
+                  <a class="notlink">
+                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    2019-03-16
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Objective-C</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;iOS</a></div>
+              
+              
+            </div>
+          </section>
+        
 
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                            <h4>
+                                <a href="/ios-uilabel-linebreakmode-setting/" rel="prev" title="iOS UILabel的lineBreakMode省略模式设置">
+                                  
+                                      iOS UILabel的lineBreakMode省略模式设置
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a> <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/ios-uitabbar-touch-animation/" rel="prev" title="iOS UITabbar图标点击动画效果实现">
+                                    
+                                        iOS UITabbar图标点击动画效果实现
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a> <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
         
 
     </section>
@@ -182,10 +260,11 @@
 
 <script>
     window.subData = {
-        title: '示例页面',
+        title: 'iOS修改UIImage图片尺寸大小逻辑分辨率',
         tools: true
     }
 </script>
+
 
         </div>
         <aside class='l_side'>
