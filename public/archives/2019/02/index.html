@@ -26,6 +26,8 @@
   
 
   
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
 
   
   <link rel="stylesheet" href="/style.css">
@@ -58,6 +60,20 @@
 			<div class="menu">
 				<ul class="h-list">
           
+  					
+  						<li>
+								<a id="home" class="nav flat-box" href="/">
+									<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="archives" class="nav flat-box" href="/archives/">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+								</a>
+							</li>
+      			
+      		
 				</ul>
 			</div>
 
@@ -91,6 +107,20 @@
 		<nav class="menu">
       <ul>
           
+              
+                  <li>
+										<a id="home" class="nav flat-box" href="/">
+											<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="archives" class="nav flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+										</a>
+                  </li>
+              
+       
       </ul>
 		</nav>
     </header>
@@ -111,8 +141,6 @@
 
   <section class="post-list">
       
-        
-          
         
           
         
@@ -173,7 +201,7 @@
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -191,9 +219,9 @@
         
           
           <div class="new-meta-item category">
-            <a href="/categories/派大星星星星/">
+            <a href="/categories/Tech/">
               <i class="fas fa-folder-open" aria-hidden="true"></i>
-              派大星星星星
+              Tech
             </a>
           </div>
         
@@ -207,17 +235,19 @@
 
     <section class="article typo">
         <p>遇到了一个后台json误将null作为字符串值导致iOS客户端崩溃闪退的问题，解决方法如下：套一层判断，如果是各种情况的null则转换为@””。</p>
-<pre><code>+ (NSString *)nullToString:(id)string {
-    if ([string isEqual:@&quot;NULL&quot;] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@&quot;&lt;null&gt;&quot;] || [string isEqualToString:@&quot;(null)&quot;]) {
-        return @&quot;&quot;;
-    } else {
-        return (NSString *)string;
-    }
-}
-</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *) nullToString:(id)string &#123;</span><br><span class="line">    if ([string isEqual:@&quot;NULL&quot;] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@&quot;&lt;null&gt;&quot;] || [string isEqualToString:@&quot;(null)&quot;]) &#123;</span><br><span class="line">        return @&quot;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return (NSString *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
 
         
 
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
         
     </section>
 </article>
@@ -246,7 +276,7 @@
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -279,352 +309,22 @@
 </section>
 
     <section class="article typo">
-        <h2 id="MJExtension能做什么？"><a href="#MJExtension能做什么？" class="headerlink" title="MJExtension能做什么？"></a>MJExtension能做什么？</h2><h5 id="1-MJExtension是一套字典和模型之间互相转换的超轻量级框架"><a href="#1-MJExtension是一套字典和模型之间互相转换的超轻量级框架" class="headerlink" title="1. MJExtension是一套字典和模型之间互相转换的超轻量级框架"></a>1. MJExtension是一套字典和模型之间互相转换的超轻量级框架</h5><h5 id="2-MJExtension能完成的功能"><a href="#2-MJExtension能完成的功能" class="headerlink" title="2. MJExtension能完成的功能"></a>2. MJExtension能完成的功能</h5><pre><code>字典（JSON） --&gt; 模型（Model）
-模型（Model） --&gt; 字典（JSON）
-字典数组（JSON Array） --&gt; 模型数组（Model Array）
-模型数组（Model Array） --&gt; 字典数组（JSON Array）
-</code></pre><p><code>详尽用法主要参考 main.m中的各个函数 以及 NSObject+MJKeyValue.h</code></p>
-<h2 id="MJExtension和JSONModel、Mantle等框架的区别"><a href="#MJExtension和JSONModel、Mantle等框架的区别" class="headerlink" title="MJExtension和JSONModel、Mantle等框架的区别"></a>MJExtension和JSONModel、Mantle等框架的区别</h2><h5 id="1-转换速率："><a href="#1-转换速率：" class="headerlink" title="1. 转换速率："></a>1. 转换速率：</h5><p>最近一次测试表明：<code>MJExtension &gt; JSONModel &gt; Mantle</code> 各位开发者也可以自行测试</p>
-<h5 id="2-具体用法："><a href="#2-具体用法：" class="headerlink" title="2. 具体用法："></a>2. 具体用法：</h5><pre><code>JSONModel：
-
-要求所有模型类必须继承自JSONModel基类
-
-Mantle：
-
-要求所有模型类必须继承自MTModel基类
-
-MJExtension：
-
-不需要你的模型类继承任何特殊基类，毫无污染，毫无侵入性
-</code></pre><h2 id="如何安装MJExtension"><a href="#如何安装MJExtension" class="headerlink" title="如何安装MJExtension"></a>如何安装MJExtension</h2><p>方法一：cocoapods导入：</p>
-<pre><code>pod &apos;MJExtension&apos;
-</code></pre><p>方法二：手动导入：</p>
-<pre><code>将MJExtensionExample/MJExtensionExample/MJExtension文件夹中的所有源代码拽入项目中
-导入主头文件：#import &quot;MJExtension.h&quot;
-MJExtension.h
-MJConst.h
-MJConst.m
-MJFoundation.h
-MJFoundation.m
-MJIvar.h
-MJIvar.m
-MJType.h
-MJType.m
-NSObject+MJCoding.h
-NSObject+MJCoding.m
-NSObject+MJIvar.h
-NSObject+MJIvar.m
-NSObject+MJKeyValue.h
-NSObject+MJKeyValue.m
-</code></pre><h2 id="如何使用MJExtension"><a href="#如何使用MJExtension" class="headerlink" title="如何使用MJExtension"></a>如何使用MJExtension</h2><h4 id="1-最简单的字典转模型"><a href="#1-最简单的字典转模型" class="headerlink" title="1. 最简单的字典转模型"></a>1. 最简单的字典转模型</h4><pre><code>typedef enum {
-    SexMale,    
-    SexFemale} Sex;
-@interface User : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *icon;
-@property (assign, nonatomic) int age;
-@property (assign, nonatomic) double height;
-@property (strong, nonatomic) NSNumber *money;
-@property (assign, nonatomic) Sex sex;
-@end
-
-NSDictionary *dict = @{
-                        @&quot;name&quot; : @&quot;Jack&quot;,                 
-                        @&quot;icon&quot; : @&quot;lufy.png&quot;,               
-                        @&quot;age&quot; : @20,               
-                        @&quot;height&quot; : @&quot;1.55&quot;,               
-                        @&quot;money&quot; : @100.9,               
-                        @&quot;sex&quot; : @(SexFemale)            
-};
-
-// 将字典转为User模型
-User *user = [User objectWithKeyValues:dict];
-NSLog(@&quot;name=%@, icon=%@, age=%d, height=%@, money=%@, sex=%d&quot;, user.name, user.icon, user.age, user.height, user.money, user.sex);
-// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
-</code></pre><h5 id="核心代码1："><a href="#核心代码1：" class="headerlink" title="核心代码1："></a>核心代码1：</h5><pre><code>[User objectWithKeyValues:dict]
-</code></pre><h4 id="2-模型中嵌套模型"><a href="#2-模型中嵌套模型" class="headerlink" title="2. 模型中嵌套模型"></a>2. 模型中嵌套模型</h4><pre><code>@interface Status : NSObject
-/** 微博文本内容 */
-@property (copy, nonatomic) NSString *text;
-/** 微博作者 */
-@property (strong, nonatomic) User *user;
-/** 转发的微博 */
-@property (strong, nonatomic) Status *retweetedStatus;
-@end
-
-NSDictionary *dict = @{               
-@&quot;text&quot; : @&quot;是啊，今天天气确实不错！&quot;, 
-@&quot;user&quot; : @{                   
-             @&quot;name&quot; : @&quot;Jack&quot;,                   
-             @&quot;icon&quot; : @&quot;lufy.png&quot;                
-           },               
-@&quot;retweetedStatus&quot; : @{                   
-                        @&quot;text&quot; : @&quot;今天天气真不错！&quot;,                   
-                        @&quot;user&quot; : @{                       
-                                    @&quot;name&quot; : @&quot;Rose&quot;,                       
-                                    @&quot;icon&quot; : @&quot;nami.png&quot;                    
-                                   }                
-                       }            
-};
-
-// 将字典转为Status模型
-Status *status = [Status objectWithKeyValues:dict];
-NSString *text = status.text;
-NSString *name = status.user.name;
-NSString *icon = status.user.icon;
-NSLog(@&quot;text=%@, name=%@, icon=%@&quot;, text, name, icon);
-// text=是啊，今天天气确实不错！, name=Jack, icon=lufy.png
-
-NSString *text2 = status.retweetedStatus.text;
-NSString *name2 = status.retweetedStatus.user.name;
-NSString *icon2 = status.retweetedStatus.user.icon;
-NSLog(@&quot;text2=%@, name2=%@, icon2=%@&quot;, text2, name2, icon2);
-// text2=今天天气真不错！, name2=Rose, icon2=nami.png
-</code></pre><h5 id="核心代码2"><a href="#核心代码2" class="headerlink" title="核心代码2"></a>核心代码2</h5><pre><code>[Status objectWithKeyValues:dict]`
-</code></pre><h4 id="3-模型中有个数组属性，数组里面又要装着其它模型"><a href="#3-模型中有个数组属性，数组里面又要装着其它模型" class="headerlink" title="3. 模型中有个数组属性，数组里面又要装着其它模型"></a>3. 模型中有个数组属性，数组里面又要装着其它模型</h4><pre><code>@interface Ad : NSObject
-@property (copy, nonatomic) NSString *image;
-@property (copy, nonatomic) NSString *url;
-@end
-
-@interface StatusResult : NSObject
-/** 存放着一堆的微博数据（里面都是Status模型） */
-@property (strong, nonatomic) NSMutableArray *statuses;
-/** 存放着一堆的广告数据（里面都是Ad模型） */
-@property (strong, nonatomic) NSArray *ads;
-@property (strong, nonatomic) NSNumber *totalNumber;
-@end
-
-@implementation StatusResult
-// 实现这个方法的目的：告诉MJExtension框架statuses和ads数组里面装的是什么模型
-/*    + (NSDictionary *)objectClassInArray{    
-return @{         
-@&quot;statuses&quot; : [Status class],         
-@&quot;ads&quot; : [Ad class]    };
-}
-+ (Class)objectClassInArray:(NSString *)propertyName{    
-if ([propertyName isEqualToString:@&quot;statuses&quot;]) {        
-return [Status class];    
-} else if ([propertyName isEqualToString:@&quot;ads&quot;]) {        
-return [Ad class];    }    
-return nil;}
-*/
-
-// 这个方法对比上面的2个方法更加没有侵入性和污染，因为不需要导入Status和Ad的头文件
-+ (NSDictionary *)objectClassInArray{    
-    return @{         
-              @&quot;statuses&quot; : @&quot;Status&quot;,         
-              @&quot;ads&quot; : @&quot;Ad&quot;    
-            };
-}
-@end
-
-NSDictionary *dict = @{                       
-@&quot;statuses&quot; : @[                           
-                @{                                   
-                   @&quot;text&quot; : @&quot;今天天气真不错！&quot;,
-                   @&quot;user&quot; : @{                                   
-                                @&quot;name&quot; : @&quot;Rose&quot;,
-                                @&quot;icon&quot; : @&quot;nami.png&quot;                                                                                  
-                              }                            
-                 }, 
-
-                 @{                               
-                    @&quot;text&quot; : @&quot;明天去旅游了&quot;, 
-                    @&quot;user&quot; : @{                                                                   
-                                 @&quot;name&quot; : @&quot;Jack&quot;,                                       
-                                 @&quot;icon&quot; : @&quot;lufy.png&quot;                               
-                               }  
-                   } 
-
-                ],                       
- @&quot;ads&quot; :@[                           
-           @{                               
-              @&quot;image&quot; : @&quot;ad01.png&quot;, 
-              @&quot;url&quot; : @&quot;http://www.ad01.com&quot;                                                          
-            }, 
-
-           @{                               
-              @&quot;image&quot; : @&quot;ad02.png&quot;,                                   
-              @&quot;url&quot; : @&quot;http://www.ad02.com&quot;                           
-            }                       
-          ],                       
- @&quot;totalNumber&quot; : @&quot;2014&quot;                    
-};
-
-         // 将字典转为StatusResult模型
-         StatusResult *result = [StatusResult objectWithKeyValues:dict];
-         NSLog(@&quot;totalNumber=%@&quot;, result.totalNumber);
-         // totalNumber=2014
-
-         // 打印statuses数组中的模型属性
-         for (Status *status in result.statuses) {    
-                NSString *text = status.text;    
-                NSString *name = status.user.name;    NSString *icon = status.user.icon;    
-                NSLog(@&quot;text=%@, name=%@, icon=%@&quot;, text, name, icon);}
-               // text=今天天气真不错！, name=Rose, icon=nami.png
-               // text=明天去旅游了, name=Jack, icon=lufy.png
-
-         // 打印ads数组中的模型属性
-         for (Ad *ad in result.ads) {    
-                 NSLog(@&quot;image=%@, url=%@&quot;, ad.image, ad.url);}
-                 // image=ad01.png, url=http://www.ad01.com
-                 // image=ad02.png, url=http://www.ad02.com
-</code></pre><h5 id="核心代码3："><a href="#核心代码3：" class="headerlink" title="核心代码3："></a>核心代码3：</h5><pre><code>在模型内部实现+ (NSDictionary *)objectClassInArray方法
-
-[StatusResult objectWithKeyValues:dict]
-</code></pre><h4 id="4-模型中的属性名和字典中的key不相同-或者需要多级映射"><a href="#4-模型中的属性名和字典中的key不相同-或者需要多级映射" class="headerlink" title="4. 模型中的属性名和字典中的key不相同(或者需要多级映射)"></a>4. 模型中的属性名和字典中的key不相同(或者需要多级映射)</h4><pre><code>@interface Bag : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (assign, nonatomic) double price;@end@interface Student : NSObject
-@property (copy, nonatomic) NSString *ID;
-@property (copy, nonatomic) NSString *desc;
-@property (copy, nonatomic) NSString *nowName;
-@property (copy, nonatomic) NSString *oldName;
-@property (copy, nonatomic) NSString *nameChangedTime;
-@property (strong, nonatomic) Bag *bag;
-@end
-
-@implementation Student
-// 实现这个方法的目的：告诉MJExtension框架模型中的属性名对应着字典的哪个key
-+ (NSDictionary *)replacedKeyFromPropertyName{    
-     return @{                
-               @&quot;ID&quot; : @&quot;id&quot;,                
-               @&quot;desc&quot; : @&quot;desciption&quot;,                
-               @&quot;oldName&quot; : @&quot;name.oldName&quot;, 
-               @&quot;nowName&quot; : @&quot;name.newName&quot;,  
-               @&quot;nameChangedTime&quot; : @&quot;name.info.nameChangedTime&quot;,                                       
-               @&quot;bag&quot; : @&quot;other.bag&quot;            
-              };
-}
-
-@end
-
-NSDictionary *dict = @{                       
-                        @&quot;id&quot; : @&quot;20&quot;,                       
-                        @&quot;desciption&quot; : @&quot;孩子&quot;,
-                        @&quot;name&quot; : @{                                                         
-                                     @&quot;newName&quot; : @&quot;lufy&quot;, 
-                                     @&quot;oldName&quot; : @&quot;kitty&quot;,  
-                                     @&quot;info&quot; : @{                                                                                                   
-                                                  @&quot;nameChangedTime&quot; : @&quot;2013-08&quot;                            
-                                                 }                       
-                                    },                       
-                        @&quot;other&quot; : @{                            
-                                      @&quot;bag&quot; : @{                                
-                                                  @&quot;name&quot; : @&quot;小书包&quot;, 
-                                                  @&quot;price&quot; : @100.7                                                              
-                                                 }                       
-                                     }                   
-};
-
-// 将字典转为Student模型
-Student *stu = [Student objectWithKeyValues:dict];
-// 打印Student模型的属性
-NSLog(@&quot;ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@&quot;, stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
-// ID=20, desc=孩子, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
-NSLog(@&quot;bagName=%@, bagPrice=%f&quot;, stu.bag.name, stu.bag.price);
-// bagName=小书包, bagPrice=100.700000
-</code></pre><h5 id="核心代码4："><a href="#核心代码4：" class="headerlink" title="核心代码4："></a>核心代码4：</h5><pre><code>在模型内部实现+ (NSDictionary *)replacedKeyFromPropertyName方法
-
-[Student objectWithKeyValues:dict]
-</code></pre><h4 id="5-将一个字典数组转成模型数组"><a href="#5-将一个字典数组转成模型数组" class="headerlink" title="5. 将一个字典数组转成模型数组"></a>5. 将一个字典数组转成模型数组</h4><pre><code>NSArray *dictArray = @[                       
-                        @{                           
-                           @&quot;name&quot; : @&quot;Jack&quot;,                           
-                           @&quot;icon&quot; : @&quot;lufy.png&quot;,                        
-                         },                       
-                        @{                           
-                           @&quot;name&quot; : @&quot;Rose&quot;,                           
-                           @&quot;icon&quot; : @&quot;nami.png&quot;,                        
-                         }                    
-                       ];
-
-// 将字典数组转为User模型数组
-NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
-// 打印userArray数组中的User模型属性
-for (User *user in userArray) {   
-      NSLog(@&quot;name=%@, icon=%@&quot;, user.name, user.icon);}
-      // name=Jack, icon=lufy.png
-      // name=Rose, icon=nami.png
-</code></pre><h5 id="核心代码5："><a href="#核心代码5：" class="headerlink" title="核心代码5："></a>核心代码5：</h5><pre><code>[User objectArrayWithKeyValuesArray:dictArray]
-</code></pre><h4 id="6-将一个模型转成字典"><a href="#6-将一个模型转成字典" class="headerlink" title="6. 将一个模型转成字典"></a>6. 将一个模型转成字典</h4><pre><code>// 新建模型
-  User *user = [[User alloc] init];
-user.name = @&quot;Jack&quot;;
-user.icon = @&quot;lufy.png&quot;;
-
-Status *status = [[Status alloc] init];
-status.user = user;
-status.text = @&quot;今天的心情不错！&quot;;
-
-
-// 将模型转为字典
-NSDictionary *statusDict = status.keyValues;
-NSLog(@&quot;%@&quot;, statusDict);
-/*{ text = &quot;今天的心情不错！&quot;;    
-    user = {        
-             icon = &quot;lufy.png&quot;;        
-             name = Jack;    
-           };
-  }*/
-
-// 多级映射的模型
-Student *stu = [[Student alloc] init];
-stu.ID = @&quot;123&quot;;
-stu.oldName = @&quot;rose&quot;;
-stu.nowName = @&quot;jack&quot;;
-stu.desc = @&quot;handsome&quot;;
-stu.nameChangedTime = @&quot;2018-09-08&quot;;
-
-Bag *bag = [[Bag alloc] init];
-bag.name = @&quot;小书包&quot;;
-bag.price = 205;
-stu.bag = bag;
-NSDictionary *stuDict = stu.keyValues;NSLog(@&quot;%@&quot;, stuDict);
-/*
-{    desciption = handsome;    
-       id = 123;    
-       name = {        
-                info ={            
-                nameChangedTime = &quot;2018-09-08&quot;;        
-                       };        
-                newName = jack;        
-                oldName = rose;    
-               };    
-                other = {  
-                          bag ={            
-                                 name = &quot;小书包&quot;;            
-                                 price = 205;        
-                               };    
-                        }; 
-               }
- */
-</code></pre><h5 id="核心代码6："><a href="#核心代码6：" class="headerlink" title="核心代码6："></a>核心代码6：</h5><pre><code>status.keyValues、stu.keyValues
-</code></pre><h4 id="7-将一个模型数组转成字典数组"><a href="#7-将一个模型数组转成字典数组" class="headerlink" title="7. 将一个模型数组转成字典数组"></a>7. 将一个模型数组转成字典数组</h4><pre><code>// 新建模型数组
-  User *user1 = [[User alloc] init];
-user1.name = @&quot;Jack&quot;;
-user1.icon = @&quot;lufy.png&quot;;
-
-User *user2 = [[User alloc] init];
-user2.name = @&quot;Rose&quot;;
-user2.icon = @&quot;nami.png&quot;;
-
-NSArray *userArray = @[user1, user2];
-// 将模型数组转为字典数组
-NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
-NSLog(@&quot;%@&quot;, dictArray);
-/*(    
-{        icon = &quot;lufy.png&quot;;        name = Jack;    },    
-{        icon = &quot;nami.png&quot;;        name = Rose;    }  )*/
-</code></pre><h6 id="核心代码7："><a href="#核心代码7：" class="headerlink" title="核心代码7："></a>核心代码7：</h6><pre><code>[User keyValuesArrayWithObjectArray:userArray]
-</code></pre><h4 id="更多用法"><a href="#更多用法" class="headerlink" title="更多用法"></a>更多用法</h4><pre><code>参考NSObject+MJKeyValue.h
-参考NSObject+MJCoding.h
-</code></pre><hr>
-
+        MJExtension使用方法指南
+        
+            <div class="readmore">
+                <a href="/mj-extension-guide/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
         
 
         
             <div class="full-width auto-padding tags">
                 
-                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-                
                     <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
                 
             </div>
         
@@ -655,7 +355,7 @@ NSLog(@&quot;%@&quot;, dictArray);
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -688,69 +388,22 @@ NSLog(@&quot;%@&quot;, dictArray);
 </section>
 
     <section class="article typo">
-        <pre><code>@protocol UIScrollViewDelegate&lt;NSObject&gt;
-@optional
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView; 
-// any offset changes 只要scrollView的content 这个方法在任何方式触发 contentOffset 
-// 变化的时候都会被调用（包括用户拖动，减速过程，直接通过代码设置等），可以用于监控 contentOffset 
-// 的变化，并根据当前的 contentOffset 对其他 view 做出随动调整。
-
-// called on start of dragging (may require some time and or distance to move)
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView; 
-// 用户开始拖动 scroll view 的时候被调用，可能需要一些时间和距离移动之后才会触发。
-
-// called on finger up if the user dragged. velocity is in points/millisecond. 
-// targetContentOffset may be changed to adjust where the scroll view comes to rest
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
-// 在 didEndDragging 前被调用，当 willEndDragging 方法中 velocity 为 CGPointZero
-//（结束拖动时两个方向都没有速度）时，didEndDragging 中的 decelerate 为 NO，即没有减速过程，
-//willBeginDecelerating 和 didEndDecelerating 也就不会被调用。反之，
-// 当 velocity 不为 CGPointZero 时，scroll view 会以 velocity 为初速度，
-// 减速直到 targetContentOffset。
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
-// 在用户结束拖动后被调用，decelerate 为 YES 时，
-// 结束拖动后会有减速过程。注，在 didEndDragging 之后，如果有减速过程，
-// scroll view 的 dragging 并不会立即置为 NO，而是要等到减速结束之后，
-// 所以这个 dragging 属性的实际语义更接近 scrolling。
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   // 减速动画开始前被调用。
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;      
-// 减速动画结束时被调用，这里有一种特殊情况：当一次减速动画尚未结束的时候再次 drag scroll view，
-// didEndDecelerating 不会被调用，并且这时 scroll view 的 dragging 和 decelerating 属性都是 YES。
-// 新的 dragging 如果有加速度，那么 willBeginDecelerating 会再一次被调用，然后才是 didEndDecelerating；
-// 如果没有加速度，虽然 willBeginDecelerating 不会被调用，但前一次留下的 didEndDecelerating 会被调用      
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView; 
-// called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
-// any zoom scale changes view缩放改变的时候调用。
-
-- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;     
-// return a view that will be scaled. if delegate returns nil, nothing happens
-告诉代理要缩放那个控件。 
-
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view NS_AVAILABLE_IOS(3_2); 
-// called before the scroll view begins zooming its content缩放开始的时候调用
-
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale; 
-// scale between minimum and maximum. called after any &apos;bounce&apos; animations缩放完毕的时候调用。
-
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView;   // return a yes if you want to scroll to the top. if not defined, assumes YES- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView;      
-// called when scrolling animation finished. may be called immediately if already at top滚动动画完成时调用。
-@end
-</code></pre><hr>
-
+        UIScrollView的代理方法汇总
+        
+            <div class="readmore">
+                <a href="/ios-uiscrollview-delegate-methods/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
         
 
         
             <div class="full-width auto-padding tags">
                 
-                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-                
                     <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
                 
             </div>
         
@@ -781,7 +434,7 @@ NSLog(@&quot;%@&quot;, dictArray);
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -814,22 +467,17 @@ NSLog(@&quot;%@&quot;, dictArray);
 </section>
 
     <section class="article typo">
-        <pre><code>label.lineBreakMode = NSLineBreakByCharWrapping; //以字符为显示单位显示，后面部分省略不显示。
-label.lineBreakMode = NSLineBreakByClipping; //剪切与文本宽度相同的内容长度，后半部分被删除。
-label.lineBreakMode = NSLineBreakByTruncatingHead; //前面部分文字以……方式省略，显示尾部文字内容。
-label.lineBreakMode = NSLineBreakByTruncatingMiddle; //中间的内容以……方式省略，显示头尾的文字内容。
-label.lineBreakMode = NSLineBreakByTruncatingTail; //结尾部分的内容以……方式省略，显示头的文字内容。
-label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显示，后面部分省略不显示。
-</code></pre><hr>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">label.lineBreakMode = NSLineBreakByCharWrapping; //以字符为显示单位显示，后面部分省略不显示。</span><br><span class="line">label.lineBreakMode = NSLineBreakByClipping; //剪切与文本宽度相同的内容长度，后半部分被删除。</span><br><span class="line">label.lineBreakMode = NSLineBreakByTruncatingHead; //前面部分文字以……方式省略，显示尾部文字内容。</span><br><span class="line">label.lineBreakMode = NSLineBreakByTruncatingMiddle; //中间的内容以……方式省略，显示头尾的文字内容。</span><br><span class="line">label.lineBreakMode = NSLineBreakByTruncatingTail; //结尾部分的内容以……方式省略，显示头的文字内容。</span><br><span class="line">label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显示，后面部分省略不显示。</span><br></pre></td></tr></table></figure>
+<hr>
 
         
 
         
             <div class="full-width auto-padding tags">
                 
-                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-                
                     <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
                 
             </div>
         
@@ -860,7 +508,7 @@ label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显�
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -894,29 +542,21 @@ label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显�
 
     <section class="article typo">
         <p>之前遇到的问题，给UITabbar item设置图片，然而素材的图片分辨率是87*87，填满了整个tabbar item的区域，很难看，又要考虑适配XS Max的三倍问题。 解决方法如下： 通过设置scale使生成的图片尺寸是逻辑分辨率pt单位，不用操心二倍三倍的问题。</p>
-<pre><code>+ (UIImage *)imageResize:(UIImage*)img andResizeTo:(CGSize)newSize {
-    CGFloat scale = [[UIScreen mainScreen]scale];
-    //UIGraphicsBeginImageContext(newSize);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, scale);
-    [img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-</code></pre><p>这样一来就能使tabbar item的图标始终是25pt*25pt，恰到好处。</p>
-<pre><code>childController.tabBarItem.selectedImage = [[SmallTools imageResize:[UIImage imageNamed:selected] andResizeTo:CGSizeMake(25, 25)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-</code></pre><p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1549072293345_888x213.gif" alt></p>
-<h3 id="另外关于上图中间图标的动画效果实现可参考此文章"><a href="#另外关于上图中间图标的动画效果实现可参考此文章" class="headerlink" title="另外关于上图中间图标的动画效果实现可参考此文章"></a>另外关于上图中间图标的动画效果实现可参考此文章</h3><p><a href="http://paaatrick.com/ios_uitabbar_touch_animation.html" title="iOS UITabbar图标点击动画效果实现" target="_blank" rel="noopener">iOS UITabbar图标点击动画效果实现</a>      </p>
-<hr>
-
+        
+            <div class="readmore">
+                <a href="/ios-uiimage-resize/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
         
 
         
             <div class="full-width auto-padding tags">
                 
-                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-                
                     <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
                 
             </div>
         
@@ -947,7 +587,7 @@ label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显�
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -980,119 +620,24 @@ label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显�
 </section>
 
     <section class="article typo">
-        <p>正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： 第一种通过<code>tabBar: didSelectItem:</code>代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 第二种是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 先上几个效果图： 1、带重力效果的弹跳（第二种方法：只对image执行动画） <img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1549072293345_888x213.gif" alt> 2、先放大，再缩小 <img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/01/511196-20170116103844396-1872210226.gif" alt> 3、Z轴旋转 <img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/01/511196-20170116103932614-876709799.gif" alt> 4、Y轴位移 <img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/01/511196-20170116104000302-95725194.gif" alt> 5、放大并保持 <img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/01/511196-20170116104036224-920525159.gif" alt></p>
-<pre><code>@interface MainTabbarVC ()&lt;UITabBarControllerDelegate&gt;
-@property (nonatomic,assign) NSInteger  indexFlag;　　//记录上一次点击tabbar，使用时，记得先在init或viewDidLoad里 初始化 = 0
-@end
-
-//第一种方法：通过接收点击事件对每个tabbar item的点击都执行动画
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSInteger index = [self.tabBar.items indexOfObject:item];
-    if (index != self.indexFlag) {
-        //执行动画
-        NSMutableArray *arry = [NSMutableArray array];
-        for (UIView *btn in self.tabBar.subviews) {
-            if ([btn isKindOfClass:NSClassFromString(@&quot;UITabBarButton&quot;)]) {
-                 [arry addObject:btn];
-            }
-        }
-        //添加动画
-　　　　 //---将下面的代码块拷贝到此并修改最后一行addAnimation的layer对象即可---
-
-        self.indexFlag = index;
-    }
-}
-
-//第二种方法：只想对某一个item的点击执行动画，且只有图片动，文字不动。并且其余图标的点击不带动画
-- (void)tabBarImageAnimation {
-    for (UIControl *tabBarButton in self.tabBar.subviews) {
-        if ([tabBarButton isKindOfClass:NSClassFromString(@&quot;UITabBarButton&quot;)]) {
-            for (UIControl *tabBarButtonLabel in tabBarButton.subviews) {
-                if ([tabBarButtonLabel isKindOfClass:NSClassFromString(@&quot;UITabBarButtonLabel&quot;)]) {
-                    UILabel *label = (UILabel *)tabBarButtonLabel;
-                    //&quot;tab1&quot;到&quot;tab4&quot;分别是不打算执行动画的tabbar item的标题名称
-                    if (![label.text isEqualToString:@&quot;tab1&quot;] &amp;&amp; ![label.text isEqualToString:@&quot;tab2&quot;] &amp;&amp; ![label.text isEqualToString:@&quot;tab3&quot;] &amp;&amp; ![label.text isEqualToString:@&quot;tab4&quot;]) {
-                        for (UIView *imageView in tabBarButton.subviews) {
-                            if ([imageView isKindOfClass:NSClassFromString(@&quot;UITabBarSwappableImageView&quot;)]) {
-                                //添加动画
-                                //---将下面的代码块拷贝到此并修改最后一行addAnimation的layer对象即可---
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-</code></pre><p>1、带重力效果的弹跳</p>
-<pre><code>CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@&quot;transform.translation.y&quot;];
-//通过初中物理重力公式计算出的位移y值数组
-animation.values = @[@0.0, @-4.15, @-7.26, @-9.34, @-10.37, @-9.34, @-7.26, @-4.15, @0.0, @2.0, @-2.9, @-4.94, @-6.11, @-6.42, @-5.86, @-4.44, @-2.16, @0.0];
-animation.duration = 0.8;
-animation.beginTime = CACurrentMediaTime() + 1;
-[imageView.layer addAnimation:animation forKey:nil];
-</code></pre><p>2、先放大，再缩小</p>
-<pre><code>//放大效果，并回到原位
-CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
-//速度控制函数，控制动画运行的节奏
-animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-animation.duration = 0.2;       //执行时间
-animation.repeatCount = 1;      //执行次数
-animation.autoreverses = YES;    //完成动画后会回到执行动画之前的状态
-animation.fromValue = [NSNumber numberWithFloat:0.7];   //初始伸缩倍数
-animation.toValue = [NSNumber numberWithFloat:1.3];     //结束伸缩倍数
-[[arry[index] layer] addAnimation:animation forKey:nil];
-</code></pre><p>3、Z轴旋转</p>
-<pre><code>//z轴旋转180度
-CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
-//速度控制函数，控制动画运行的节奏
-animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-animation.duration = 0.2;       //执行时间
-animation.repeatCount = 1;      //执行次数
-animation.removedOnCompletion = YES;
-animation.fromValue = [NSNumber numberWithFloat:0];   //初始伸缩倍数
-animation.toValue = [NSNumber numberWithFloat:M_PI];     //结束伸缩倍数
-[[arry[index] layer] addAnimation:animation forKey:nil];
-</code></pre><p>4、Y轴位移</p>
-<pre><code>//向上移动
-CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.translation.y&quot;];
-//速度控制函数，控制动画运行的节奏
-animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-animation.duration = 0.2;       //执行时间
-animation.repeatCount = 1;      //执行次数
-animation.removedOnCompletion = YES;
-animation.fromValue = [NSNumber numberWithFloat:0];   //初始伸缩倍数
-animation.toValue = [NSNumber numberWithFloat:-10];     //结束伸缩倍数
-[[arry[index] layer] addAnimation:animation forKey:nil];
-</code></pre><p>5、放大并保持</p>
-<pre><code>//放大效果
-CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
-//速度控制函数，控制动画运行的节奏
-animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-animation.duration = 0.2;       //执行时间
-animation.repeatCount = 1;      //执行次数
-animation.removedOnCompletion = NO;
-animation.fillMode = kCAFillModeForwards;           //保证动画效果延续
-animation.fromValue = [NSNumber numberWithFloat:1.0];   //初始伸缩倍数
-animation.toValue = [NSNumber numberWithFloat:1.15];     //结束伸缩倍数
-[[arry[index] layer] addAnimation:animation forKey:nil];
-//移除其他tabbar的动画
-for (int i = 0; i&lt;arry.count; i++) {
-    if (i != index) {
-        [[arry[i] layer] removeAllAnimations];
-    }
-}
-</code></pre><p>此外，如果想定制其他动画效果，还可以从下面属性里自己定制动画 <img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/01/511196-20170116093610724-1578979553.png" alt>      </p>
-<hr>
-
+        <p>正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： 第一种通过<code>tabBar: didSelectItem:</code>代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 第二种是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 先上几个效果图：</p>
+<p>1、带重力效果的弹跳（第二种方法：只对image执行动画） </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1549072293345_888x213.gif" alt></p>
+        
+            <div class="readmore">
+                <a href="/ios-uitabbar-touch-animation/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
         
 
         
             <div class="full-width auto-padding tags">
                 
-                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-                
                     <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
                 
             </div>
         
@@ -1123,7 +668,7 @@ for (int i = 0; i&lt;arry.count; i++) {
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -1160,99 +705,13 @@ for (int i = 0; i&lt;arry.count; i++) {
 <p>原文始发于微信公众号（为你写一个故事）：<a href="http://mp.weixin.qq.com/s/Xb4bgA_2ylXRwQO4isgJqg" target="_blank" rel="noopener">比咪蒙更可怕的，是挖祖坟式举报清算</a></p>
 </blockquote>
 <p>因为旗下账号“才华有限青年”一篇自称“非虚构“的文章，咪蒙又被推上风口浪尖。  </p>
-<p>就事论事的说，才华有限青年其实和咪蒙关系不大，那确实是个相对独立的团队，我也读过他们以前很多文章，很多都挺好看，要说有什么错，最多是有点煽动情绪。  </p>
-<p>但是做媒体嘛，又有几个不煽动情绪呢，只要不造谣，不引导邪恶的价值观，就没啥问题。  </p>
-<p>所以我觉得一个好的方式是，你不同意她的一篇文章，就说这篇文章写得不好写得不对，甚至可以说这篇文章写得用心险恶。  </p>
-<p>但你去挖她的出身，说她以前是咪蒙的实习生，所以一定不是什么好人。  </p>
-<p>就有点恶毒了。  </p>
-<p>比如有一位我挺喜欢的媒体人，这样写，我就觉得恶毒了  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/4-1548951367.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算">  </p>
-<p>（而且如果真的翻了照片的话，较真的说这句话是造谣）  </p>
-<p>还有昨天整个朋友圈轰轰烈烈的”含咪量“测试，很多人号称朋友圈只要有人关注咪蒙了，就要和TA互删。  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951367.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/9-1548951368.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"><br>这我也觉得太过。<br>按照他们的意思，也别管这人是谁，和他们是什么关系，是不是好朋友或者亲戚，也不管这个人关注咪蒙究竟是认同咪蒙的价值观还是就想围观一下或者学习排版，只要关注咪蒙，就要互删。<br>这放在几十年前，我们叫做”划清界限“，流行这种运动的十年，是新中国最混乱的十年。<br>当然我觉得更过的，还是下面这张截图。  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951370.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算">  </p>
-<p>咪蒙一边说这话，一边”永远爱国，永远热泪盈眶“恶不恶心？<br>恶心。  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951372.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"><br>咪蒙式毒鸡汤讨不讨厌？  </p>
-<p>我也讨厌。<br>但这样挖祖坟式清算举报，尤其是一直翻到2013年的微博，然后把相关机构全都@一遍的行为，让我感到很不舒服。<br>这种不舒服不是反感，而是感到恐怖。<br>而且这样的事情，这些年越来越多了。<br>这样的待遇，陈一发遭遇过：  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/9-1548951373.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>罗永浩遭遇过：  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/0-1548951373.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>毕福剑也遭遇过：  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/4-1548951374.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>普通网友当然也遭遇过：  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/8-1548951375.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>动不动就呼吁封杀，虎扑和吴亦凡粉丝战斗时，双方都遭遇过。</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/3-1548951377.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/4-1548951379.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>游戏《阴阳师》遭遇过：</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/8-1548951380.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>明星骂战的时候使用过这种武器。  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/10-1548951381.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>社会热点事件就不说了，总是有成千上万人向团团举报。  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951383.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>现在甚至王者荣耀玩得不爽了，也要举报。  </p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/3-1548951383.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>在这些举报里，网友们用不知道从哪里学到的词汇，给自己看着不爽的人扣上一个又一个大帽子，套上一个又一个罪名，其手法之纯熟，让我一度以为生活在冯骥才的《一百个人的十年》里。</p>
-<p>可惜拿起手机瞧一瞧，发现已经是2019年了。</p>
-<p>在我看来这种行为和看到让自己不爽的综艺，歌曲，电影就呼吁封杀是一样的，都是分不清各种权利界限的表现。就像几百年前，被人欺负了，就去衙门一跪，高喊“大人，我冤啊！”，然后期待青天大老爷给自己做主的古代中国人一样，始终没有长大。</p>
-<p>他们自己是巨婴，却以为我国居民全都是长不大的巨婴，需要妈妈无微不至地照顾我们，帮我们挑好哪些是我们该看的，哪些是我们不该看的，然后只要他们看到自己不爽的，就会像孩子一样哭喊着叫妈妈来，希望妈妈把“坏东西”都打飞，然后才会重新喜笑颜开。</p>
-<p>可惜现代法制社会没有，也不应该有青天大老爷——历史早已经证明了，青天大老爷式的人治，远不如法治来得公平高效，青天大老爷十年一遇，但手握权力，肆意滥用的昏官却遍地都是。  </p>
-<p>这已经很魔幻了。</p>
-<p>但更魔幻的是，这些诉求，有时候还真的会得到回应。</p>
-<p>以前我觉得孩子长不大，站不起来，是因为孩子自己笨，不想长大，后来才明白，孩子长不大，多半是有一个什么都替孩子做主，什么都替孩子决定的妈——在这些挖坟举报真的会得到回应的情况下，这样的行为永远不会停止，只会变本加厉。</p>
-<p>即使如此，我还是希望你们能少挖坟，少呼吁封杀。</p>
-<p>因为“封杀”这个词代表的那个行为，本来就不应该存在于这个世界上，并且当你习惯”封杀“之后，迟早有一天，会降临到你喜欢的那个账号，那个主播或者那个明星身上。</p>
-<p>还记得之前整治八卦的时候吗？  </p>
-<p>一开始封的很多账号，大家都讨厌，所以一片叫好声。结果之后发展到只要账号中带”八卦“两个字的，都被封号了，包括大家爱看的”毒舌电影“，”严肃八卦“，”金融八卦女“也全部都凉了。</p>
-<p>最搞笑的是，我有个朋友，做了个账号叫”财经八卦阵“，那段时间只能改成”财经九卦阵“，终于躲过一劫。</p>
-<p>还记得之前讨厌PGONE的人拼命举报PGONE，@了一大堆官方账号，要求对PGONE进行封杀吗？</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/4-1548951384.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/3-1548951385.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/0-1548951385.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951386.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>那会儿恰好GAI求婚成功，所以当时这些人中，有不少都人是通过捧GAI来踩PGONE的。</p>
-<p>我自己也是GAI的粉丝，在一个GAI的粉丝群里，有几个姐们表示太好了，解气。但随即更多人表示这不是好事，因为GAI也有黑历史。</p>
-<p>果然过了没多久，GAI被迫从《歌手》中退赛，至今也没在电视上再看过他。</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/0-1548951386.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>在这样轰轰烈烈的挖坟式举报运动中，暴走漫画凉了，陈一发凉了，卢本伟凉了，毕福剑凉了，很多歌手明星都凉了。</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/0-1548951387.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><strong>PGONE被封杀你们叫好，GAI被封杀你们喊冤，毕福剑从央视消失你们想念他。你们以为这几件事不一样应该分开，但经历过这么多事情，你们应该明白，这两件事其实根本就是一件事。</strong>  </p>
-<p>封杀的人不会管哪个嘻哈歌手是正能量的，哪个是屡教不改的——既然嘻哈有问题，那就有问题的一起下。</p>
-<p>就像现在这些为咪蒙的倒台拍手叫好的自媒体人，你又知道封杀的人分得清你和咪蒙的区别咯？</p>
-<p>况且在我看来，很多账号根本就和咪蒙没区别。</p>
-<p>比如某个自媒体，洋洋洒洒写了几千字，细数咪蒙的”七宗罪“。</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/8-1548951388.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>最后得出的结论是，咪蒙最大的罪就是她在迎合读者，并且标题低俗，危害极大。他把文章发到500人的新媒体群里，希望大家为他鼓掌叫好。</p>
-<p>结果翻开他自己的公众号，标题却是这个画风的。</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951390.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>当有人在群里质问他，这是不是在迎合读者，标题低俗，危害极大的时候，他很坦诚的承认”可我的没人看啊。“</p>
-<p>让人心慌。</p>
-<p>一个事实是，我们说的法制说的正义，从来不是给我们喜欢的东西准备的，我们喜欢的东西，根本不需要心中的那杆称来保护。  </p>
-<p>我们说的正义和法制，是你们讨厌的人，也有说话的权利，如果他们没有违法，就不应该不让他们说话。</p>
-<p>还有一个事实是，咪蒙的价值观确实有问题，也许能煽动几十万人的情绪，是会让人焦虑，但真要说她改变了多少人三观，我觉得各位是高看文字的力量了。</p>
-<p>一方面咪蒙并不产生三观，她一般只迎合大众情绪，另一方面三观这东西是没那么容易改变的，2019年了，文字早就没那么大力量了，现在如果说谁因为一篇文章三观就变了，那说明TA本来就有这样的想法，只是这篇文章正好支持了TA而已。</p>
-<p>比起咪蒙，我更害怕那样因为讨厌一个人，就肆无忌惮地爆粗口，就想着要弄死对方，更害怕那样挖祖坟式的举报。</p>
-<p>因为这让我觉得自己每时每刻都活在监视中，终日不得安宁。</p>
-<p>现在你们觉得应该这样对付咪蒙，谁知道哪天我会不会受到这样的待遇。</p>
-<p>而且说一千道一万，当年咪蒙写那几篇文章，疯狂在朋友圈转发刷屏，把咪蒙一度捧成微信第一大号的，还不是网友吗？</p>
-<p>看到某个去年还把咪蒙请为座上宾，一口一个咪蒙老师做分享的机构，昨天他们主编也开始测含咪率了，可能下一步就要表态”互删“了。</p>
-<p>看到之前分享过致贱人几篇的人，开始在朋友圈说”想不通为什么这么多人会关注咪蒙“了。</p>
-<p>有时候见多了这种昨天还万人追捧，今天就过街老鼠的戏码。真是让人对这个复杂繁复的世界，又害怕了几分呢。</p>
-<p>-END-</p>
-<p><strong>为了不错过更新，不要忘了将我设为“星标”</strong></p>
-<p>👇🏻</p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/1-1548951391.gif" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>【推荐阅读】</p>
-<p><a href="http://mp.weixin.qq.com/s?__biz=MzA5MzAyMzE4Nw==&amp;mid=2457479929&amp;idx=1&amp;sn=6512191daa93beeebc90c12bb7fa0918&amp;chksm=87eab445b09d3d53e445f074a3b4ac15fb18418c76093ab0ddc75c80f29091bc14a99523af81&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">活吃人体的恐怖寄生虫们！</a>  </p>
-<p><a href="http://mp.weixin.qq.com/s?__biz=MzA5MzAyMzE4Nw==&amp;mid=2457481227&amp;idx=1&amp;sn=8ea5a850e3fe3465bca13280453cf75f&amp;chksm=87eaaeb7b09d27a173570fe01a91a6e9c0f9b87bcceae78102636562d7b8e27063e80eaadfed&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">性爱最大的缺点，就是它需要两个人</a>  </p>
-<p><a href="http://mp.weixin.qq.com/s?__biz=MzA5MzAyMzE4Nw==&amp;mid=2457481150&amp;idx=1&amp;sn=37d6d2cc5f28907ae40a1f5528edbc2c&amp;chksm=87eab102b09d38144d85db285f9bd1dd14df58b89bdbc1aed8aafa66945022d7f0996b825af4&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">谈谈中国人口负增长</a>  </p>
-<p>回复<strong>晚安</strong>  </p>
-<p>可以看到一篇</p>
-<p><strong>“性瘾者”</strong></p>
-<p><img src="http://paaatrick.com/wordpress/wp-content/uploads/2019/02/9-1548951392.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算" title="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>点个好看吧？</p>
-
+        
+            <div class="readmore">
+                <a href="/raistlin2017-201901201/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
         
 
         
@@ -1290,6 +749,63 @@ for (int i = 0; i&lt;arry.count; i++) {
         </div>
         <aside class='l_side'>
             
+  
+  
+    
+      
+      
+        
+  <section class="category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(10)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+
 
         </aside>
         <script>setLoadingBarProgress(60);</script>
@@ -1298,6 +814,20 @@ for (int i = 0; i&lt;arry.count; i++) {
     </div>
     <footer id="footer" class="clearfix">
   
+    <div class="footer">
+      <p>派大星星星星</p>
+
+    </div>
+    <br>
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fas fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
   
   <br>
   <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>

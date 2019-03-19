@@ -8,12 +8,35 @@ subtitle: 你有没有给我带点鱼来
 description: 
 keywords: iOS
 author: 大星
-language:
+language: -zh-CN
 timezone:
+favicon: https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png
+
+# DIY
+social:
+  - icon: fas fa-github
+    url: https://github.com/Fongim
+
+menu:
+  - name: blogs
+    icon: fas fa-rss
+    url: /
+  - name: archives
+    icon: fas fa-archive
+    url: archives/
+
+footer: '派大星星星星'
+
+# widgets
+
+widgets:
+  - widget: category
+  - widget: tagcloud
+  - widget: toc
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.paaatrick.com
+# url: https://blog.paaatrick.com
 root: /
 permalink: :title/
 permalink_defaults:

@@ -2,13 +2,131 @@
 title: 性冷淡商务风：深圳龙华希尔顿逸林酒店
 tags:
   - Hotel
-url: 123.html
-id: 123
 categories:
   - Life
 date: 2017-05-17 00:00:50
 ---
 
-龙华年初新开了间 DoubleTree，从此深圳也有CAT2的希尔顿了。可惜的是积分房常年不放10000分的基础房型，还好连续两日及以上还能订到基础房，配合 Hilton Q1 促销每晚送2000分活动，非常适合保级刷房。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress1-1548760825.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress5-1548760828.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   酒店在粤商中心大厦1-15层，坐落于龙华文化广场旁，隔壁是龙华星河ICO，距离地铁清湖站较近，周围还算繁华，据说是龙华新区首家五星级国际酒店。粤商中心这栋楼全玻璃覆盖显得比较商务，符合 DoubleTree 品牌的定位。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress6-1548760829.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   一进大堂就是典型的 DoubleTree 性冷淡风格，米白色大理石为主的装修风格使原本较小的大堂显得大气，前台人手不够，客人多时要排队 CI/CO，上酒廊 Check-in 就更是要等很久了。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress5-1548760829.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress2-1548760830.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress10-1548760831.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   酒店被设计在这栋楼底部十几层，上半部分是写字楼，似乎业主不太重视酒店。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress9-1548760832.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   这次入住时房态紧张，只给升一级到12楼的园景房，虽然没升级到行政房不过也给了行政待遇。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress0-1548760833.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   DoubleTree 标志性的热曲奇饼，每位顾客入住时都给两份，很好吃，路过前台时可以再要几块。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress3-1548760835.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress2-1548760837.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress3-1548760837.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress9-1548760839.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress8-1548760840.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   因为是新开业的酒店，硬件水准在同品牌中数一数二，客房面积48平方起步也没什么问题，套房楼层据说被某剧组包了几个月，因此没能升级套房挺可惜的。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress9-1548760842.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress6-1548760843.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress2-1548760845.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   逸林标配单人浴缸，卫生间干湿分离，瑰珀翠（Crabtree & Evelyn）的备品味道一般，还是更喜欢彼得罗夫（Peter Thomas Roth）的热情果味。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress10-1548760846.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress10-1548760847.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress6-1548760848.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   窗外正对龙华文化广场，也是新建的，晚上有大批广场舞大妈，幸好玻璃隔音性能不错，问题是晚上有治安的单车持续闪烁红蓝灯光，穿透力极强，不拉上遮光窗帘要被闪瞎眼。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress0-1548760850.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress0-1548760852.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress5-1548760853.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress6-1548760855.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   床头音响支持直接插 iPhone 播放，插座自带USB也是这几年新开酒店的标配了。欢迎水果略显小气，进门的柜子另有玄机，水壶茶杯和小冰箱都藏在里面。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress2-1548760855.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress2-1548760856.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress1-1548760857.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress8-1548760859.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress7-1548760862.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress2-1548760863.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   行政酒廊的 Happy Hour 从17点到19点，菜品十分丰富，热菜、甜品很多，当作晚餐完全没有问题。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress10-1548760865.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress6-1548760865.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress3-1548760866.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress5-1548760867.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   酒店健身房还没装修好，把酒廊对面的一间套房改造成了一个临时健身房，所以面积很小，设备也不够多，来几个老外就占满了。室外泳池也要到17年5月底才开放。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress1-1548760868.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress9-1548760870.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   回到房间发现已经开好了夜床，可能是看到一下子把两瓶水喝完了，于是又补充了六瓶😂而且很贴心地在床上放了张明日天气预报。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress7-1548760872.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress1-1548760874.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress8-1548760875.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress8-1548760876.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress4-1548760878.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress0-1548760880.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress0-1548760882.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店") ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress3-1548760884.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   酒店的主餐厅名为 『OPEN | "開"全日餐厅』，然而晚上只营业到22点，并没有通宵开放😑 早餐看似丰富，实际出品一般，蛋卷和鸡肉肠还没有希尔顿花园的好吃。不过餐厅环境确实不错，适合平时晚上来吃自助餐。   ![性冷淡商务风：深圳龙华希尔顿逸林酒店](http://paaatrick.com/wordpress/wp-content/uploads/2019/01/beepress8-1548760885.jpeg "性冷淡商务风：深圳龙华希尔顿逸林酒店")   这间 DoubleTree 最近几个月都不放基础房了，可能确实是商务客比较多吧， 10000分入住虽然没有华东一堆5000分 DoubleTree 那么白菜价，但毕竟地处深圳龙华腹地，性价比非常高，实属希尔顿保级优选。      
+龙华年初新开了间 DoubleTree，从此深圳也有CAT2的希尔顿了。可惜的是积分房常年不放10000分的基础房型，还好连续两日及以上还能订到基础房，配合 Hilton Q1 促销每晚送2000分活动，非常适合保级刷房。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress1-1548760825.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress5-1548760828.jpeg)  
+
+酒店在粤商中心大厦1-15层，坐落于龙华文化广场旁，隔壁是龙华星河ICO，距离地铁清湖站较近，周围还算繁华，据说是龙华新区首家五星级国际酒店。粤商中心这栋楼全玻璃覆盖显得比较商务，符合 DoubleTree 品牌的定位。   
+
+
+<!-- more -->
+
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress6-1548760829.jpeg)
+
+一进大堂就是典型的 DoubleTree 性冷淡风格，米白色大理石为主的装修风格使原本较小的大堂显得大气，前台人手不够，客人多时要排队 CI/CO，上酒廊 Check-in 就更是要等很久了。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress5-1548760829.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress2-1548760830.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress10-1548760831.jpeg)
+
+酒店被设计在这栋楼底部十几层，上半部分是写字楼，似乎业主不太重视酒店。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress9-1548760832.jpeg)  
+
+这次入住时房态紧张，只给升一级到12楼的园景房，虽然没升级到行政房不过也给了行政待遇。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress0-1548760833.jpeg)
+
+DoubleTree 标志性的热曲奇饼，每位顾客入住时都给两份，很好吃，路过前台时可以再要几块。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress3-1548760835.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress2-1548760837.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress3-1548760837.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress9-1548760839.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress8-1548760840.jpeg)
+
+因为是新开业的酒店，硬件水准在同品牌中数一数二，客房面积48平方起步也没什么问题，套房楼层据说被某剧组包了几个月，因此没能升级套房挺可惜的。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress9-1548760842.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress6-1548760843.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress2-1548760845.jpeg)
+
+逸林标配单人浴缸，卫生间干湿分离，瑰珀翠（Crabtree & Evelyn）的备品味道一般，还是更喜欢彼得罗夫（Peter Thomas Roth）的热情果味。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress10-1548760846.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress10-1548760847.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress6-1548760848.jpeg)
+
+窗外正对龙华文化广场，也是新建的，晚上有大批广场舞大妈，幸好玻璃隔音性能不错，问题是晚上有治安的单车持续闪烁红蓝灯光，穿透力极强，不拉上遮光窗帘要被闪瞎眼。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress0-1548760850.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress0-1548760852.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress5-1548760853.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress6-1548760855.jpeg)
+
+床头音响支持直接插 iPhone 播放，插座自带USB也是这几年新开酒店的标配了。欢迎水果略显小气，进门的柜子另有玄机，水壶茶杯和小冰箱都藏在里面。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress2-1548760855.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress2-1548760856.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress1-1548760857.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress8-1548760859.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress7-1548760862.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress2-1548760863.jpeg)
+
+行政酒廊的 Happy Hour 从17点到19点，菜品十分丰富，热菜、甜品很多，当作晚餐完全没有问题。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress10-1548760865.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress6-1548760865.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress3-1548760866.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress5-1548760867.jpeg)
+
+酒店健身房还没装修好，把酒廊对面的一间套房改造成了一个临时健身房，所以面积很小，设备也不够多，来几个老外就占满了。室外泳池也要到17年5月底才开放。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress1-1548760868.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress9-1548760870.jpeg)
+
+回到房间发现已经开好了夜床，可能是看到一下子把两瓶水喝完了，于是又补充了六瓶😂而且很贴心地在床上放了张明日天气预报。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress7-1548760872.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress1-1548760874.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress8-1548760875.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress8-1548760876.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress4-1548760878.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress0-1548760880.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress0-1548760882.jpeg)
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress3-1548760884.jpeg)
+
+酒店的主餐厅名为 『OPEN | "開"全日餐厅』，然而晚上只营业到22点，并没有通宵开放😑 早餐看似丰富，实际出品一般，蛋卷和鸡肉肠还没有希尔顿花园的好吃。不过餐厅环境确实不错，适合平时晚上来吃自助餐。   
+
+![性冷淡商务风：深圳龙华希尔顿逸林酒店](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/beepress8-1548760885.jpeg)
+
+这间 DoubleTree 最近几个月都不放基础房了，可能确实是商务客比较多吧， 10000分入住虽然没有华东一堆5000分 DoubleTree 那么白菜价，但毕竟地处深圳龙华腹地，性价比非常高，实属希尔顿保级优选。      
 
 > 原文始发于微信公众号（派大星星星星）：[性冷淡商务风：深圳龙华希尔顿逸林酒店](http://mp.weixin.qq.com/s/3AVq0D4fRAt10VIMWOGvmw)

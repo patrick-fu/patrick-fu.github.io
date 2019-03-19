@@ -3,68 +3,67 @@ title: iOS UIScrollView的代理方法汇总
 tags:
   - iOS
   - Objective-C
-url: 399.html
-id: 399
 categories:
   - Tech
+description: UIScrollView的代理方法汇总
 date: 2019-02-02 11:15:37
 ---
 
-    @protocol UIScrollViewDelegate<NSObject>
-    @optional
-    - (void)scrollViewDidScroll:(UIScrollView *)scrollView; 
-    // any offset changes 只要scrollView的content 这个方法在任何方式触发 contentOffset 
-    // 变化的时候都会被调用（包括用户拖动，减速过程，直接通过代码设置等），可以用于监控 contentOffset 
-    // 的变化，并根据当前的 contentOffset 对其他 view 做出随动调整。
-    
-    // called on start of dragging (may require some time and or distance to move)
-    - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView; 
-    // 用户开始拖动 scroll view 的时候被调用，可能需要一些时间和距离移动之后才会触发。
-    
-    // called on finger up if the user dragged. velocity is in points/millisecond. 
-    // targetContentOffset may be changed to adjust where the scroll view comes to rest
-    - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
-    // 在 didEndDragging 前被调用，当 willEndDragging 方法中 velocity 为 CGPointZero
-    //（结束拖动时两个方向都没有速度）时，didEndDragging 中的 decelerate 为 NO，即没有减速过程，
-    //willBeginDecelerating 和 didEndDecelerating 也就不会被调用。反之，
-    // 当 velocity 不为 CGPointZero 时，scroll view 会以 velocity 为初速度，
-    // 减速直到 targetContentOffset。
-    
-    - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
-    // 在用户结束拖动后被调用，decelerate 为 YES 时，
-    // 结束拖动后会有减速过程。注，在 didEndDragging 之后，如果有减速过程，
-    // scroll view 的 dragging 并不会立即置为 NO，而是要等到减速结束之后，
-    // 所以这个 dragging 属性的实际语义更接近 scrolling。
-    
-    - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   // 减速动画开始前被调用。
-    
-    - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;      
-    // 减速动画结束时被调用，这里有一种特殊情况：当一次减速动画尚未结束的时候再次 drag scroll view，
-    // didEndDecelerating 不会被调用，并且这时 scroll view 的 dragging 和 decelerating 属性都是 YES。
-    // 新的 dragging 如果有加速度，那么 willBeginDecelerating 会再一次被调用，然后才是 didEndDecelerating；
-    // 如果没有加速度，虽然 willBeginDecelerating 不会被调用，但前一次留下的 didEndDecelerating 会被调用      
-    
-    - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView; 
-    // called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
-    
-    - (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
-    // any zoom scale changes view缩放改变的时候调用。
-    
-    - (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;     
-    // return a view that will be scaled. if delegate returns nil, nothing happens
-    告诉代理要缩放那个控件。 
-    
-    - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view NS_AVAILABLE_IOS(3_2); 
-    // called before the scroll view begins zooming its content缩放开始的时候调用
-    
-    - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale; 
-    // scale between minimum and maximum. called after any 'bounce' animations缩放完毕的时候调用。
-    
-    - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView;   // return a yes if you want to scroll to the top. if not defined, assumes YES- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView;      
-    // called when scrolling animation finished. may be called immediately if already at top滚动动画完成时调用。
-    @end
-    
+```objective-c
+@protocol UIScrollViewDelegate<NSObject>
+@optional
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView; 
+// any offset changes 只要scrollView的content 这个方法在任何方式触发 contentOffset 
+// 变化的时候都会被调用（包括用户拖动，减速过程，直接通过代码设置等），可以用于监控 contentOffset 
+// 的变化，并根据当前的 contentOffset 对其他 view 做出随动调整。
 
-     
+// called on start of dragging (may require some time and or distance to move)
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView; 
+// 用户开始拖动 scroll view 的时候被调用，可能需要一些时间和距离移动之后才会触发。
+
+// called on finger up if the user dragged. velocity is in points/millisecond. 
+// targetContentOffset may be changed to adjust where the scroll view comes to rest
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
+// 在 didEndDragging 前被调用，当 willEndDragging 方法中 velocity 为 CGPointZero
+//（结束拖动时两个方向都没有速度）时，didEndDragging 中的 decelerate 为 NO，即没有减速过程，
+//willBeginDecelerating 和 didEndDecelerating 也就不会被调用。反之，
+// 当 velocity 不为 CGPointZero 时，scroll view 会以 velocity 为初速度，
+// 减速直到 targetContentOffset。
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+// 在用户结束拖动后被调用，decelerate 为 YES 时，
+// 结束拖动后会有减速过程。注，在 didEndDragging 之后，如果有减速过程，
+// scroll view 的 dragging 并不会立即置为 NO，而是要等到减速结束之后，
+// 所以这个 dragging 属性的实际语义更接近 scrolling。
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   // 减速动画开始前被调用。
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;      
+// 减速动画结束时被调用，这里有一种特殊情况：当一次减速动画尚未结束的时候再次 drag scroll view，
+// didEndDecelerating 不会被调用，并且这时 scroll view 的 dragging 和 decelerating 属性都是 YES。
+// 新的 dragging 如果有加速度，那么 willBeginDecelerating 会再一次被调用，然后才是 didEndDecelerating；
+// 如果没有加速度，虽然 willBeginDecelerating 不会被调用，但前一次留下的 didEndDecelerating 会被调用      
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView; 
+// called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
+// any zoom scale changes view缩放改变的时候调用。
+
+- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;     
+// return a view that will be scaled. if delegate returns nil, nothing happens
+告诉代理要缩放那个控件。 
+
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view NS_AVAILABLE_IOS(3_2); 
+// called before the scroll view begins zooming its content缩放开始的时候调用
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale; 
+// scale between minimum and maximum. called after any 'bounce' animations缩放完毕的时候调用。
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView;   // return a yes if you want to scroll to the top. if not defined, assumes YES- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView;      
+// called when scrolling animation finished. may be called immediately if already at top滚动动画完成时调用。
+@end
+```
 
 * * *
+

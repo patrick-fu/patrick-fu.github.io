@@ -1,3 +1,3 @@
 [submodule "themes/material-x"]
 	path = themes/material-x
-	url = https://github.com/xaoxuu/hexo-theme-material-x
+	url = git@github.com:Fongim/hexo-theme-material-x.git

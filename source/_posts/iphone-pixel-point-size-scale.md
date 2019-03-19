@@ -3,16 +3,11 @@ title: iPhone屏幕各种尺寸分辨率（更新至XS）
 tags:
   - iOS
   - Objective-C
-url: 442.html
-id: 442
 categories:
   - Tech
 date: 2019-03-05 15:57:28
-description: iPhone屏幕各种尺寸分辨率（更新至XS）
 ---
 
-# [iPhone屏幕各种尺寸分辨率（更新至XS）](http://paaatrick.com/iphone_pixel_point_size_scale.html)
----
 | Device         | Logic Point | Logic Pixel | Size | Scale |
 | -------------- | ----------- | ----------- | ---- | ----- |
 | iPhone 2G      | 480 × 320   | 480 × 320   | 3.5  | 1x    |
@@ -37,5 +32,4 @@ description: iPhone屏幕各种尺寸分辨率（更新至XS）
 | iPhone XR      | 896 × 414   | 1792 × 828  | 6.1  | 2x    |
 | iPhone XS Max  | 896 × 414   | 2688 × 1242 | 6.5  | 3x    |
 
- 
 ---

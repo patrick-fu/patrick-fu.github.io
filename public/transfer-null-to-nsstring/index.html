@@ -26,6 +26,8 @@
   
 
   
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
 
   
   <link rel="stylesheet" href="/style.css">
@@ -58,6 +60,20 @@
 			<div class="menu">
 				<ul class="h-list">
           
+  					
+  						<li>
+								<a id="home" class="nav flat-box" href="/">
+									<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="archives" class="nav flat-box" href="/archives/">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+								</a>
+							</li>
+      			
+      		
 				</ul>
 			</div>
 
@@ -91,6 +107,20 @@
 		<nav class="menu">
       <ul>
           
+              
+                  <li>
+										<a id="home" class="nav flat-box" href="/">
+											<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="archives" class="nav flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+										</a>
+                  </li>
+              
+       
       </ul>
 		</nav>
     </header>
@@ -115,7 +145,7 @@
     <div class="new-meta-box">
       
         <div class="new-meta-item author">
-          <a href="https://blog.paaatrick.com">
+          <a href="http://yoursite.com">
             <i class="fas fa-user" aria-hidden="true"></i>
             大星
           </a>
@@ -133,9 +163,9 @@
         
           
           <div class="new-meta-item category">
-            <a href="/categories/派大星星星星/">
+            <a href="/categories/Tech/">
               <i class="fas fa-folder-open" aria-hidden="true"></i>
-              派大星星星星
+              Tech
             </a>
           </div>
         
@@ -161,14 +191,8 @@
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
         <p>遇到了一个后台json误将null作为字符串值导致iOS客户端崩溃闪退的问题，解决方法如下：套一层判断，如果是各种情况的null则转换为@””。</p>
-<pre><code>+ (NSString *)nullToString:(id)string {
-    if ([string isEqual:@&quot;NULL&quot;] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@&quot;&lt;null&gt;&quot;] || [string isEqualToString:@&quot;(null)&quot;]) {
-        return @&quot;&quot;;
-    } else {
-        return (NSString *)string;
-    }
-}
-</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *) nullToString:(id)string &#123;</span><br><span class="line">    if ([string isEqual:@&quot;NULL&quot;] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@&quot;&lt;null&gt;&quot;] || [string isEqualToString:@&quot;(null)&quot;]) &#123;</span><br><span class="line">        return @&quot;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return (NSString *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
 
       </div>
         
@@ -176,13 +200,16 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-16T03:14:18+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-19T21:36:52+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-03-16
+                    2019-03-19
                   </a>
                 </div>
               
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;iOS</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Objective-C</a></div>
               
               
             </div>
@@ -205,7 +232,7 @@
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a> <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a>
+                                    <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
                                 </h6>
                             
                         </span>
@@ -225,7 +252,7 @@
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a> <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a>
+                                    <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
                                 </h6>
                             
                         </span>
@@ -260,6 +287,63 @@
         </div>
         <aside class='l_side'>
             
+  
+  
+    
+      
+      
+        
+  <section class="category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(10)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+
 
         </aside>
         <script>setLoadingBarProgress(60);</script>
@@ -268,6 +352,20 @@
     </div>
     <footer id="footer" class="clearfix">
   
+    <div class="footer">
+      <p>派大星星星星</p>
+
+    </div>
+    <br>
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fas fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
   
   <br>
   <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
