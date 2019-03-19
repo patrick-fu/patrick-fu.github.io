@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Category: Tech | 派大星星星星</title>
+  
+  <meta name="keywords" content="iOS">
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href="/">
+        
+          派大星星星星
+        
+      </a>
+			<div class="menu">
+				<ul class="h-list">
+          
+  					
+  						<li>
+								<a id="home" class="nav flat-box" href="/">
+									<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="archives" class="nav flat-box" href="/archives/">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+              
+                  <li>
+										<a id="home" class="nav flat-box" href="/">
+											<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="archives" class="nav flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            
+    <script>
+        window.subData= { title:'Category : Tech'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/if-nsarray-null/">
+              
+                  判断一个 NSArray 是否为空
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-03-12
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if ([array isKindOfClass:[NSArray class]] &amp;&amp; array.count &gt; 0)</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;这是一个非空数组&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/iphone-pixel-point-size-scale/">
+              
+                  iPhone屏幕各种尺寸分辨率（更新至XS）
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-03-05
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Logic Point</th>
+<th>Logic Pixel</th>
+<th>Size</th>
+<th>Scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone 2G</td>
+<td>480 × 320</td>
+<td>480 × 320</td>
+<td>3.5</td>
+<td>1x</td>
+</tr>
+<tr>
+<td>iPhone 3</td>
+<td>480 × 320</td>
+<td>480 × 320</td>
+<td>3.5</td>
+<td>1x</td>
+</tr>
+<tr>
+<td>iPhone 3GS</td>
+<td>480 × 320</td>
+<td>480 × 320</td>
+<td>3.5</td>
+<td>1x</td>
+</tr>
+<tr>
+<td>iPhone 4</td>
+<td>480 × 320</td>
+<td>960 × 640</td>
+<td>3.5</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 4S</td>
+<td>480 × 320</td>
+<td>960 × 640</td>
+<td>3.5</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 5</td>
+<td>568 × 320</td>
+<td>1136 × 640</td>
+<td>4.0</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 5S</td>
+<td>568 × 320</td>
+<td>1136 × 640</td>
+<td>4.0</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 5C</td>
+<td>568 × 320</td>
+<td>1136 × 640</td>
+<td>4.0</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 6</td>
+<td>667 × 375</td>
+<td>1334 × 750</td>
+<td>4.7</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 6 Plus</td>
+<td>736 × 414</td>
+<td>2208 × 1242</td>
+<td>5.5</td>
+<td>3x</td>
+</tr>
+<tr>
+<td>iPhone 6S</td>
+<td>667 × 375</td>
+<td>1334 × 750</td>
+<td>4.7</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 6S Plus</td>
+<td>736 × 414</td>
+<td>2208 × 1242</td>
+<td>5.5</td>
+<td>3x</td>
+</tr>
+<tr>
+<td>iPhone SE</td>
+<td>568 × 320</td>
+<td>1136 × 640</td>
+<td>4.0</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 7</td>
+<td>667 × 375</td>
+<td>1334 × 750</td>
+<td>4.7</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 7 Plus</td>
+<td>736 × 414</td>
+<td>2208 × 1242</td>
+<td>5.5</td>
+<td>3x</td>
+</tr>
+<tr>
+<td>iPhone 8</td>
+<td>667 × 375</td>
+<td>1334 × 750</td>
+<td>4.7</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone 8 Plus</td>
+<td>736 × 414</td>
+<td>2208 × 1242</td>
+<td>5.5</td>
+<td>3x</td>
+</tr>
+<tr>
+<td>iPhone X</td>
+<td>812 × 375</td>
+<td>2436 × 1125</td>
+<td>5.8</td>
+<td>3x</td>
+</tr>
+<tr>
+<td>iPhone XS</td>
+<td>812 × 375</td>
+<td>2436 × 1125</td>
+<td>5.8</td>
+<td>3x</td>
+</tr>
+<tr>
+<td>iPhone XR</td>
+<td>896 × 414</td>
+<td>1792 × 828</td>
+<td>6.1</td>
+<td>2x</td>
+</tr>
+<tr>
+<td>iPhone XS Max</td>
+<td>896 × 414</td>
+<td>2688 × 1242</td>
+<td>6.5</td>
+<td>3x</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/transfer-null-to-nsstring/">
+              
+                  iOS 判断NSString值是否为空或null并转换为空字符串
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-12
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <p>遇到了一个后台json误将null作为字符串值导致iOS客户端崩溃闪退的问题，解决方法如下：套一层判断，如果是各种情况的null则转换为@””。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *) nullToString:(id)string &#123;</span><br><span class="line">    if ([string isEqual:@&quot;NULL&quot;] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@&quot;&lt;null&gt;&quot;] || [string isEqualToString:@&quot;(null)&quot;]) &#123;</span><br><span class="line">        return @&quot;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return (NSString *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/mj-extension-guide/">
+              
+                  iOS MJExtension使用方法指南(Objective-C)
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-03
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        MJExtension使用方法指南
+        
+            <div class="readmore">
+                <a href="/mj-extension-guide/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/ios-uiscrollview-delegate-methods/">
+              
+                  iOS UIScrollView的代理方法汇总
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-02
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        UIScrollView的代理方法汇总
+        
+            <div class="readmore">
+                <a href="/ios-uiscrollview-delegate-methods/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/ios-uilabel-linebreakmode-setting/">
+              
+                  iOS UILabel的lineBreakMode省略模式设置
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-01
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">label.lineBreakMode = NSLineBreakByCharWrapping; //以字符为显示单位显示，后面部分省略不显示。</span><br><span class="line">label.lineBreakMode = NSLineBreakByClipping; //剪切与文本宽度相同的内容长度，后半部分被删除。</span><br><span class="line">label.lineBreakMode = NSLineBreakByTruncatingHead; //前面部分文字以……方式省略，显示尾部文字内容。</span><br><span class="line">label.lineBreakMode = NSLineBreakByTruncatingMiddle; //中间的内容以……方式省略，显示头尾的文字内容。</span><br><span class="line">label.lineBreakMode = NSLineBreakByTruncatingTail; //结尾部分的内容以……方式省略，显示头的文字内容。</span><br><span class="line">label.lineBreakMode = NSLineBreakByWordWrapping; //以单词为显示单位显示，后面部分省略不显示。</span><br></pre></td></tr></table></figure>
+<hr>
+
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/ios-uiimage-resize/">
+              
+                  iOS修改UIImage图片尺寸大小逻辑分辨率
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-01
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <p>之前遇到的问题，给UITabbar item设置图片，然而素材的图片分辨率是87*87，填满了整个tabbar item的区域，很难看，又要考虑适配XS Max的三倍问题。 解决方法如下： 通过设置scale使生成的图片尺寸是逻辑分辨率pt单位，不用操心二倍三倍的问题。</p>
+        
+            <div class="readmore">
+                <a href="/ios-uiimage-resize/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/ios-uitabbar-touch-animation/">
+              
+                  iOS UITabbar图标点击动画效果实现
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-01
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <p>正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： 第一种通过<code>tabBar: didSelectItem:</code>代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 第二种是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 先上几个效果图：</p>
+<p>1、带重力效果的弹跳（第二种方法：只对image执行动画） </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1549072293345_888x213.gif" alt></p>
+        
+            <div class="readmore">
+                <a href="/ios-uitabbar-touch-animation/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+                
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/wp-real-media-library/">
+              
+                  亲测真正好用的WordPress媒体库图片分类插件
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-01-31
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        WordPress媒体库图片分类插件
+        
+            <div class="readmore">
+                <a href="/wp-real-media-library/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/WordPress/"><i class="fas fa-hashtag fa-fw"></i>WordPress</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/build-wordpress-blog/">
+              
+                  云服务器使用WordPress搭建个人博客并绑定域名全记录
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="http://yoursite.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-01-29
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <p>一直在续费云服务器，索性充分利用资源，复古一下，鼓捣个小博客记录些东西。 现在大致已经搭好博客了，那就先把这折腾了一整天的建站过程给记录下。</p>
+<h3 id="关于服务器"><a href="#关于服务器" class="headerlink" title="关于服务器"></a><strong>关于服务器</strong></h3><p>前几年购入的Vultr的ECS，东京的相对性价比高一些，延迟和网速都很稳，现在（2019.1）还有3.5刀一个月的，非常实惠。</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-18.26.19.png" alt> </p>
+        
+            <div class="readmore">
+                <a href="/build-wordpress-blog/" class="flat-box">
+                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+                    Read More
+                </a>
+            </div>
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/WordPress/"><i class="fas fa-hashtag fa-fw"></i>WordPress</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
+        
+      
+
+  </section>
+
+
+
+
+
+
+  
+
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+
+
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        
+  <section class="category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(10)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+    <div class="footer">
+      <p>派大星星星星</p>
+
+    </div>
+    <br>
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fas fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>Use <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> as theme, total visits <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> times. 
+  </div>
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+  
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        const $reveal = $('.reveal');
+    		if ($reveal.length === 0) return;
+    		const sr = ScrollReveal({ distance: 0 });
+    		sr.reveal('.reveal');
+      });
+    </script>
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        Waves.attach('.flat-btn', ['waves-button']);
+        Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+        Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+        Waves.attach('.flat-box', ['waves-block']);
+        Waves.attach('.float-box', ['waves-block', 'waves-float']);
+        Waves.attach('.waves-image');
+        Waves.init();
+      });
+    </script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+    <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+  
+
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
