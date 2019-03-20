@@ -63,13 +63,25 @@
   					
   						<li>
 								<a id="home" class="nav flat-box" href="/">
-									<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="categories" class="nav flat-box" href="/categories/">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="tags" class="nav flat-box" href="/tags/">
+									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
 								</a>
 							</li>
       			
   						<li>
 								<a id="archives" class="nav flat-box" href="/archives/">
-									<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
 								</a>
 							</li>
       			
@@ -80,7 +92,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="Search">
+						<input type="text" class="input u-search-input" placeholder="搜索">
 						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
 					</form>
 				</div>
@@ -110,13 +122,25 @@
               
                   <li>
 										<a id="home" class="nav flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+											<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="categories" class="nav flat-box" href="/categories/">
+											<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="tags" class="nav flat-box" href="/tags/">
+											<i class="fas fa-tags fa-fw"></i>&nbsp;标签
 										</a>
                   </li>
               
                   <li>
 										<a id="archives" class="nav flat-box" href="/archives/">
-											<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
 										</a>
                   </li>
               
@@ -190,7 +214,7 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if ([array isKindOfClass:[NSArray class]] &amp;&amp; array.count &gt; 0)</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;这是一个非空数组&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([array isKindOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]] &amp;&amp; array.count &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"这是一个非空数组"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 
       </div>
@@ -199,10 +223,10 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-19T21:47:36+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-20T11:18:45+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-03-19
+                    2019-03-20
                   </a>
                 </div>
               
@@ -221,7 +245,7 @@
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
-                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
                                 <a href="/iphone-pixel-point-size-scale/" rel="prev" title="iPhone屏幕各种尺寸分辨率（更新至XS）">
                                     
@@ -272,11 +296,45 @@
     
       
       
+        <section class="author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="mailto:lemonjush@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://me.csdn.net/fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-contao" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
         
   <section class="category">
     
 <header class="pure">
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
   
 </header>
 
@@ -302,7 +360,7 @@
   <section class="tagcloud">
     
 <header class="pure">
-  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
   
 </header>
 
@@ -342,15 +400,23 @@
     <div class="social-wrapper">
       
         
-          <a href="https://github.com/Fongim" class="social fas fa-github flat-btn" target="_blank" rel="external"></a>
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="mailto:lemonjush@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external"></a>
         
       
     </div>
   
   <br>
-  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
-  <div>Use <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> as theme, total visits <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> times. 
+  <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
   </div>
 </footer>
 
