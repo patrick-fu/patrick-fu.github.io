@@ -1,5 +1,6 @@
 ---
 title: iOS UITabbar图标点击动画效果实现
+top: true
 tags:
   - iOS
   - Objective-C
@@ -37,7 +38,7 @@ date: 2019-02-01 16:54:57
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/511196-20170116104036224-920525159.gif)
 
-```objective-c
+```objc
 @interface MainTabbarVC ()<UITabBarControllerDelegate>
 @property (nonatomic,assign) NSInteger  indexFlag;　　//记录上一次点击tabbar，使用时，记得先在init或viewDidLoad里 初始化 = 0
 @end
@@ -86,7 +87,7 @@ date: 2019-02-01 16:54:57
 
 1、带重力效果的弹跳
 
-```objective-c
+```objc
 CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
 //通过初中物理重力公式计算出的位移y值数组
 animation.values = @[@0.0, @-4.15, @-7.26, @-9.34, @-10.37, @-9.34, @-7.26, @-4.15, @0.0, @2.0, @-2.9, @-4.94, @-6.11, @-6.42, @-5.86, @-4.44, @-2.16, @0.0];
@@ -98,7 +99,7 @@ animation.beginTime = CACurrentMediaTime() + 1;
 
 2、先放大，再缩小
 
-```objective-c
+```objc
 //放大效果，并回到原位
 CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
 //速度控制函数，控制动画运行的节奏
@@ -114,7 +115,7 @@ animation.toValue = [NSNumber numberWithFloat:1.3];     //结束伸缩倍数
 
 3、Z轴旋转
 
-```objective-c
+```objc
 //z轴旋转180度
 CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
 //速度控制函数，控制动画运行的节奏
@@ -130,7 +131,7 @@ animation.toValue = [NSNumber numberWithFloat:M_PI];     //结束伸缩倍数
 
 4、Y轴位移
 
-```objective-c
+```objc
 //向上移动
 CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
 //速度控制函数，控制动画运行的节奏
@@ -146,7 +147,7 @@ animation.toValue = [NSNumber numberWithFloat:-10];     //结束伸缩倍数
 
 5、放大并保持
 
-```objective-c
+```objc
 //放大效果
 CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
 //速度控制函数，控制动画运行的节奏

@@ -17,7 +17,7 @@ MJExtension能做什么？
 ##### 2\. MJExtension能完成的功能
 
 
-```objective-c
+```objc
 字典（JSON） --> 模型（Model）
 模型（Model） --> 字典（JSON）
 字典数组（JSON Array） --> 模型数组（Model Array）
@@ -37,7 +37,7 @@ MJExtension和JSONModel、Mantle等框架的区别
 ##### 2\. 具体用法：
 
 
-```objective-c
+```objc
 JSONModel：
 
 要求所有模型类必须继承自JSONModel基类
@@ -57,7 +57,7 @@ MJExtension：
 
 方法一：cocoapods导入：
 
-```objective-c
+```objc
 pod 'MJExtension'
 ```
 
@@ -65,7 +65,7 @@ pod 'MJExtension'
 方法二：手动导入：
 
 
-```objective-c
+```objc
 将MJExtensionExample/MJExtensionExample/MJExtension文件夹中的所有源代码拽入项目中
 导入主头文件：#import "MJExtension.h"
 MJExtension.h
@@ -92,7 +92,7 @@ NSObject+MJKeyValue.m
 #### 1\. 最简单的字典转模型
 
 
-```objective-c
+```objc
 typedef enum {
     SexMale,    
     SexFemale} Sex;
@@ -123,7 +123,7 @@ NSLog(@"name=%@, icon=%@, age=%d, height=%@, money=%@, sex=%d", user.name, user.
 
 ##### 核心代码1：
 
-```objective-c
+```objc
 [User objectWithKeyValues:dict]
 ```
 
@@ -131,7 +131,7 @@ NSLog(@"name=%@, icon=%@, age=%d, height=%@, money=%@, sex=%d", user.name, user.
 #### 2\. 模型中嵌套模型
 
 
-```objective-c
+```objc
 @interface Status : NSObject
 /** 微博文本内容 */
 @property (copy, nonatomic) NSString *text;
@@ -174,7 +174,7 @@ NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
 
 ##### 核心代码2
 
-```objective-c
+```objc
 [Status objectWithKeyValues:dict]`
 ```
 
@@ -182,7 +182,7 @@ NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
 #### 3\. 模型中有个数组属性，数组里面又要装着其它模型
 
 
-```objective-c
+```objc
 @interface Ad : NSObject
 @property (copy, nonatomic) NSString *image;
 @property (copy, nonatomic) NSString *url;
@@ -276,7 +276,7 @@ NSDictionary *dict = @{
 
 ##### 核心代码3：
 
-```objective-c
+```objc
 在模型内部实现+ (NSDictionary *)objectClassInArray方法
 
 [StatusResult objectWithKeyValues:dict]
@@ -286,7 +286,7 @@ NSDictionary *dict = @{
 #### 4\. 模型中的属性名和字典中的key不相同(或者需要多级映射)
 
 
-```objective-c
+```objc
 @interface Bag : NSObject
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic) double price;@end@interface Student : NSObject
@@ -343,7 +343,7 @@ NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
 
 ##### 核心代码4：
 
-```objective-c
+```objc
 在模型内部实现+ (NSDictionary *)replacedKeyFromPropertyName方法
 
 [Student objectWithKeyValues:dict]
@@ -353,7 +353,7 @@ NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
 #### 5\. 将一个字典数组转成模型数组
 
 
-```objective-c
+```objc
 NSArray *dictArray = @[                       
                         @{                           
                            @"name" : @"Jack",                           
@@ -377,7 +377,7 @@ for (User *user in userArray) {
 
 ##### 核心代码5：
 
-```objective-c
+```objc
 [User objectArrayWithKeyValuesArray:dictArray]
 ```
 
@@ -385,7 +385,7 @@ for (User *user in userArray) {
 #### 6\. 将一个模型转成字典
 
 
-```objective-c
+```objc
 // 新建模型
   User *user = [[User alloc] init];
 user.name = @"Jack";
@@ -398,7 +398,7 @@ status.text = @"今天的心情不错！";
 
 
 ​    
-```objective-c
+```objc
 // 将模型转为字典
 NSDictionary *statusDict = status.keyValues;
 NSLog(@"%@", statusDict);
@@ -445,7 +445,7 @@ NSDictionary *stuDict = stu.keyValues;NSLog(@"%@", stuDict);
 
 ##### 核心代码6：
 
-```objective-c
+```objc
 status.keyValues、stu.keyValues
 ```
 
@@ -453,7 +453,7 @@ status.keyValues、stu.keyValues
 #### 7\. 将一个模型数组转成字典数组
 
 
-```objective-c
+```objc
 // 新建模型数组
   User *user1 = [[User alloc] init];
 user1.name = @"Jack";
@@ -475,7 +475,7 @@ NSLog(@"%@", dictArray);
 
 ###### 核心代码7：
 
-```objective-c
+```objc
 [User keyValuesArrayWithObjectArray:userArray]
 ```
 
@@ -483,7 +483,7 @@ NSLog(@"%@", dictArray);
 #### 更多用法
 
 
-```objective-c
+```objc
 参考NSObject+MJKeyValue.h
 参考NSObject+MJCoding.h
 ```

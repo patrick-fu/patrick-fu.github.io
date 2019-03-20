@@ -13,7 +13,7 @@ date: 2019-02-01 17:57:12
 <!-- more -->
 
 
-```objective-c
+```objc
 + (UIImage *)imageResize:(UIImage*)img andResizeTo:(CGSize)newSize {
     CGFloat scale = [[UIScreen mainScreen]scale];
     //UIGraphicsBeginImageContext(newSize);
@@ -28,7 +28,7 @@ date: 2019-02-01 17:57:12
 
 这样一来就能使tabbar item的图标始终是25pt*25pt，恰到好处。
 
-```objective-c
+```objc
 childController.tabBarItem.selectedImage = [[SmallTools imageResize:[UIImage imageNamed:selected] andResizeTo:CGSizeMake(25, 25)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 ```
 

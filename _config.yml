@@ -8,28 +8,42 @@ subtitle: 你有没有给我带点鱼来
 description: 
 keywords: iOS
 author: 大星
-language: -zh-CN
+language: 
+- zh-CN
+- en
 timezone:
 favicon: https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png
 
 # DIY
 social:
-  - icon: fas fa-github
+  - icon: fab fa-github
     url: https://github.com/Fongim
+  - icon: fas fa-envelope
+    url: mailto:lemonjush@gmail.com
+  - icon: fab fa-contao
+    url: https://me.csdn.net/fongim
 
 menu:
-  - name: blogs
-    icon: fas fa-rss
+  - name: 博客
+    icon: fas fa-beer
     url: /
-  - name: archives
+  - name: 分类
+    icon: fas fa-folder-open
+    url: categories/
+  - name: 标签
+    icon: fas fa-tags
+    url: tags/
+  - name: 归档
     icon: fas fa-archive
     url: archives/
 
-footer: '派大星星星星'
 
 # widgets
 
 widgets:
+  - widget: author
+    avatar: https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg
+    social: true
   - widget: category
   - widget: tagcloud
   - widget: toc

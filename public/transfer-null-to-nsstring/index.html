@@ -63,13 +63,25 @@
   					
   						<li>
 								<a id="home" class="nav flat-box" href="/">
-									<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="categories" class="nav flat-box" href="/categories/">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="tags" class="nav flat-box" href="/tags/">
+									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
 								</a>
 							</li>
       			
   						<li>
 								<a id="archives" class="nav flat-box" href="/archives/">
-									<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
 								</a>
 							</li>
       			
@@ -80,7 +92,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="Search">
+						<input type="text" class="input u-search-input" placeholder="搜索">
 						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
 					</form>
 				</div>
@@ -110,13 +122,25 @@
               
                   <li>
 										<a id="home" class="nav flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;Blogs
+											<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="categories" class="nav flat-box" href="/categories/">
+											<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="tags" class="nav flat-box" href="/tags/">
+											<i class="fas fa-tags fa-fw"></i>&nbsp;标签
 										</a>
                   </li>
               
                   <li>
 										<a id="archives" class="nav flat-box" href="/archives/">
-											<i class="fas fa-archive fa-fw"></i>&nbsp;Archives
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
 										</a>
                   </li>
               
@@ -191,7 +215,7 @@
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
         <p>遇到了一个后台json误将null作为字符串值导致iOS客户端崩溃闪退的问题，解决方法如下：套一层判断，如果是各种情况的null则转换为@””。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *) nullToString:(id)string &#123;</span><br><span class="line">    if ([string isEqual:@&quot;NULL&quot;] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@&quot;&lt;null&gt;&quot;] || [string isEqualToString:@&quot;(null)&quot;]) &#123;</span><br><span class="line">        return @&quot;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return (NSString *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *) nullToString:(<span class="keyword">id</span>)string &#123;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqual:<span class="string">@"NULL"</span>] || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [string isEqual:[<span class="built_in">NSNull</span> null]] || [string isEqual:<span class="literal">NULL</span>] || [[string <span class="keyword">class</span>] isSubclassOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || string == <span class="literal">nil</span> || string == <span class="literal">NULL</span> || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [[string stringByTrimmingCharactersInSet:[<span class="built_in">NSCharacterSet</span> whitespaceAndNewlineCharacterSet]] length]==<span class="number">0</span> || [string isEqualToString:<span class="string">@"&lt;null&gt;"</span>] || [string isEqualToString:<span class="string">@"(null)"</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">@""</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">NSString</span> *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 
       </div>
@@ -200,10 +224,10 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-19T21:36:52+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-20T11:19:50+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-03-19
+                    2019-03-20
                   </a>
                 </div>
               
@@ -221,7 +245,7 @@
                 
                     <section class="prev">
                         <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
                                 <a href="/iphone-pixel-point-size-scale/" rel="prev" title="iPhone屏幕各种尺寸分辨率（更新至XS）">
                                   
@@ -241,7 +265,7 @@
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
-                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
                                 <a href="/mj-extension-guide/" rel="prev" title="iOS MJExtension使用方法指南(Objective-C)">
                                     
@@ -292,11 +316,45 @@
     
       
       
+        <section class="author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="mailto:lemonjush@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://me.csdn.net/fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-contao" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
         
   <section class="category">
     
 <header class="pure">
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
   
 </header>
 
@@ -322,7 +380,7 @@
   <section class="tagcloud">
     
 <header class="pure">
-  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
   
 </header>
 
@@ -352,26 +410,28 @@
     </div>
     <footer id="footer" class="clearfix">
   
-    <div class="footer">
-      <p>派大星星星星</p>
-
-    </div>
-    <br>
-  
   
     <div class="social-wrapper">
       
         
-          <a href="https://github.com/Fongim" class="social fas fa-github flat-btn" target="_blank" rel="external"></a>
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="mailto:lemonjush@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external"></a>
         
       
     </div>
   
   <br>
-  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+  <div><p>©2019 派大星星星星</p>
 </div>
-  <div>Use <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> as theme, total visits <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> times. 
-  </div>
+  <!-- <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。 -->
+  
 </footer>
 
     <script>setLoadingBarProgress(80);</script>

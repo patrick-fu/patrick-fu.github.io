@@ -9,7 +9,7 @@ description: UIScrollView的代理方法汇总
 date: 2019-02-02 11:15:37
 ---
 
-```objective-c
+```objc
 @protocol UIScrollViewDelegate<NSObject>
 @optional
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView; 

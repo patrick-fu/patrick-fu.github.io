@@ -1,5 +1,6 @@
 ---
 title: 云服务器使用WordPress搭建个人博客并绑定域名全记录
+top: true
 tags:
   - WordPress
 categories:
