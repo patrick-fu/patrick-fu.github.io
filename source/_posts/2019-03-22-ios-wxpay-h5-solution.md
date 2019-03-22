@@ -12,8 +12,8 @@ date: 2019-03-22 18:12:20
 最近有个需求，不能在iOS客户端内集成支付宝和微信的App支付SDK（为了防苹果审核检测SDK），因此使用H5支付，虽然微信和支付宝的H5支付文档都说不要在App内使用H5支付而是使用App支付，但办法总是有的。
 
 这篇讲的是H5微信支付如何从App跳转微信以及如何从微信跳转回App，支付宝的见这篇：
+>  [iOS集成支付宝H5支付实现跳转与回调的解决方案](https://paaatrick.com/2019-03-22-ios-alipay-h5-solution/)
 
-## [iOS集成支付宝H5支付实现跳转与回调的解决方案](https://paaatrick.com/ios-wxpay-h5-solution/)
 
 实现的效果是：App→微信→支付(成功失败或取消)→App
 
