@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>iOS集成H5微信支付无法跳转的解决方案 | 派大星星星星</title>
+  
+  <meta name="keywords" content="iOS">
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
+
+  
+  <link rel="stylesheet" href="/p/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href="/p/">
+        
+          派大星星星星
+        
+      </a>
+			<div class="menu">
+				<ul class="h-list">
+          
+  					
+  						<li>
+								<a id="p" class="nav flat-box" href="/p/">
+									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="pcategories" class="nav flat-box" href="/p/categories/">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="ptags" class="nav flat-box" href="/p/tags/">
+									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="parchives" class="nav flat-box" href="/p/archives/">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+              
+                  <li>
+										<a id="p" class="nav flat-box" href="/p/">
+											<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="pcategories" class="nav flat-box" href="/p/categories/">
+											<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="ptags" class="nav flat-box" href="/p/tags/">
+											<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="parchives" class="nav flat-box" href="/p/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">iOS集成H5微信支付无法跳转的解决方案</h1>
+      
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="https://paaatrick.com/p">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-03-22
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/p/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class="notlink">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近有个需求，不能在iOS客户端内集成支付宝和微信的App支付SDK(为了防苹果审核检测SDK，因此使用H5支付，虽然微信和支付宝的H5支付文档都说不要在App内使用H5支付而是使用App支付，但办法总是有的。</p>
+<p>这篇讲的是H5微信支付如何从App跳转微信以及如何从微信跳转回App，支付宝的见这篇：</p>
+<p>实现的效果是：App→微信→支付(成功失败或取消)→App</p>
+<a id="more"></a>
+<h1 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h1><p>本项目使用WKWebView，前置动作是后端小伙伴已经处理好微信H5支付下单链接，客户端接收到下单链接后的操作。</p>
+<p>下单链接即为<a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=9_20&amp;index=1" target="_blank" rel="noopener">微信支付文档-统一下单API</a>中返回的 <code>mweb_url</code>，格式为 <code>https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx2016121516420242444321ca0631331346&amp;package=1405458241</code>。</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322180048.png" alt></p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-添加-URL-Scheme-并把微信加入白名单"><a href="#1-添加-URL-Scheme-并把微信加入白名单" class="headerlink" title="1. 添加 URL Scheme 并把微信加入白名单"></a>1. 添加 URL Scheme 并把微信加入白名单</h2><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175422.png" alt></p>
+<p>添加 URL Scheme。在 <code>xcodeproj</code> 文件 <code>Info</code> 选项卡最下面的 <code>URL Types</code>内设置。 注意此URL的一级域名需要与微信商户后台(微信商户平台-产品中心-开发配置-H5支付)设置的的一级域名一致，比如微信商户里设置的是<code>www.company.com</code>，那 URL Schemes 可以设为 <code>a1.company.com</code> 。此特性使得一套H5支付可以方便得集成到多个App。</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175420.png" alt></p>
+<p>把微信的 URL Scheme 填入项目的白名单。在 <code>xcodeproj</code> 文件 <code>Info</code> 选项卡内的 <code>LSApplicationQueriesSchemes</code>字段里设置。</p>
+<h2 id="2-WKWebView加载链接"><a href="#2-WKWebView加载链接" class="headerlink" title="2. WKWebView加载链接"></a>2. WKWebView加载链接</h2><p>添加协议 <code>WKNavigationDelegate</code>和<code>WKUIDelegate</code>。</p>
+<p>创建一个WKWebView，并加载统一下单链接。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)buildWKWebView &#123;</span><br><span class="line">    <span class="built_in">WKWebView</span> *webView = [[<span class="built_in">WKWebView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT)];</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:webView];</span><br><span class="line">    webView.navigationDelegate = <span class="keyword">self</span>;</span><br><span class="line">    webView.UIDelegate = <span class="keyword">self</span>;</span><br><span class="line">    <span class="built_in">NSURL</span> *payURL = [<span class="built_in">NSURL</span> URLWithString:<span class="keyword">self</span>.payString];</span><br><span class="line">    <span class="built_in">NSMutableURLRequest</span> *request = [<span class="built_in">NSMutableURLRequest</span> requestWithURL:payURL];</span><br><span class="line">    [request setValue:<span class="string">@"a1.company.com://wxpaycallback/"</span> forHTTPHeaderField:<span class="string">@"Referer"</span>];</span><br><span class="line">    [webView loadRequest:request];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处self.payString就是后台传来的微信H5支付统一下单链接，格式为 <code>https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx2016121516420242444321ca0631331346&amp;package=1405458241</code>。<br>我们需要做的处理是根据文档给这个请求添加请求头<code>Referer</code>，关键在于这个既满足了微信检测到有商户后台设置好的一级域名，同时把这个链接做成了 URL Scheme 使得可以在跳转微信客户端后（不管支付成功还是失败）能顺利跳转回自己的App。<code>wxpaycallback/</code>可以任意设置方便在<code>AppDelegate</code>里处理跳转回来后部署业务逻辑。</p>
+<h2 id="3-实现代理方法拦截链接并跳转微信"><a href="#3-实现代理方法拦截链接并跳转微信" class="headerlink" title="3. 实现代理方法拦截链接并跳转微信"></a>3. 实现代理方法拦截链接并跳转微信</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)webView:(<span class="built_in">WKWebView</span> *)webView decidePolicyForNavigationAction:(<span class="built_in">WKNavigationAction</span> *)navigationAction decisionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">WKNavigationActionPolicy</span>))decisionHandler &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSURLRequest</span> *request = navigationAction.request;</span><br><span class="line">    <span class="built_in">NSString</span> *absoluteString = [navigationAction.request.URL.absoluteString stringByRemovingPercentEncoding];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 拦截WKWebView加载的微信支付统一下单链接, 将redirect_url参数修改为唤起自己App的URLScheme</span></span><br><span class="line">    <span class="keyword">if</span> ([absoluteString hasPrefix:<span class="string">@"https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb"</span>] &amp;&amp; ![absoluteString hasSuffix:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"redirect_url=a1.company.com://wxpaycallback/"</span>]]) &#123;</span><br><span class="line">        decisionHandler(<span class="built_in">WKNavigationActionPolicyCancel</span>);</span><br><span class="line">        <span class="built_in">NSString</span> *redirectUrl = <span class="literal">nil</span>;</span><br><span class="line">        <span class="keyword">if</span> ([absoluteString containsString:<span class="string">@"redirect_url="</span>]) &#123;</span><br><span class="line">            <span class="built_in">NSRange</span> redirectRange = [absoluteString rangeOfString:<span class="string">@"redirect_url"</span>];</span><br><span class="line">            redirectUrl = [[absoluteString substringToIndex:redirectRange.location] stringByAppendingString:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"redirect_url=a1.company.com://wxpaycallback/"</span>]];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            redirectUrl = [absoluteString stringByAppendingString:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"redirect_url=a1.company.com://wxpaycallback/"</span>]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">NSMutableURLRequest</span> *newRequest = [<span class="built_in">NSMutableURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:redirectUrl] cachePolicy:<span class="built_in">NSURLRequestUseProtocolCachePolicy</span> timeoutInterval:<span class="number">30</span>];</span><br><span class="line">        newRequest.allHTTPHeaderFields = request.allHTTPHeaderFields;</span><br><span class="line">        newRequest.URL = [<span class="built_in">NSURL</span> URLWithString:redirectUrl];</span><br><span class="line">        [webView loadRequest:newRequest];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//拦截重定向的跳转微信的 URL Scheme, 打开微信</span></span><br><span class="line">    <span class="keyword">if</span> ([absoluteString hasPrefix:<span class="string">@"weixin://"</span>]) &#123;</span><br><span class="line">        decisionHandler(<span class="built_in">WKNavigationActionPolicyAllow</span>);</span><br><span class="line">        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">0.5</span> * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            <span class="keyword">if</span> ([[<span class="built_in">UIApplication</span> sharedApplication] canOpenURL:navigationAction.request.URL]) &#123;</span><br><span class="line">                [[<span class="built_in">UIApplication</span> sharedApplication] openURL:navigationAction.request.URL];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//未安装微信，自行处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    decisionHandler(<span class="built_in">WKNavigationActionPolicyAllow</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-AppDelegate-中接收跳转动作"><a href="#4-AppDelegate-中接收跳转动作" class="headerlink" title="4. AppDelegate 中接收跳转动作"></a>4. AppDelegate 中接收跳转动作</h2><p>当然你也不一定需要在AppDelegate里接收返回动作，也可以直接返回支付界面，自行操作后续逻辑。</p>
+<p>以下是AppDelegate接收返回动作的示例。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)app openURL:(<span class="built_in">NSURL</span> *)url options:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSString</span> *,<span class="keyword">id</span>&gt; *)options&#123;</span><br><span class="line">    <span class="comment">//safepay是支付宝H5支付的回调host</span></span><br><span class="line">    <span class="keyword">if</span> ([url.host isEqualToString:<span class="string">@"wxpaycallback"</span>] || [url.host isEqualToString:<span class="string">@"safepay"</span>]) &#123;</span><br><span class="line">        <span class="comment">// 自行操作业务逻辑，比如使用通知请求查询订单状态，popView回上级页面等</span></span><br><span class="line">        <span class="built_in">UITabBarController</span> *tabBarVC = (<span class="built_in">UITabBarController</span> *)topRootViewController;</span><br><span class="line">        <span class="built_in">UINavigationController</span> *navVC = tabBarVC.viewControllers[tabBarVC.selectedIndex];</span><br><span class="line">        [navVC popViewControllerAnimated:<span class="literal">YES</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSString</span> *orderId = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:<span class="string">@"PayOrderId"</span>];</span><br><span class="line">            <span class="built_in">NSString</span> *payFee = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:<span class="string">@"PayFee"</span>];</span><br><span class="line">            <span class="comment">//以及更多参数</span></span><br><span class="line">        <span class="built_in">NSDictionary</span> *resultDict = @&#123;<span class="string">@"order_id"</span>:orderId, <span class="string">@"payFee"</span>:payFee&#125;;</span><br><span class="line">        [[<span class="built_in">NSNotificationCenter</span> defaultCenter] postNotificationName:<span class="string">@"htmlPaymentNotification"</span> object:<span class="keyword">self</span> userInfo:resultDict];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+        
+          <section class="meta" id="footer-meta">
+            <hr>
+            <div class="new-meta-box">
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-22T20:18:13+08:00">
+                  <a class="notlink">
+                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    2019-03-22
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/p/tags/iOS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;iOS</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/p/tags/Objective-C/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Objective-C</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/p/ios-file-system/" rel="prev" title="ios_file_system">
+                                  
+                                      ios_file_system
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/p/if-nsarray-null/" rel="prev" title="判断一个 NSArray 是否为空">
+                                    
+                                        判断一个 NSArray 是否为空
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/p/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/p/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+
+
+<script>
+    window.subData = {
+        title: 'iOS集成H5微信支付无法跳转的解决方案',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class="author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="mailto:lemonjush@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://me.csdn.net/fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-contao" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/p/categories/Life/" href="/p/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/p/categories/Tech/" href="/p/categories/Tech/"><div class="name">Tech</div><div class="badge">(11)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/p/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/p/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/p/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/p/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/p/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置准备"><span class="toc-text">前置准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作步骤"><span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加-URL-Scheme-并把微信加入白名单"><span class="toc-text">1. 添加 URL Scheme 并把微信加入白名单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-WKWebView加载链接"><span class="toc-text">2. WKWebView加载链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-实现代理方法拦截链接并跳转微信"><span class="toc-text">3. 实现代理方法拦截链接并跳转微信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-AppDelegate-中接收跳转动作"><span class="toc-text">4. AppDelegate 中接收跳转动作</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="mailto:lemonjush@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>©2019 派大星星星星</p>
+</div>
+  <!-- <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。 -->
+  
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/p/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+  
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        const $reveal = $('.reveal');
+    		if ($reveal.length === 0) return;
+    		const sr = ScrollReveal({ distance: 0 });
+    		sr.reveal('.reveal');
+      });
+    </script>
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        Waves.attach('.flat-btn', ['waves-button']);
+        Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+        Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+        Waves.attach('.flat-box', ['waves-block']);
+        Waves.attach('.float-box', ['waves-block', 'waves-float']);
+        Waves.attach('.waves-image');
+        Waves.init();
+      });
+    </script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+    <script src="/p/js/app.js"></script>
+<script src="/p/js/search.js"></script>
+  
+
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

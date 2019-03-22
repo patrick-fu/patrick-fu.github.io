@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Archives | 派大星星星星</title>
+  <title>iOS修改UIImage图片尺寸大小逻辑分辨率 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -154,224 +154,163 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            
-  <article id="archive-page" class="post article white-box">
-    <section class="archive">
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
       
-          <div class="archive-item archive-year mark">
-            <h2>2019</h2>
+          <h1 class="title">iOS修改UIImage图片尺寸大小逻辑分辨率</h1>
+      
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="https://paaatrick.com/p">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-02-01
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/p/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class="notlink">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>之前遇到的问题，给UITabbar item设置图片，然而素材的图片分辨率是87*87，填满了整个tabbar item的区域，很难看，又要考虑适配XS Max的三倍问题。 解决方法如下： 通过设置scale使生成的图片尺寸是逻辑分辨率pt单位，不用操心二倍三倍的问题。</p>
+<a id="more"></a>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">UIImage</span> *)imageResize:(<span class="built_in">UIImage</span>*)img andResizeTo:(<span class="built_in">CGSize</span>)newSize &#123;</span><br><span class="line">    <span class="built_in">CGFloat</span> scale = [[<span class="built_in">UIScreen</span> mainScreen]scale];</span><br><span class="line">    <span class="comment">//UIGraphicsBeginImageContext(newSize);</span></span><br><span class="line">    <span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(newSize, <span class="literal">NO</span>, scale);</span><br><span class="line">    [img drawInRect:<span class="built_in">CGRectMake</span>(<span class="number">0</span>,<span class="number">0</span>,newSize.width,newSize.height)];</span><br><span class="line">    <span class="built_in">UIImage</span>* newImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</span><br><span class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</span><br><span class="line">    <span class="keyword">return</span> newImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一来就能使tabbar item的图标始终是25pt*25pt，恰到好处。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">childController.tabBarItem.selectedImage = [[SmallTools imageResize:[<span class="built_in">UIImage</span> imageNamed:selected] andResizeTo:<span class="built_in">CGSizeMake</span>(<span class="number">25</span>, <span class="number">25</span>)] imageWithRenderingMode:<span class="built_in">UIImageRenderingModeAlwaysOriginal</span>];</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1549072293345_888x213.gif" alt></p>
+<h3 id="另外关于上图中间图标的动画效果实现可参考此文章"><a href="#另外关于上图中间图标的动画效果实现可参考此文章" class="headerlink" title="另外关于上图中间图标的动画效果实现可参考此文章"></a>另外关于上图中间图标的动画效果实现可参考此文章</h3><p><a href="http://paaatrick.com/ios_uitabbar_touch_animation.html" title="iOS UITabbar图标点击动画效果实现">iOS UITabbar图标点击动画效果实现</a>      </p>
+<hr>
+
+      </div>
+        
+          <section class="meta" id="footer-meta">
             <hr>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ios-file-system/">
-              <time>03-22</time>
-              <span class="title">
+            <div class="new-meta-box">
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-22T20:18:13+08:00">
+                  <a class="notlink">
+                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    2019-03-22
+                  </a>
+                </div>
+              
+              
                 
-                  ios_file_system
+                <div class="new-meta-item meta-tags"><a class="tag" href="/p/tags/iOS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;iOS</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/p/tags/Objective-C/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Objective-C</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
                 
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ios-wxpay-h5-solution/">
-              <time>03-22</time>
-              <span class="title">
-                
-                  iOS集成H5微信支付无法跳转的解决方案
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/if-nsarray-null/">
-              <time>03-12</time>
-              <span class="title">
-                
-                  判断一个 NSArray 是否为空
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/iphone-pixel-point-size-scale/">
-              <time>03-05</time>
-              <span class="title">
-                
-                  iPhone屏幕各种尺寸分辨率（更新至XS）
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/p/ios-uilabel-linebreakmode-setting/" rel="prev" title="iOS UILabel的lineBreakMode省略模式设置">
+                                  
+                                      iOS UILabel的lineBreakMode省略模式设置
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/p/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/p/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
                 
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/transfer-null-to-nsstring/">
-              <time>02-12</time>
-              <span class="title">
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/p/ios-uitabbar-touch-animation/" rel="prev" title="iOS UITabbar图标点击动画效果实现">
+                                    
+                                        iOS UITabbar图标点击动画效果实现
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/p/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/p/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
-                  iOS 判断NSString值是否为空或null并转换为空字符串
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/mj-extension-guide/">
-              <time>02-03</time>
-              <span class="title">
-                
-                  iOS MJExtension使用方法指南(Objective-C)
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ios-uiscrollview-delegate-methods/">
-              <time>02-02</time>
-              <span class="title">
-                
-                  iOS UIScrollView的代理方法汇总
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ios-uilabel-linebreakmode-setting/">
-              <time>02-01</time>
-              <span class="title">
-                
-                  iOS UILabel的lineBreakMode省略模式设置
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ios-uiimage-resize/">
-              <time>02-01</time>
-              <span class="title">
-                
-                  iOS修改UIImage图片尺寸大小逻辑分辨率
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ios-uitabbar-touch-animation/">
-              <time>02-01</time>
-              <span class="title">
-                
-                  iOS UITabbar图标点击动画效果实现
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/raistlin2017/">
-              <time>02-01</time>
-              <span class="title">
-                
-                  比咪蒙更可怕的，是挖祖坟式举报清算
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/wp-real-media-library/">
-              <time>01-31</time>
-              <span class="title">
-                
-                  亲测真正好用的WordPress媒体库图片分类插件
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/build-wordpress-blog/">
-              <time>01-29</time>
-              <span class="title">
-                
-                  云服务器使用WordPress搭建个人博客并绑定域名全记录
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-year mark">
-            <h2>2017</h2>
-            <hr>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/doubletree-longhua/">
-              <time>05-17</time>
-              <span class="title">
-                
-                  性冷淡商务风：深圳龙华希尔顿逸林酒店
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-year mark">
-            <h2>2015</h2>
-            <hr>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ikea-canteen/">
-              <time>12-17</time>
-              <span class="title">
-                
-                  宜家 | 一个顺便卖卖家具的饭堂
-                
-                
-              </span>
-            </a>
-          </div>
-      
-          <div class="archive-item archive-post mark">
-            <a href="/p/ichiran-ramen/">
-              <time>11-18</time>
-              <span class="title">
-                
-                  一蘭拉面
-                
-                
-              </span>
-            </a>
-          </div>
-      
+            </div>
+        
+
     </section>
-  </article>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
-<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+<br>
+
+<!-- 显示推荐文章和评论 -->
 
 
+
+
+
+<script>
+    window.subData = {
+        title: 'iOS修改UIImage图片尺寸大小逻辑分辨率',
+        tools: true
+    }
+</script>
 
 
         </div>
@@ -463,6 +402,20 @@
       
       
         
+  <section class="toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#另外关于上图中间图标的动画效果实现可参考此文章"><span class="toc-text">另外关于上图中间图标的动画效果实现可参考此文章</span></a></li></ol>
+    </div>
+  </section>
+
 
       
     
