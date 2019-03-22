@@ -216,7 +216,10 @@
       <div class="article-entry" itemprop="articleBody">
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近有个需求，不能在iOS客户端内集成支付宝和微信的App支付SDK（为了防苹果审核检测SDK），因此使用H5支付，虽然微信和支付宝的H5支付文档都说不要在App内使用H5支付而是使用App支付，但办法总是有的。</p>
 <p>这篇讲的是H5微信支付如何从App跳转微信以及如何从微信跳转回App，支付宝的见这篇：</p>
-<h2 id="iOS集成支付宝H5支付实现跳转与回调的解决方案"><a href="#iOS集成支付宝H5支付实现跳转与回调的解决方案" class="headerlink" title="iOS集成支付宝H5支付实现跳转与回调的解决方案"></a><a href="https://paaatrick.com/ios-wxpay-h5-solution/">iOS集成支付宝H5支付实现跳转与回调的解决方案</a></h2><p>实现的效果是：App→微信→支付(成功失败或取消)→App</p>
+<blockquote>
+<p> <a href="https://paaatrick.com/2019-03-22-ios-alipay-h5-solution/">iOS集成支付宝H5支付实现跳转与回调的解决方案</a></p>
+</blockquote>
+<p>实现的效果是：App→微信→支付(成功失败或取消)→App</p>
 <a id="more"></a>
 <h1 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h1><p>本项目使用WKWebView，前置动作是后端小伙伴已经处理好微信H5支付下单链接，客户端接收到下单链接后的操作。</p>
 <p>下单链接即为<a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=9_20&amp;index=1" target="_blank" rel="noopener">微信支付文档-统一下单API</a>中返回的 <code>mweb_url</code>，格式为 <code>https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx2016121516420242444321ca0631331346&amp;package=1405458241</code>。</p>
@@ -242,7 +245,7 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-22T21:26:48+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-22T21:34:26+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                     2019-03-22
@@ -425,7 +428,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS集成支付宝H5支付实现跳转与回调的解决方案"><span class="toc-text">iOS集成支付宝H5支付实现跳转与回调的解决方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置准备"><span class="toc-text">前置准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作步骤"><span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加-URL-Scheme-并把微信加入白名单"><span class="toc-text">1. 添加 URL Scheme 并把微信加入白名单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-WKWebView加载链接"><span class="toc-text">2. WKWebView加载链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-实现代理方法拦截链接并跳转微信"><span class="toc-text">3. 实现代理方法拦截链接并跳转微信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-AppDelegate-中接收跳转动作"><span class="toc-text">4. AppDelegate 中接收跳转动作</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前置准备"><span class="toc-text">前置准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作步骤"><span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加-URL-Scheme-并把微信加入白名单"><span class="toc-text">1. 添加 URL Scheme 并把微信加入白名单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-WKWebView加载链接"><span class="toc-text">2. WKWebView加载链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-实现代理方法拦截链接并跳转微信"><span class="toc-text">3. 实现代理方法拦截链接并跳转微信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-AppDelegate-中接收跳转动作"><span class="toc-text">4. AppDelegate 中接收跳转动作</span></a></li></ol></li></ol>
     </div>
   </section>
 
