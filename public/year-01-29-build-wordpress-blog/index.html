@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>云服务器使用WordPress搭建个人博客并绑定域名全记录 | 派大星星星星</title>
+  
+  <meta name="keywords" content="iOS">
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
+
+  
+  <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href="/">
+        
+          派大星星星星
+        
+      </a>
+			<div class="menu">
+				<ul class="h-list">
+          
+  					
+  						<li>
+								<a id="home" class="nav flat-box" href="/">
+									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="categories" class="nav flat-box" href="/categories/">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="tags" class="nav flat-box" href="/tags/">
+									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a id="archives" class="nav flat-box" href="/archives/">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu">
+      <ul>
+          
+              
+                  <li>
+										<a id="home" class="nav flat-box" href="/">
+											<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="categories" class="nav flat-box" href="/categories/">
+											<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="tags" class="nav flat-box" href="/tags/">
+											<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+										</a>
+                  </li>
+              
+                  <li>
+										<a id="archives" class="nav flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      
+          <h1 class="title">云服务器使用WordPress搭建个人博客并绑定域名全记录</h1>
+      
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="https://paaatrick.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-01-29
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Tech/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Tech
+            </a>
+          </div>
+        
+      
+      
+        
+          <div class="new-meta-item browse busuanzi">
+            <a class="notlink">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <span id="busuanzi_value_page_pv">
+                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>一直在续费云服务器，索性充分利用资源，复古一下，鼓捣个小博客记录些东西。 现在大致已经搭好博客了，那就先把这折腾了一整天的建站过程给记录下。</p>
+<h3 id="关于服务器"><a href="#关于服务器" class="headerlink" title="关于服务器"></a><strong>关于服务器</strong></h3><p>前几年购入的Vultr的ECS，东京的相对性价比高一些，延迟和网速都很稳，现在（2019.1）还有3.5刀一个月的，非常实惠。</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-18.26.19.png" alt> </p>
+<a id="more"></a>
+<h4 id="安装-Apache2、MySQL、PHP"><a href="#安装-Apache2、MySQL、PHP" class="headerlink" title="安装 Apache2、MySQL、PHP"></a><strong>安装 Apache2、MySQL、PHP</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure>
+<p>测试一下Apache2是否成功安装：浏览器访问云服务器的IP，安装成功的话会显示Apache2的默认页面，It works。   安装php7.0，并安装apache的php扩展，再安装整合mysql和php的工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0</span><br><span class="line">sudo apt-get install libapache2-mod-php7.0</span><br><span class="line">sudo apt-get install php7.0-mysql</span><br></pre></td></tr></table></figure>
+<p>重启一下Apache2和MySQL</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+<p>安装 phpmyadmin 这是一个以PHP为基础，以Web-Base方式架构在网站主机上的MySQL的数据库管理工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install phpmyadmin</span><br></pre></td></tr></table></figure>
+<p>开启 apache 的 mod_rewrite，再重启一次apache</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod rewrite</span><br><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<p>先登录mysql <code>mysql -u root -p</code> ，输入密码 首先创建名为“wordpressdb”数据库，然后查看创建的数据库是否成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database wordpressdb;</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<p>看到图中出现自己创建的数据库。</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180318165221370.png" alt>  </p>
+<p>给用户服务权限，下面的wordpressuser改为安装mysql时自己输入的用户名。</p>
+<p>GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpressuser@localhost;<br>FLUSH PRIVILEGES;</p>
+<p>  输入 <code>exit;</code>退出mysql，并再次重启服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+<h4 id="下载并配置WordPress"><a href="#下载并配置WordPress" class="headerlink" title="下载并配置WordPress"></a><strong>下载并配置WordPress</strong></h4><p>用wget从WordPress官方网站下载安装包，放在 /var/www/html/ 目录，然后解压。 （最新版下载链接在 <a href="https://cn.wordpress.org/download/" target="_blank" rel="noopener">https://cn.wordpress.org/download/</a> 里面有）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/</span><br><span class="line">sudo wget https://cn.wordpress.org/wordpress-5.0.3-zh_CN.zip</span><br><span class="line">sudo tar zxf wordpress-4.9.4.tar.gz</span><br></pre></td></tr></table></figure>
+<p>  在 /var/www/html/wordpress/wp-content/ 下创建uploads。 然后更改上传目录权限，不然之后博客上传不了图片。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir uploads</span><br><span class="line">sudo chown -R www-data /var/www/html/wordpress</span><br><span class="line">sudo chmod -R 755 /var/www/html/wordpress</span><br><span class="line">sudo chown -R :www-data /var/www/html/wordpress/wp-content/uploads</span><br></pre></td></tr></table></figure>
+<p>  配置wp-config-sample.php ，该文件在/var/www/html/wordpress/下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi wp-config-sample.php</span><br></pre></td></tr></table></figure>
+<p>修改方法如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180318182134757.png" alt></p>
+<p>浏览器访问  http://服务器IP地址/wordpress ，如果安装正常则进入wordpress的安装界面。 安装好后的效果如图： </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180318182550961.png" alt></p>
+<p>到此建站完成。接下来申请域名并绑定服务器。</p>
+<h3 id="申请域名并配置DNS"><a href="#申请域名并配置DNS" class="headerlink" title="申请域名并配置DNS"></a><strong>申请域名并配置DNS</strong></h3><p>通过比价网站可以先大致看一下想要的域名价格 <a href="https://www.domcomp.com/" target="_blank" rel="noopener">https://www.domcomp.com/</a></p>
+<p>看了一下知乎，大家推荐的域名供应商有 NameSilo 、Namecheap、Porkbun、GoDaddy等，亲测了一遍，发现 NameSilo 用户界面太丑；Namecheap 实际并不 cheap；最多人说的 GoDaddy 也偏贵但是支持支付宝，Porkbun 性价比高而且界面友好。 因为有境外支付的信用卡就不考虑 GoDaddy 了，直接在 Porkbun 上下单了一个 .com 域名，首年不到 7刀，续费 8.7刀。 </p>
+<p>值得一提的是支付时好几张卡支付失败，建行、农行都不行，换了广发的万事达才支付成功，有点迷。 付款后主页可以看到自己域名的各种详情，然后要设置的是 DNS RECORDS </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-17.48.31.png" alt></p>
+<p>点击Edit，添加两个A记录，分别是带www和不带的域名，ANSWER填自己的主机地址。 </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-17.50.38.png" alt></p>
+<p>两个NS填DNS提供商的，这里因为Vultr自带了免费的DNS服务，直接填上去即可，具体的DNS地址可在Vultr的设置页里找。 下图就是设置页，可以看到底下有两条DNS地址，填到 Porkbun 里，然后还要在 Vultr 里 Add Domain，绑定服务器到域名。 </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-17.52.20.png" alt></p>
+<p>两边都操作完成后，静候几分钟，然后访问一下自己的域名，应该就出来了。</p>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><strong>常见问题</strong></h3><h4 id="在仪表盘的设置中不小心更改了wordpress地址后回不到后台"><a href="#在仪表盘的设置中不小心更改了wordpress地址后回不到后台" class="headerlink" title="在仪表盘的设置中不小心更改了wordpress地址后回不到后台"></a><strong>在仪表盘的设置中不小心更改了wordpress地址后回不到后台</strong></h4><p>在建站过程中，如果改动了 wordpress地址或站点地址，就回不到后台了。 </p>
+<p>解决方法：网站首页在wordpress目录下的index.php中的require这行的内容。 </p>
+<p>下图是wordpress下index.php的require所在行的内容。 </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180319090603947.png" alt></p>
+<p>最开始wordpress url是： 主机ip/wordpress。 它会自动去找index.php，然后就通过index.php里面的内容加载wordpress环境，更改了url后，就不能自动去找index.php了。此时后台也无法登录。解决这个问题，直接进数据库修改相关数据即可。操作如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p //然后输入密码</span><br><span class="line">show databases; //显示所有数据库</span><br><span class="line">use wordpressdb; //选中你自己网站对应的数据库。</span><br><span class="line">show tables; //显示该数据库所有表格。</span><br><span class="line">select * from wp_options where 1=1 limit 10; //查看数据库前10条记录</span><br><span class="line">update wp\_options set option\_value=&apos;http://服务器ip（或域名）/wordpress&apos; where option_name=&apos;siteurl&apos;;//（如果home也改了就也改回来）</span><br><span class="line">update wp\_options set option\_value=&apos;http://服务器ip（或域名）/wordpress&apos; where option_name=&apos;home&apos;;</span><br></pre></td></tr></table></figure>
+<p>其实就是改变了wordpress url ，则wp_options表中的siteurl的值变化了，只要把它在修改过来就行。</p>
+<h4 id="使用服务器IP（或域名）根地址直接访问网站首页"><a href="#使用服务器IP（或域名）根地址直接访问网站首页" class="headerlink" title="使用服务器IP（或域名）根地址直接访问网站首页"></a><strong>使用服务器IP（或域名）根地址直接访问网站首页</strong></h4><p>此文章的建站方法是把所有东西都放在wordpress目录下，因此建完后，访问网站的网址为：主机IP/wordpresss。</p>
+<p>通常情况下，我们会买一个域名与云主机IP绑定，输入IP地址只能访问根目录。 即/var/www/html，但是无法访问其下面的子目录。</p>
+<p>以下将给出解决方案。如果使主机IP直接定位到网站首页。</p>
+<p>第一种解决方式是把wordpress的内容直接都弄到根目录中，这是不提倡的，会使根目录变得杂乱。通常推荐第二种方案。   </p>
+<p>第二种方案操作如下： 登录后台，打开 设置→常规，修改站点地址。 </p>
+<p>WordPress地址是本体存放的地址，按本文安装的话就不用改动了。 站点地址是浏览器访问的地址，改为 “http://服务器IP（或域名）” 的形式，如下图即可。 </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-31-15.26.26.png" alt></p>
+<p>同时，打开 设置→固定链接，把固定链接修改成如下形式：（去掉中间的/wordpress/） </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-17.14.42.png" alt></p>
+<p>至于文章后缀名，网上有关WordPress永久链接设置的介绍众多，普遍认为 <code>/%postname%.html</code> 是最佳的自定义永久链接形式。</p>
+<p>这种形式将显示为:http://你的域名/日志标题.html，简单明了，有利于SEO。但当你的日志标题是中文时，文章标题以中文形式出现，看上去很不符合标准，或者可能会出现如:%64%b3%e8%ae%ar%e6%ba%a7%e5%9.html 类似乱码的显示。因此需要在编辑文章时，标题下面固定链接项，点击编辑，用拼音或英文输入文章标题。 </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-17.19.42.png" alt>  </p>
+<p>然后把wordpress目录下的index.php 和 .htaccess文件复制一份到根目录下，.htaccess 是隐藏文件，可以使用ls -all。将其显示出来。注意是复制文件，原来目录下还存在。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line">cp index.php /var/www/html/</span><br><span class="line">cp .htaccess /var/www/html/</span><br></pre></td></tr></table></figure>
+<p>然后使用vim修改.htaccess文件的内容为下图所示。（默认文件如果就是如此则跳过该步骤） </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180319093058967.png" alt></p>
+<p>修改index.php文件，因为index.php文件是wordpress下index.php的复制品，因此文件内部的require那一行的值当对于当前目录，是不正确的。同样使用vim编辑该文件，把require那一行路径，修改成下图那样。 </p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180319093423845.png" alt></p>
+<p>此时再输入IP，看到还是It works界面，那是因为安装apache时，我们看到的It works界面其实是根目录下的index.html。当index.html 和 index.php同时存在时，默认还是打开index.html，所以应该把index.html移出该目录。我们把它移出到其他目录就行。  </p>
+<h4 id="然后可能会产生下一个问题，设置固定链接后，文章页会404"><a href="#然后可能会产生下一个问题，设置固定链接后，文章页会404" class="headerlink" title="然后可能会产生下一个问题，设置固定链接后，文章页会404"></a><strong>然后可能会产生下一个问题，设置固定链接后，文章页会404</strong></h4><p>解决方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
+<p>把 AllowOverride None 改为 AllowOverride ALL</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170922122312719.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170922122320129.png" alt></p>
+<p>注意有两处要改，然后操作一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod rewrite</span><br><span class="line">sudo /etc/init.d/apache2 restar</span><br></pre></td></tr></table></figure>
+<p>刷新一下应该就能正常打开文章了。</p>
+<h3 id="主页样式修改"><a href="#主页样式修改" class="headerlink" title="主页样式修改"></a><strong>主页样式修改</strong></h3><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170413090347184.jpeg" alt></p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170413090322305.png" alt></p>
+<p>页尾和功能模块里的链接如果觉得碍眼，可以去除。  </p>
+<h4 id="删除页尾“自豪地使用WordPress”字样"><a href="#删除页尾“自豪地使用WordPress”字样" class="headerlink" title="删除页尾“自豪地使用WordPress”字样"></a><strong>删除页尾“自豪地使用WordPress”字样</strong></h4><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-18.12.11.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-18.15.07.png" alt>  </p>
+<p>如果是通过函数生成页尾的主题，一般在模板函数那里修改，查找 “Proudly powered by” 的字样删掉就ok。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=“&lt;?php echo esc\_url( \_\_( ‘http://wordpress.org/’, ‘twentyeleven’ )); ?&gt;” title=“&lt;?php esc\_attr\_e(‘SemanticPersonalPublishing Platform’, ‘twentyeleven’ ); ?&gt;” rel=“generator”&gt;&lt;?php printf( __( ‘Proudly powered by%s’,‘twentyeleven’ ), ‘WordPress’ ); ?&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress-org”"><a href="#删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress-org”" class="headerlink" title="删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress.org”"></a><strong>删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress.org”</strong></h4><p>打开组件文件夹：wp-include/widgets/class-wp-widget-meta.php 找到代码段删除即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!\-\-</span> 屏蔽 <span class="attr">RSS</span> 功能</span></span><br><span class="line">&lt;li&gt;&lt;a href="&lt;?php echo esc\_url( get\_bloginfo( 'rss2\_url' )); ?&gt;"&gt;&lt;?php \_e('Entries &lt;abbr title="Really Simple Syndication"&gt;RSS&lt;/abbr&gt;'); ?&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;?php echo esc\_url( get\_bloginfo( 'comments\_rss2\_url' )); ?&gt;"</span>&gt;</span>&lt;?php _e('Comments &lt;abbr title="Really Simple Syndication"&gt;RSS&lt;/abbr&gt;'); ?&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+      </div>
+        
+          <section class="meta" id="footer-meta">
+            <hr>
+            <div class="new-meta-box">
+              
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-22T20:30:09+08:00">
+                  <a class="notlink">
+                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    2019-03-22
+                  </a>
+                </div>
+              
+              
+                
+                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/WordPress/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;WordPress</a></div>
+              
+              
+            </div>
+          </section>
+        
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/year-01-31-wp-real-media-library/" rel="prev" title="亲测真正好用的WordPress媒体库图片分类插件">
+                                  
+                                      亲测真正好用的WordPress媒体库图片分类插件
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/WordPress/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>WordPress</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/year-05-17-doubletree-longhua/" rel="prev" title="性冷淡商务风：深圳龙华希尔顿逸林酒店">
+                                    
+                                        性冷淡商务风：深圳龙华希尔顿逸林酒店
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Hotel/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hotel</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+
+
+<script>
+    window.subData = {
+        title: '云服务器使用WordPress搭建个人博客并绑定域名全记录',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+  
+  
+    
+      
+      
+        <section class="author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="mailto:lemonjush@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://me.csdn.net/fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-contao" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(12)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+      
+    
+  
+    
+      
+      
+        
+  <section class="toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于服务器"><span class="toc-text">关于服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-Apache2、MySQL、PHP"><span class="toc-text">安装 Apache2、MySQL、PHP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载并配置WordPress"><span class="toc-text">下载并配置WordPress</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#申请域名并配置DNS"><span class="toc-text">申请域名并配置DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见问题"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在仪表盘的设置中不小心更改了wordpress地址后回不到后台"><span class="toc-text">在仪表盘的设置中不小心更改了wordpress地址后回不到后台</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用服务器IP（或域名）根地址直接访问网站首页"><span class="toc-text">使用服务器IP（或域名）根地址直接访问网站首页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#然后可能会产生下一个问题，设置固定链接后，文章页会404"><span class="toc-text">然后可能会产生下一个问题，设置固定链接后，文章页会404</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主页样式修改"><span class="toc-text">主页样式修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#删除页尾“自豪地使用WordPress”字样"><span class="toc-text">删除页尾“自豪地使用WordPress”字样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress-org”"><span class="toc-text">删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress.org”</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+      
+    
+  
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+    <footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="mailto:lemonjush@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+        
+      
+        
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external"></a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>©2019 派大星星星星</p>
+</div>
+  <!-- <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。 -->
+  
+</footer>
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+  
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        const $reveal = $('.reveal');
+    		if ($reveal.length === 0) return;
+    		const sr = ScrollReveal({ distance: 0 });
+    		sr.reveal('.reveal');
+      });
+    </script>
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        Waves.attach('.flat-btn', ['waves-button']);
+        Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+        Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+        Waves.attach('.flat-box', ['waves-block']);
+        Waves.attach('.float-box', ['waves-block', 'waves-float']);
+        Waves.attach('.waves-image');
+        Waves.init();
+      });
+    </script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+    <script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+  
+
+
+
+
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

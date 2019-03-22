@@ -1,6 +1,5 @@
 ---
-title: iOS集成H5微信支付无法跳转的解决方案
-top: true
+title: iOS集成H5微信支付实现跳转与回调的解决方案
 tags:
   - iOS
   - Objective-C
@@ -8,14 +7,16 @@ categories:
   - Tech
 date: 2019-03-22 18:12:20
 ---
-
 # 前言
 
-最近有个需求，不能在iOS客户端内集成支付宝和微信的App支付SDK(为了防苹果审核检测SDK，因此使用H5支付，虽然微信和支付宝的H5支付文档都说不要在App内使用H5支付而是使用App支付，但办法总是有的。
+最近有个需求，不能在iOS客户端内集成支付宝和微信的App支付SDK（为了防苹果审核检测SDK），因此使用H5支付，虽然微信和支付宝的H5支付文档都说不要在App内使用H5支付而是使用App支付，但办法总是有的。
 
 这篇讲的是H5微信支付如何从App跳转微信以及如何从微信跳转回App，支付宝的见这篇：
 
+## [iOS集成支付宝H5支付实现跳转与回调的解决方案](https://paaatrick.com/ios-wxpay-h5-solution/)
+
 实现的效果是：App→微信→支付(成功失败或取消)→App
+
 
 <!-- more -->
 
@@ -27,6 +28,7 @@ date: 2019-03-22 18:12:20
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322180048.png)
 
+
 # 操作步骤
 
 ## 1. 添加 URL Scheme 并把微信加入白名单
@@ -37,7 +39,8 @@ date: 2019-03-22 18:12:20
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175420.png)
 
-把微信的 URL Scheme 填入项目的白名单。在 `xcodeproj` 文件 `Info` 选项卡内的 `LSApplicationQueriesSchemes`字段里设置。
+把微信的 URL Scheme `weixin` 和 `wechat` 填入项目的白名单。在 `xcodeproj` 文件 `Info` 选项卡内的 `LSApplicationQueriesSchemes`字段里设置。
+
 
 ## 2. WKWebView加载链接
 
@@ -57,8 +60,11 @@ date: 2019-03-22 18:12:20
     [webView loadRequest:request];
 }
 ```
+
 此处self.payString就是后台传来的微信H5支付统一下单链接，格式为 `https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx2016121516420242444321ca0631331346&package=1405458241`。
-我们需要做的处理是根据文档给这个请求添加请求头`Referer`，关键在于这个既满足了微信检测到有商户后台设置好的一级域名，同时把这个链接做成了 URL Scheme 使得可以在跳转微信客户端后（不管支付成功还是失败）能顺利跳转回自己的App。`wxpaycallback/`可以任意设置方便在`AppDelegate`里处理跳转回来后部署业务逻辑。
+
+我们需要做的处理是根据文档给这个请求添加请求头 `Referer`，关键在于这个 `a1.company.com://wxpaycallback/` 既满足了微信检测到有商户后台设置好的一级域名，同时把这个链接做成了 URL Scheme 使得可以在跳转微信客户端后（不管支付成功还是失败）能顺利跳转回自己的App。其中的 host `wxpaycallback/` 可以任意设置，方便在 `AppDelegate` 里处理跳转回来后部署业务逻辑。当然如果你不需要在 `AppDelegate` 里接收动作而是直接跳回支付界面自行后续处理的话就只用设为前一步在 URL Sch `a1.company.com://` 即可。
+
 
 ## 3. 实现代理方法拦截链接并跳转微信
 ```objc
@@ -91,7 +97,7 @@ date: 2019-03-22 18:12:20
             if ([[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL]) {
                 [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
             } else {
-                //未安装微信，自行处理
+                //未安装微信, 自行处理
             }
         });
         return;
@@ -101,6 +107,8 @@ date: 2019-03-22 18:12:20
     return;
 }
 ```
+
+
 ## 4. AppDelegate 中接收跳转动作
 
 当然你也不一定需要在AppDelegate里接收返回动作，也可以直接返回支付界面，自行操作后续逻辑。
@@ -124,3 +132,5 @@ date: 2019-03-22 18:12:20
     }
 }
 ```
+
+---

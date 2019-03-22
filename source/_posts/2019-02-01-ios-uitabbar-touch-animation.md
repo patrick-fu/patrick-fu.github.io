@@ -1,6 +1,5 @@
 ---
 title: iOS UITabbar图标点击动画效果实现
-top: true
 tags:
   - iOS
   - Objective-C
