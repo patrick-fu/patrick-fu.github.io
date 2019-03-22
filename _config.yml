@@ -50,8 +50,8 @@ widgets:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://paaatrick.com/p
-root: /p/
+url: https://paaatrick.com
+root: /
 permalink: :title/
 permalink_defaults:
 
