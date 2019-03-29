@@ -1,7 +1,7 @@
 ---
 title: iOS 判断NSString值是否为空或null并转换为空字符串
 categories:
-  - Tech
+  - Note
 date: 2019-02-12 17:52:26
 tags:
   - iOS

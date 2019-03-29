@@ -4,7 +4,7 @@ tags:
   - iOS
   - Objective-C
 categories:
-  - Tech
+  - Note
 date: 2019-03-12 15:34:27
 ---
 

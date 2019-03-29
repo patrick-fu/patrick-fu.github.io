@@ -4,7 +4,7 @@ tags:
   - iOS
   - Objective-C
 categories:
-  - Tech
+  - Note
 description: MJExtension使用方法指南
 date: 2019-02-03 15:29:04
 ---

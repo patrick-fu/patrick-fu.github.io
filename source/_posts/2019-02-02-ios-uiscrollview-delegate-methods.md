@@ -4,7 +4,7 @@ tags:
   - iOS
   - Objective-C
 categories:
-  - Tech
+  - Note
 description: UIScrollView的代理方法汇总
 date: 2019-02-02 11:15:37
 ---

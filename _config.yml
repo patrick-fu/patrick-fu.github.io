@@ -112,6 +112,8 @@ pagination_dir: page
 Plugins:
 - hexo-generator-cname
 
+baidu_analytics_key: 420331e790ec3f2c56b1660b4958f8c3
+
 ## Themes: https://hexo.io/themes/
 theme: material-x
 
