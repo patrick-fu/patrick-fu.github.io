@@ -35,11 +35,16 @@ date: 2019-03-22 18:12:20
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175422.png)
 
-添加 URL Scheme。在 `xcodeproj` 文件 `Info` 选项卡最下面的 `URL Types`内设置。 注意此URL的一级域名需要与微信商户后台(微信商户平台-产品中心-开发配置-H5支付)设置的的一级域名一致，比如微信商户里设置的是`www.company.com`，那 URL Schemes 可以设为 `a1.company.com` 。此特性使得一套H5支付可以方便得集成到多个App。
+添加 URL Scheme。在 `xcodeproj` 文件 `Info` 选项卡最下面的 `URL Types`内设置。 注意此URL的一级域名需要与微信商户后台(微信商户平台-产品中心-开发配置-H5支付)设置的的一级域名一致，比如微信商户里设置的是`company.com`，那 URL Schemes 可以设为 `a1.company.com`，此特性使得一套H5支付可以方便得集成到多个App。只有一个App需要H5支付的话也可以直接填与微信后台的一致的 `company.com` 。
+
+> 2019年4月10日更新
+> 如果像上图那样填的是 `www.company.com`，那 URL Scheme 只能设为其三级域名如 `a2.www.company.com` 或同样的 `www.company.com`
+
+
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175420.png)
 
-把微信的 URL Scheme `weixin` 和 `wechat` 填入项目的白名单。在 `xcodeproj` 文件 `Info` 选项卡内的 `LSApplicationQueriesSchemes`字段里设置。
+把微信的 URL Scheme `weixin` 和 `wechat` 填入项目的白名单。在 `xcodeproj` 文件 `Info` 选项卡内的 `Custom iOS Target Properties` 的 `LSApplicationQueriesSchemes` 里添加上述两个字符串，若没有 `LSApplicationQueriesSchemes` 就手动输入添加，类型为数组 Array。
 
 
 ## 2. WKWebView加载链接
@@ -61,9 +66,18 @@ date: 2019-03-22 18:12:20
 }
 ```
 
-此处self.payString就是后台传来的微信H5支付统一下单链接，格式为 `https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx2016121516420242444321ca0631331346&package=1405458241`。
+此处self.payString就是后台传来的微信H5支付统一下单链接，格式为 `https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx2016121516420242444321ca0631331346&package=1405458041`。
 
-我们需要做的处理是根据文档给这个请求添加请求头 `Referer`，关键在于这个 `a1.company.com://wxpaycallback/` 既满足了微信检测到有商户后台设置好的一级域名，同时把这个链接做成了 URL Scheme 使得可以在跳转微信客户端后（不管支付成功还是失败）能顺利跳转回自己的App。其中的 host `wxpaycallback/` 可以任意设置，方便在 `AppDelegate` 里处理跳转回来后部署业务逻辑。当然如果你不需要在 `AppDelegate` 里接收动作而是直接跳回支付界面自行后续处理的话就只用设为前一步在 URL Sch `a1.company.com://` 即可。
+我们需要做的处理是根据文档给这个请求添加请求头 `Referer`，关键在于这个 `a1.company.com://wxpaycallback/` 既满足了微信检测到有商户后台设置好的一级域名，同时把这个链接做成了 URL Scheme 使得可以在跳转微信客户端后（不管支付成功还是失败）能顺利跳转回自己的App。其中的 host `wxpaycallback/` 可以任意设置，方便在 `AppDelegate` 里处理跳转回来后部署业务逻辑。当然如果你不需要在 `AppDelegate` 里接收动作而是直接跳回支付界面自行后续处理的话就只用设为前一步在 URL Scheme `a1.company.com://` 即可。
+
+> 2019.4.10 更新 
+> 
+> 经过测试，对于App内的H5支付而言，实际上是下面步骤里
+> `@"https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb"` 
+> 后接的参数 `redirect_url` 对支付后跳回App起作用，`Referer`只起到给微信校验的作用。
+>
+> 所以 `Referer` 只需要设置成微信H5支付登记的域名的子域名即可，如 
+> `[request setValue:@"a1.company.com" forHTTPHeaderField:@"Referer"];`
 
 
 ## 3. 实现代理方法拦截链接并跳转微信
@@ -133,4 +147,32 @@ date: 2019-03-22 18:12:20
 }
 ```
 
+
+## 5. 关于微信H5支付域名设置
+
+> 2019年4月10日更新
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190410183635.png)
+
+
+这里额外提一下，截止到2019年4月，微信支付设置页面明确说了
+
+> 添加域名后，其所属的子域名将都有权限
+
+也就是说只需要填一个一级域名比如 `company.com` ，就可以有无限多个二级域名可供不同App使用，绕过微信H5支付只能添加5个域名的限制。如果填的是二级域名比如 `www.company.com`，那么只能往下使用三级域名比如 `a1.www.company.com`
+
+
+以微信H5支付域名填了 `company.com` 为例，那可以这样操作
+
+|         App          |            Alpha             |        Beta-A1         |            Beta-A2             | Gamma                |
+| :------------------: | :--------------------------: | :--------------------: | :----------------------------: | -------------------- |
+|    添加的Referer     |      alpha.company.com       |  a1.beta.company.com   |      a2.beta.company.com       | gamma.company.com    |
+| 要替换的redirect_url | alpha.company.com://optional | a1.beta.company.com:// | a2.beta.company.com://optional | gamma.company.com:// |
+|      URL Scheme      |      alpha.company.com       |  a1.beta.company.com   |      a2.beta.company.com       | gamma.company.com    |
+
+[**参考博客链接**](https://www.cnblogs.com/Life-Record/p/8472319.html)
+
+
+
 ---
+

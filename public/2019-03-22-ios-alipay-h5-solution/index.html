@@ -238,7 +238,7 @@
 <h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-添加-URL-Scheme-并把支付宝加入白名单"><a href="#1-添加-URL-Scheme-并把支付宝加入白名单" class="headerlink" title="1. 添加 URL Scheme 并把支付宝加入白名单"></a>1. 添加 URL Scheme 并把支付宝加入白名单</h2><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175421.png" alt></p>
 <p>添加 URL Scheme。在 <code>xcodeproj</code> 文件 <code>Info</code> 选项卡最下面的 <code>URL Types</code>内设置。 该 URL Scheme 不像微信支付因为要校验必须设置商户后台填的一级域名，支付宝的这个可以任意设置。</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175420.png" alt></p>
-<p>把支付宝的 URL Scheme <code>alipay</code> 和 <code>alipays</code> 填入项目的白名单。在 <code>xcodeproj</code> 文件 <code>Info</code> 选项卡内的 <code>LSApplicationQueriesSchemes</code>字段里设置。</p>
+<p>把支付宝的 URL Scheme <code>alipay</code> 和 <code>alipays</code> 填入项目的白名单。在 <code>xcodeproj</code> 文件 <code>Info</code> 选项卡内的 <code>Custom iOS Target Properties</code> 的 <code>LSApplicationQueriesSchemes</code> 里添加上述两个字符串，若没有 <code>LSApplicationQueriesSchemes</code> 就手动输入添加，类型为数组 Array。</p>
 <h2 id="2-WKWebView加载链接"><a href="#2-WKWebView加载链接" class="headerlink" title="2. WKWebView加载链接"></a>2. WKWebView加载链接</h2><p>添加协议 <code>WKNavigationDelegate</code>和<code>WKUIDelegate</code>。</p>
 <p>创建一个WKWebView，并加载统一下单链接。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)buildWKWebView &#123;</span><br><span class="line">    <span class="built_in">WKWebView</span> *webView = [[<span class="built_in">WKWebView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT)];</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:webView];</span><br><span class="line">    webView.navigationDelegate = <span class="keyword">self</span>;</span><br><span class="line">    webView.UIDelegate = <span class="keyword">self</span>;</span><br><span class="line">    <span class="built_in">NSURL</span> *payURL = [<span class="built_in">NSURL</span> URLWithString:<span class="keyword">self</span>.payString];</span><br><span class="line">    <span class="built_in">NSMutableURLRequest</span> *request = [<span class="built_in">NSMutableURLRequest</span> requestWithURL:payURL];</span><br><span class="line">    [webView loadRequest:request];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -260,10 +260,10 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-22T21:34:28+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-04-10T19:44:34+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-03-22
+                    2019-04-10
                   </a>
                 </div>
               

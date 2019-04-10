@@ -39,7 +39,7 @@ categories:
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190322175420.png)
 
-把支付宝的 URL Scheme `alipay` 和 `alipays` 填入项目的白名单。在 `xcodeproj` 文件 `Info` 选项卡内的 `LSApplicationQueriesSchemes`字段里设置。
+把支付宝的 URL Scheme `alipay` 和 `alipays` 填入项目的白名单。在 `xcodeproj` 文件 `Info` 选项卡内的 `Custom iOS Target Properties` 的 `LSApplicationQueriesSchemes` 里添加上述两个字符串，若没有 `LSApplicationQueriesSchemes` 就手动输入添加，类型为数组 Array。
 
 
 ## 2. WKWebView加载链接
@@ -146,3 +146,4 @@ categories:
 ```
 
 ---
+
