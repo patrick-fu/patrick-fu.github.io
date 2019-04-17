@@ -8,15 +8,29 @@ categories:
 date: 2019-02-01 16:54:57
 ---
 
-正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： 第一种通过`tabBar: didSelectItem:`代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 第二种是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 先上几个效果图：
+##  简介
 
+正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： 
 
-1、带重力效果的弹跳（第二种方法：只对image执行动画） 
+### 方法一
+
+通过`tabBar: didSelectItem:`代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 
+
+### 方法二
+
+是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 
+
+## 效果图
+
+> 第二种方法：只对image执行动画 
+
+1、带重力效果的弹跳
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1549072293345_888x213.gif)
 
 <!-- more -->
 
+> 后4个是第一种方法
 
 2、先放大，再缩小 
 
@@ -37,6 +51,10 @@ date: 2019-02-01 16:54:57
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/511196-20170116104036224-920525159.gif)
 
+## 代码实现
+
+### 获取要执行动画的Item
+
 ```objc
 @interface MainTabbarVC ()<UITabBarControllerDelegate>
 @property (nonatomic,assign) NSInteger  indexFlag;　　//记录上一次点击tabbar，使用时，记得先在init或viewDidLoad里 初始化 = 0
@@ -54,7 +72,7 @@ date: 2019-02-01 16:54:57
             }
         }
         //添加动画
-　　　　 //---将下面的代码块拷贝到此并修改最后一行addAnimation的layer对象即可---
+　　　　 //---将下面的动画代码块拷贝到此并修改最后一行addAnimation的layer对象即可---
 
         self.indexFlag = index;
     }
@@ -72,7 +90,7 @@ date: 2019-02-01 16:54:57
                         for (UIView *imageView in tabBarButton.subviews) {
                             if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
                                 //添加动画
-                                //---将下面的代码块拷贝到此并修改最后一行addAnimation的layer对象即可---
+                                //---将下面的动画代码块拷贝到此并修改最后一行addAnimation的layer对象即可---
                             }
                         }
                     }
@@ -83,6 +101,9 @@ date: 2019-02-01 16:54:57
 }
 ```
 
+> 第二种方法的用法比较灵活，比如可以在TabbarVC里设上面`tabBarImageAnimation`方法的通知Observer，在需要执行动画的地方比如打开某VC时在该VC的`viewDidAppear`里post通知即可。
+
+### 动画代码
 
 1、带重力效果的弹跳
 
