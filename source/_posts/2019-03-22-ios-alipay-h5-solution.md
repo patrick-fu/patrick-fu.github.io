@@ -96,6 +96,8 @@ categories:
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
 ```
 
 
