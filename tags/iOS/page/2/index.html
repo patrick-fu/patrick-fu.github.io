@@ -238,8 +238,13 @@
 </section>
 
     <section class="article typo">
-        <p>正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： 第一种通过<code>tabBar: didSelectItem:</code>代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 第二种是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 先上几个效果图：</p>
-<p>1、带重力效果的弹跳（第二种方法：只对image执行动画） </p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>正常情况下，我们点击tabbar都只有一个变色效果，但有时候，如果我们想给它添加一个点击动画，该如何做呢？ 以下是两种方法： </p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>通过<code>tabBar: didSelectItem:</code>代理方法接收每次点击的item，对每个item都绑定动画效果，弊端是获取到的是整个item，图标和标题都会一起动。 </p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>是自定一个方法单独获取tabbar item的image和label，可自定只对某个item绑定动画，并且可设定单独image的动画。 </p>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><blockquote>
+<p>第二种方法：只对image执行动画 </p>
+</blockquote>
+<p>1、带重力效果的弹跳</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1549072293345_888x213.gif" alt></p>
         
             <div class="readmore">
