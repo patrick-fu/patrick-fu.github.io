@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>iOS UILabel的lineBreakMode省略模式设置 | 派大星星星星</title>
+  <title>Archives: 2019/4 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -165,16 +165,80 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
-  
+            
+	
+    <script>
+        window.subData= { title:'year : 2019.4'}
+    </script>
+
+
+
+
+  <section class="post-list">
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+
+
+      
+
+      
+
+      
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
 <section class="meta">
   
   
   <div class="meta" id="header-meta">
     
-      
-          <h1 class="title">iOS UILabel的lineBreakMode省略模式设置</h1>
-      
+      <h2 class="title">
+          <a href="/2019-04-23-nsuserdefaults-setbool-forkey/">
+              
+                  关于 NSUserDefaults setBool 的值取出后if判断不了的问题
+              
+          </a>
+      </h2>
     
 
     <div class="new-meta-box">
@@ -190,7 +254,7 @@
         <div class="new-meta-item date">
           <a class="notlink">
             <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-02-01
+            2019-04-23
           </a>
         </div>
       
@@ -206,17 +270,6 @@
         
       
       
-        
-          <div class="new-meta-item browse busuanzi">
-            <a class="notlink">
-              <i class="fas fa-eye" aria-hidden="true"></i>
-              <span id="busuanzi_value_page_pv">
-                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
-              </span>
-            </a>
-          </div>
-        
-      
       
     </div>
     <hr>
@@ -224,98 +277,51 @@
 </section>
 
     <section class="article typo">
-      <div class="article-entry" itemprop="articleBody">
-        <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByCharWrapping</span>; <span class="comment">//以字符为显示单位显示，后面部分省略不显示。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByClipping</span>; <span class="comment">//剪切与文本宽度相同的内容长度，后半部分被删除。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingHead</span>; <span class="comment">//前面部分文字以……方式省略，显示尾部文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingMiddle</span>; <span class="comment">//中间的内容以……方式省略，显示头尾的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingTail</span>; <span class="comment">//结尾部分的内容以……方式省略，显示头的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByWordWrapping</span>; <span class="comment">//以单词为显示单位显示，后面部分省略不显示。</span></span><br></pre></td></tr></table></figure>
-<hr>
+        <p>使用  <code>[[NSUserDefaults standardUserDefaults] setBool:(BOOL)value forKey:(NSString *)defaultName]</code> 设置的值，如果用普通的<code>objectForKey:</code>取出的值是<code>__NSCFBoolean</code>类型，<code>if</code>语句无法判断，即使后加<code>== YES</code>也没用，还会出问题。</p>
+<p>要用 <code>[[NSUserDefaults standardUserDefaults] boolForKey:(NSString *)defaultName]</code> 来取值，</p>
+<p>同理：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setInteger:(<span class="built_in">NSInteger</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setFloat:(<span class="keyword">float</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setDouble:(<span class="keyword">double</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setBool:(<span class="built_in">BOOL</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setURL:(<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)url forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure></p>
+<p>如上所示等入值方法，都用对应配套的取值方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)integerForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">float</span>)floatForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">double</span>)doubleForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="built_in">BOOL</span>)boolForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)URLForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure></p>
 
-      </div>
-        
-          <section class="meta" id="footer-meta">
-            <hr>
-            <div class="new-meta-box">
-              
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-29T16:41:53+08:00">
-                  <a class="notlink">
-                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-03-29
-                  </a>
-                </div>
-              
-              
-                
-                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;iOS</a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;Objective-C</a></div>
-              
-              
-            </div>
-          </section>
         
 
         
-            <div class="prev-next">
+            <div class="full-width auto-padding tags">
                 
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                            <h4>
-                                <a href="/2019-02-02-ios-uiscrollview-delegate-methods/" rel="prev" title="iOS UIScrollView的代理方法汇总">
-                                  
-                                      iOS UIScrollView的代理方法汇总
-                                  
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
+                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
                 
-                
-                    <section class="next">
-                        <span class="art-item-right" aria-hidden="true">
-                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
-                            <h4>
-                                <a href="/2019-02-01-ios-uiimage-resize/" rel="prev" title="iOS修改UIImage图片尺寸大小逻辑分辨率">
-                                    
-                                        iOS修改UIImage图片尺寸大小逻辑分辨率
-                                    
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
+                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
                 
             </div>
         
-
     </section>
-
 </article>
 
-<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+            </div>
+          
+        
+      
+
+  </section>
 
 
-<br>
-
-<!-- 显示推荐文章和评论 -->
 
 
 
 
+  
 
-<script>
-    window.subData = {
-        title: 'iOS UILabel的lineBreakMode省略模式设置',
-        tools: true
-    }
-</script>
+  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+  
+
+  
+
+
+
+
+
+<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+
+
 
 
         </div>

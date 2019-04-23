@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>iOS UILabel的lineBreakMode省略模式设置 | 派大星星星星</title>
+  <title>关于 NSUserDefaults setBool 的值取出后if判断不了的问题 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -173,7 +173,7 @@
   <div class="meta" id="header-meta">
     
       
-          <h1 class="title">iOS UILabel的lineBreakMode省略模式设置</h1>
+          <h1 class="title">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</h1>
       
     
 
@@ -190,7 +190,7 @@
         <div class="new-meta-item date">
           <a class="notlink">
             <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-02-01
+            2019-04-23
           </a>
         </div>
       
@@ -225,8 +225,10 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByCharWrapping</span>; <span class="comment">//以字符为显示单位显示，后面部分省略不显示。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByClipping</span>; <span class="comment">//剪切与文本宽度相同的内容长度，后半部分被删除。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingHead</span>; <span class="comment">//前面部分文字以……方式省略，显示尾部文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingMiddle</span>; <span class="comment">//中间的内容以……方式省略，显示头尾的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingTail</span>; <span class="comment">//结尾部分的内容以……方式省略，显示头的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByWordWrapping</span>; <span class="comment">//以单词为显示单位显示，后面部分省略不显示。</span></span><br></pre></td></tr></table></figure>
-<hr>
+        <p>使用  <code>[[NSUserDefaults standardUserDefaults] setBool:(BOOL)value forKey:(NSString *)defaultName]</code> 设置的值，如果用普通的<code>objectForKey:</code>取出的值是<code>__NSCFBoolean</code>类型，<code>if</code>语句无法判断，即使后加<code>== YES</code>也没用，还会出问题。</p>
+<p>要用 <code>[[NSUserDefaults standardUserDefaults] boolForKey:(NSString *)defaultName]</code> 来取值，</p>
+<p>同理：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setInteger:(<span class="built_in">NSInteger</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setFloat:(<span class="keyword">float</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setDouble:(<span class="keyword">double</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setBool:(<span class="built_in">BOOL</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setURL:(<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)url forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure></p>
+<p>如上所示等入值方法，都用对应配套的取值方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)integerForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">float</span>)floatForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">double</span>)doubleForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="built_in">BOOL</span>)boolForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)URLForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure></p>
 
       </div>
         
@@ -234,10 +236,10 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-29T16:41:53+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-04-23T11:59:16+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-03-29
+                    2019-04-23
                   </a>
                 </div>
               
@@ -253,33 +255,14 @@
         
             <div class="prev-next">
                 
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                            <h4>
-                                <a href="/2019-02-02-ios-uiscrollview-delegate-methods/" rel="prev" title="iOS UIScrollView的代理方法汇总">
-                                  
-                                      iOS UIScrollView的代理方法汇总
-                                  
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019-02-01-ios-uiimage-resize/" rel="prev" title="iOS修改UIImage图片尺寸大小逻辑分辨率">
+                                <a href="/2019-03-22-ios-alipay-h5-solution/" rel="prev" title="iOS集成支付宝H5支付实现跳转与回调的解决方案">
                                     
-                                        iOS修改UIImage图片尺寸大小逻辑分辨率
+                                        iOS集成支付宝H5支付实现跳转与回调的解决方案
                                     
                                 </a>
                             </h4>
@@ -312,7 +295,7 @@
 
 <script>
     window.subData = {
-        title: 'iOS UILabel的lineBreakMode省略模式设置',
+        title: '关于 NSUserDefaults setBool 的值取出后if判断不了的问题',
         tools: true
     }
 </script>
