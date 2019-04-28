@@ -213,6 +213,8 @@
         
           
         
+          
+        
       
 
 
@@ -222,6 +224,106 @@
       
 
       
+        
+          
+            <div class="post-wrapper">
+              <article class="post reveal ">
+    
+<section class="meta">
+  
+  
+  <div class="meta" id="header-meta">
+    
+      <h2 class="title">
+          <a href="/2019-04-28-leetcode-linklist/">
+              
+                  LeetCode做题笔记--链表相关题目
+              
+          </a>
+      </h2>
+    
+
+    <div class="new-meta-box">
+      
+        <div class="new-meta-item author">
+          <a href="https://paaatrick.com">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            大星
+          </a>
+        </div>
+      
+      
+        <div class="new-meta-item date">
+          <a class="notlink">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            2019-04-28
+          </a>
+        </div>
+      
+      
+        
+          
+          <div class="new-meta-item category">
+            <a href="/categories/Algorithm/">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+              Algorithm
+            </a>
+          </div>
+        
+      
+      
+      
+    </div>
+    <hr>
+  </div>
+</section>
+
+    <section class="article typo">
+        <p>有关链表的做题笔记，Python实现</p>
+<h2 id="链表定义"><a href="#链表定义" class="headerlink" title="链表定义"></a>链表定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<h2 id="206-反转链表-Reverse-Linked-List"><a href="#206-反转链表-Reverse-Linked-List" class="headerlink" title="206.反转链表 Reverse Linked List"></a>206.反转链表 Reverse Linked List</h2><p><a href="https://leetcode-cn.com/problems/reverse-linked-list/" target="_blank" rel="noopener">LeetCodeCN 第206题链接</a></p>
+<p>遍历链表，迭代前节点prev，缓存当前节点current的下一节点，然后把当前节点的next指针指向前节点prev</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseList</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        current = head</span><br><span class="line">        prev = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> current:</span><br><span class="line">            tmp = current.next</span><br><span class="line">            current.next = prev</span><br><span class="line">            prev = current</span><br><span class="line">            current = tmp</span><br><span class="line">        <span class="keyword">return</span> prev</span><br></pre></td></tr></table></figure>
+<p>用Python三元交换能同时赋值不需要缓存的特性可以一行完成交换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseList</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        current = head</span><br><span class="line">        prev = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> current:</span><br><span class="line">            current.next, prev, current = prev, current, current.next</span><br><span class="line">        <span class="keyword">return</span> prev</span><br></pre></td></tr></table></figure>
+<h2 id="24-两两交换链表中的节点-Swap-Nodes-in-Pairs"><a href="#24-两两交换链表中的节点-Swap-Nodes-in-Pairs" class="headerlink" title="24.两两交换链表中的节点 Swap Nodes in Pairs"></a>24.两两交换链表中的节点 Swap Nodes in Pairs</h2><p><a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/" target="_blank" rel="noopener">LeetCodeCN 第24题链接</a></p>
+<p>记录当前节点的前一个节点，当当前节点和下一节点都存在时，三元交换三个节点的next指针<br>返回交换完后的首节点（这里不太明白为什么self的取值是ListNode(None)）</p>
+<blockquote>
+<p>看到好多小伙伴在问，我来尝试解释一下“链表交换相邻元素”中 self 是怎么回事。<br>1.首先看到最后 return self.next ，可以看到作者是想把 self 当做链表的头指针使用的（注意：头指针 pHead 与传入的参数 head 是不同的，head 是第一个结点，而 pHead.next == next ）。用头指针有什么好处呢？因为我们让头指针的 next 域（pHead.next）永远指向第一个结点，就是避免最后返回的时候找不到第一个结点了。<br>2.那么作者为什么可以 pre, pre.next = self, head 这样写呢？因为 self 是这个类的一个对象，所以在类定义的时候可以在任何地方，给 self 增加新的属性。相信大家都知道在 <strong>init</strong>(self, attr) 里面可以定义通过 self.myattr = attr 来定义一个 myattr 属性。其实这个语句写在任意一个类的方法里都可以，所以在原文 swapPairs() 里面当然也可以定义新的属性。所以这行代码应该理解为，pre 指向 self（虽然 self 不是一个 ListNode 类型的对象，但它只要有一个 next 就可以了），同时为 pre（同时也是为 self，它们是一样的现在）增加一个 next 属性，这个 next 属性指向第一个结点 head。<br>3.明白上面之后，这里就好办了。在第一次 while 循环的时候，pre.next 被赋值为 b（也就是原来第二个结点，转换为变成了第一个，也就成为了新链表的第一个结点。如果原来是[1,2,3,4]，那么现在就是[2,1,3,4]，这个 self.next 就是指向 2 这个结点）。所以最后只要返回 self.next 就得到了答案。<br>其实换个写法大家就好理解很多了：<br>pHead = ListNode(None)<br>pre, pre.next = pHead, head<br>也就是说不用 self 也可以，只是原作者秀了一把小技巧而已。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swapPairs</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        pre, pre.next = self, head</span><br><span class="line">        <span class="keyword">while</span> pre.next <span class="keyword">and</span> pre.next.next:</span><br><span class="line">            l = pre.next</span><br><span class="line">            r = l.next</span><br><span class="line">            pre.next, l.next, r.next = r, r.next, l</span><br><span class="line">            pre = l</span><br><span class="line">        <span class="keyword">return</span> self.next</span><br></pre></td></tr></table></figure>
+<h2 id="141-环形链表-Linked-List-Cycle"><a href="#141-环形链表-Linked-List-Cycle" class="headerlink" title="141.环形链表 Linked List Cycle"></a>141.环形链表 Linked List Cycle</h2><p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">LeetCodeCN 第141题链接</a></p>
+<p>三种方法<br>1.硬做，可以设置超时或者固定循环次数，不靠谱<br>2.做记号，使用set来储存遍历过的节点，需要额外内存空间<br>3.快慢指针，慢指针每次前移一个节点，快指针每次前移两个节点，如果链表存在循环那快慢指针肯定会相遇</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># 1.硬做</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle1</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        curr = head</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100000</span>):</span><br><span class="line">            curr = curr.next</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> curr:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2.set记录</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle2</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        rec = set()</span><br><span class="line">        curr = head</span><br><span class="line">        <span class="keyword">while</span> curr:</span><br><span class="line">            <span class="keyword">if</span> curr <span class="keyword">in</span> rec:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            rec.add(curr)</span><br><span class="line">            curr = curr.next</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 3.快慢指针</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle3</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">while</span> slow <span class="keyword">and</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="keyword">if</span> slow == fast:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="142-环形链表-II-Linked-List-Cycle-II"><a href="#142-环形链表-II-Linked-List-Cycle-II" class="headerlink" title="142.环形链表 II Linked List Cycle II"></a>142.环形链表 II Linked List Cycle II</h2><p><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">LeetCodeCN 第142题链接</a></p>
+<p>第一种方法还是上面的用哈希表set来记录，占用空间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># 1.set记录</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        rec = []</span><br><span class="line">        curr = head</span><br><span class="line">        <span class="keyword">while</span> curr:</span><br><span class="line">            <span class="keyword">if</span> curr <span class="keyword">in</span> rec:</span><br><span class="line">                <span class="keyword">return</span> rec[rec.index(curr)]</span><br><span class="line">            rec.append(curr)</span><br><span class="line">            curr = curr.next</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>第二种方法用快慢指针，先如上题一样检测是否有环，有的话设置一个新的检测节点从头(head)开始迭代，同时slow节点也继续迭代，直到二者相遇的点就是环的入口节点。</p>
+<blockquote>
+<p>原理：<br>首先，头结点到入环结点的距离为a，入环结点到相遇结点的距离为b，相遇结点到入环结点的距离为c。然后，当f以s的两倍速度前进并和s相遇时，f走过的距离是s的两倍，即有等式：a+b+c+b = 2(a+b) ，可以得出 a = c ，所以说，让fast和slow分别从相遇结点和头结点同时同步长出发，他们的相遇结点就是入环结点。<br>当快、慢指针同时从入环点出发，那么一定会在入环点相遇。如果快、慢指针同时从入环点前一节点出发，那么快慢、指针则会在入环点的前一节点相遇，以此类推。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># 2.快慢指针</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">while</span> slow <span class="keyword">and</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="keyword">if</span> slow == fast:</span><br><span class="line">                detection = head</span><br><span class="line">                <span class="keyword">while</span> slow != detection:</span><br><span class="line">                    slow = slow.next</span><br><span class="line">                    detection = detection.next</span><br><span class="line">                <span class="keyword">return</span> detection</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<h2 id="25-k个一组翻转链表-Reverse-Nodes-in-k-Group"><a href="#25-k个一组翻转链表-Reverse-Nodes-in-k-Group" class="headerlink" title="25. k个一组翻转链表 Reverse Nodes in k-Group"></a>25. k个一组翻转链表 Reverse Nodes in k-Group</h2><p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener">LeetCodeCN 第25题链接</a></p>
+<p>利用数组来实现k个一组的翻转，然后重新连接成链表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseKGroup</span><span class="params">(self, head: ListNode, k: int)</span> -&gt; ListNode:</span></span><br><span class="line">        arr, i = [], <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            arr.append(head)</span><br><span class="line">            head = head.next</span><br><span class="line">        <span class="keyword">while</span> i &lt;= len(arr) - k:</span><br><span class="line">            arr[i:i+k] = arr[i:i+k][::<span class="number">-1</span>]</span><br><span class="line">            i += k</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(arr) - <span class="number">1</span>):</span><br><span class="line">            arr[j].next = arr[j+<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> arr:</span><br><span class="line">            arr[<span class="number">-1</span>].next = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">return</span> arr[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
+
+        
+
+        
+            <div class="full-width auto-padding tags">
+                
+                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
+                
+                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+                
+                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
+                
+            </div>
+        
+    </section>
+</article>
+
+            </div>
+          
         
           
             <div class="post-wrapper">
@@ -1087,80 +1189,6 @@
             </div>
           
         
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-02-01-ios-uilabel-linebreakmode-setting/">
-              
-                  iOS UILabel的lineBreakMode省略模式设置
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-02-01
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Note/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Note
-            </a>
-          </div>
-        
-      
-      
-      
-    </div>
-    <hr>
-  </div>
-</section>
-
-    <section class="article typo">
-        <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByCharWrapping</span>; <span class="comment">//以字符为显示单位显示，后面部分省略不显示。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByClipping</span>; <span class="comment">//剪切与文本宽度相同的内容长度，后半部分被删除。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingHead</span>; <span class="comment">//前面部分文字以……方式省略，显示尾部文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingMiddle</span>; <span class="comment">//中间的内容以……方式省略，显示头尾的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingTail</span>; <span class="comment">//结尾部分的内容以……方式省略，显示头的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByWordWrapping</span>; <span class="comment">//以单词为显示单位显示，后面部分省略不显示。</span></span><br></pre></td></tr></table></figure>
-<hr>
-
-        
-
-        
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/iOS/"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
-                
-                    <a href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-                
-            </div>
-        
-    </section>
-</article>
-
-            </div>
-          
-        
       
 
   </section>
@@ -1258,6 +1286,8 @@
     <div class="content pure">
       <ul class="entry">
         
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(1)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(8)</div></a></li>
@@ -1284,7 +1314,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+      <a href="/tags/Algorithm/" style="font-size: 14px; color: #999">Algorithm</a> <a href="/tags/Food/" style="font-size: 19px; color: #777">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 14px; color: #999">LeetCode</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/Python/" style="font-size: 14px; color: #999">Python</a> <a href="/tags/WordPress/" style="font-size: 19px; color: #777">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
     </div>
   </section>
 
