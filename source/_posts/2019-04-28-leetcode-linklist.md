@@ -27,6 +27,8 @@ class ListNode:
 
 遍历链表，迭代前节点prev，缓存当前节点current的下一节点，然后把当前节点的next指针指向前节点prev
 
+<!-- more -->
+
 ```python
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:

@@ -91,6 +91,7 @@ index2_generator:
   order_by: -date
   exclude: 
    - category Note
+   - category Algorithm
   
 # Category & Tag
 default_category: uncategorized
