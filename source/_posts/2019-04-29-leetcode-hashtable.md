@@ -1,5 +1,5 @@
 ---
-title: leetcode-hashtable
+title: LeetCode做题笔记—哈希表相关题目
 date: 2019-04-29 15:18:53
 tags: 
   - LeetCode
@@ -24,6 +24,8 @@ class Solution:
 ```
 
 第二种方法：用哈希表对字符串内每个字符计数，最后比对哈希表，这里用dict实现
+
+<!-- more -->
 
 ```python
 class Solution:

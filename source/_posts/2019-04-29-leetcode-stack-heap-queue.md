@@ -17,6 +17,8 @@ categories:
 
 使用 Stack 栈 来操作，用了一个技巧是先做一个字典，`key`为右括号，`value`为左括号。
 
+<!-- more -->
+
 ```python
 class Solution:
     def isValid(self, s: str) -> bool:
