@@ -11,7 +11,7 @@ categories:
 
 有关栈、堆、队列的做题笔记，Python实现
 
-## 20.有效的括号 Valid Parentheses
+## 20. 有效的括号 Valid Parentheses
 
 [LeetCodeCN 第20题链接](https://leetcode-cn.com/problems/valid-parentheses/)
 
@@ -32,7 +32,7 @@ class Solution:
         return not stack
 ```
 
-## 703.数据流中的第K大元素 Kth Largest Element in a Stream
+## 703. 数据流中的第K大元素 Kth Largest Element in a Stream
 
 [LeetCodeCN 第703题链接](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
 

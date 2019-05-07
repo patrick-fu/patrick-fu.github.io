@@ -21,7 +21,7 @@ class ListNode:
         self.next = None
 ```
 
-## 206.反转链表 Reverse Linked List
+## 206. 反转链表 Reverse Linked List
 
 [LeetCodeCN 第206题链接](https://leetcode-cn.com/problems/reverse-linked-list/)
 
@@ -54,7 +54,7 @@ class Solution:
         return prev
 ```
 
-## 24.两两交换链表中的节点 Swap Nodes in Pairs
+## 24. 两两交换链表中的节点 Swap Nodes in Pairs
 
 [LeetCodeCN 第24题链接](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
@@ -82,7 +82,7 @@ class Solution:
         return self.next
 ```
 
-## 141.环形链表 Linked List Cycle
+## 141. 环形链表 Linked List Cycle
 
 [LeetCodeCN 第141题链接](https://leetcode-cn.com/problems/linked-list-cycle/)
 
@@ -138,7 +138,7 @@ class Solution(object):
         return False
 ```
 
-## 142.环形链表 II Linked List Cycle II
+## 142. 环形链表 II Linked List Cycle II
 
 [LeetCodeCN 第142题链接](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 

@@ -80,7 +80,7 @@ categories:
         //  2.将截取以后的Str，做一下URLDecode，方便我们处理数据
         NSMutableString *afterDecodeStr = [NSMutableString stringWithString:[SmallTools decoderUrlEncodeStr:urlNeedDecode]];
         //  3.替换里面的默认Scheme为自己的Scheme
-        NSString *afterHandleStr = [afterDecodeStr stringByReplacingOccurrencesOfString:@"alipays" withString:@"alipayreturn.cutv.com"];
+        NSString *afterHandleStr = [afterDecodeStr stringByReplacingOccurrencesOfString:@"alipays" withString:@"alipayreturn.company.com"];
         //  4.然后把处理后的，和最开始切割的做下拼接，就得到了最终的字符串
         NSString *finalStr = [NSString stringWithFormat:@"%@?%@",urlBaseStr, [SmallTools urlEncodeStr:afterHandleStr]];
         

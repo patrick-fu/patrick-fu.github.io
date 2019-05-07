@@ -1,6 +1,6 @@
 ---
 title: LeetCode做题笔记—哈希表相关题目
-date: 2019-04-29 15:18:53
+date: 2019-05-01 15:18:53
 tags: 
   - LeetCode
   - Algorithm
@@ -38,7 +38,7 @@ class Solution:
         return map1 == map2
 ```
 
-## 1.两数之和 Two Sum
+## 1. 两数之和 Two Sum
 
 [LeetCodeCN 第1题链接](https://leetcode-cn.com/problems/two-sum/)
 
@@ -65,7 +65,7 @@ class Solution:
                     return [i, j]
 ```
 
-## 15.三数之和 3Sum
+## 15. 三数之和 3Sum
 
 [LeetCodeCN 第15题链接](https://leetcode-cn.com/problems/3sum/)
 
