@@ -31,6 +31,8 @@ class Solution:
 
 第二种方法：循环
 
+<!-- more -->
+
 ```python
 class Solution:
     def myPow(self, x: float, n: int) -> float:

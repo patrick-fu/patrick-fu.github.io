@@ -117,6 +117,8 @@ Plugins:
 
 baidu_analytics_key: 420331e790ec3f2c56b1660b4958f8c3
 
+disqus_shortname: paaatrick-com
+
 ## Themes: https://hexo.io/themes/
 theme: material-x
 

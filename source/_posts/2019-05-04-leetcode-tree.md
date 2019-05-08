@@ -27,6 +27,8 @@ class TreeNode:
 
 第一种方法：中序遍历二叉树存入数组，与直接升序排序去重后的原二叉树对比
 
+<!-- more -->
+
 ```python
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
