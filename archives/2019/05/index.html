@@ -247,9 +247,9 @@
   <div class="meta" id="header-meta">
     
       <h2 class="title">
-          <a href="/2019-05-08-leetcode-bfs-dfs/">
+          <a href="/2019-05-09-leetcode-bfs-dfs-pruning/">
               
-                  leetcode-bfs-dfs
+                  LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目
               
           </a>
       </h2>
@@ -268,7 +268,7 @@
         <div class="new-meta-item date">
           <a class="notlink">
             <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-08
+            2019-05-09
           </a>
         </div>
       
@@ -291,13 +291,13 @@
 </section>
 
     <section class="article typo">
-        <p>有关BFS（广度优先）与DFS（深度优先）的做题笔记，Python实现</p>
+        <p>有关BFS（广度优先搜索）与DFS（深度优先搜索）的做题笔记，Python实现</p>
 <h2 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 <h2 id="102-二叉树的层次遍历-Binary-Tree-Level-Order-Traversal"><a href="#102-二叉树的层次遍历-Binary-Tree-Level-Order-Traversal" class="headerlink" title="102. 二叉树的层次遍历 Binary Tree Level Order Traversal"></a>102. 二叉树的层次遍历 Binary Tree Level Order Traversal</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">LeetCodeCN 第102题链接</a></p>
 <p>第一种方法：BFS广度优先搜索，使用双端队列deque（因为性能比另外两种Queue好得多），在大循环内对二叉树的每个层做一次遍历，注意<code>range(len(queue))</code>使只遍历当前的层。由于每个节点仅访问一次，所以时间复杂度<code>O(n)</code></p>
         
             <div class="readmore">
-                <a href="/2019-05-08-leetcode-bfs-dfs/" class="flat-box">
+                <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" class="flat-box">
                     <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
                     阅读全文
                 </a>
