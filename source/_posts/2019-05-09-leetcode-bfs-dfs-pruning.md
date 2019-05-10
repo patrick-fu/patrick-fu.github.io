@@ -205,9 +205,20 @@ class Solution:
             self.helper(left_used, right_used + 1, n, result + ')')
 ```
 
-## 51. N皇后 N-Queens
+## 51. N皇后 N-Queens / 52. N皇后 II N-Queens II
 
 [LeetCodeCN 第51题链接](https://leetcode-cn.com/problems/n-queens/)
+[LeetCodeCN 第52题链接](https://leetcode-cn.com/problems/n-queens-ii/)
+
+用三个`set()`记录矩阵内因放入皇后而封住的格子，`self.col`是列，`self.sum`是`row+col`表示的 '/' 方向 `self.dif`是`row-col`表示的 '\\' 方向。
+
+用深度优先搜索方法，逐行递归下去，递归终止条件是行数加到`n`时，此时即生成了一种解决方案，放入结果数组。
+
+每次递归内迭代列`col`检查这个点位是否能放下，能放下的话把自身点位加入三个`set`内，继续下个递归，参数`state`数组`append`这一行的列值 `col`。
+
+递归函数后记得清除因放入自己的影响即三个`set`。
+
+最后为51题生成结果图的函数`_gen`。
 
 ```python
 class Solution:
@@ -217,7 +228,12 @@ class Solution:
         self.sum = set()
         self.dif = set()
         self._dfs(n, 0, [])
+        
+        # 51题: 输出点阵图
         return self._gen(n)
+        
+        # 52题: 输出结果数量
+        # return len(self.result)
         
     def _dfs(self, n, row, state):
         if row >= n:
