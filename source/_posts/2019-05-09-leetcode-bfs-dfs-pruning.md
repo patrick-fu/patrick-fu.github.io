@@ -261,3 +261,112 @@ class Solution:
             result.append(graph)
         return result
 ```
+
+## 37. 解数独 Sudoku Solver
+
+[LeetCodeCN 第37题链接](https://leetcode-cn.com/problems/sudoku-solver/)
+
+DFS朴素解法
+
+```python
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        if board is None or not len(board):
+            return 
+        self.solve(board)
+        
+    def solve(self, board: List[List[str]]) -> bool:
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == '.':
+                    for c in ["1","2","3","4","5","6","7","8","9"]:
+                        if self.isValid(board, i, j, c):
+                            board[i][j] = c
+                            if self.solve(board):
+                                return True
+                            else:
+                                board[i][j] = '.'
+                    return False
+        return True
+    
+    def isValid(self, board, row, col, c) -> bool:
+        for i in range(9):
+            if board[row][i] != '.' and board[row][i] == c:
+                return False
+            if board[i][col] != '.' and board[i][col] == c:
+                return False
+            if board[3 * (row//3) + i//3][3 * (col//3) + i%3] != '.' and board[3 * (row//3) + i//3][3 * (col//3) + i%3] == c:
+                return False
+        return True
+```
+
+## 36. 有效的数独 Valid Sudoku
+
+第一种方法：利用`collections`的`defaultdict`数据结构记录
+
+```python
+import collections as cl
+
+class Solution:
+    def isValidSudoku(self, board) -> bool:
+        if not board or not len(board):
+            return False
+        self.row, self.col, self.box = cl.defaultdict(set), cl.defaultdict(set), cl.defaultdict(set)
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != '.':
+                    if board[r][c] not in self.row[r] and board[r][c] not in self.col[c] and board[r][c] not in self.box[(r//3, c//3)]:
+                        self.row[r].add(board[r][c])
+                        self.col[c].add(board[r][c])
+                        self.box[(r//3, c//3)].add(board[r][c])
+                    else:
+                        return False
+        return True
+```
+
+第二种方法：不用额外空间，直接循环检测
+
+```python
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        if not board or not len(board):
+            return False
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != '.':
+                    if self.isValid(board, r, c, board[r][c]):
+                        continue
+                    else:
+                        return False
+        return True
+                    
+                    
+    def isValid(self, board, row, col, c) -> bool:
+        board[row][col] = '.'
+        for i in range(9):
+            if board[row][i] != '.' and board[row][i] == c:
+                return False
+            if board[i][col] != '.' and board[i][col] == c:
+                return False
+            if board[3 * (row//3) + i//3][3 * (col//3) + i%3] != '.' and board[3 * (row//3) + i//3][3 * (col//3) + i%3] == c:
+                return False
+        board[row][col] = c    
+        return True
+```
+
+## 69. x 的平方根  Sqrt(x)
+
+第二种方法：牛顿迭代法，$X_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$，这里的$f(x_n)$是$x^2 - y_0$，即得迭代公式$x_{n+1} = (x_n + \frac{y_0}{x_n}) / 2 $
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:        
+        if x <= 1:
+            return x
+        r = x
+        while r > x / r:
+            r = (r + x / r)//2
+        return int(r)
+```
