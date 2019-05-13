@@ -27,6 +27,8 @@ class Solution(object):
         return count
 ```
 
+<!-- more -->
+
 第二种方法：通过`n & (n - 1)`直接摘掉最后一位的1
 
 ```python
