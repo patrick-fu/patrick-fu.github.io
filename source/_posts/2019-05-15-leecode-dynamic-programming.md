@@ -29,6 +29,8 @@ class Solution:
 
 第二种方法：动态规划，用数组记录每个台阶的所有走法个数，时间复杂度降为 $O(n)$
 
+<!-- more -->
+
 ```python
 class Solution:
     def climbStairs(self, n: int) -> int:
@@ -148,4 +150,306 @@ class Solution:
             dp[x][1] = min(dp[y][0]*nums[i], dp[y][1]*nums[i], nums[i])
             res = max(res, dp[x][0])
         return res
+```
+
+# 买卖股票最佳时机系列
+
+
+## 121. 买卖股票的最佳时机 Best Time to Buy and Sell Stock
+
+[LeetCodeCN 第121题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
+
+第一种方法：由于一次交易操作，可以通过记录最小价格，计算最大利润的方式，空间换时间，时间复杂度`O(n)`
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        res, low = 0, float('inf')
+        for i in range(len(prices)):
+            low = min(prices[i], low)
+            res = max(res, prices[i] - low)
+        return res
+```
+
+第二种方法：DP动态规划，与下面122题相比，由于只能一次交易操作，第`i`天的状态就不止“不持有”和“持有”两种状态，而是“未持有”、“持有”、“卖出”三种，并需要一个变量存储最大值
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        # 生成数组, 然后给初始状态赋值
+        dp, res = [[0]*3 for _ in range(len(prices))], 0
+        dp[0][0], dp[0][1], dp[0][2] = 0, -prices[0], 0
+        for i in range(1, len(prices)):
+            # dp[i][0] 第i天 一直没有股票的利润
+            # dp[i][1] 第i天 当前有股票的利润 取 max(前面有股票今天不卖, 前面没股票今天买入)
+            # dp[i][2] 第i天 之前买入现在卖了的利润(前面有股票今天卖出)
+            dp[i][0] = dp[i-1][0]
+            dp[i][1] = max(dp[i-1][0] - prices[i], dp[i-1][1])
+            dp[i][2] = dp[i-1][1] + prices[i]
+            res = max(res, dp[i][0], dp[i][2])
+        return res
+```
+
+## 122. 买卖股票的最佳时机 II Best Time to Buy and Sell Stock II
+
+[LeetCodeCN 第122题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+
+第一种方法：深度优先搜索，时间复杂度`O(2^n)`，这个通过不了LeetCode，不过能work，测试了多组测试样例是正确的
+
+<!-- more -->
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        self.prices = prices
+        self.profit = []
+        self.helper(0, 0, 0)
+        return max(self.profit)
+        
+    # have 0:未持有  1:持有
+    def helper(self, i, have, profit):
+        if i == len(self.prices):
+            self.profit.append(profit)
+            return
+        if have: # 如果持有中
+            self.helper(i+1, 0, profit + self.prices[i]) # 卖出
+            self.helper(i+1, 1, profit) # 不动
+        else: # 如果未持有
+            self.helper(i+1, 0, profit) # 不动
+            self.helper(i+1, 1, profit - self.prices[i]) # 买入
+```
+
+第二种方法：贪心算法，一次遍历，只要今天价格小于明天价格就在今天买入然后明天卖出，时间复杂度`O(n)`
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        ans = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i-1]:
+                ans += prices[i] - prices[i-1]
+        return ans
+```
+
+第三种方法：标准二维DP动态规划，第`i`天只有两种状态，不持有或持有股票，当天不持有股票的状态可能来自昨天卖出或者昨天也不持有，同理，当天持有股票的状态可能来自昨天买入或者昨天也持有中，取最后一天的不持有股票状态就是问题的解
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        n = len(prices)
+        dp = [[0]*2 for _ in range(n)]
+        # dp[i][0]表示第i天不持有股票, dp[i][1]表示第i天持有股票
+        dp[0][0], dp[0][1] = 0, - prices[0]
+        for i in range(1, n):
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+            dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i])
+        return dp[n-1][0]
+```
+
+## 123.  买卖股票的最佳时机 III Best Time to Buy and Sell Stock III
+
+[LeetCodeCN 第123题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)
+
+第一种方法：标准的三维DP动态规划，三个维度，第一维表示天，第二维表示交易了几次，第三维表示是否持有股票。与下面188题买卖股票4一样的代码，把交易k次定义为2次。当然也可以把内层的for循环拆出来，分别列出交易0次、1次、2次的状态转移方程即可
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        n = len(prices)
+        dp = [[[0]*2 for _ in range(3)] for _ in range(n)]
+        # dp[i][j][0]表示第i天交易了j次时不持有股票, dp[i][j][1]表示第i天交易了j次时持有股票
+        # 定义卖出股票时交易次数加1
+        for i in range(3):
+            dp[0][i][0], dp[0][i][1] = 0, -prices[0]
+        
+        for i in range(1, n):
+            for j in range(3):
+                if not j:
+                    dp[i][j][0] = dp[i-1][j][0]
+                else:
+                    dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j-1][1] + prices[i])
+                dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j][0] - prices[i])
+        
+        return max(dp[n-1][0][0], dp[n-1][1][0], dp[n-1][2][0])
+```
+
+第二种方法：用变量而不是多维数组保存迭代的值，优点是省内存空间，缺点是不是标准DP，没法泛化
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        
+        buy1, sell1, buy2, sell2 = -prices[0], 0, -prices[0], 0
+        for i in range(1,len(prices)):
+            buy1 = max(buy1,-prices[i])	#用负值统一变量
+            sell1 = max(sell1,buy1 + prices[i])	#sell1为 0~i(含)天股市中买卖一次的最优利润
+            buy2 = max(buy2,sell1 - prices[i])	#仅当＞0才会更新，保证 第二次买入不会与第一次卖出为同一天。而sell1为历史记录保证第二次买入比第一次卖出晚。
+            sell2 = max(sell2,buy2 + prices[i])	#若第二轮买卖为同一天，则不会更新。此操作自然保证sell2为买卖至多两次的最优利润。
+        return sell2
+```
+
+## 188. 买卖股票的最佳时机 IV Best Time to Buy and Sell Stock IV
+
+[LeetCodeCN 第188题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)
+
+标准的三维DP动态规划，三个维度，第一维表示天，第二维表示交易了几次，第三维表示是否持有股票。
+
+首先初始化三维数组，填充第1天操作j次的没买或买了的情况的初始值，没买就是`0`，第一天就买入即`-prices[0]`。这里定义卖出操作时交易次数加`1`
+
+然后是状态转移方程，下面描述的`i, j`都大于`0`
+
+「第`i`天交易次数`0`不持有股票」的情况只能来自「第`i-1`天交易次数`0`不持有股票」；
+
+「第`i`天交易`j`次不持有股票」的状态可以来自「第`i-1`天交易`j`次不持有股票」或者「第`i-1`天交易`j-1`次持有股票」(即今天卖出股票，然后交易次数+1)；
+
+「第`i`天交易`j`次持有股票」的状态可以来自「第`i-1`天交易`j`次持有股票」或者「第`i-1`天交易`j`次不持有股票」(即今天买入股票，因为是买入操作所以交易次数不变)
+
+最后对于这题LeetCode的测试样例里有超大k值的情况，退化成122题不限次数的操作，可以用贪心解决或者直接替换k值为数组长度的一半
+
+```python
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        if not prices or not k:
+            return 0
+        n = len(prices)
+        
+        # 当k大于数组长度的一半时，等同于不限次数交易即122题，用贪心算法解决，否则LeetCode会超时，也可以直接把超大的k替换为数组的一半，就不用写额外的贪心算法函数
+        if k > n//2:
+            return self.greedy(prices)
+        
+        dp, res = [[[0]*2 for _ in range(k+1)] for _ in range(n)], []
+        # dp[i][k][0]表示第i天已交易k次时不持有股票 dp[i][k][1]表示第i天已交易k次时持有股票
+        # 设定在卖出时加1次交易次数
+        for i in range(k+1):
+            dp[0][i][0], dp[0][i][1] = 0, - prices[0]
+        for i in range(1, n):
+            for j in range(k+1):
+                if not j:
+                    dp[i][j][0] = dp[i-1][j][0]
+                else:
+                    dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j-1][1] + prices[i])
+                dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j][0] - prices[i])
+        # 「所有交易次数最后一天不持有股票」的集合的最大值即为问题的解
+        for m in range(k+1):
+            res.append(dp[n-1][m][0])
+        return max(res)
+    
+    # 处理k过大导致超时的问题，用贪心解决
+    def greedy(self, prices):
+        res = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i-1]:
+                res += prices[i] - prices[i-1]
+        return res
+```
+
+## 309. 最佳买卖股票时机含冷冻期 Best Time to Buy and Sell Stock with Cooldown
+
+[LeetCodeCN 第309题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
+
+第一种方法：标准DP动态规划，三个维度，第一维表示天，第二维表示是否处于冷冻期，第三维表示是否持有股票
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        n = len(prices)
+        dp = [[[0]*2 for _ in range(2)] for _ in range(n)]
+        # dp[i][0][0]第一维表示第i天, 第二维用0,1表示是否处于冷冻期, 第三维用0,1表示是否持有股票
+        dp[0][0][0], dp[0][0][1], dp[0][1][0] = 0, -prices[0], 0
+        for i in range(1, n):
+            dp[i][0][0] = max(dp[i-1][1][0], dp[i-1][0][0])
+            dp[i][1][0] = dp[i-1][0][1] + prices[i]
+            dp[i][0][1] = max(dp[i-1][0][1], dp[i-1][0][0] - prices[i])
+        return max(dp[n-1][0][0], dp[n-1][1][0])
+```
+
+第二种方法：优化版的动态规划，用两个维度处理，第一维表示天，第二维用0表示未持有，1表示持有股票中，2表示处于冷冻期
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        n = len(prices)
+        dp = [[0]*3 for _ in range(n)]
+        # dp[i][0]表示第i天未持有, dp[i][1]表示持有股票, dp[i][2]表示前一天刚卖出今天处于冷冻期
+        dp[0][0], dp[0][1], dp[0][2] = 0, -prices[0], 0
+        for i in range(1, n):
+            dp[i][0] = max(dp[i-1][0], dp[i-1][2])
+            dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i])
+            dp[i][2] = dp[i-1][1] + prices[i]
+        return max(dp[n-1][0], dp[n-1][2])
+```
+
+## 300. 最长上升子序列 Longest Increasing Subsequence
+
+[LeetCodeCN 第300题链接](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+
+DP动态规划，定义状态`dp[i]`为以`nums[i]`为结尾且必须包含`nums[i]`本身的最长上升子序列的长度。两个嵌套的循环，状态转移方程`dp[i] = max(dp[i], dp[j] + 1)`即在内层循环内通过比较`dp[j]`来不断迭代`dp[i]`，找到前面最大的一个`dp`值然后加1。最后`dp`数组的最大值就是问题的解
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        n = len(nums)
+        dp = [1]*n
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j]+1)
+        return max(dp)
+```
+
+## 322. 零钱兑换 Coin Change
+
+[LeetCodeCN 第322题链接](https://leetcode-cn.com/problems/coin-change/)
+
+第一种方法：DFS深度优先搜索，暴力操作，LeetCode会超时过不去
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if amount < 1:
+            return 0 
+        self.coins = sorted(coins, reverse=True)
+        self.res = []
+        for i in self.coins:
+            self.dfs(amount, i, 1)
+        if not self.res:
+            return -1
+        return min(self.res)
+        
+    def dfs(self, amount, num, count):
+        last = amount - num
+        if last < 0:
+            return
+        if not last:
+            self.res.append(count)
+            return
+        for i in self.coins:
+            self.dfs(last, i, count + 1)
+```
+
+第二种方法：DP动态规划，定义状态`dp[i]`为拼凑数额`i`最少所需的硬币数量
+
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [amount+1]*(amount+1)
+        dp[0] = 0
+        for i in range(1, amount+1):
+            for c in coins:
+                if i - c >= 0:
+                    dp[i] = min(dp[i], dp[i-c] + 1)
+        return dp[amount] if dp[amount] <= amount else -1
 ```
