@@ -1,5 +1,5 @@
 ---
-title: LeetCode做题笔记—DP动态规划相关题目
+title: LeetCode做题笔记—并查集相关题目
 date: 2019-05-16 09:34:02
 tags: 
   - LeetCode
