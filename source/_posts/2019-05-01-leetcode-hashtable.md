@@ -56,6 +56,7 @@ class Solution:
 ```
 
 第二种方法：暴力两重遍历，这样时间复杂度是`O(n^2)`，在LeetCode里提交会超时
+
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -126,4 +127,41 @@ class Solution(object):
                     l += 1
                     r -= 1
         return res
+```
+
+## 146. LRU缓存机制 LRU Cache
+
+[LeetCodeCN 第146题链接](https://leetcode-cn.com/problems/lru-cache/)
+
+利用 Python collections 库内的顺序哈希表 OrderedDict() 类可以很方便地实现
+
+```python
+from collections import OrderedDict
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.dic = OrderedDict()
+        self.remain = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self.dic:
+            return -1
+        item = self.dic[key]
+        self.dic.pop(key)
+        self.dic[key] = item
+        return item
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.dic:
+            self.dic.pop(key)
+        else:
+            if self.remain > 0:
+                self.remain -= 1
+            else:
+                self.dic.popitem(last=False)
+        self.dic[key] = value
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 ```
