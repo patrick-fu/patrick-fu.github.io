@@ -321,6 +321,8 @@
 <ol>
 <li>在block里手动加上<code>dispatch_async(dispatch_get_main_queue(), ^{});</code></li>
 </ol>
+<a id="more"></a>
+
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLSessionConfiguration</span> *configuration = [<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:configuration];<span class="comment">//no delegateQueue</span></span><br><span class="line"><span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:url] cachePolicy:<span class="built_in">NSURLRequestReturnCacheDataElseLoad</span> timeoutInterval:<span class="number">30.0</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithRequest:imgRequest completionHandler:^(<span class="built_in">NSURL</span> * _Nullable location, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;<span class="comment">/* do UI things */</span>&#125;);</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    [<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(doUIthings) withObject:<span class="literal">nil</span> waitUntilDone:<span class="literal">NO</span>];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[task resume];</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
@@ -337,7 +339,7 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T09:11:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T16:37:51+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2019年5月16日</p>
@@ -360,7 +362,10 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-02-23-ios-block-and-mainqueue/&title=iOS处理多线程异步Block中的UI操作 | 派大星星星星&summary=">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-02-23-ios-block-and-mainqueue/&title=iOS处理多线程异步Block中的UI操作 | 派大星星星星&summary=多线程方法的completionHandlerblock可能运行在非主线程上。两种处理方法：
+
+在block里手动加上dispatch_async(dispatch_get_main_queue(), ^{});
+">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -368,7 +373,10 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-02-23-ios-block-and-mainqueue/&title=iOS处理多线程异步Block中的UI操作 | 派大星星星星&summary=">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-02-23-ios-block-and-mainqueue/&title=iOS处理多线程异步Block中的UI操作 | 派大星星星星&summary=多线程方法的completionHandlerblock可能运行在非主线程上。两种处理方法：
+
+在block里手动加上dispatch_async(dispatch_get_main_queue(), ^{});
+">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -384,7 +392,10 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-02-23-ios-block-and-mainqueue/&title=iOS处理多线程异步Block中的UI操作 | 派大星星星星&summary=">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-02-23-ios-block-and-mainqueue/&title=iOS处理多线程异步Block中的UI操作 | 派大星星星星&summary=多线程方法的completionHandlerblock可能运行在非主线程上。两种处理方法：
+
+在block里手动加上dispatch_async(dispatch_get_main_queue(), ^{});
+">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -617,7 +628,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-22-ios-alipay-h5-solution/" title="iOS集成支付宝H5支付实现跳转与回调的解决方案" rel="bookmark">iOS集成支付宝H5支付实现跳转与回调的解决方案</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-03-mj-extension-guide/" title="iOS MJExtension使用方法指南(Objective-C)" rel="bookmark">iOS MJExtension使用方法指南(Objective-C)</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-03-mj-extension-guide/" title="iOS MJExtension使用方法指南(Objective-C)" rel="bookmark">iOS MJExtension使用方法指南(Objective-C)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li></ul>
     </div>
   </section>
 
