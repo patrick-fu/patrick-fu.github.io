@@ -17,6 +17,8 @@ categories:
 
 第一种方法：遍历所有二进制位，通过取模`n%2`或者与运算`n&1`判断尾数是否为1，然后把n右移一位
 
+<!-- more -->
+
 ```python
 class Solution(object):
     def hammingWeight(self, n):
@@ -26,8 +28,6 @@ class Solution(object):
             n >>= 1
         return count
 ```
-
-<!-- more -->
 
 第二种方法：通过`n & (n - 1)`直接摘掉最后一位的1
 

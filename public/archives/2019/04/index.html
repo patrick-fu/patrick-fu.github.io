@@ -540,14 +540,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>使用  <code>[[NSUserDefaults standardUserDefaults] setBool:(BOOL)value forKey:(NSString *)defaultName]</code> 设置的值，如果用普通的<code>objectForKey:</code>取出的值是<code>__NSCFBoolean</code>类型，<code>if</code>语句无法判断，即使后加<code>== YES</code>也没用，还会出问题。</p>
-<p>要用 <code>[[NSUserDefaults standardUserDefaults] boolForKey:(NSString *)defaultName]</code> 来取值，</p>
-<p>同理：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setInteger:(<span class="built_in">NSInteger</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setFloat:(<span class="keyword">float</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setDouble:(<span class="keyword">double</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setBool:(<span class="built_in">BOOL</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setURL:(<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)url forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure>
-
-<p>如上所示等入值方法，都用对应配套的取值方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)integerForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">float</span>)floatForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">double</span>)doubleForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="built_in">BOOL</span>)boolForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)URLForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure>
-
-
+      
+        <div class="readmore">
+          <a href="/2019-04-23-nsuserdefaults-setbool-forkey/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
       
     </div>
     

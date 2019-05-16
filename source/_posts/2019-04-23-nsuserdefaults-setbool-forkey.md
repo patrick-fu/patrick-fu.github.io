@@ -10,6 +10,8 @@ categories:
 
 使用  `[[NSUserDefaults standardUserDefaults] setBool:(BOOL)value forKey:(NSString *)defaultName]` 设置的值，如果用普通的`objectForKey:`取出的值是`__NSCFBoolean`类型，`if`语句无法判断，即使后加`== YES`也没用，还会出问题。
 
+<!-- more -->
+
 
 要用 `[[NSUserDefaults standardUserDefaults] boolForKey:(NSString *)defaultName]` 来取值，
 

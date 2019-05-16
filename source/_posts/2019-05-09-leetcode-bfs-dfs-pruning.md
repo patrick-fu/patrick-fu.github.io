@@ -1,5 +1,5 @@
 ---
-title: LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目
+title: LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目
 date: 2019-05-09 12:02:49
 tags: 
   - LeetCode
@@ -9,9 +9,17 @@ categories:
   - Algorithm
 ---
 
-有关BFS（广度优先搜索）与DFS（深度优先搜索）的做题笔记，Python实现
+有关BFS（广度优先搜索）与DFS（深度优先搜索）、回溯、剪枝的做题笔记，Python实现
 
-## 二叉树的定义
+<!-- more -->
+
+
+## 102. 二叉树的层次遍历 Binary Tree Level Order Traversal
+
+[LeetCodeCN 第102题链接](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+
+第一种方法：BFS广度优先搜索，使用双端队列deque（因为性能比另外两种Queue好得多），在大循环内对二叉树的每个层做一次遍历，注意`range(len(queue))`使只遍历当前的层。由于每个节点仅访问一次，所以时间复杂度`O(n)`
+
 ```python
 # Definition for a binary tree node.
 class TreeNode:
@@ -20,15 +28,6 @@ class TreeNode:
         self.left = None
         self.right = None
 ```
-
-## 102. 二叉树的层次遍历 Binary Tree Level Order Traversal
-
-[LeetCodeCN 第102题链接](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
-
-第一种方法：BFS广度优先搜索，使用双端队列deque（因为性能比另外两种Queue好得多），在大循环内对二叉树的每个层做一次遍历，注意`range(len(queue))`使只遍历当前的层。由于每个节点仅访问一次，所以时间复杂度`O(n)`
-
-<!-- more -->
-
 ```python
 import collections
 class Solution:
@@ -82,6 +81,15 @@ class Solution:
 [LeetCodeCN 第104题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 
 第一种方法：BFS广度优先搜索，使用双端队列deque（因为性能比另外两种Queue好得多），在大循环内对二叉树的每个层做一次遍历，`range(len(queue))`使只遍历当前的层，每次大循环`ans`加1。由于每个节点仅访问一次，所以时间复杂度`O(n)`
+
+```python
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+```
 ```python
 import collections
 class Solution:
@@ -138,6 +146,14 @@ class Solution:
 
 第一种方法：BFS广度优先搜索，使用双端队列deque（因为性能比另外两种Queue好得多），在大循环内对二叉树的每个层做一次遍历，`range(len(queue))`使只遍历当前的层。由于每个节点仅访问一次，所以时间复杂度`O(n)`
 
+```python
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+```
 ```python
 import collections
 class Solution:

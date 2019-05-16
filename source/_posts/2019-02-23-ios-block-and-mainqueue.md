@@ -12,6 +12,8 @@ categories:
 
 1. 在block里手动加上`dispatch_async(dispatch_get_main_queue(), ^{});`
 
+<!-- more -->
+
 ```objc
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     

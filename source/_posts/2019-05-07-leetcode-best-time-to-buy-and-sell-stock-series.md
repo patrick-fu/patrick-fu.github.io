@@ -11,6 +11,8 @@ categories:
 
 有关买卖股票最佳时机系列做题笔记，Python实现
 
+<!-- more -->
+
 ## 121. 买卖股票的最佳时机 Best Time to Buy and Sell Stock
 
 [LeetCodeCN 第121题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
@@ -53,8 +55,6 @@ class Solution:
 [LeetCodeCN 第122题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
 
 第一种方法：深度优先搜索，时间复杂度`O(2^n)`，这个通过不了LeetCode，不过能work，测试了多组测试样例是正确的
-
-<!-- more -->
 
 ```python
 class Solution:

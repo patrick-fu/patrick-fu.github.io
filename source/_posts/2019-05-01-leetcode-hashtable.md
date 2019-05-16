@@ -17,6 +17,8 @@ categories:
 
 第一种方法：对两个字符串排序后对比
 
+<!-- more -->
+
 ```python
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
@@ -24,8 +26,6 @@ class Solution:
 ```
 
 第二种方法：用哈希表对字符串内每个字符计数，最后比对哈希表，这里用dict实现
-
-<!-- more -->
 
 ```python
 class Solution:

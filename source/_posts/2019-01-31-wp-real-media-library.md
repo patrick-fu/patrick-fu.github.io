@@ -12,6 +12,8 @@ WordPress有个很大的问题就是管理上传图片的媒体库很菜，连�
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-31-18.12.21.png)
 
+<!-- more -->
+
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-31-18.12.51.png)
 
 然而实际使用起来极不方便，上传图片时不能选择上传到哪个分类，现有的图片也不能多选设置分类，需要点开每一张图片再勾选分类。 然后找到一个 WP Real Media Library 度娘盘找到了资源，下载后在WordPress插件界面上传使用。 

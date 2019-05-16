@@ -11,6 +11,8 @@ categories:
 
 有关动态规划 Dynamic Programming 的做题笔记，Python实现
 
+<!-- more -->
+
 ## 70. 爬楼梯 Climbing Stairs
 
 [LeetCodeCN 第70题链接](https://leetcode-cn.com/problems/climbing-stairs/)
@@ -28,8 +30,6 @@ class Solution:
 ```
 
 第二种方法：动态规划，用数组记录每个台阶的所有走法个数，时间复杂度降为 $O(n)$
-
-<!-- more -->
 
 ```python
 class Solution:

@@ -320,9 +320,9 @@
           <p>有关位运算的做题笔记，Python实现</p>
 <h2 id="191-位1的个数-Number-of-1-Bits"><a href="#191-位1的个数-Number-of-1-Bits" class="headerlink" title="191. 位1的个数 Number of 1 Bits"></a>191. 位1的个数 Number of 1 Bits</h2><p><a href="https://leetcode-cn.com/problems/number-of-1-bits/" target="_blank" rel="noopener">LeetCodeCN 第191题链接</a></p>
 <p>第一种方法：遍历所有二进制位，通过取模<code>n%2</code>或者与运算<code>n&amp;1</code>判断尾数是否为1，然后把n右移一位</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += n &amp; <span class="number">1</span></span><br><span class="line">            n &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += n &amp; <span class="number">1</span></span><br><span class="line">            n &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
 
 <p>第二种方法：通过<code>n &amp; (n - 1)</code>直接摘掉最后一位的1</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            n = n &amp; (n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
@@ -349,7 +349,7 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T09:11:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T16:44:51+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2019年5月16日</p>
@@ -374,8 +374,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
 191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
-第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位
-1234567class Solution(object):    def hammingWeight(self, n):        count = 0        while n:            count += n &amp; 1            n &gt;&gt;= 1        return count">
+第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -385,8 +384,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
 191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
-第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位
-1234567class Solution(object):    def hammingWeight(self, n):        count = 0        while n:            count += n &amp; 1            n &gt;&gt;= 1        return count">
+第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -404,8 +402,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
 191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
-第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位
-1234567class Solution(object):    def hammingWeight(self, n):        count = 0        while n:            count += n &amp; 1            n &gt;&gt;= 1        return count">
+第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -459,9 +456,9 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" rel="prev" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目">
+                                <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" rel="prev" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目">
                                     
-                                        LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目
+                                        LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目
                                     
                                 </a>
                             </h4>
@@ -652,7 +649,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-28-leetcode-linklist/" title="LeetCode做题笔记--链表相关题目" rel="bookmark">LeetCode做题笔记--链表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-01-leetcode-hashtable/" title="LeetCode做题笔记—哈希表相关题目" rel="bookmark">LeetCode做题笔记—哈希表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-29-leetcode-stack-heap-queue/" title="LeetCode做题笔记—栈、堆、队列相关题目" rel="bookmark">LeetCode做题笔记—栈、堆、队列相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-04-leetcode-tree/" title="LeetCode做题笔记—二叉树相关题目" rel="bookmark">LeetCode做题笔记—二叉树相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-recursion-divide-conquer/" title="LeetCode做题笔记—递归、分治相关题目" rel="bookmark">LeetCode做题笔记—递归、分治相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-16-leetcode-union-find/" title="LeetCode做题笔记—并查集相关题目" rel="bookmark">LeetCode做题笔记—并查集相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/" title="LeetCode做题笔记—买卖股票的最佳时机系列题目" rel="bookmark">LeetCode做题笔记—买卖股票的最佳时机系列题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-09-leetcode-bfs-dfs-pruning/" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目" rel="bookmark">LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-15-leetcode-dynamic-programming/" title="LeetCode做题笔记—DP动态规划相关题目" rel="bookmark">LeetCode做题笔记—DP动态规划相关题目</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-04-leetcode-tree/" title="LeetCode做题笔记—二叉树相关题目" rel="bookmark">LeetCode做题笔记—二叉树相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-29-leetcode-stack-heap-queue/" title="LeetCode做题笔记—栈、堆、队列相关题目" rel="bookmark">LeetCode做题笔记—栈、堆、队列相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-01-leetcode-hashtable/" title="LeetCode做题笔记—哈希表相关题目" rel="bookmark">LeetCode做题笔记—哈希表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-28-leetcode-linklist/" title="LeetCode做题笔记--链表相关题目" rel="bookmark">LeetCode做题笔记--链表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-recursion-divide-conquer/" title="LeetCode做题笔记—递归、分治相关题目" rel="bookmark">LeetCode做题笔记—递归、分治相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-16-leetcode-union-find/" title="LeetCode做题笔记—并查集相关题目" rel="bookmark">LeetCode做题笔记—并查集相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-09-leetcode-bfs-dfs-pruning/" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目" rel="bookmark">LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/" title="LeetCode做题笔记—买卖股票的最佳时机系列题目" rel="bookmark">LeetCode做题笔记—买卖股票的最佳时机系列题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-15-leetcode-dynamic-programming/" title="LeetCode做题笔记—DP动态规划相关题目" rel="bookmark">LeetCode做题笔记—DP动态规划相关题目</a></h3></div></li></ul>
     </div>
   </section>
 
