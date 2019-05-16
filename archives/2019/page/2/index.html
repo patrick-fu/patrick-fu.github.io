@@ -241,8 +241,12 @@
     <section class="article typo">
         <p>使用  <code>[[NSUserDefaults standardUserDefaults] setBool:(BOOL)value forKey:(NSString *)defaultName]</code> 设置的值，如果用普通的<code>objectForKey:</code>取出的值是<code>__NSCFBoolean</code>类型，<code>if</code>语句无法判断，即使后加<code>== YES</code>也没用，还会出问题。</p>
 <p>要用 <code>[[NSUserDefaults standardUserDefaults] boolForKey:(NSString *)defaultName]</code> 来取值，</p>
-<p>同理：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setInteger:(<span class="built_in">NSInteger</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setFloat:(<span class="keyword">float</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setDouble:(<span class="keyword">double</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setBool:(<span class="built_in">BOOL</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setURL:(<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)url forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure></p>
-<p>如上所示等入值方法，都用对应配套的取值方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)integerForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">float</span>)floatForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">double</span>)doubleForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="built_in">BOOL</span>)boolForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)URLForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure></p>
+<p>同理：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setInteger:(<span class="built_in">NSInteger</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setFloat:(<span class="keyword">float</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setDouble:(<span class="keyword">double</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setBool:(<span class="built_in">BOOL</span>)value forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">void</span>)setURL:(<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)url forKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure>
+
+<p>如上所示等入值方法，都用对应配套的取值方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)integerForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">float</span>)floatForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">double</span>)doubleForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="built_in">BOOL</span>)boolForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br><span class="line">- (<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)URLForKey:(<span class="built_in">NSString</span> *)defaultName;</span><br></pre></td></tr></table></figure>
+
 
         
 
@@ -484,6 +488,7 @@
 
     <section class="article typo">
         <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([array isKindOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]] &amp;&amp; array.count &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"这是一个非空数组"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 
         
@@ -567,8 +572,7 @@
 <th>Scale</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>iPhone 2G</td>
 <td>480 × 320</td>
 <td>480 × 320</td>
@@ -715,8 +719,7 @@
 <td>6.5</td>
 <td>3x</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <hr>
 
         
@@ -795,6 +798,7 @@
 <li>在block里手动加上<code>dispatch_async(dispatch_get_main_queue(), ^{});</code></li>
 </ol>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLSessionConfiguration</span> *configuration = [<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:configuration];<span class="comment">//no delegateQueue</span></span><br><span class="line"><span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:url] cachePolicy:<span class="built_in">NSURLRequestReturnCacheDataElseLoad</span> timeoutInterval:<span class="number">30.0</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithRequest:imgRequest completionHandler:^(<span class="built_in">NSURL</span> * _Nullable location, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;<span class="comment">/* do UI things */</span>&#125;);</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    [<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(doUIthings) withObject:<span class="literal">nil</span> waitUntilDone:<span class="literal">NO</span>];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[task resume];</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>带有<code>delegateQueue</code>等参数的方法，可传入主线程队列，然后block<code>completionHandler</code>便运行在主线程了。</li>
 </ol>
@@ -872,6 +876,9 @@
     <section class="article typo">
         <p>遇到了一个后台json误将null作为字符串值导致iOS客户端崩溃闪退的问题，解决方法如下：套一层判断，如果是各种情况的null则转换为@””。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *) nullToString:(<span class="keyword">id</span>)string &#123;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqual:<span class="string">@"NULL"</span>] || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [string isEqual:[<span class="built_in">NSNull</span> null]] || [string isEqual:<span class="literal">NULL</span>] || [[string <span class="keyword">class</span>] isSubclassOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || string == <span class="literal">nil</span> || string == <span class="literal">NULL</span> || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [[string stringByTrimmingCharactersInSet:[<span class="built_in">NSCharacterSet</span> whitespaceAndNewlineCharacterSet]] length]==<span class="number">0</span> || [string isEqualToString:<span class="string">@"&lt;null&gt;"</span>] || [string isEqualToString:<span class="string">@"(null)"</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">@""</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">NSString</span> *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <hr>
 
         
@@ -1104,6 +1111,7 @@
 
     <section class="article typo">
         <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByCharWrapping</span>; <span class="comment">//以字符为显示单位显示，后面部分省略不显示。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByClipping</span>; <span class="comment">//剪切与文本宽度相同的内容长度，后半部分被删除。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingHead</span>; <span class="comment">//前面部分文字以……方式省略，显示尾部文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingMiddle</span>; <span class="comment">//中间的内容以……方式省略，显示头尾的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByTruncatingTail</span>; <span class="comment">//结尾部分的内容以……方式省略，显示头的文字内容。</span></span><br><span class="line">label.lineBreakMode = <span class="built_in">NSLineBreakByWordWrapping</span>; <span class="comment">//以单词为显示单位显示，后面部分省略不显示。</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 
         

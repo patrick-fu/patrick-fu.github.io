@@ -229,29 +229,41 @@
 <h3 id="关于服务器"><a href="#关于服务器" class="headerlink" title="关于服务器"></a><strong>关于服务器</strong></h3><p>前几年购入的Vultr的ECS，东京的相对性价比高一些，延迟和网速都很稳，现在（2019.1）还有3.5刀一个月的，非常实惠。</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-18.26.19.png" alt> </p>
 <a id="more"></a>
+
+
 <h4 id="安装-Apache2、MySQL、PHP"><a href="#安装-Apache2、MySQL、PHP" class="headerlink" title="安装 Apache2、MySQL、PHP"></a><strong>安装 Apache2、MySQL、PHP</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure>
+
 <p>测试一下Apache2是否成功安装：浏览器访问云服务器的IP，安装成功的话会显示Apache2的默认页面，It works。   安装php7.0，并安装apache的php扩展，再安装整合mysql和php的工具</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0</span><br><span class="line">sudo apt-get install libapache2-mod-php7.0</span><br><span class="line">sudo apt-get install php7.0-mysql</span><br></pre></td></tr></table></figure>
+
 <p>重启一下Apache2和MySQL</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+
 <p>安装 phpmyadmin 这是一个以PHP为基础，以Web-Base方式架构在网站主机上的MySQL的数据库管理工具。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install phpmyadmin</span><br></pre></td></tr></table></figure>
+
 <p>开启 apache 的 mod_rewrite，再重启一次apache</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod rewrite</span><br><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+
 <p>先登录mysql <code>mysql -u root -p</code> ，输入密码 首先创建名为“wordpressdb”数据库，然后查看创建的数据库是否成功。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database wordpressdb;</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
 <p>看到图中出现自己创建的数据库。</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180318165221370.png" alt>  </p>
 <p>给用户服务权限，下面的wordpressuser改为安装mysql时自己输入的用户名。</p>
 <p>GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpressuser@localhost;<br>FLUSH PRIVILEGES;</p>
 <p>  输入 <code>exit;</code>退出mysql，并再次重启服务。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+
 <h4 id="下载并配置WordPress"><a href="#下载并配置WordPress" class="headerlink" title="下载并配置WordPress"></a><strong>下载并配置WordPress</strong></h4><p>用wget从WordPress官方网站下载安装包，放在 /var/www/html/ 目录，然后解压。 （最新版下载链接在 <a href="https://cn.wordpress.org/download/" target="_blank" rel="noopener">https://cn.wordpress.org/download/</a> 里面有）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/</span><br><span class="line">sudo wget https://cn.wordpress.org/wordpress-5.0.3-zh_CN.zip</span><br><span class="line">sudo tar zxf wordpress-4.9.4.tar.gz</span><br></pre></td></tr></table></figure>
+
 <p>  在 /var/www/html/wordpress/wp-content/ 下创建uploads。 然后更改上传目录权限，不然之后博客上传不了图片。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir uploads</span><br><span class="line">sudo chown -R www-data /var/www/html/wordpress</span><br><span class="line">sudo chmod -R 755 /var/www/html/wordpress</span><br><span class="line">sudo chown -R :www-data /var/www/html/wordpress/wp-content/uploads</span><br></pre></td></tr></table></figure>
+
 <p>  配置wp-config-sample.php ，该文件在/var/www/html/wordpress/下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi wp-config-sample.php</span><br></pre></td></tr></table></figure>
+
 <p>修改方法如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180318182134757.png" alt></p>
 <p>浏览器访问  http://服务器IP地址/wordpress ，如果安装正常则进入wordpress的安装界面。 安装好后的效果如图： </p>
@@ -272,6 +284,7 @@
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180319090603947.png" alt></p>
 <p>最开始wordpress url是： 主机ip/wordpress。 它会自动去找index.php，然后就通过index.php里面的内容加载wordpress环境，更改了url后，就不能自动去找index.php了。此时后台也无法登录。解决这个问题，直接进数据库修改相关数据即可。操作如下。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p //然后输入密码</span><br><span class="line">show databases; //显示所有数据库</span><br><span class="line">use wordpressdb; //选中你自己网站对应的数据库。</span><br><span class="line">show tables; //显示该数据库所有表格。</span><br><span class="line">select * from wp_options where 1=1 limit 10; //查看数据库前10条记录</span><br><span class="line">update wp\_options set option\_value=&apos;http://服务器ip（或域名）/wordpress&apos; where option_name=&apos;siteurl&apos;;//（如果home也改了就也改回来）</span><br><span class="line">update wp\_options set option\_value=&apos;http://服务器ip（或域名）/wordpress&apos; where option_name=&apos;home&apos;;</span><br></pre></td></tr></table></figure>
+
 <p>其实就是改变了wordpress url ，则wp_options表中的siteurl的值变化了，只要把它在修改过来就行。</p>
 <h4 id="使用服务器IP（或域名）根地址直接访问网站首页"><a href="#使用服务器IP（或域名）根地址直接访问网站首页" class="headerlink" title="使用服务器IP（或域名）根地址直接访问网站首页"></a><strong>使用服务器IP（或域名）根地址直接访问网站首页</strong></h4><p>此文章的建站方法是把所有东西都放在wordpress目录下，因此建完后，访问网站的网址为：主机IP/wordpresss。</p>
 <p>通常情况下，我们会买一个域名与云主机IP绑定，输入IP地址只能访问根目录。 即/var/www/html，但是无法访问其下面的子目录。</p>
@@ -287,6 +300,7 @@
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-17.19.42.png" alt>  </p>
 <p>然后把wordpress目录下的index.php 和 .htaccess文件复制一份到根目录下，.htaccess 是隐藏文件，可以使用ls -all。将其显示出来。注意是复制文件，原来目录下还存在。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line">cp index.php /var/www/html/</span><br><span class="line">cp .htaccess /var/www/html/</span><br></pre></td></tr></table></figure>
+
 <p>然后使用vim修改.htaccess文件的内容为下图所示。（默认文件如果就是如此则跳过该步骤） </p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20180319093058967.png" alt></p>
 <p>修改index.php文件，因为index.php文件是wordpress下index.php的复制品，因此文件内部的require那一行的值当对于当前目录，是不正确的。同样使用vim编辑该文件，把require那一行路径，修改成下图那样。 </p>
@@ -294,11 +308,13 @@
 <p>此时再输入IP，看到还是It works界面，那是因为安装apache时，我们看到的It works界面其实是根目录下的index.html。当index.html 和 index.php同时存在时，默认还是打开index.html，所以应该把index.html移出该目录。我们把它移出到其他目录就行。  </p>
 <h4 id="然后可能会产生下一个问题，设置固定链接后，文章页会404"><a href="#然后可能会产生下一个问题，设置固定链接后，文章页会404" class="headerlink" title="然后可能会产生下一个问题，设置固定链接后，文章页会404"></a><strong>然后可能会产生下一个问题，设置固定链接后，文章页会404</strong></h4><p>解决方法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
+
 <p>把 AllowOverride None 改为 AllowOverride ALL</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170922122312719.png" alt></p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170922122320129.png" alt></p>
 <p>注意有两处要改，然后操作一下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod rewrite</span><br><span class="line">sudo /etc/init.d/apache2 restar</span><br></pre></td></tr></table></figure>
+
 <p>刷新一下应该就能正常打开文章了。</p>
 <h3 id="主页样式修改"><a href="#主页样式修改" class="headerlink" title="主页样式修改"></a><strong>主页样式修改</strong></h3><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170413090347184.jpeg" alt></p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20170413090322305.png" alt></p>
@@ -307,6 +323,7 @@
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/Screenshot-2019-01-29-18.15.07.png" alt>  </p>
 <p>如果是通过函数生成页尾的主题，一般在模板函数那里修改，查找 “Proudly powered by” 的字样删掉就ok。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=“&lt;?php echo esc\_url( \_\_( ‘http://wordpress.org/’, ‘twentyeleven’ )); ?&gt;” title=“&lt;?php esc\_attr\_e(‘SemanticPersonalPublishing Platform’, ‘twentyeleven’ ); ?&gt;” rel=“generator”&gt;&lt;?php printf( __( ‘Proudly powered by%s’,‘twentyeleven’ ), ‘WordPress’ ); ?&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
 <h4 id="删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress-org”"><a href="#删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress-org”" class="headerlink" title="删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress.org”"></a><strong>删除功能小工具里的“文章RSS”、“评论RSS”、“WordPress.org”</strong></h4><p>打开组件文件夹：wp-include/widgets/class-wp-widget-meta.php 找到代码段删除即可。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!\-\-</span> 屏蔽 <span class="attr">RSS</span> 功能</span></span><br><span class="line">&lt;li&gt;&lt;a href="&lt;?php echo esc\_url( get\_bloginfo( 'rss2\_url' )); ?&gt;"&gt;&lt;?php \_e('Entries &lt;abbr title="Really Simple Syndication"&gt;RSS&lt;/abbr&gt;'); ?&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;?php echo esc\_url( get\_bloginfo( 'comments\_rss2\_url' )); ?&gt;"</span>&gt;</span>&lt;?php _e('Comments &lt;abbr title="Really Simple Syndication"&gt;RSS&lt;/abbr&gt;'); ?&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
       </div>
@@ -315,10 +332,10 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-15T22:21:10+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T08:48:50+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-05-15
+                    2019-05-16
                   </a>
                 </div>
               

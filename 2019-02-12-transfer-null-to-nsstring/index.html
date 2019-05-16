@@ -227,6 +227,9 @@
       <div class="article-entry" itemprop="articleBody">
         <p>遇到了一个后台json误将null作为字符串值导致iOS客户端崩溃闪退的问题，解决方法如下：套一层判断，如果是各种情况的null则转换为@””。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *) nullToString:(<span class="keyword">id</span>)string &#123;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqual:<span class="string">@"NULL"</span>] || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [string isEqual:[<span class="built_in">NSNull</span> null]] || [string isEqual:<span class="literal">NULL</span>] || [[string <span class="keyword">class</span>] isSubclassOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || string == <span class="literal">nil</span> || string == <span class="literal">NULL</span> || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [[string stringByTrimmingCharactersInSet:[<span class="built_in">NSCharacterSet</span> whitespaceAndNewlineCharacterSet]] length]==<span class="number">0</span> || [string isEqualToString:<span class="string">@"&lt;null&gt;"</span>] || [string isEqualToString:<span class="string">@"(null)"</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">@""</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">NSString</span> *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <hr>
 
       </div>
@@ -235,10 +238,10 @@
             <hr>
             <div class="new-meta-box">
               
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-15T22:21:10+08:00">
+                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T08:48:50+08:00">
                   <a class="notlink">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    2019-05-15
+                    2019-05-16
                   </a>
                 </div>
               
