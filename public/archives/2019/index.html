@@ -19,6 +19,7 @@
   
 
   <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
   
@@ -30,7 +31,7 @@
   
 
   
-  <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css">
   
 
   <script>
@@ -55,12 +56,61 @@
 </head>
 
 <body>
-    <div id="loading-bar-wrapper">
-  <div id="loading-bar" class="pure"></div>
+  
+  
+  <div class="cover-wrapper">
+    <cover class="cover  half">
+      
+        
+  <img class="logo" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder>
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class="menu navgation">
+  <ul class="h-list">
+    
+      
+        <li>
+          <a class="nav home" href="/" id="home">
+            <i class="fas fa-beer fa-fw"></i>&nbsp;博客
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/categories/" id="categories">
+            <i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/tags/" id="tags">
+            <i class="fas fa-tags fa-fw"></i>&nbsp;标签
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/archives/" id="archives">
+            <i class="fas fa-archive fa-fw"></i>&nbsp;归档
+          </a>
+        </li>
+      
+    
+  </ul>
 </div>
 
-    <script>setLoadingBarProgress(20)</script>
+      
+    </cover>
     <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
 	<div class="wrapper">
 		<div class="nav-main container container--flex">
       <a class="logo flat-box" href="/">
@@ -68,30 +118,30 @@
           派大星星星星
         
       </a>
-			<div class="menu">
+			<div class="menu navgation">
 				<ul class="h-list">
           
   					
   						<li>
-								<a id="home" class="nav flat-box" href="/">
+								<a class="nav flat-box" href="/" id="home">
 									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
 								</a>
 							</li>
       			
   						<li>
-								<a id="categories" class="nav flat-box" href="/categories/">
+								<a class="nav flat-box" href="/categories/" id="categories">
 									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
 								</a>
 							</li>
       			
   						<li>
-								<a id="tags" class="nav flat-box" href="/tags/">
+								<a class="nav flat-box" href="/tags/" id="tags">
 									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
 								</a>
 							</li>
       			
   						<li>
-								<a id="archives" class="nav flat-box" href="/archives/">
+								<a class="nav flat-box" href="/archives/" id="archives">
 									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
 								</a>
 							</li>
@@ -104,7 +154,7 @@
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
 						<input type="text" class="input u-search-input" placeholder="搜索">
-						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
 			
@@ -120,529 +170,616 @@
 			<a class="logo flat-box"></a>
 			<ul class="switcher h-list">
 				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
-				<li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+        
+          <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+        
 			</ul>
 		</div>
 	</div>
 </header>
 	<aside class="menu-phone">
     <header>
-		<nav class="menu">
+		<nav class="menu navgation">
       <ul>
+        
           
-              
-                  <li>
-										<a id="home" class="nav flat-box" href="/">
-											<i class="fas fa-beer fa-fw"></i>&nbsp;博客
-										</a>
-                  </li>
-              
-                  <li>
-										<a id="categories" class="nav flat-box" href="/categories/">
-											<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
-										</a>
-                  </li>
-              
-                  <li>
-										<a id="tags" class="nav flat-box" href="/tags/">
-											<i class="fas fa-tags fa-fw"></i>&nbsp;标签
-										</a>
-                  </li>
-              
-                  <li>
-										<a id="archives" class="nav flat-box" href="/archives/">
-											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-										</a>
-                  </li>
-              
+            <li>
+							<a class="nav flat-box" href="/" id="home">
+								<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/categories/" id="categories">
+								<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/tags/" id="tags">
+								<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/" id="archives">
+								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+							</a>
+            </li>
+          
        
       </ul>
 		</nav>
     </header>
 	</aside>
+<script>setLoadingBarProgress(40);</script>
 
-    <script>setLoadingBarProgress(40);</script>
-    <div class="l_body">
-    <div class='container clearfix'>
-        <div class='l_main'>
-            
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class="l_main">
 	
-    <script>
-        window.subData= { title:'year : 2019'}
-    </script>
-
-
-
-
+		
   <section class="post-list">
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-
-
-
-      
-
-      
-
-      
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
     
-<section class="meta">
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
   
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-16-leetcode-union-find/">
-              
-                  LeetCode做题笔记—并查集相关题目
-              
-          </a>
-      </h2>
-    
 
-    <div class="new-meta-box">
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
+        
+  <h2 class="title">
+    <a href="/2019-05-16-leetcode-union-find/">
+      LeetCode做题笔记—并查集相关题目
+    </a>
+  </h2>
+
+
       
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-16
-          </a>
-        </div>
-      
-      
+      <div class="new-meta-box">
         
           
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
-          </div>
         
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
       
+        <i class="fas fa-user" aria-hidden="true"></i>
       
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-16</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关并查集 Union Find Set 的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关并查集 Union Find Set 的做题笔记，Python实现</p>
 <h2 id="200-岛屿的个数-Number-of-Islands"><a href="#200-岛屿的个数-Number-of-Islands" class="headerlink" title="200. 岛屿的个数 Number of Islands"></a>200. 岛屿的个数 Number of Islands</h2><p><a href="https://leetcode-cn.com/problems/number-of-islands/" target="_blank" rel="noopener">LeetCodeCN 第200题链接</a></p>
 <p>第一种方法：构造一个简单的并查集，将输入的二维数组坐标一维化。</p>
 <p>实例化并查集对象后，遍历二维数组，发现为<code>1</code>时对该节点上下左右都执行一次<code>union()</code>，将这上下左右的<code>1</code> （如果是的话）的<code>parent</code>指向当前节点</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFind</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        n, m = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">        self.parent = [<span class="number">-1</span>] * (n*m)</span><br><span class="line">        <span class="comment"># self.rank = [0] * (n*m)</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">'1'</span>:</span><br><span class="line">                    self.parent[i*m + j] = i*m + j</span><br><span class="line">                    self.count += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在查找的同时，也把节点换绑到根节点上了</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, i)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.parent[i] != i:</span><br><span class="line">            self.parent[i] = self.find(self.parent[i])</span><br><span class="line">        <span class="keyword">return</span> self.parent[i]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        rootx = self.find(x)</span><br><span class="line">        rooty = self.find(y)</span><br><span class="line">        <span class="keyword">if</span> rootx != rooty:</span><br><span class="line">            self.parent[rooty] = rootx</span><br><span class="line">            self.count -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        uf = UnionFind(grid)</span><br><span class="line">        directions = [(<span class="number">0</span>,<span class="number">1</span>), (<span class="number">0</span>,<span class="number">-1</span>), (<span class="number">-1</span>,<span class="number">0</span>), (<span class="number">1</span>,<span class="number">0</span>)]</span><br><span class="line">        n, m = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">'1'</span>:</span><br><span class="line">                    <span class="keyword">for</span> x, y <span class="keyword">in</span> directions:</span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= i+x &lt; n <span class="keyword">and</span> <span class="number">0</span> &lt;= j+y &lt; m <span class="keyword">and</span> grid[i+x][j+y] == <span class="string">'1'</span>:</span><br><span class="line">                            uf.union(i*m+j, (i+x)*m+(j+y))</span><br><span class="line">        <span class="keyword">return</span> uf.count</span><br></pre></td></tr></table></figure>
-
-<p>第二种方法：染色解法，DFS深度优先搜索清除相邻岛屿，遍历二维数组，发现为<code>1</code>时岛屿数量加1，同时DFS将自身及周边相邻（上下左右）位置递归置<code>0</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid: List[List[str]])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        self.grid, count = grid, <span class="number">0</span></span><br><span class="line">        self.n, self.m = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(self.m):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">'1'</span>:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                    self.dfs(i, j)</span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, i, j)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span> &lt;= i &lt; self.n <span class="keyword">and</span> <span class="number">0</span> &lt;= j &lt; self.m <span class="keyword">and</span> self.grid[i][j] == <span class="string">'1'</span>:</span><br><span class="line">            self.grid[i][j] = <span class="string">'0'</span></span><br><span class="line">            self.dfs(i<span class="number">-1</span>, j)</span><br><span class="line">            self.dfs(i+<span class="number">1</span>, j)</span><br><span class="line">            self.dfs(i, j<span class="number">-1</span>)</span><br><span class="line">            self.dfs(i, j+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>第三种方法：染色解法，BFS广度优先搜索清除相邻岛屿，遍历二维数组，发现为<code>1</code>时岛屿数量加1，同时BFS将自身及周边相邻（上下左右）位置用队列逐个置<code>0</code>，把上面的DFS的递归改成BFS的队列即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFind</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        n, m = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">        self.parent = [<span class="number">-1</span>] * (n*m)</span><br><span class="line">        <span class="comment"># self.rank = [0] * (n*m)</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="string">'1'</span>:</span><br><span class="line">                    self.parent[i*m + j] = i*m + j</span><br><span class="line">                    self.count += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在查找的同时，也把节点换绑到根节点上了</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, i)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.parent[i] != i:</span><br><span class="line">            self.parent[i] = self.find(self.parent[i])</span><br><span class="line">        <span class="keyword">return</span> self.parent[i]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        rootx = self.find(x)</span><br><span class="line">        rooty = self.find(y)</span><br><span class="line">        <span class="keyword">if</span> rootx != rooty:</span><br><span class="line">            self.parent[rooty] = rootx</span><br><span class="line">            self.count -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
+      
+        <div class="readmore">
+          <a href="/2019-05-16-leetcode-union-find/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-16-leetcode-union-find/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-15-leetcode-dynamic-programming/">
-              
-                  LeetCode做题笔记—DP动态规划相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-15
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-15-leetcode-dynamic-programming/">
+      LeetCode做题笔记—DP动态规划相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-15</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关动态规划 Dynamic Programming 的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关动态规划 Dynamic Programming 的做题笔记，Python实现</p>
 <h2 id="70-爬楼梯-Climbing-Stairs"><a href="#70-爬楼梯-Climbing-Stairs" class="headerlink" title="70. 爬楼梯 Climbing Stairs"></a>70. 爬楼梯 Climbing Stairs</h2><p><a href="https://leetcode-cn.com/problems/climbing-stairs/" target="_blank" rel="noopener">LeetCodeCN 第70题链接</a></p>
 <p>第一种方法：递归，显然是个斐波那契数列，时间复杂度 $O(2^n)$很高，这样没法通过LeetCode，参考 @wikizero 的解法可以加个LRU缓存</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># from functools import lru_cache</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>        </span><br><span class="line">    <span class="comment"># @lru_cache(10**8)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span><span class="params">(self, n: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        <span class="keyword">return</span> self.climbStairs(n - <span class="number">1</span>) + self.climbStairs(n - <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
 <p>第二种方法：动态规划，用数组记录每个台阶的所有走法个数，时间复杂度降为 $O(n)$</p>
+      
+        <div class="readmore">
+          <a href="/2019-05-15-leetcode-dynamic-programming/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-15-leetcode-dynamic-programming/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-13-leetcode-bitwise/">
-              
-                  LeetCode做题笔记—位运算相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-13
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-13-leetcode-bitwise/">
+      LeetCode做题笔记—位运算相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-13</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关位运算的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关位运算的做题笔记，Python实现</p>
 <h2 id="191-位1的个数-Number-of-1-Bits"><a href="#191-位1的个数-Number-of-1-Bits" class="headerlink" title="191. 位1的个数 Number of 1 Bits"></a>191. 位1的个数 Number of 1 Bits</h2><p><a href="https://leetcode-cn.com/problems/number-of-1-bits/" target="_blank" rel="noopener">LeetCodeCN 第191题链接</a></p>
 <p>第一种方法：遍历所有二进制位，通过取模<code>n%2</code>或者与运算<code>n&amp;1</code>判断尾数是否为1，然后把n右移一位</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += n &amp; <span class="number">1</span></span><br><span class="line">            n &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+      
+        <div class="readmore">
+          <a href="/2019-05-13-leetcode-bitwise/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-13-leetcode-bitwise/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-09-leetcode-bfs-dfs-pruning/">
-              
-                  LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-09
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-09-leetcode-bfs-dfs-pruning/">
+      LeetCode做题笔记—广度优先搜索、深度优先搜索、剪枝相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-09</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关BFS（广度优先搜索）与DFS（深度优先搜索）的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关BFS（广度优先搜索）与DFS（深度优先搜索）的做题笔记，Python实现</p>
 <h2 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="102-二叉树的层次遍历-Binary-Tree-Level-Order-Traversal"><a href="#102-二叉树的层次遍历-Binary-Tree-Level-Order-Traversal" class="headerlink" title="102. 二叉树的层次遍历 Binary Tree Level Order Traversal"></a>102. 二叉树的层次遍历 Binary Tree Level Order Traversal</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">LeetCodeCN 第102题链接</a></p>
 <p>第一种方法：BFS广度优先搜索，使用双端队列deque（因为性能比另外两种Queue好得多），在大循环内对二叉树的每个层做一次遍历，注意<code>range(len(queue))</code>使只遍历当前的层。由于每个节点仅访问一次，所以时间复杂度<code>O(n)</code></p>
+      
+        <div class="readmore">
+          <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/">
-              
-                  LeetCode做题笔记—买卖股票的最佳时机系列题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-07
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/">
+      LeetCode做题笔记—买卖股票的最佳时机系列题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-07</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关买卖股票最佳时机系列做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关买卖股票最佳时机系列做题笔记，Python实现</p>
 <h2 id="121-买卖股票的最佳时机-Best-Time-to-Buy-and-Sell-Stock"><a href="#121-买卖股票的最佳时机-Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="121. 买卖股票的最佳时机 Best Time to Buy and Sell Stock"></a>121. 买卖股票的最佳时机 Best Time to Buy and Sell Stock</h2><p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">LeetCodeCN 第121题链接</a></p>
 <p>第一种方法：由于一次交易操作，可以通过记录最小价格，计算最大利润的方式，空间换时间，时间复杂度<code>O(n)</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices: List[int])</span> -&gt; int:</span></span><br><span class="line">        res, low = <span class="number">0</span>, float(<span class="string">'inf'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(prices)):</span><br><span class="line">            low = min(prices[i], low)</span><br><span class="line">            res = max(res, prices[i] - low)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
@@ -652,514 +789,636 @@
 
 <h2 id="122-买卖股票的最佳时机-II-Best-Time-to-Buy-and-Sell-Stock-II"><a href="#122-买卖股票的最佳时机-II-Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="122. 买卖股票的最佳时机 II Best Time to Buy and Sell Stock II"></a>122. 买卖股票的最佳时机 II Best Time to Buy and Sell Stock II</h2><p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="noopener">LeetCodeCN 第122题链接</a></p>
 <p>第一种方法：深度优先搜索，时间复杂度<code>O(2^n)</code>，这个通过不了LeetCode，不过能work，测试了多组测试样例是正确的</p>
+      
+        <div class="readmore">
+          <a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-07-leetcode-recursion-divide-conquer/">
-              
-                  LeetCode做题笔记—递归、分治相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-07
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-07-leetcode-recursion-divide-conquer/">
+      LeetCode做题笔记—递归、分治相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-07</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关递归与分治的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关递归与分治的做题笔记，Python实现</p>
 <h2 id="50-Pow-x-n"><a href="#50-Pow-x-n" class="headerlink" title="50. Pow(x, n)"></a>50. Pow(x, n)</h2><p><a href="https://leetcode-cn.com/problems/powx-n/" target="_blank" rel="noopener">LeetCodeCN 第50题链接</a></p>
 <p>第一种方法：递归</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myPow</span><span class="params">(self, x: float, n: int)</span> -&gt; float:</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> / self.myPow(x, -n)</span><br><span class="line">        <span class="keyword">if</span> n % <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> x * self.myPow(x, n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> self.myPow(x * x, n / <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
 <p>第二种方法：循环</p>
+      
+        <div class="readmore">
+          <a href="/2019-05-07-leetcode-recursion-divide-conquer/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-07-leetcode-recursion-divide-conquer/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-04-leetcode-tree/">
-              
-                  LeetCode做题笔记—二叉树相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-04
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-04-leetcode-tree/">
+      LeetCode做题笔记—二叉树相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-04</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关二叉树的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关二叉树的做题笔记，Python实现</p>
 <h2 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="98-验证二叉搜索树-Validate-Binary-Search-Tree"><a href="#98-验证二叉搜索树-Validate-Binary-Search-Tree" class="headerlink" title="98. 验证二叉搜索树 Validate Binary Search Tree"></a>98. 验证二叉搜索树 Validate Binary Search Tree</h2><p><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/" target="_blank" rel="noopener">LeetCodeCN 第98题链接</a></p>
 <p>第一种方法：中序遍历二叉树存入数组，与直接升序排序去重后的原二叉树对比</p>
+      
+        <div class="readmore">
+          <a href="/2019-05-04-leetcode-tree/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-04-leetcode-tree/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-05-01-leetcode-hashtable/">
-              
-                  LeetCode做题笔记—哈希表相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-05-01
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-05-01-leetcode-hashtable/">
+      LeetCode做题笔记—哈希表相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-01</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关哈希表的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关哈希表的做题笔记，Python实现</p>
 <h2 id="242-有效的字母异位词-Valid-Anagram"><a href="#242-有效的字母异位词-Valid-Anagram" class="headerlink" title="242. 有效的字母异位词 Valid Anagram"></a>242. 有效的字母异位词 Valid Anagram</h2><p><a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank" rel="noopener">LeetCodeCN 第242题链接</a></p>
 <p>第一种方法：对两个字符串排序后对比</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAnagram</span><span class="params">(self, s: str, t: str)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">return</span> sorted(s) == sorted(t)</span><br></pre></td></tr></table></figure>
 
 <p>第二种方法：用哈希表对字符串内每个字符计数，最后比对哈希表，这里用dict实现</p>
+      
+        <div class="readmore">
+          <a href="/2019-05-01-leetcode-hashtable/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-05-01-leetcode-hashtable/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-04-29-leetcode-stack-heap-queue/">
-              
-                  LeetCode做题笔记—栈、堆、队列相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-04-29
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-04-29-leetcode-stack-heap-queue/">
+      LeetCode做题笔记—栈、堆、队列相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-29</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关栈、堆、队列的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关栈、堆、队列的做题笔记，Python实现</p>
 <h2 id="20-有效的括号-Valid-Parentheses"><a href="#20-有效的括号-Valid-Parentheses" class="headerlink" title="20. 有效的括号 Valid Parentheses"></a>20. 有效的括号 Valid Parentheses</h2><p><a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">LeetCodeCN 第20题链接</a></p>
 <p>使用 Stack 栈 来操作，用了一个技巧是先做一个字典，<code>key</code>为右括号，<code>value</code>为左括号。</p>
+      
+        <div class="readmore">
+          <a href="/2019-04-29-leetcode-stack-heap-queue/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-04-29-leetcode-stack-heap-queue/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
-        
-          
-            <div class="post-wrapper">
-              <article class="post reveal ">
-    
-<section class="meta">
-  
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2019-04-28-leetcode-linklist/">
-              
-                  LeetCode做题笔记--链表相关题目
-              
-          </a>
-      </h2>
-    
-
-    <div class="new-meta-box">
-      
-        <div class="new-meta-item author">
-          <a href="https://paaatrick.com">
-            <i class="fas fa-user" aria-hidden="true"></i>
-            大星
-          </a>
-        </div>
-      
-      
-        <div class="new-meta-item date">
-          <a class="notlink">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            2019-04-28
-          </a>
-        </div>
-      
-      
-        
-          
-          <div class="new-meta-item category">
-            <a href="/categories/Algorithm/">
-              <i class="fas fa-folder-open" aria-hidden="true"></i>
-              Algorithm
-            </a>
           </div>
         
       
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
       
+        
+  <h2 class="title">
+    <a href="/2019-04-28-leetcode-linklist/">
+      LeetCode做题笔记--链表相关题目
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-28</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
       
     </div>
-    <hr>
-  </div>
-</section>
+  </section>
 
-    <section class="article typo">
-        <p>有关链表的做题笔记，Python实现</p>
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>有关链表的做题笔记，Python实现</p>
 <h2 id="链表定义"><a href="#链表定义" class="headerlink" title="链表定义"></a>链表定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="206-反转链表-Reverse-Linked-List"><a href="#206-反转链表-Reverse-Linked-List" class="headerlink" title="206. 反转链表 Reverse Linked List"></a>206. 反转链表 Reverse Linked List</h2><p><a href="https://leetcode-cn.com/problems/reverse-linked-list/" target="_blank" rel="noopener">LeetCodeCN 第206题链接</a></p>
 <p>遍历链表，迭代前节点prev，缓存当前节点current的下一节点，然后把当前节点的next指针指向前节点prev</p>
+      
+        <div class="readmore">
+          <a href="/2019-04-28-leetcode-linklist/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
         
-            <div class="readmore">
-                <a href="/2019-04-28-leetcode-linklist/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <a href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
         
-
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw"></i>LeetCode</a>
-                
-                    <a href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-                
-                    <a href="/tags/Python/"><i class="fas fa-hashtag fa-fw"></i>Python</a>
-                
-            </div>
+          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-    </section>
+      </div>
+    
+  </section>
 </article>
 
-            </div>
-          
+          </div>
         
       
-
+    
   </section>
-
-
-
-
-
-
-  
-      <br>
-      <div class="prev-next">
-          <div class="prev-next">
-              
-              <p class="current">
-                  1 / 3
-              </p>
-              
-                  <a class="next" rel="next" href="/archives/2019/page/2/">
-                      <section class="post next">
-                          &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-                      </section>
-                  </a>
-              
-
-          </div>
-      </div>
-
-  
-
-  <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-  
-
-  
-
-
-
-
-
-<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-
-
-
-
-        </div>
-        <aside class='l_side'>
-            
-  
   
     
+      <br>
+      <div class="prev-next">
+        <div class="prev-next">
+          
+          <p class="current">
+            1 / 3
+          </p>
+          
+            <a class="next" rel="next" href="/archives/2019/page/2/">
+              <section class="post next">
+                &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </section>
+            </a>
+          
+        </div>
+      </div>
+
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
+    
+
+  
+
+
+	
+</div>
+<aside class="l_side">
+  
+    
+    
       
-      
-        <section class="author">
+        
+          
+          
+            <section class="widget author">
   <div class="content pure">
     
       <div class="avatar">
-        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516125601.jpg">
       </div>
     
     
@@ -1167,15 +1426,18 @@
       <div class="social-wrapper">
         
           
-            <a href="https://github.com/Fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+            <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
           
         
           
-            <a href="mailto:lemonjush@gmail.com" class="social flat-btn" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+            <a href="mailto:me@paaatrick.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
           
         
           
-            <a href="https://me.csdn.net/fongim" class="social flat-btn" target="_blank" rel="external"><i class="social fab fa-contao" aria-hidden="true"></i></a>
+            <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
           
         
       </div>
@@ -1183,17 +1445,28 @@
   </div>
 </section>
 
-      
-    
-  
-    
-      
+          
+        
       
         
-  <section class="category">
+          
+          
+            
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget category">
     
 <header class="pure">
-  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;所有分类</div>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/categories/" title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
   
 </header>
 
@@ -1213,17 +1486,20 @@
   </section>
 
 
-      
-    
-  
-    
-      
+          
+        
       
         
-  <section class="tagcloud">
+          
+          
+            
+  <section class="widget tagcloud">
     
 <header class="pure">
-  <div><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/tags/" title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
   
 </header>
 
@@ -1233,39 +1509,40 @@
   </section>
 
 
-      
-    
-  
-    
-      
+          
+        
       
         
+          
+          
+            
 
+          
+        
       
     
+
   
+</aside>
 
-
-        </aside>
-        <script>setLoadingBarProgress(60);</script>
-    </div>
-    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
-    </div>
-    <footer id="footer" class="clearfix">
+<footer id="footer" class="clearfix">
   
   
     <div class="social-wrapper">
       
         
-          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external"></a>
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
         
       
         
-          <a href="mailto:lemonjush@gmail.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external"></a>
+          <a href="mailto:me@paaatrick.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
         
       
         
-          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external"></a>
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
         
       
     </div>
@@ -1273,12 +1550,35 @@
   <br>
   <div><p>©2019 派大星星星星</p>
 </div>
-  <!-- <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。 -->
-  
+  <div>
+    本站使用
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    作为主题
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
 </footer>
+<script>setLoadingBarProgress(80);</script>
 
-    <script>setLoadingBarProgress(80);</script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+
+
+	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+	
+
+	
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 
   <script>
     var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
@@ -1295,65 +1595,192 @@
     if(!ROOT.endsWith('/'))ROOT += '/';
   </script>
 
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
 
   
-    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
     <script type="text/javascript">
-      $(function() {
-        const $reveal = $('.reveal');
-    		if ($reveal.length === 0) return;
-    		const sr = ScrollReveal({ distance: 0 });
-    		sr.reveal('.reveal');
+      $(function(){
+        if ('') {
+          $('').backstretch(
+          ["https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120517.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120522.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120520.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120521.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120515.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120523.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120519.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120518.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120516.jpeg"],
+          {
+            duration: "40000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          ["https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120517.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120522.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120520.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120521.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120515.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120523.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120519.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120518.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120516.jpeg"],
+          {
+            duration: "40000",
+            fade: "2500"
+          });
+        }
       });
     </script>
   
-  
-    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        Waves.attach('.flat-btn', ['waves-button']);
-        Waves.attach('.float-btn', ['waves-button', 'waves-float']);
-        Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
-        Waves.attach('.flat-box', ['waves-block']);
-        Waves.attach('.float-box', ['waves-block', 'waves-float']);
-        Waves.attach('.waves-image');
-        Waves.init();
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/app.js"></script>
+
+
+  <script src="/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
       });
-    </script>
-  
-  
-    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
-  
-  
-  
 
-  
-  
-    <script>
-      var disqus_shortname = 'paaatrick-com';
-      
-      (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-  
-  
-  
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
 
-  
-    <script src="/js/app.js"></script>
-<script src="/js/search.js"></script>
-  
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
 
 
 
 
 
-
-    <script>setLoadingBarProgress(100);</script>
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>

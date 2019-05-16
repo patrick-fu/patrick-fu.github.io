@@ -44,7 +44,11 @@ class UnionFind:
         if rootx != rooty:
             self.parent[rooty] = rootx
             self.count -= 1
+```
 
+<!-- more -->
+
+```python
 class Solution:
     def numIslands(self, grid) -> int:
         if not grid:
@@ -87,8 +91,6 @@ class Solution:
 ```
 
 第三种方法：染色解法，BFS广度优先搜索清除相邻岛屿，遍历二维数组，发现为`1`时岛屿数量加1，同时BFS将自身及周边相邻（上下左右）位置用队列逐个置`0`，把上面的DFS的递归改成BFS的队列即可
-
-<!-- more -->
 
 ```python
 from collections import deque

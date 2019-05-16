@@ -42,7 +42,7 @@ menu:
 
 widgets:
   - widget: author
-    avatar: https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190320144037.jpg
+    avatar: https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516125601.jpg
     social: true
   - widget: category
   - widget: tagcloud
