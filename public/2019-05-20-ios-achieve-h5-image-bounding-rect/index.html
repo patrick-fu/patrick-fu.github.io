@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>比咪蒙更可怕的，是挖祖坟式举报清算 | 派大星星星星</title>
+  <title>WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -235,8 +235,8 @@
         
   
     <h1 class="title">
-      <a href="/2019-02-01-raistlin2017/">
-        比咪蒙更可怕的，是挖祖坟式举报清算
+      <a href="/2019-05-20-ios-achieve-h5-image-bounding-rect/">
+        WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法
       </a>
     </h1>
   
@@ -265,7 +265,7 @@
             <div class="new-meta-item date">
   <a class="notlink">
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-02-01</p>
+    <p>2019-05-20</p>
   </a>
 </div>
 
@@ -275,9 +275,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/Life/" rel="nofollow">
+    <a href="/categories/Tech/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Life</p>
+      <p>Tech</p>
     </a>
   </div>
 
@@ -317,94 +317,17 @@
 
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
-          <blockquote>
-<p>原文始发于微信公众号（为你写一个故事）：<a href="http://mp.weixin.qq.com/s/Xb4bgA_2ylXRwQO4isgJqg" target="_blank" rel="noopener">比咪蒙更可怕的，是挖祖坟式举报清算</a></p>
-</blockquote>
-<p>因为旗下账号“才华有限青年”一篇自称“非虚构“的文章，咪蒙又被推上风口浪尖。  </p>
+          <p>WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法</p>
 <a id="more"></a>
 
+<p>最近有个需求是点击放大查看H5内容页面的图片，寻找到一个<code>YHPhotoBrowser</code>的库，其中集成了根据图片位置来缩放的动画需要传递一个图片所在屏幕里的位置<code>CGRect</code>，想获取H5的图片坐标那就需要JS注入了</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)handleSingleTap:(<span class="built_in">UITapGestureRecognizer</span> *)recognizer &#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> touchPoint = [recognizer locationInView:<span class="keyword">self</span>.webView];</span><br><span class="line">    <span class="built_in">NSString</span> *jsString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"function getURLandRect()&#123;\</span></span><br><span class="line"><span class="string">                            var ele=document.elementFromPoint(%f, %f);\</span></span><br><span class="line"><span class="string">                            var url=ele.src;\</span></span><br><span class="line"><span class="string">                            var left=ele.getBoundingClientRect().left;\</span></span><br><span class="line"><span class="string">                            var top=ele.getBoundingClientRect().top;\</span></span><br><span class="line"><span class="string">                            var width=ele.getBoundingClientRect().width;\</span></span><br><span class="line"><span class="string">                            var height=ele.getBoundingClientRect().height;\</span></span><br><span class="line"><span class="string">                            var jsonString= `&#123;\"url\":\"$&#123;url&#125;\",\"left\":\"$&#123;left&#125;\",\"top\":\"$&#123;top&#125;\",\"width\":\"$&#123;width&#125;\",\"height\":\"$&#123;height&#125;\"&#125;`;\</span></span><br><span class="line"><span class="string">                            return(jsonString)&#125; getURLandRect()"</span>, touchPoint.x, touchPoint.y];</span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.webView evaluateJavaScript:jsString completionHandler:^(<span class="keyword">id</span> _Nullable result, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        <span class="built_in">NSDictionary</span> *resultDic = [SmallTools convertToDictionary:(<span class="built_in">NSString</span> *)result];</span><br><span class="line">        <span class="built_in">NSString</span> *imageURL = [SmallTools isNullToString:resultDic[<span class="string">@"url"</span>]];</span><br><span class="line">        <span class="keyword">if</span> (imageURL.length == <span class="number">0</span> || [imageURL isEqualToString:<span class="string">@"undefined"</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">CGFloat</span> imgX = [resultDic[<span class="string">@"left"</span>] floatValue];</span><br><span class="line">        <span class="built_in">CGFloat</span> imgY = [resultDic[<span class="string">@"top"</span>] floatValue] + NAV_HEIGHT + <span class="number">5</span>;</span><br><span class="line">        <span class="built_in">CGFloat</span> imgW = [resultDic[<span class="string">@"width"</span>] floatValue];</span><br><span class="line">        <span class="built_in">CGFloat</span> imgH = [resultDic[<span class="string">@"height"</span>] floatValue];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.photoView = [[YHPhotoBrowser alloc]init];</span><br><span class="line">        <span class="keyword">self</span>.photoView.sourceView = <span class="keyword">self</span>.view; <span class="comment">//图片所在的父容器</span></span><br><span class="line">        <span class="keyword">self</span>.photoView.urlImgArr = @[imageURL]; <span class="comment">//网络链接图片的数组</span></span><br><span class="line">        <span class="keyword">if</span> (imgX &amp;&amp; imgY &amp;&amp; imgW &amp;&amp; imgH) &#123; <span class="comment">//原图片所在屏幕位置</span></span><br><span class="line">            <span class="keyword">self</span>.photoView.sourceRect = <span class="built_in">CGRectMake</span>(imgX, imgY, imgW, imgH);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.photoView.indexTag = <span class="number">0</span>; <span class="comment">//初始化进去显示的图片下标</span></span><br><span class="line">        [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.photoView]; <span class="comment">//叠加在当前VC上</span></span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>就事论事的说，才华有限青年其实和咪蒙关系不大，那确实是个相对独立的团队，我也读过他们以前很多文章，很多都挺好看，要说有什么错，最多是有点煽动情绪。  </p>
-<p>但是做媒体嘛，又有几个不煽动情绪呢，只要不造谣，不引导邪恶的价值观，就没啥问题。  </p>
-<p>所以我觉得一个好的方式是，你不同意她的一篇文章，就说这篇文章写得不好写得不对，甚至可以说这篇文章写得用心险恶。  </p>
-<p>但你去挖她的出身，说她以前是咪蒙的实习生，所以一定不是什么好人。  </p>
-<p>就有点恶毒了。  </p>
-<p>比如有一位我挺喜欢的媒体人，这样写，我就觉得恶毒了  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/4-1548951367.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>（而且如果真的翻了照片的话，较真的说这句话是造谣）  </p>
-<p>还有昨天整个朋友圈轰轰烈烈的”含咪量“测试，很多人号称朋友圈只要有人关注咪蒙了，就要和TA互删。  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1-1548951367.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/9-1548951368.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"><br>这我也觉得太过。<br>按照他们的意思，也别管这人是谁，和他们是什么关系，是不是好朋友或者亲戚，也不管这个人关注咪蒙究竟是认同咪蒙的价值观还是就想围观一下或者学习排版，只要关注咪蒙，就要互删。<br>这放在几十年前，我们叫做”划清界限“，流行这种运动的十年，是新中国最混乱的十年。<br>当然我觉得更过的，还是下面这张截图。  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1-1548951370.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>咪蒙一边说这话，一边”永远爱国，永远热泪盈眶“恶不恶心？<br>恶心。  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1-1548951372.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"><br>咪蒙式毒鸡汤讨不讨厌？  </p>
-<p>我也讨厌。<br>但这样挖祖坟式清算举报，尤其是一直翻到2013年的微博，然后把相关机构全都@一遍的行为，让我感到很不舒服。<br>这种不舒服不是反感，而是感到恐怖。<br>而且这样的事情，这些年越来越多了。<br>这样的待遇，陈一发遭遇过：  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/9-1548951373.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>罗永浩遭遇过：  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/0-1548951373.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>毕福剑也遭遇过：  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/4-1548951374.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>普通网友当然也遭遇过：  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/8-1548951375.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>动不动就呼吁封杀，虎扑和吴亦凡粉丝战斗时，双方都遭遇过。</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/3-1548951377.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/4-1548951379.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>游戏《阴阳师》遭遇过：</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/8-1548951380.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>明星骂战的时候使用过这种武器。  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/10-1548951381.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>社会热点事件就不说了，总是有成千上万人向团团举报。  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1-1548951383.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>现在甚至王者荣耀玩得不爽了，也要举报。  </p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/3-1548951383.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>在这些举报里，网友们用不知道从哪里学到的词汇，给自己看着不爽的人扣上一个又一个大帽子，套上一个又一个罪名，其手法之纯熟，让我一度以为生活在冯骥才的《一百个人的十年》里。</p>
-<p>可惜拿起手机瞧一瞧，发现已经是2019年了。</p>
-<p>在我看来这种行为和看到让自己不爽的综艺，歌曲，电影就呼吁封杀是一样的，都是分不清各种权利界限的表现。就像几百年前，被人欺负了，就去衙门一跪，高喊“大人，我冤啊！”，然后期待青天大老爷给自己做主的古代中国人一样，始终没有长大。</p>
-<p>他们自己是巨婴，却以为我国居民全都是长不大的巨婴，需要妈妈无微不至地照顾我们，帮我们挑好哪些是我们该看的，哪些是我们不该看的，然后只要他们看到自己不爽的，就会像孩子一样哭喊着叫妈妈来，希望妈妈把“坏东西”都打飞，然后才会重新喜笑颜开。</p>
-<p>可惜现代法制社会没有，也不应该有青天大老爷——历史早已经证明了，青天大老爷式的人治，远不如法治来得公平高效，青天大老爷十年一遇，但手握权力，肆意滥用的昏官却遍地都是。  </p>
-<p>这已经很魔幻了。</p>
-<p>但更魔幻的是，这些诉求，有时候还真的会得到回应。</p>
-<p>以前我觉得孩子长不大，站不起来，是因为孩子自己笨，不想长大，后来才明白，孩子长不大，多半是有一个什么都替孩子做主，什么都替孩子决定的妈——在这些挖坟举报真的会得到回应的情况下，这样的行为永远不会停止，只会变本加厉。</p>
-<p>即使如此，我还是希望你们能少挖坟，少呼吁封杀。</p>
-<p>因为“封杀”这个词代表的那个行为，本来就不应该存在于这个世界上，并且当你习惯”封杀“之后，迟早有一天，会降临到你喜欢的那个账号，那个主播或者那个明星身上。</p>
-<p>还记得之前整治八卦的时候吗？  </p>
-<p>一开始封的很多账号，大家都讨厌，所以一片叫好声。结果之后发展到只要账号中带”八卦“两个字的，都被封号了，包括大家爱看的”毒舌电影“，”严肃八卦“，”金融八卦女“也全部都凉了。</p>
-<p>最搞笑的是，我有个朋友，做了个账号叫”财经八卦阵“，那段时间只能改成”财经九卦阵“，终于躲过一劫。</p>
-<p>还记得之前讨厌PGONE的人拼命举报PGONE，@了一大堆官方账号，要求对PGONE进行封杀吗？</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/4-1548951384.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/3-1548951385.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/0-1548951385.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1-1548951386.png" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>那会儿恰好GAI求婚成功，所以当时这些人中，有不少都人是通过捧GAI来踩PGONE的。</p>
-<p>我自己也是GAI的粉丝，在一个GAI的粉丝群里，有几个姐们表示太好了，解气。但随即更多人表示这不是好事，因为GAI也有黑历史。</p>
-<p>果然过了没多久，GAI被迫从《歌手》中退赛，至今也没在电视上再看过他。</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/0-1548951386.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>在这样轰轰烈烈的挖坟式举报运动中，暴走漫画凉了，陈一发凉了，卢本伟凉了，毕福剑凉了，很多歌手明星都凉了。</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/0-1548951387.jpg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p><strong>PGONE被封杀你们叫好，GAI被封杀你们喊冤，毕福剑从央视消失你们想念他。你们以为这几件事不一样应该分开，但经历过这么多事情，你们应该明白，这两件事其实根本就是一件事。</strong>  </p>
-<p>封杀的人不会管哪个嘻哈歌手是正能量的，哪个是屡教不改的——既然嘻哈有问题，那就有问题的一起下。</p>
-<p>就像现在这些为咪蒙的倒台拍手叫好的自媒体人，你又知道封杀的人分得清你和咪蒙的区别咯？</p>
-<p>况且在我看来，很多账号根本就和咪蒙没区别。</p>
-<p>比如某个自媒体，洋洋洒洒写了几千字，细数咪蒙的”七宗罪“。</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/8-1548951388.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>最后得出的结论是，咪蒙最大的罪就是她在迎合读者，并且标题低俗，危害极大。他把文章发到500人的新媒体群里，希望大家为他鼓掌叫好。</p>
-<p>结果翻开他自己的公众号，标题却是这个画风的。</p>
-<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/1-1548951390.jpeg" alt="比咪蒙更可怕的，是挖祖坟式举报清算"></p>
-<p>当有人在群里质问他，这是不是在迎合读者，标题低俗，危害极大的时候，他很坦诚的承认”可我的没人看啊。“</p>
-<p>让人心慌。</p>
-<p>一个事实是，我们说的法制说的正义，从来不是给我们喜欢的东西准备的，我们喜欢的东西，根本不需要心中的那杆称来保护。  </p>
-<p>我们说的正义和法制，是你们讨厌的人，也有说话的权利，如果他们没有违法，就不应该不让他们说话。</p>
-<p>还有一个事实是，咪蒙的价值观确实有问题，也许能煽动几十万人的情绪，是会让人焦虑，但真要说她改变了多少人三观，我觉得各位是高看文字的力量了。</p>
-<p>一方面咪蒙并不产生三观，她一般只迎合大众情绪，另一方面三观这东西是没那么容易改变的，2019年了，文字早就没那么大力量了，现在如果说谁因为一篇文章三观就变了，那说明TA本来就有这样的想法，只是这篇文章正好支持了TA而已。</p>
-<p>比起咪蒙，我更害怕那样因为讨厌一个人，就肆无忌惮地爆粗口，就想着要弄死对方，更害怕那样挖祖坟式的举报。</p>
-<p>因为这让我觉得自己每时每刻都活在监视中，终日不得安宁。</p>
-<p>现在你们觉得应该这样对付咪蒙，谁知道哪天我会不会受到这样的待遇。</p>
-<p>而且说一千道一万，当年咪蒙写那几篇文章，疯狂在朋友圈转发刷屏，把咪蒙一度捧成微信第一大号的，还不是网友吗？</p>
-<p>看到某个去年还把咪蒙请为座上宾，一口一个咪蒙老师做分享的机构，昨天他们主编也开始测含咪率了，可能下一步就要表态”互删“了。</p>
-<p>看到之前分享过致贱人几篇的人，开始在朋友圈说”想不通为什么这么多人会关注咪蒙“了。</p>
-<p>有时候见多了这种昨天还万人追捧，今天就过街老鼠的戏码。真是让人对这个复杂繁复的世界，又害怕了几分呢。</p>
-<p>-END-</p>
+<p>这个JS方法<code>document.elementFromPoint(%f, %f)</code>根据传入的点返回该点最上层的对象，通过<code>src</code>找到图片的链接，然后<code>getBoundingClientRect()</code>方法能返回对象的八个属性<code>left, top, right, bottom, x, y, width, height</code>，根据需要获取相应属性构造原图的<code>CGRect</code>即可</p>
+<p>这里附带一下判断<code>NSString</code>合法性以及<code>JSON</code>字符串转<code>NSDictionary</code>的工具方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *)isNullToString:(<span class="keyword">id</span>)string &#123;</span><br><span class="line">    <span class="keyword">if</span> ([string isEqual:<span class="string">@"NULL"</span>] || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [string isEqual:[<span class="built_in">NSNull</span> null]] || [string isEqual:<span class="literal">NULL</span>] || [[string <span class="keyword">class</span>] isSubclassOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || string == <span class="literal">nil</span> || string == <span class="literal">NULL</span> || [string isKindOfClass:[<span class="built_in">NSNull</span> <span class="keyword">class</span>]] || [[string stringByTrimmingCharactersInSet:[<span class="built_in">NSCharacterSet</span> whitespaceAndNewlineCharacterSet]] length]==<span class="number">0</span> || [string isEqualToString:<span class="string">@"&lt;null&gt;"</span>] || [string isEqualToString:<span class="string">@"(null)"</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">@""</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">NSString</span> *)string;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSDictionary</span> *)convertToDictionary:(<span class="built_in">NSString</span> *)jsonStr &#123;</span><br><span class="line">    <span class="built_in">NSData</span> *data = [jsonStr dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">    <span class="built_in">NSDictionary</span> *tempDic = [<span class="built_in">NSJSONSerialization</span> JSONObjectWithData:data options:<span class="number">0</span> error:<span class="literal">nil</span>];</span><br><span class="line">    <span class="keyword">return</span> tempDic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
           
@@ -415,10 +338,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T09:11:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-20T13:10:22+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年5月16日</p>
+    <p>最后更新于 2019年5月20日</p>
   </a>
 </div>
 
@@ -426,6 +349,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>iOS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Objective-C</p></a></div>
+
 
         
       
@@ -435,10 +361,7 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-02-01-raistlin2017/&title=比咪蒙更可怕的，是挖祖坟式举报清算 | 派大星星星星&summary=
-原文始发于微信公众号（为你写一个故事）：比咪蒙更可怕的，是挖祖坟式举报清算
-
-因为旗下账号“才华有限青年”一篇自称“非虚构“的文章，咪蒙又被推上风口浪尖。  ">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-20-ios-achieve-h5-image-bounding-rect/&title=WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法 | 派大星星星星&summary=WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -446,10 +369,7 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-02-01-raistlin2017/&title=比咪蒙更可怕的，是挖祖坟式举报清算 | 派大星星星星&summary=
-原文始发于微信公众号（为你写一个故事）：比咪蒙更可怕的，是挖祖坟式举报清算
-
-因为旗下账号“才华有限青年”一篇自称“非虚构“的文章，咪蒙又被推上风口浪尖。  ">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-20-ios-achieve-h5-image-bounding-rect/&title=WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法 | 派大星星星星&summary=WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -457,7 +377,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aMY7DMAwF0dz/0tl2U6w9n1QWMDmqDMex9FwQosjXC4/3r8Gf/Ov56/tkluKQIUPGYxnvy8GfIcuqXaN5ZciQsYBxHRbJNNcT81DLn5chQ4aM69fxKdMwKkOGDBmnGLXQTBYkQ4YMGZ0klpx31U7DDiTPMmTIGM3gp+7/f/2V+oYMGTIexagFQZ7E8nJmmuJ+/EuGDBmjGem271S4JEuPmz9kyJAxlEFS1vTVpJBJMDw9liFDxgYGCXnfbrxI5/24I0OGjAWMWusDX0Q/WN/8S4YMGaMZfBuXhtdOaI7bLGTIkDGaceqgLQiLpW3ozSwyZMhYwEiDHfm1f8QWrFOGDBnrGST8nUp3+YcrljBlyJAxgpGG4M5mER36kw2lDBkyFjDI33gKmi60dsQmQ4aMPQzeSMHbKXgKerYsIUOGjKkMfkDW2Q52NoKoRUOGDBmjGWRnVQu16UaQFwxuQrMMGTKGMmpH/OROpxUj7qOQIUPGGkb/cJ8sixdEg08gQ4aMNQy+XeNJJi+FdooKMmTI2MOo1QRryXCHh7aGMmTIGMF4hyOdpkMKqDJkyBjN4KPz0vTTkEDPP64MGTJmMMg06XW/MJA2cMiQIWMDI01HO0s5G75lyJAhg5Nq9/mvN+FbhgwZMnALRXqUxg/mvrI1lCFDxqMY5NVpy1faokEAMmTI2MngqSNvsCDT1wJuq6gpQ4aM5zF+AElPIuDsPjyrAAAAAElFTkSuQmCC">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aQXKkMBAEwPn/p73XjbCBKrVkc0hODoKRSB1Qu1qfT3x9/Xdd3f/+zPfnr0a+HzMfbfHCw8PDG7z6/dD5ZO04V8jkV1dz4eHh4Z3m3X+yJy/0MH28GSSLi4eHh/dm3rxQTvBteY2Hh4f3Zl77KY9eZWmTwMPDw/srXvvS7cd6b7l8JGvBw8PD69KAqIv0nr+P9Pfw8PDwxl31tU2ijRvm7a7LWfDw8PAO8NpYdi1yvQ9220Nd9eEwPDw8vK28tpV1X+Amd+5Xuj2e9bCUeHh4eMd49c/irSIPc5NQuN428PDw8A7w5mnn/Jn2SMHm/h4eHh7euLeetP/XAoi1pdnc2cPDw8Mb8yatryInjo9tJVFFsUx4eHh4x3iTQ1eT73PLONLZw8PDw1virQUQbcF9/2R7ACuZHQ8PD+8ELy+C25ebt7u2bVR4eHh4W3ntp7yNa9toeFepfRlG4OHh4Y15a684D3MnW85o98PDw8Mb8/Kgoa1X1wKI+hBVnlLj4eHh/SJvrWiexxb54l4q8PDw8I7x8mNMa7FCXnBPYpGHM2V4eHh4W3m7Js4/2W3Znccfn737FR4eHl7QYV/bGNZaX8nsbQxRRBJ4eHh4S7x2oLyAzpdsPuPDloCHh4e3lZf/25/cz8vcXWV3tHB4eHh4x3j5hrF2v40h8mcethk8PDy8X+HNI4b8wz2BRVQ8PDy8w7x5+z8fbS2YyMMLPDw8vBO8r/JKyuUclje0kuX4YUY8PDy8A7y1plce4+YTT7aZDZsKHh4e3qC3nn/o29A2j2LXjmRF5yPw8PDwtvImDf42sMgD3DpZwcPDw3slrz1wkCPn0cMPs+Dh4eG9hrdWRrdhRD7+tpIaDw8PL+a1h0rnT64dI6jHx8PDwzvAa//hz8vc+5eYxBl7D2nh4eHhxbx/hbUr8AdyjxAAAAAASUVORK5CYII=">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
         
@@ -465,10 +385,7 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-02-01-raistlin2017/&title=比咪蒙更可怕的，是挖祖坟式举报清算 | 派大星星星星&summary=
-原文始发于微信公众号（为你写一个故事）：比咪蒙更可怕的，是挖祖坟式举报清算
-
-因为旗下账号“才华有限青年”一篇自称“非虚构“的文章，咪蒙又被推上风口浪尖。  ">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-20-ios-achieve-h5-image-bounding-rect/&title=WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法 | 派大星星星星&summary=WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -476,7 +393,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aMY7DMAwF0dz/0tl2U6w9n1QWMDmqDMex9FwQosjXC4/3r8Gf/Ov56/tkluKQIUPGYxnvy8GfIcuqXaN5ZciQsYBxHRbJNNcT81DLn5chQ4aM69fxKdMwKkOGDBmnGLXQTBYkQ4YMGZ0klpx31U7DDiTPMmTIGM3gp+7/f/2V+oYMGTIexagFQZ7E8nJmmuJ+/EuGDBmjGem271S4JEuPmz9kyJAxlEFS1vTVpJBJMDw9liFDxgYGCXnfbrxI5/24I0OGjAWMWusDX0Q/WN/8S4YMGaMZfBuXhtdOaI7bLGTIkDGaceqgLQiLpW3ozSwyZMhYwEiDHfm1f8QWrFOGDBnrGST8nUp3+YcrljBlyJAxgpGG4M5mER36kw2lDBkyFjDI33gKmi60dsQmQ4aMPQzeSMHbKXgKerYsIUOGjKkMfkDW2Q52NoKoRUOGDBmjGWRnVQu16UaQFwxuQrMMGTKGMmpH/OROpxUj7qOQIUPGGkb/cJ8sixdEg08gQ4aMNQy+XeNJJi+FdooKMmTI2MOo1QRryXCHh7aGMmTIGMF4hyOdpkMKqDJkyBjN4KPz0vTTkEDPP64MGTJmMMg06XW/MJA2cMiQIWMDI01HO0s5G75lyJAhg5Nq9/mvN+FbhgwZMnALRXqUxg/mvrI1lCFDxqMY5NVpy1faokEAMmTI2MngqSNvsCDT1wJuq6gpQ4aM5zF+AElPIuDsPjyrAAAAAElFTkSuQmCC">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aQXKkMBAEwPn/p73XjbCBKrVkc0hODoKRSB1Qu1qfT3x9/Xdd3f/+zPfnr0a+HzMfbfHCw8PDG7z6/dD5ZO04V8jkV1dz4eHh4Z3m3X+yJy/0MH28GSSLi4eHh/dm3rxQTvBteY2Hh4f3Zl77KY9eZWmTwMPDw/srXvvS7cd6b7l8JGvBw8PD69KAqIv0nr+P9Pfw8PDwxl31tU2ijRvm7a7LWfDw8PAO8NpYdi1yvQ9220Nd9eEwPDw8vK28tpV1X+Amd+5Xuj2e9bCUeHh4eMd49c/irSIPc5NQuN428PDw8A7w5mnn/Jn2SMHm/h4eHh7euLeetP/XAoi1pdnc2cPDw8Mb8yatryInjo9tJVFFsUx4eHh4x3iTQ1eT73PLONLZw8PDw1virQUQbcF9/2R7ACuZHQ8PD+8ELy+C25ebt7u2bVR4eHh4W3ntp7yNa9toeFepfRlG4OHh4Y15a684D3MnW85o98PDw8Mb8/Kgoa1X1wKI+hBVnlLj4eHh/SJvrWiexxb54l4q8PDw8I7x8mNMa7FCXnBPYpGHM2V4eHh4W3m7Js4/2W3Znccfn737FR4eHl7QYV/bGNZaX8nsbQxRRBJ4eHh4S7x2oLyAzpdsPuPDloCHh4e3lZf/25/cz8vcXWV3tHB4eHh4x3j5hrF2v40h8mcethk8PDy8X+HNI4b8wz2BRVQ8PDy8w7x5+z8fbS2YyMMLPDw8vBO8r/JKyuUclje0kuX4YUY8PDy8A7y1plce4+YTT7aZDZsKHh4e3qC3nn/o29A2j2LXjmRF5yPw8PDwtvImDf42sMgD3DpZwcPDw3slrz1wkCPn0cMPs+Dh4eG9hrdWRrdhRD7+tpIaDw8PL+a1h0rnT64dI6jHx8PDwzvAa//hz8vc+5eYxBl7D2nh4eHhxbx/hbUr8AdyjxAAAAAASUVORK5CYII=">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
         
@@ -498,40 +415,21 @@
         
             <div class="prev-next">
                 
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                            <h4>
-                                <a href="/2019-02-01-ios-uitabbar-touch-animation/" rel="prev" title="iOS UITabbar图标点击动画效果实现">
-                                  
-                                      iOS UITabbar图标点击动画效果实现
-                                  
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/iOS/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>iOS</a> <a class="tag" href="/tags/Objective-C/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Objective-C</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019-01-31-wp-real-media-library/" rel="prev" title="亲测真正好用的WordPress媒体库图片分类插件">
+                                <a href="/2019-05-16-leetcode-union-find/" rel="prev" title="LeetCode做题笔记—并查集相关题目">
                                     
-                                        亲测真正好用的WordPress媒体库图片分类插件
+                                        LeetCode做题笔记—并查集相关题目
                                     
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/WordPress/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>WordPress</a>
+                                    <a class="tag" href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>LeetCode</a> <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a> <a class="tag" href="/tags/Python/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python</a>
                                 </h6>
                             
                         </span>
@@ -576,7 +474,7 @@
 
   <script>
     window.subData = {
-      title: '比咪蒙更可怕的，是挖祖坟式举报清算',
+      title: 'WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法',
       tools: true
     }
   </script>
@@ -701,7 +599,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2015-12-17-ikea-canteen/" title="宜家 | 一个顺便卖卖家具的饭堂" rel="bookmark">宜家 | 一个顺便卖卖家具的饭堂</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2015-11-18-ichiran-ramen/" title="一蘭拉面" rel="bookmark">一蘭拉面</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-23-ios-block-and-mainqueue/" title="iOS处理多线程异步Block中的UI操作" rel="bookmark">iOS处理多线程异步Block中的UI操作</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-01-31-wp-real-media-library/" title="亲测真正好用的WordPress媒体库图片分类插件" rel="bookmark">亲测真正好用的WordPress媒体库图片分类插件</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-01-29-build-wordpress-blog/" title="云服务器使用WordPress搭建个人博客并绑定域名全记录" rel="bookmark">云服务器使用WordPress搭建个人博客并绑定域名全记录</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -844,7 +742,7 @@
   <script>
     var disqus_shortname = 'paaatrick-com';
     
-      var disqus_url = 'https://paaatrick.com/2019-02-01-raistlin2017/';
+      var disqus_url = 'https://paaatrick.com/2019-05-20-ios-achieve-h5-image-bounding-rect/';
     
     (function(){
       var dsq = document.createElement('script');
