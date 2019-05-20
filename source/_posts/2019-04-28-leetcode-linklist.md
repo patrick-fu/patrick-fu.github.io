@@ -59,7 +59,18 @@ class Solution:
 [LeetCodeCN 第24题链接](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
 记录当前节点的前一个节点，当当前节点和下一节点都存在时，三元交换三个节点的next指针
-返回交换完后的首节点（这里不太明白为什么self的取值是ListNode(None)）
+返回交换完后的首节点
+
+```python
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        prev, prev.next = self, head
+        while prev.next and prev.next.next:
+            l, r = prev.next, prev.next.next
+            prev.next, l.next, r.next = r, r.next, l
+            prev = l
+        return self.next
+```
 
 > 看到好多小伙伴在问，我来尝试解释一下“链表交换相邻元素”中 self 是怎么回事。
 > 1.首先看到最后 return self.next ，可以看到作者是想把 self 当做链表的头指针使用的（注意：头指针 pHead 与传入的参数 head 是不同的，head 是第一个结点，而 pHead.next == next ）。用头指针有什么好处呢？因为我们让头指针的 next 域（pHead.next）永远指向第一个结点，就是避免最后返回的时候找不到第一个结点了。
@@ -73,13 +84,13 @@ class Solution:
 ```python
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
-        pre, pre.next = self, head
-        while pre.next and pre.next.next:
-            l = pre.next
-            r = l.next
-            pre.next, l.next, r.next = r, r.next, l
-            pre = l
-        return self.next
+        pHead = ListNode(None)
+        prev, prev.next = pHead, head
+        while prev.next and prev.next.next:
+            l, r = prev.next, prev.next.next
+            prev.next, l.next, r.next = r, r.next, l
+            prev = l
+        return pHead.next
 ```
 
 ## 141. 环形链表 Linked List Cycle
@@ -146,18 +157,12 @@ class Solution(object):
 
 ```python
 class Solution(object):
-    # 1.set记录
     def detectCycle(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        rec = []
-        curr = head
+        curr, rec = head, set()
         while curr:
             if curr in rec:
-                return rec[rec.index(curr)]
-            rec.append(curr)
+                return curr
+            rec.add(curr)
             curr = curr.next
         return None
 ```
@@ -170,7 +175,6 @@ class Solution(object):
 
 ```python
 class Solution(object):
-    # 2.快慢指针
     def detectCycle(self, head):
         """
         :type head: ListNode

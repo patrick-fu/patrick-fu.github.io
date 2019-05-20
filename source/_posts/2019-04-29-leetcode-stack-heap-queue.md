@@ -11,6 +11,8 @@ categories:
 
 有关栈、堆、队列的做题笔记，Python实现
 
+# 栈 Stack
+
 ## 20. 有效的括号 Valid Parentheses
 
 [LeetCodeCN 第20题链接](https://leetcode-cn.com/problems/valid-parentheses/)
@@ -31,6 +33,28 @@ class Solution:
                 return False
         return not stack
 ```
+
+## 71. 简化路径 Simplify Path
+
+[LeetCode 第71题链接](https://leetcode-cn.com/problems/simplify-path/)
+
+使用栈，遍历用`/`分割后的字符串数组，此时字符串不存在斜杠了，当字符不是空字符或`.`、`..`时即正常路径名压入栈中，当遇到空字符或者`.`时略过，当遇到`..`时`pop`一下即返回上级目录。
+
+```python
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        stack = []
+        for i in path.split('/'):
+            if i not in ['', '.', '..']:
+                stack.append(i)
+            elif i == '..' and stack:
+                    stack.pop()
+        return '/' + '/'.join(stack)
+```
+
+
+
+# 堆 Heap
 
 ## 703. 数据流中的第K大元素 Kth Largest Element in a Stream
 
