@@ -330,6 +330,7 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法</p>
+<p>最近有个需求是点击放大查看H5内容页面的图片，寻找到一个比较轻量的库<a href="https://github.com/hackxhj/YHPhotoBrowser" target="_blank" rel="noopener"><code>YHPhotoBrowser</code></a>，其中根据图片位置来缩放的动画需要传递一个图片所在屏幕里的位置<code>CGRect</code>，想获取H5的图片坐标那就需要JS注入了</p>
       
         <div class="readmore">
           <a href="/2019-05-20-ios-achieve-h5-image-bounding-rect/" class="flat-box">
@@ -981,7 +982,7 @@
     <div class="article-entry" itemprop="articleBody">
       <p>有关递归与分治的做题笔记，Python实现</p>
 <h2 id="50-Pow-x-n"><a href="#50-Pow-x-n" class="headerlink" title="50. Pow(x, n)"></a>50. Pow(x, n)</h2><p><a href="https://leetcode-cn.com/problems/powx-n/" target="_blank" rel="noopener">LeetCodeCN 第50题链接</a></p>
-<p>第一种方法：递归</p>
+<p>第一种方法：暴力乘法，时间复杂度<code>O(n)</code>，LeetCode会超时</p>
       
         <div class="readmore">
           <a href="/2019-05-07-leetcode-recursion-divide-conquer/" class="flat-box">
