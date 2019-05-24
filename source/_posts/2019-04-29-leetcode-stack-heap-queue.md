@@ -60,10 +60,9 @@ class Solution:
 
 [LeetCodeCN 第703题链接](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
 
-方法一：直接降序排序，然后取第k个元素返回，add时每次都再排序一次，这样时间复杂度为`O(k*logk)`
+第一种方法：直接对整个`nums`降序排序，然后取第k个元素返回，`add`时每次都再加入进`nums`然后排序一次，这样`add`操作的时间复杂度为`O(n*logn)`，`n`是`nums`的长度
 
 ```python
-# 1.直接排序
 class KthLargest:
     def __init__(self, k: int, nums: List[int]):
         self.nums = nums
@@ -80,16 +79,33 @@ class KthLargest:
         return self.nums[-1]
 ```
 
-方法二：使用小顶堆实现的优先队列，Python 中标准库 heapq 就是小顶堆，时间复杂度降低为`O(k)`
+第二种方法：维护一个长度为`k`的数组，初始化时赋值为降序排序后的`nums`的前`k`个元素，`add`操作时先看如果数组长度小于`k`的话就直接加进去然后排序一次，否则就判断如果`val`大于数组末尾的元素就将末尾元素剔除并加入`val`然后排序一次，如果`val`小于等于数组末尾的元素就不操作，这样`add`操作的时间复杂度为`O(k*logk)`，`k`是数组`k`的长度
 
 ```python
-# 2.小顶堆
+class KthLargest:
+    def __init__(self, k: int, nums: List[int]):
+        self.kl = sorted(nums, reverse=True)[:k]
+        self.k = k
+
+    def add(self, val: int) -> int:
+        if len(self.kl) < self.k:
+            self.kl.append(val)
+            self.kl.sort(reverse=True)
+        elif val > self.kl[-1]:
+            self.kl.pop()
+            self.kl.append(val)
+            self.kl.sort(reverse=True)
+        return self.kl[-1]
+```
+
+第三种方法：使用小顶堆实现的优先队列，Python 中标准库 heapq 就是小顶堆，首先将`nums`堆化，然后`pop`元素直到堆的长度为`k`，`add`操作时如果堆中元素不满`k`个就直接把值`push`进堆，如果值大于堆顶元素则更新堆，时间复杂度降低为`O(logk)`
+
+```python
 import heapq
 class KthLargest:
     def __init__(self, k: int, nums: List[int]):
-        self.pool = nums
+        self.pool, self.k = nums, k
         heapq.heapify(self.pool)
-        self.k = k
         while len(self.pool) > k:
             heapq.heappop(self.pool)
 
@@ -103,6 +119,32 @@ class KthLargest:
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
 # param_1 = obj.add(val)
+```
+
+## 215. 数组中的第K个最大元素 Kth Largest Element in an Array
+
+[LeetCodeCN 第215题链接](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+
+第一种方法：用库函数排序直接返回第`k`大的元素，时间复杂度`O(n*logn)`
+
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return sorted(nums, reverse=True)[k-1]
+```
+
+第二种方法：与上题一样，使用小顶堆实现的优先队列，一般情况下时间复杂度为`O(k + (n-k)*logk)`，当`n`极大时，时间复杂度为`O(n*logk)`
+
+```python
+import heapq
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = nums[:k]
+        heapq.heapify(heap)
+        for i in nums[k:]:
+            if i > heap[0]:
+                heapq.heapreplace(heap, i)
+        return heap[0]
 ```
 
 

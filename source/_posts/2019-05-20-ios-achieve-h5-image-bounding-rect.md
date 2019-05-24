@@ -10,9 +10,9 @@ categories:
 
 WKWebView获取H5页面里图片地址以及图片相对视图窗口的坐标的方法
 
-<!-- more -->
+最近有个需求是点击放大查看H5内容页面的图片，寻找到一个比较轻量的库[`YHPhotoBrowser`](https://github.com/hackxhj/YHPhotoBrowser)，其中根据图片位置来缩放的动画需要传递一个图片所在屏幕里的位置`CGRect`，想获取H5的图片坐标那就需要JS注入了
 
-最近有个需求是点击放大查看H5内容页面的图片，寻找到一个`YHPhotoBrowser`的库，其中集成了根据图片位置来缩放的动画需要传递一个图片所在屏幕里的位置`CGRect`，想获取H5的图片坐标那就需要JS注入了
+<!-- more -->
 
 ```objc
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {

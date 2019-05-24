@@ -15,9 +15,31 @@ categories:
 
 [LeetCodeCN 第50题链接](https://leetcode-cn.com/problems/powx-n/)
 
-第一种方法：递归
+第一种方法：暴力乘法，时间复杂度`O(n)`，LeetCode会超时
 
 <!-- more -->
+
+```python
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n == 1:
+            return x
+        if n == -1:
+            return 1/x
+        if not n:
+            return 1
+        if n < 0:
+            res = 1/x
+            for i in range(abs(n)-1):
+                res = res*(1/x)
+        else:
+            res = x
+            for i in range(abs(n)-1):
+                res = res*x
+        return res
+```
+
+第二种方法：分治（递归） ，时间复杂度`O(logn)`
 
 ```python
 class Solution:
@@ -29,6 +51,19 @@ class Solution:
         if n % 2:
             return x * self.myPow(x, n - 1)
         return self.myPow(x * x, n / 2)
+```
+稍微改成下面这样容易理解一些
+```python
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if not n:
+            return 1
+        if n < 0:
+            return 1/self.myPow(x, -n)
+        if n & 1:
+            return self.myPow(x, n - 1) * x
+        res = self.myPow(x, n>>1)
+        return res*res
 ```
 
 第二种方法：循环
@@ -54,9 +89,21 @@ class Solution:
 
 [LeetCodeCN 第169题链接](https://leetcode-cn.com/problems/majority-element/)
 
-第一种方法：两重循环暴力求解
+第一种方法：两重循环暴力求解，时间复杂度`O(n^2)`，LeetCode会超时
 
-第二种方法：哈希表记录每个元素出现次数，发现出现超过`n/2`的就是众数
+```python
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        for i in range(len(nums)):
+            count = 1
+            for j in range(i+1, len(nums)):
+                if nums[i] == nums[j]:
+                    count += 1
+            if count > len(nums) / 2:
+                return nums[i]
+```
+
+第二种方法：哈希表记录每个元素出现次数，发现出现超过`n/2`的就是众数，时间复杂度`O(n)`
 
 ```python
 class Solution:
@@ -74,7 +121,7 @@ class Solution:
                 dic[i] = 1
 ```
 
-第三种方法：排序后直接返回中间值，因为题目限定条件必然存在众数
+第三种方法：排序后直接返回中间值，因为题目限定条件必然存在众数，时间复杂度`O(n*logn)`
 
 ```python
 def majorityElement(self, nums: List[int]) -> int:
@@ -91,7 +138,7 @@ def majorityElement(self, nums: List[int]) -> int:
             return i
 ```
 
-第五种方法：分治
+第五种方法：分治，时间复杂度`O(n*logn)`
 
 ```python
 def majorityElement(self, nums):

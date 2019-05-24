@@ -48,10 +48,10 @@ class Solution:
 ```python
 class Solution:
     def climbStairs(self, n: int) -> int:
-        one = two = 1
+        x = y = 1
         for _ in range(1, n):
-            one, two = one + two, one
-        return one
+            x, y = x+y, x
+        return x
 ```
 ## 120. 三角形最小路径和 Triangle
 
