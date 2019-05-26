@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>LeetCode做题笔记—位运算相关题目 | 派大星星星星</title>
+  
+  <meta name="keywords" content="iOS">
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
+
+  
+    <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+    <!-- ba -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?420331e790ec3f2c56b1660b4958f8c3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class="cover post half">
+      
+        
+  <img class="logo" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder>
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class="menu navgation">
+  <ul class="h-list">
+    
+      
+        <li>
+          <a class="nav home" href="/" id="home">
+            <i class="fas fa-beer fa-fw"></i>&nbsp;博客
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/categories/" id="categories">
+            <i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/tags/" id="tags">
+            <i class="fas fa-tags fa-fw"></i>&nbsp;标签
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/archives/" id="archives">
+            <i class="fas fa-archive fa-fw"></i>&nbsp;归档
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href="/">
+        
+          派大星星星星
+        
+      </a>
+			<div class="menu navgation">
+				<ul class="h-list">
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/" id="home">
+									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/" id="categories">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/" id="tags">
+									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/" id="archives">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索">
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+        
+          <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/" id="home">
+								<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/categories/" id="categories">
+								<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/tags/" id="tags">
+								<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/" id="archives">
+								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class="l_main">
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2019-05-13-leetcode-bitwise/">
+        LeetCode做题笔记—位运算相关题目
+      </a>
+    </h1>
+  
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-13</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Algorithm/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class="notlink">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <p>有关位运算的做题笔记，Python实现</p>
+<h2 id="191-位1的个数-Number-of-1-Bits"><a href="#191-位1的个数-Number-of-1-Bits" class="headerlink" title="191. 位1的个数 Number of 1 Bits"></a>191. 位1的个数 Number of 1 Bits</h2><p><a href="https://leetcode-cn.com/problems/number-of-1-bits/" target="_blank" rel="noopener">LeetCodeCN 第191题链接</a></p>
+<p>第一种方法：遍历所有二进制位，通过取模<code>n%2</code>或者与运算<code>n&amp;1</code>判断尾数是否为1，然后把n右移一位</p>
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += n &amp; <span class="number">1</span></span><br><span class="line">            n &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<p>第二种方法：通过<code>n &amp; (n - 1)</code>直接摘掉最后一位的1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            n = n &amp; (n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<h2 id="231-2的幂-Power-of-Two"><a href="#231-2的幂-Power-of-Two" class="headerlink" title="231. 2的幂 Power of Two"></a>231. 2的幂 Power of Two</h2><p><a href="https://leetcode-cn.com/problems/power-of-two/" target="_blank" rel="noopener">LeetCodeCN 第231题链接</a></p>
+<p>先排除负数和0，由于2的幂的二进制只有第一位是1，通过<code>n &amp; (n - 1)</code>直接摘掉最后一位的1，如果摘掉后为0即符合条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPowerOfTwo</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> n &gt; <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> n &amp; (n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="338-比特位计数-Counting-Bits"><a href="#338-比特位计数-Counting-Bits" class="headerlink" title="338. 比特位计数 Counting Bits"></a>338. 比特位计数 Counting Bits</h2><p><a href="https://leetcode-cn.com/problems/counting-bits/" target="_blank" rel="noopener">LeetCodeCN 第338题链接</a></p>
+<p>第一种方法：遍历，每次分别计算一次比特位，时间复杂度为n乘以每个数的1位个数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num+<span class="number">1</span>):</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> i:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                i = i &amp; (i - <span class="number">1</span>)</span><br><span class="line">            result.append(count)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>第二种方法：用一个递推式子<code>count[i] = count[i&amp;(i-1)] + 1</code>，原理是<code>i&amp;(i-1)</code>的1的个数总是比<code>i</code>少1，同时<code>i&amp;(i-1)</code>这个数肯定比<code>i</code>小，所以预先是算过的，这样时间复杂度为<code>O(n)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        result = [<span class="number">0</span>] * (num+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, num+<span class="number">1</span>):</span><br><span class="line">            result[i] = result[i&amp;(i<span class="number">-1</span>)] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+          
+
+
+  <section class="meta" id="footer-meta">
+    <hr>
+    <div class="new-meta-box">
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-18T20:56:58+08:00">
+  <a class="notlink">
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2019年5月18日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>LeetCode</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Algorithm</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Python</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
+191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
+第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
+191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
+第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQW7DMAwF0dz/0i5QdNFN1PmkjNTUaBUYiqznBUGRer3wuL4H//37SWf+5iFDhozHMq7l6MxZY/inWb9XhgwZ5zBIkOWbJiukwf2PPcuQIUNGmPat11+HThkyZMi4g0GSPw6QIUOGjM4htsYjG+ocnmXIkHEC447GwK7fH+5vyJAh4x8wrnCQFUjSuWs/P+vLkCFjNKOTzPHnfA5fAWW4MmTIGMRIm5fkeRpAyX9jtgwZMgYx9h4+eUjl89FxV4YMGaMZaRNxb7Wv3yiVIUPGCQx+LbXWyCThtd8ilSFDxlQGX7RGTYNmmoDKkCHjBEZa9K+Vw/h1Lh64UYYrQ4aMQYw0yas1NUmY5qU3lOHKkCFjBCMNr+TFu8A8SZUhQ8ZsRlqsJ+EyxfPLGRvujMiQIeOBDB4ueVmtc7Ui/ZQyZMg4gUHCXFqxu6PoHzQDZMiQMZSRhlQeOneF11ZWK0OGjBGMWmOgn1aSVJKvLEOGjKkMkgKmx9Fas4F/uLf9DRkyZBzA4IX+fgAlgTvYmwwZMkYz9l7wqiWUfMiQIeNMxhUOspXaRYrOtQwZMmTMZqTBLi3cd7aYJo4yZMiYzUiDYC38pWW4dA8yZMg4gZHeXkivVtTaCcFMGTJkyOAVu/Bz1Epyb1NDGTJkyABJJH8xv4KGPqUMGTIOYKSH2Folj4fXtF0hQ4aM2YzO0bHfVkwLeUWADBkynsr4Avwrtz2stCzMAAAAAElFTkSuQmCC">
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
+191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
+第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQW7DMAwF0dz/0i5QdNFN1PmkjNTUaBUYiqznBUGRer3wuL4H//37SWf+5iFDhozHMq7l6MxZY/inWb9XhgwZ5zBIkOWbJiukwf2PPcuQIUNGmPat11+HThkyZMi4g0GSPw6QIUOGjM4htsYjG+ocnmXIkHEC447GwK7fH+5vyJAh4x8wrnCQFUjSuWs/P+vLkCFjNKOTzPHnfA5fAWW4MmTIGMRIm5fkeRpAyX9jtgwZMgYx9h4+eUjl89FxV4YMGaMZaRNxb7Wv3yiVIUPGCQx+LbXWyCThtd8ilSFDxlQGX7RGTYNmmoDKkCHjBEZa9K+Vw/h1Lh64UYYrQ4aMQYw0yas1NUmY5qU3lOHKkCFjBCMNr+TFu8A8SZUhQ8ZsRlqsJ+EyxfPLGRvujMiQIeOBDB4ueVmtc7Ui/ZQyZMg4gUHCXFqxu6PoHzQDZMiQMZSRhlQeOneF11ZWK0OGjBGMWmOgn1aSVJKvLEOGjKkMkgKmx9Fas4F/uLf9DRkyZBzA4IX+fgAlgTvYmwwZMkYz9l7wqiWUfMiQIeNMxhUOspXaRYrOtQwZMmTMZqTBLi3cd7aYJo4yZMiYzUiDYC38pWW4dA8yZMg4gZHeXkivVtTaCcFMGTJkyOAVu/Bz1Epyb1NDGTJkyABJJH8xv4KGPqUMGTIOYKSH2Folj4fXtF0hQ4aM2YzO0bHfVkwLeUWADBkynsr4Avwrtz2stCzMAAAAAElFTkSuQmCC">
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/2019-05-15-leetcode-dynamic-programming/" rel="prev" title="LeetCode做题笔记—DP动态规划相关题目">
+                                  
+                                      LeetCode做题笔记—DP动态规划相关题目
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>LeetCode</a> <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a> <a class="tag" href="/tags/Python/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" rel="prev" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目">
+                                    
+                                        LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/LeetCode/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>LeetCode</a> <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a> <a class="tag" href="/tags/Python/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+        <section id="comments">
+          <div id="disqus_thread">
+            <div><i class="fas fa-exclamation-triangle">&nbsp;无法加载Disqus评论系统，请确保您的网络能够正常访问。</i></div>
+          </div>
+        </section>
+      
+      
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'LeetCode做题笔记—位运算相关题目',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class="l_side">
+  
+    
+    
+      
+        
+          
+          
+            <section class="widget author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516125601.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:me@paaatrick.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#191-位1的个数-Number-of-1-Bits"><span class="toc-text">191. 位1的个数 Number of 1 Bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#231-2的幂-Power-of-Two"><span class="toc-text">231. 2的幂 Power of Two</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#338-比特位计数-Counting-Bits"><span class="toc-text">338. 比特位计数 Counting Bits</span></a></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/categories/" title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(7)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/tags/" title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Algorithm/" style="font-size: 20.67px; color: #6c6c6c">Algorithm</a> <a href="/tags/Food/" style="font-size: 17.33px; color: #828282">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 20.67px; color: #6c6c6c">LeetCode</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/WordPress/" style="font-size: 17.33px; color: #828282">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget related_posts">
+    
+<header class="pure">
+  <div><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;相关文章</div>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-29-leetcode-stack-heap-queue/" title="LeetCode做题笔记—栈、堆、队列相关题目" rel="bookmark">LeetCode做题笔记—栈、堆、队列相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-01-leetcode-hashtable/" title="LeetCode做题笔记—哈希表相关题目" rel="bookmark">LeetCode做题笔记—哈希表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-04-leetcode-tree/" title="LeetCode做题笔记—二叉树相关题目" rel="bookmark">LeetCode做题笔记—二叉树相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-recursion-divide-conquer/" title="LeetCode做题笔记—递归、分治相关题目" rel="bookmark">LeetCode做题笔记—递归、分治相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-16-leetcode-union-find/" title="LeetCode做题笔记—并查集相关题目" rel="bookmark">LeetCode做题笔记—并查集相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-28-leetcode-linklist/" title="LeetCode做题笔记--链表相关题目" rel="bookmark">LeetCode做题笔记--链表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-best-time-to-buy-and-sell-stock-series/" title="LeetCode做题笔记—买卖股票的最佳时机系列题目" rel="bookmark">LeetCode做题笔记—买卖股票的最佳时机系列题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-09-leetcode-bfs-dfs-pruning/" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目" rel="bookmark">LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-15-leetcode-dynamic-programming/" title="LeetCode做题笔记—DP动态规划相关题目" rel="bookmark">LeetCode做题笔记—DP动态规划相关题目</a></h3></div></li></ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:me@paaatrick.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>©2019 派大星星星星</p>
+</div>
+  <div>
+    本站使用
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    作为主题
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        const images = ["https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120523.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120522.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120521.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120520.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120519.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120518.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120517.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120516.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120515.jpeg"];
+        for (let i = 1; i < images.length; i++) {
+          const random = Math.floor(Math.random() * (i + 1));
+          [images[i], images[random]] = [images[random], images[i]];
+        }
+        if ('') {
+          $('').backstretch(images, 
+          {
+            duration: "40000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(images, 
+          {
+            duration: "40000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+  <script>
+    var disqus_shortname = 'paaatrick-com';
+    
+      var disqus_url = 'https://paaatrick.com/2019-05-13-leetcode-bitwise/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script src="/js/app.js"></script>
+
+
+  <script src="/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
