@@ -375,7 +375,28 @@ class Solution:
 
 ## 69. x 的平方根  Sqrt(x)
 
+[LeetCodeCN 第69题链接](https://leetcode-cn.com/problems/sqrtx/)
+
+第一种方法：二分查找，题目奇怪要求返回整数
+
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x == 1 or x == 0:
+            return x
+        l, r = 1, x
+        while l < r:
+            mid = l + (r - l)//2
+            if mid*mid <= x < (mid+1)*(mid+1):
+                return mid
+            elif mid*mid < x:
+                l = mid
+            else:
+                r = mid
+```
+
 第二种方法：牛顿迭代法，$X_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$，这里的$f(x_n)$是$x^2 - y_0$，即得迭代公式$x_{n+1} = (x_n + \frac{y_0}{x_n}) / 2 $
+
 ```python
 class Solution:
     def mySqrt(self, x: int) -> int:        

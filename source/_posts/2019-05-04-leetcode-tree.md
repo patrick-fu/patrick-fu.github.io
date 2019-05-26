@@ -21,6 +21,34 @@ class TreeNode:
         self.right = None
 ```
 
+## 226. 翻转二叉树 Invert Binary Tree
+
+[LeetCodeCN 第226题链接](https://leetcode-cn.com/problems/invert-binary-tree/)
+
+第一种方法：递归
+
+```python
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if root:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+            return root
+```
+
+第二种方法：遍历
+```python
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                node.left, node.right = node.right, node.left
+                stack.append(node.left)
+                stack.append(node.right)
+        return root
+```
+
 ## 98. 验证二叉搜索树 Validate Binary Search Tree
 
 [LeetCodeCN 第98题链接](https://leetcode-cn.com/problems/validate-binary-search-tree/)

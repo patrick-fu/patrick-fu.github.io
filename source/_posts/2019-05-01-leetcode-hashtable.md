@@ -38,6 +38,19 @@ class Solution:
         return map1 == map2
 ```
 
+第三种方法：由于只有26个小写字母元素，可以用数组自己实现一个哈希表，原理与上面一样
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        map1, map2 = [0]*26, [0]*26
+        for c in s:
+            map1[ord(c)-ord('a')] += 1
+        for d in t:
+            map2[ord(d)-ord('a')] += 1
+        return map1 == map2
+```
+
 ## 1. 两数之和 Two Sum
 
 [LeetCodeCN 第1题链接](https://leetcode-cn.com/problems/two-sum/)
