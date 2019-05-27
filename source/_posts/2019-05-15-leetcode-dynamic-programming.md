@@ -453,3 +453,15 @@ class Solution:
                     dp[i] = min(dp[i], dp[i-c] + 1)
         return dp[amount] if dp[amount] <= amount else -1
 ```
+
+第三种方法：把`coins`的循环放外层，减少循环次数及一次`if`判断
+
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [0] + [amount+1]*amount
+        for coin in coins:
+            for i in range(coin, amount+1):
+                dp[i] = min(dp[i], dp[i-coin]+1)
+        return dp[-1] if dp[-1] != amount+1 else -1
+```

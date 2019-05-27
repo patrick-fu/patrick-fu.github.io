@@ -160,3 +160,44 @@ class Solution:
             else:
                 return root
 ```
+
+## 112. 路径总和
+
+[LeetCodeCN 第112题链接](https://leetcode-cn.com/problems/path-sum/)
+
+第一种方法：DFS，用一个数组记录每条路线的路径和，最后检查目标值是否在数组内
+
+```python
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if not root:
+            return False
+        self.res = []
+        self.dfs(root, 0)
+        if sum in self.res:
+            return True
+        else:
+            return False
+            
+    def dfs(self, node, tmp):
+        if not node.left and not node.right:
+            self.res.append(tmp+node.val)
+            return
+        if node.left:
+            self.dfs(node.left, tmp+node.val)
+        if node.right:
+            self.dfs(node.right, tmp+node.val)
+```
+
+第二种方法：每次递归时从目标值里扣除自身节点的值，如果到某个叶子节点正好剩余目标值等于叶子节点的值说明存在该路径
+
+```python
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if not root:
+            return False
+        if not root.left and not root.right and sum == root.val:
+            return True
+        sum -= root.val
+        return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+```
