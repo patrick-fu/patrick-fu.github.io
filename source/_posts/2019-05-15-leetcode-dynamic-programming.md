@@ -465,3 +465,52 @@ class Solution:
                 dp[i] = min(dp[i], dp[i-coin]+1)
         return dp[-1] if dp[-1] != amount+1 else -1
 ```
+
+## 42. 接雨水 Trapping Rain Water
+
+[LeetCodeCN 第42题链接](https://leetcode-cn.com/problems/trapping-rain-water/)
+
+第一种方法：DP动态规划，计算出每个点的左边界最大与右边界最大，最后减去自身高度
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        n, res = len(height), 0
+        maxLeft, maxRight = [0]*n, [0]*n
+        maxLeft[0] = height[0]
+        maxRight[-1] = height[-1]
+        for i in range(1, n):
+            maxLeft[i] = max(height[i], maxLeft[i-1])
+        for j in range(n-2, -1, -1):
+            maxRight[j] = max(height[j], maxRight[j+1])
+        for k in range(n):
+            res += min(maxLeft[k], maxRight[k]) - height[k]
+        return res
+```
+
+第二种方法：双指针，每次矮边向内推进，如果自身不是该边最大值证明有更大的边，就可以接雨水了，否则更新自己为该边最大值
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        l, r, left_max, right_max, res = 0, len(height)-1, height[0], height[-1], 0
+        while l < r:
+            if height[r] >= height[l]:
+                if left_max > height[l]:
+                    res += left_max - height[l]
+                else:
+                    left_max = height[l]
+                l += 1
+            else:
+                if right_max > height[r]:
+                    res += right_max - height[r]
+                else:
+                    right_max = height[r]
+                r -= 1
+        return res
+                
+```
