@@ -514,3 +514,123 @@ class Solution:
         return res
                 
 ```
+
+## 62. 不同路径 Unique Paths
+
+[LeetCodeCN 第62题链接](https://leetcode-cn.com/problems/unique-paths/)
+
+标准的动态规划，从右下目标点往左上走，dp储存当前点位共有多少种走法，`dp[i][j]的走法数量 = dp[i+1][j] + dp[i][j+1]` 底边和最右边格子都是1，所以创建dp数组时顺便把初始化也完成了
+
+```python
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        if not m or not n:
+            return 0
+        dp = [[1]*m for _ in range(n)]
+        for i in range(n-2, -1, -1):
+            for j in range(m-2, -1, -1):
+                dp[i][j] = dp[i+1][j] + dp[i][j+1]
+        return dp[0][0]
+```
+
+## 63. 不同路径 II Unique Paths II
+
+[LeetCodeCN 第63题链接](https://leetcode-cn.com/problems/unique-paths/)
+
+```python
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        if not obstacleGrid or not obstacleGrid[0]:
+            return 0
+        n, m = len(obstacleGrid), len(obstacleGrid[0])
+        dp = [[1]*m for _ in range(n)]
+        # 处理最右列的初始值
+        flag = 0
+        for i in range(n-1, -1, -1):
+            if flag:
+                dp[i][m-1] = 0
+                continue
+            if obstacleGrid[i][m-1]:
+                dp[i][m-1] = 0
+                flag = 1
+        # 处理最下行的初始值
+        flag = 0
+        for i in range(m-1, -1, -1):
+            if flag:
+                dp[n-1][i] = 0
+                continue
+            if obstacleGrid[n-1][i]:
+                dp[n-1][i] = 0
+                flag = 1
+        # 从右下到左上的DP递推
+        for i in range(n-2, -1, -1):
+            for j in range(m-2, -1, -1):
+                if obstacleGrid[i][j]:
+                    dp[i][j] = 0
+                    continue
+                dp[i][j] = dp[i+1][j] + dp[i][j+1]
+        return dp[0][0]
+```
+
+## 64. 最小路径和 Minimum Path Sum
+
+[LeetCodeCN 第64题链接](https://leetcode-cn.com/problems/minimum-path-sum/)
+
+动态规划，定义DP二维数组储存的是经过该点位的最小路径和，首先初始化好最右边和底边的初始值，然后从目标右下递推到起始点左上，`dp[0][0]`即结果
+
+```python
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n, m = len(grid), len(grid[0])
+        dp = [[0]*m for _ in range(n)]
+        dp[-1][-1] = grid[-1][-1]
+        for i in range(n-2, -1, -1):
+            dp[i][m-1] = grid[i][m-1] + dp[i+1][m-1]
+        for i in range(m-2, -1, -1):
+            dp[n-1][i] = grid[n-1][i] + dp[n-1][i+1]
+        for i in range(n-2, -1, -1):
+            for j in range(m-2, -1, -1):
+                dp[i][j] = min(dp[i+1][j], dp[i][j+1]) + grid[i][j]
+        return dp[0][0]
+```
+
+## 198. 打家劫舍 House Robber
+
+[LeetCodeCN 第198题链接](https://leetcode-cn.com/problems/house-robber/)
+
+第一种方法：动态规划，递推方程`f(i) = max(f(i-1), f(i-2)+nums[i])`，当前点位最大利润可能来自前一个点位的最大利润（当前点位不偷）或者来自前两个点位的最大利润加上偷当前点位。开一个长度为`n`的数组记录，取数组末尾即结果
+
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        n = len(nums)
+        if n <= 2:
+            return max(nums)
+        dp = [0]*n
+        dp[0], dp[1] = nums[0], max(nums[0], nums[1])
+        for i in range(2, n):
+            dp[i] = max(dp[i-1], dp[i-2]+nums[i])
+        return dp[-1]
+```
+
+第二种方法：用滚动数组降低空间复杂度，`O(n)→O(1)`，无需改动太多代码，适合面试时改进代码
+
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        n = len(nums)
+        if n <= 2:
+            return max(nums)
+        dp = [0]*2
+        dp[0], dp[1] = nums[0], max(nums[0], nums[1])
+        for i in range(2, n):
+            x, y = i&1, (i+1)&1
+            dp[x] = max(dp[y], dp[x]+nums[i])
+        return max(dp[0], dp[1])
+```
