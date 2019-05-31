@@ -466,6 +466,37 @@ class Solution:
         return dp[-1] if dp[-1] != amount+1 else -1
 ```
 
+## 72. 编辑距离 Edit Distance
+
+[LeetCodeCN 第72题链接](https://leetcode-cn.com/problems/edit-distance/)
+
+第一种方法：BFS暴力求解
+
+第二种方法：DP动态规划，定义状态`dp[i][j]` 表示`word1`的前`i`个字母和`word2`的前`j`个字母之间的编辑距离，即`word1`的前`i`个字符要替换到`word2`的前`j`个字符所需要的最少操作次数。当`word1[i-1] == word2[j-1]`时，`dp[i][j]`的状态就是直接转移`dp[i-1][j-1]`，无需任何步骤，否则，`dp[i][j]`的状态来自`dp[i-1][j], dp[i][j-1], dp[i-1][j-1]`（添加、删除、替换）中的最小值并加操作步骤`1`次。
+
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        n, m = len(word1), len(word2)
+        dp = [[0]*(m+1) for _ in range(n+1)]
+        
+        for i in range(n+1):
+            dp[i][0] = i
+        for j in range(m+1):
+            dp[0][j] = j
+        
+        for i in range(1,n+1):
+            for j in range(1,m+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
+                # 上面的if else逻辑可以压缩成一行
+                # dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+(0 if word1[i-1] == word2[j-1] else 1))
+        return dp[n][m]
+```
+
+
 ## 42. 接雨水 Trapping Rain Water
 
 [LeetCodeCN 第42题链接](https://leetcode-cn.com/problems/trapping-rain-water/)
@@ -634,3 +665,27 @@ class Solution:
             dp[x] = max(dp[y], dp[x]+nums[i])
         return max(dp[0], dp[1])
 ```
+
+## 5. 最长回文子串 Longest Palindromic Substring
+
+[LeetCodeCN 第5题链接](https://leetcode-cn.com/problems/longest-palindromic-substring/)
+
+第一种方法：动态规划，定义`dp[i][j]`为从位置`j`到`i`的字符串是否是回文串，递推式子是`if (s[i] == s[j] and dp[i-1][j+1]) then dp[i][j] = 1`其中加入一个判断如果子串长度为2就不用看`dp`了加速计算。然后如果`dp[i][j]`是回文串了，就跟当前最长的回文串比较，如果新的更长就更新结果
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if not s:
+            return ''
+        n = len(s)
+        maxLen, res, dp = 0, '', [[0]*n for _ in range(n)]
+        for i in range(n):
+            for j in range(i, -1, -1):
+                if s[i] == s[j] and (i-j<2 or dp[i-1][j+1]):
+                    dp[i][j] = 1
+                if dp[i][j] and maxLen < i-j+1:
+                    maxLen = i-j+1
+                    res = s[j:i+1]
+        return res
+```
+
