@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>LeetCode做题笔记—位运算相关题目 | 派大星星星星</title>
+  <title>粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -235,8 +235,8 @@
         
   
     <h1 class="title">
-      <a href="/2019-05-13-leetcode-bitwise/">
-        LeetCode做题笔记—位运算相关题目
+      <a href="/2019-05-19-ios-arc-gc/">
+        粗谈ARC自动引用计数和GC垃圾回收
       </a>
     </h1>
   
@@ -265,7 +265,7 @@
             <div class="new-meta-item date">
   <a class="notlink">
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-05-13</p>
+    <p>2019-05-19</p>
   </a>
 </div>
 
@@ -275,9 +275,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/Algorithm/" rel="nofollow">
+    <a href="/categories/Note/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Algorithm</p>
+      <p>Note</p>
     </a>
   </div>
 
@@ -317,27 +317,34 @@
 
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
-          <p>有关位运算的做题笔记，Python实现</p>
-<h2 id="191-位1的个数-Number-of-1-Bits"><a href="#191-位1的个数-Number-of-1-Bits" class="headerlink" title="191. 位1的个数 Number of 1 Bits"></a>191. 位1的个数 Number of 1 Bits</h2><p><a href="https://leetcode-cn.com/problems/number-of-1-bits/" target="_blank" rel="noopener">LeetCodeCN 第191题链接</a></p>
-<p>第一种方法：遍历所有二进制位，通过取模<code>n%2</code>或者与运算<code>n&amp;1</code>判断尾数是否为1，然后把n右移一位</p>
+          <p>粗谈ARC自动引用计数和GC垃圾回收</p>
 <a id="more"></a>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += n &amp; <span class="number">1</span></span><br><span class="line">            n &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-
-<p>第二种方法：通过<code>n &amp; (n - 1)</code>直接摘掉最后一位的1</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            n = n &amp; (n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-
-<h2 id="231-2的幂-Power-of-Two"><a href="#231-2的幂-Power-of-Two" class="headerlink" title="231. 2的幂 Power of Two"></a>231. 2的幂 Power of Two</h2><p><a href="https://leetcode-cn.com/problems/power-of-two/" target="_blank" rel="noopener">LeetCodeCN 第231题链接</a></p>
-<p>先排除负数和0，由于2的幂的二进制只有第一位是1，通过<code>n &amp; (n - 1)</code>直接摘掉最后一位的1，如果摘掉后为0即符合条件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPowerOfTwo</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> n &gt; <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> n &amp; (n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="338-比特位计数-Counting-Bits"><a href="#338-比特位计数-Counting-Bits" class="headerlink" title="338. 比特位计数 Counting Bits"></a>338. 比特位计数 Counting Bits</h2><p><a href="https://leetcode-cn.com/problems/counting-bits/" target="_blank" rel="noopener">LeetCodeCN 第338题链接</a></p>
-<p>第一种方法：遍历，每次分别计算一次比特位，时间复杂度为n乘以每个数的1位个数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num+<span class="number">1</span>):</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> i:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                i = i &amp; (i - <span class="number">1</span>)</span><br><span class="line">            result.append(count)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-<p>第二种方法：用一个递推式子<code>count[i] = count[i&amp;(i-1)] + 1</code>，原理是<code>i&amp;(i-1)</code>的1的个数总是比<code>i</code>少1，同时<code>i&amp;(i-1)</code>这个数肯定比<code>i</code>小，所以预先是算过的，这样时间复杂度为<code>O(n)</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        result = [<span class="number">0</span>] * (num+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, num+<span class="number">1</span>):</span><br><span class="line">            result[i] = result[i&amp;(i<span class="number">-1</span>)] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
+<h2 id="1-ARC-自动引用计数"><a href="#1-ARC-自动引用计数" class="headerlink" title="1. ARC 自动引用计数"></a>1. ARC 自动引用计数</h2><p>自动引用计数（<code>Automatic Reference Count</code> 简称 <code>ARC</code>），是苹果在 WWDC 2011 年大会上提出的用于内存管理的技术。虽然 <code>ARC</code> 极大地简化了我们的内存管理工作，但是引用计数这种内存管理方案如果不被理解，那么就无法处理好那些棘手的循环引用问题。</p>
+<p>引用计数（<code>Reference Count</code>）是一个简单而有效的管理对象生命周期的方式。当我们创建一个新对象的时候，它的引用计数为 <code>1</code>，当有一个新的指针指向这个对象时，我们将其引用计数加 <code>1</code>，当某个指针不再指向这个对象是，我们将其引用计数减 <code>1</code>，当对象的引用计数变为 <code>0</code> 时，说明这个对象不再被任何指针指向了，这个时候我们就可以将对象销毁，回收内存。由于引用计数简单有效，除了 <code>Objective-C</code> 语言外，微软的 COM（Component Object Model ）、C++11（C++11 提供了基于引用计数的智能指针 share_prt）等语言也提供了基于引用计数的内存管理方式。</p>
+<p>引用计数这种内存管理方式虽然简单，但是手工写大量的操作引用计数的代码不但繁琐，而且容易被遗漏。于是苹果在 2011 年引入了 <code>ARC</code>。<code>ARC</code> 顾名思义，是自动帮我们填写引用计数代码的一项功能。</p>
+<p><code>ARC</code> 的想法来源于苹果在早期设计 <code>Xcode</code> 的 <code>Analyzer</code> 的时候，发现编译器在编译时可以帮助大家发现很多内存管理中的问题。后来苹果就想，能不能干脆编译器在编译的时候，把内存管理的代码都自动补上，带着这种想法，苹果修改了一些内存管理代码的书写方式（例如引入了 <code>@autoreleasepool</code> 关键字）后，在 <code>Xcode</code> 中实现了这个想法。</p>
+<p><code>ARC</code> 的工作原理大致是这样：当我们编译源码的时候，编译器会分析源码中每个对象的生命周期，然后基于这些对象的生命周期，来添加相应的引用计数操作代码。所以，<code>ARC</code> 是工作在编译期的一种技术方案，这样的好处是：</p>
+<p>编译之后，<code>ARC</code> 与非 <code>ARC</code> 代码是没有什么差别的，所以二者可以在源码中共存。实际上，你可以通过编译参数 <code>-fno-objc-arc</code> 来关闭部分源代码的 <code>ARC</code> 特性。</p>
+<p>相对于垃圾回收这类内存管理方案，<code>ARC</code> 不会带来运行时的额外开销，所以对于应用的运行效率不会有影响。相反，由于 <code>ARC</code> 能够深度分析每一个对象的生命周期，它能够做到比人工管理引用计数更加高效。例如在一个函数中，对一个对象刚开始有一个引用计数 <code>+1</code> 的操作，之后又紧接着有一个 <code>-1</code> 的操作，那么编译器就可以把这两个操作都优化掉。</p>
+<p>但是也有人认为，<code>ARC</code> 也附带有运行期的一些机制来使 <code>ARC</code> 能够更好的工作，他们主要是指 <code>weak</code> 关键字。<code>weak</code> 变量能够在引用计数为 <code>0</code> 时被自动设置成 <code>nil</code>，显然是有运行时逻辑在工作的。我通常并没有把这个算在 <code>ARC</code> 的概念当中，当然，这更多是一个概念或定义上的分歧，因为除开 <code>weak</code> 逻辑之外，<code>ARC</code> 核心的代码都是在编译期填充的。</p>
+<h2 id="2-GC-垃圾回收"><a href="#2-GC-垃圾回收" class="headerlink" title="2. GC 垃圾回收"></a>2. GC 垃圾回收</h2><p><code>Android</code> 手机通常使用 <code>Java</code> 来开发，而 <code>Java</code> 是使用垃圾回收这种内存管理方式。 那么，<code>ARC</code> 和垃圾回收对比，有什么优点和缺点？</p>
+<p>虽然做 <code>iOS</code> 开发并不需要用到垃圾回收这种内存管理机制。但是垃圾回收被使用得非常普遍，不但有 <code>Java</code>，还包括 <code>JavaScript</code>, <code>C#</code>，<code>Go</code> 等语言。</p>
+<h4 id="垃圾回收简介"><a href="#垃圾回收简介" class="headerlink" title="垃圾回收简介"></a>垃圾回收简介</h4><p>垃圾回收（<code>Garbage Collection</code>，简称 <code>GC</code>）这种内存管理机制最早由图灵奖获得者 John McCarthy 在 1959 年提出，垃圾回收的理论主要基于一个事实：大部分的对象的生命期都很短。</p>
+<p>所以，<code>GC</code> 将内存中的对象主要分成两个区域：<code>Young</code> 区和 <code>Old</code> 区。对象先在 <code>Young</code> 区被创建，然后如果经过一段时间还存活着，则被移动到 <code>Old</code> 区。（其实还有一个 <code>Perm</code> 区，但是内存回收算法通常不涉及这个区域）</p>
+<p><code>Young</code> 区和 <code>Old</code> 区因为对象的特点不一样，所以采用了两种完全不同的内存回收算法。</p>
+<p><code>Young</code> 区的对象因为大部分生命期都很短，每次回收之后只有少部分能够存活，所以采用的算法叫 <code>Copying</code> 算法，简单说来就是直接把活着的对象复制到另一个地方。<code>Young</code> 区内部又分成了三块区域：<code>Eden</code> 区 , <code>From</code> 区 , <code>To</code> 区。每次执行 <code>Copying</code> 算法时，即将存活的对象从 <code>Eden</code> 区和 <code>From</code> 区复制到 <code>To</code> 区，然后交换 <code>From</code> 区和 <code>To</code> 区的名字（即 <code>From</code> 区变成 <code>To</code> 区，<code>To</code> 区变成 <code>From</code> 区）。</p>
+<p><code>Old</code> 区的对象因为都是存活下来的老司机了，所以如果用 <code>Copying</code> 算法的话，很可能 <code>90%</code> 的对象都得复制一遍了，不划算啊！所以 <code>Old</code> 区的回收算法叫 <code>Mark-Sweep</code> 算法。简单来说，就是只是把不用的对象先标记（<code>Mark</code>）出来，然后回收（<code>Sweep</code>），活着的对象就不动它了。因为大部分对象都活着，所以回收下来的对象并不多。但是这个算法会有一个问题：它会产生内存碎片，所以它一般还会带有整理内存碎片的逻辑，在算法中叫做 <code>Compact</code>。如何整理呢？早年用过 <code>Windows</code> 的硬盘碎片整理程序的朋友可能能理解，其实就是把对象插到这些空的位置里。这里面还涉及很多优化的细节，我就不一一展开了。</p>
+<p>讲完主要的算法，接下来 <code>GC</code> 需要解决的问题就只剩下如何找出需要回收的垃圾对象了。为了避免 <code>ARC</code> 解决不了的循环引用问题，<code>GC</code> 引入了一个叫做「可达性」的概念，应用这个概念，即使是有循环引用的垃圾对象，也可以被回收掉。下面就给大家介绍一下这个概念。</p>
+<p>当 <code>GC</code> 工作时，<code>GC</code> 认为当前的一些对象是有效的，这些对象包括：全局变量，栈里面的变量等，然后 <code>GC</code> 从这些变量出发，去标记这些变量「可达」的其它变量，这个标记是一个递归的过程，最后就像从树根的内存对象开始，把所有的树枝和树叶都记成可达的了。那除了这些「可达」的变量，别的变量就都需要被回收了。</p>
+<p>听起来很牛逼对不对？那为什么苹果不用呢？实际上苹果在 OS X 10.5 的时候还真用了，不过在 10.7 的时候把 <code>GC</code> 换成了 <code>ARC</code>。那么，<code>GC</code> 有什么问题让苹果不能忍，这就是：垃圾回收的时候，整个程序需要暂停，英文把这个过程叫做：<code>Stop the World</code>。所以说，你知道 <code>Android</code> 手机有时候为什么会卡吧，<code>GC</code> 就相当于春运的最后一天返城高峰。当所有的对象都需要一起回收时，那种体验肯定是当时还在世的乔布斯忍受不了的。</p>
+<p>看看下面这幅漫画，真实地展现出 <code>GC</code> 最尴尬的情况（漫画中提到的 <code>Full GC</code>，就是指执行 <code>Old</code> 区的内存回收）：</p>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190603181612.webp" alt></p>
+<p>当然，事实上经过多年的发展，<code>GC</code> 的回收算法一直在被优化，人们想了各种办法来优化暂停的时间，所以情况并没有那么糟糕。</p>
+<h4 id="ARC-相对于-GC-的优点："><a href="#ARC-相对于-GC-的优点：" class="headerlink" title="ARC 相对于 GC 的优点："></a><code>ARC</code> 相对于 <code>GC</code> 的优点：</h4><p><code>ARC</code> 工作在编译期，在运行时没有额外开销。</p>
+<p><code>ARC</code> 的内存回收是平稳进行的，对象不被使用时会立即被回收。而 <code>GC</code> 的内存回收是一阵一阵的，回收时需要暂停程序，会有一定的卡顿。</p>
+<h4 id="ARC-相对于-GC-的缺点："><a href="#ARC-相对于-GC-的缺点：" class="headerlink" title="ARC 相对于 GC 的缺点："></a><code>ARC</code> 相对于 <code>GC</code> 的缺点：</h4><p><code>GC</code> 真的是太简单了，基本上完全不用处理内存管理问题，而 <code>ARC</code> 还是需要处理类似循环引用这种内存管理问题。</p>
+<p><code>GC</code> 一类的语言相对来说学习起来更简单。</p>
 
         </div>
         
@@ -349,10 +356,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-16T16:44:51+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-03T18:22:49+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年5月16日</p>
+    <p>最后更新于 2019年6月3日</p>
   </a>
 </div>
 
@@ -361,7 +368,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LeetCode/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>LeetCode</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Algorithm</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Python</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>iOS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Objective-C</p></a></div>
 
 
         
@@ -372,9 +379,7 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
-191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
-第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -382,9 +387,7 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
-191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
-第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -392,7 +395,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQW7DMAwF0dz/0i5QdNFN1PmkjNTUaBUYiqznBUGRer3wuL4H//37SWf+5iFDhozHMq7l6MxZY/inWb9XhgwZ5zBIkOWbJiukwf2PPcuQIUNGmPat11+HThkyZMi4g0GSPw6QIUOGjM4htsYjG+ocnmXIkHEC447GwK7fH+5vyJAh4x8wrnCQFUjSuWs/P+vLkCFjNKOTzPHnfA5fAWW4MmTIGMRIm5fkeRpAyX9jtgwZMgYx9h4+eUjl89FxV4YMGaMZaRNxb7Wv3yiVIUPGCQx+LbXWyCThtd8ilSFDxlQGX7RGTYNmmoDKkCHjBEZa9K+Vw/h1Lh64UYYrQ4aMQYw0yas1NUmY5qU3lOHKkCFjBCMNr+TFu8A8SZUhQ8ZsRlqsJ+EyxfPLGRvujMiQIeOBDB4ueVmtc7Ui/ZQyZMg4gUHCXFqxu6PoHzQDZMiQMZSRhlQeOneF11ZWK0OGjBGMWmOgn1aSVJKvLEOGjKkMkgKmx9Fas4F/uLf9DRkyZBzA4IX+fgAlgTvYmwwZMkYz9l7wqiWUfMiQIeNMxhUOspXaRYrOtQwZMmTMZqTBLi3cd7aYJo4yZMiYzUiDYC38pWW4dA8yZMg4gZHeXkivVtTaCcFMGTJkyOAVu/Bz1Epyb1NDGTJkyABJJH8xv4KGPqUMGTIOYKSH2Folj4fXtF0hQ4aM2YzO0bHfVkwLeUWADBkynsr4Avwrtz2stCzMAAAAAElFTkSuQmCC">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3aS27DMAxF0ex/0+20RWr5PlIpYPF6FNQf6WjAiqReL3x9/biu7r4/uX7+/e76rQ2XDBkyHsv4Wl5kcuuBybvvY/G5yZAhYw6DhFEe9zhj/QyZmwwZMmRwEgm7PMjKkCFDxq6Au94mkjDNeTJkyJBBkliy+atVw3jyvCEXlyFDxgMZaWr6n78/0t+QIUPGoxi1INgptJGtZDwrGTJkHM1IU02SZO5tZwaHP2TIkHEoIz28RVJNXjgjb6HFkiFDxgBGrQHJy/q8hMef//UXGTJkHM1IG5kkXHYaBp34KUOGjLMZZHPGj1bUvsaX4BImQ4aMMYz0Q8UjXOH3UYtChgwZhzJqZX2+pUtLbOnm8o9cXIYMGWMYnWZAWpIj1808ZciQMYBRm8r6CEWnxMZHefVXVIYMGQ9h7Jp0etiikwbLkCFjGoOHSJLo8iCbhuzLZZIhQ8YARhoQg01bqWwXJ7cyZMgYwOgksbWCXa2pcHlXhgwZRzNI0CQDd4JperBMhgwZMxn9Qlhtoul1MysZMmSMYfByf3+TVyu6XS6rDBkyBjBqByDSFDdtcAb/BmTIkHEoY+/mjAfutDx3Q5UhQ8bRjP5RCd7g7CS92xqfMmTIeCwjDbI8/KWHMNK3ZMiQMY2RBr71YPxuLYm9DLgyZMiQsQy4tTSVb0ZvqDJkyJABUtNPNEHJ92XIkDGHwYdPC3PpVjJdLBkyZExg1I448JZnraD2kaamDBkynsf4BrNGS6kd1k42AAAAAElFTkSuQmCC">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
         
@@ -400,9 +403,7 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-13-leetcode-bitwise/&title=LeetCode做题笔记—位运算相关题目 | 派大星星星星&summary=有关位运算的做题笔记，Python实现
-191. 位1的个数 Number of 1 BitsLeetCodeCN 第191题链接
-第一种方法：遍历所有二进制位，通过取模n%2或者与运算n&amp;1判断尾数是否为1，然后把n右移一位">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -410,7 +411,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQW7DMAwF0dz/0i5QdNFN1PmkjNTUaBUYiqznBUGRer3wuL4H//37SWf+5iFDhozHMq7l6MxZY/inWb9XhgwZ5zBIkOWbJiukwf2PPcuQIUNGmPat11+HThkyZMi4g0GSPw6QIUOGjM4htsYjG+ocnmXIkHEC447GwK7fH+5vyJAh4x8wrnCQFUjSuWs/P+vLkCFjNKOTzPHnfA5fAWW4MmTIGMRIm5fkeRpAyX9jtgwZMgYx9h4+eUjl89FxV4YMGaMZaRNxb7Wv3yiVIUPGCQx+LbXWyCThtd8ilSFDxlQGX7RGTYNmmoDKkCHjBEZa9K+Vw/h1Lh64UYYrQ4aMQYw0yas1NUmY5qU3lOHKkCFjBCMNr+TFu8A8SZUhQ8ZsRlqsJ+EyxfPLGRvujMiQIeOBDB4ueVmtc7Ui/ZQyZMg4gUHCXFqxu6PoHzQDZMiQMZSRhlQeOneF11ZWK0OGjBGMWmOgn1aSVJKvLEOGjKkMkgKmx9Fas4F/uLf9DRkyZBzA4IX+fgAlgTvYmwwZMkYz9l7wqiWUfMiQIeNMxhUOspXaRYrOtQwZMmTMZqTBLi3cd7aYJo4yZMiYzUiDYC38pWW4dA8yZMg4gZHeXkivVtTaCcFMGTJkyOAVu/Bz1Epyb1NDGTJkyABJJH8xv4KGPqUMGTIOYKSH2Folj4fXtF0hQ4aM2YzO0bHfVkwLeUWADBkynsr4Avwrtz2stCzMAAAAAElFTkSuQmCC">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3aS27DMAxF0ex/0+20RWr5PlIpYPF6FNQf6WjAiqReL3x9/biu7r4/uX7+/e76rQ2XDBkyHsv4Wl5kcuuBybvvY/G5yZAhYw6DhFEe9zhj/QyZmwwZMmRwEgm7PMjKkCFDxq6Au94mkjDNeTJkyJBBkliy+atVw3jyvCEXlyFDxgMZaWr6n78/0t+QIUPGoxi1INgptJGtZDwrGTJkHM1IU02SZO5tZwaHP2TIkHEoIz28RVJNXjgjb6HFkiFDxgBGrQHJy/q8hMef//UXGTJkHM1IG5kkXHYaBp34KUOGjLMZZHPGj1bUvsaX4BImQ4aMMYz0Q8UjXOH3UYtChgwZhzJqZX2+pUtLbOnm8o9cXIYMGWMYnWZAWpIj1808ZciQMYBRm8r6CEWnxMZHefVXVIYMGQ9h7Jp0etiikwbLkCFjGoOHSJLo8iCbhuzLZZIhQ8YARhoQg01bqWwXJ7cyZMgYwOgksbWCXa2pcHlXhgwZRzNI0CQDd4JperBMhgwZMxn9Qlhtoul1MysZMmSMYfByf3+TVyu6XS6rDBkyBjBqByDSFDdtcAb/BmTIkHEoY+/mjAfutDx3Q5UhQ8bRjP5RCd7g7CS92xqfMmTIeCwjDbI8/KWHMNK3ZMiQMY2RBr71YPxuLYm9DLgyZMiQsQy4tTSVb0ZvqDJkyJABUtNPNEHJ92XIkDGHwYdPC3PpVjJdLBkyZExg1I448JZnraD2kaamDBkynsf4BrNGS6kd1k42AAAAAElFTkSuQmCC">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
         
@@ -436,9 +437,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/2019-05-18-leetcode-best-time-to-buy-and-sell-stock-series/" rel="prev" title="LeetCode做题笔记—买卖股票的最佳时机系列题目">
+                                <a href="/2019-05-20-leetcode-dynamic-programming/" rel="prev" title="LeetCode做题笔记—DP动态规划相关题目">
                                   
-                                      LeetCode做题笔记—买卖股票的最佳时机系列题目
+                                      LeetCode做题笔记—DP动态规划相关题目
                                   
                                 </a>
                             </h4>
@@ -456,9 +457,9 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019-05-09-leetcode-bfs-dfs-pruning/" rel="prev" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目">
+                                <a href="/2019-05-18-leetcode-best-time-to-buy-and-sell-stock-series/" rel="prev" title="LeetCode做题笔记—买卖股票的最佳时机系列题目">
                                     
-                                        LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目
+                                        LeetCode做题笔记—买卖股票的最佳时机系列题目
                                     
                                 </a>
                             </h4>
@@ -510,7 +511,7 @@
 
   <script>
     window.subData = {
-      title: 'LeetCode做题笔记—位运算相关题目',
+      title: '粗谈ARC自动引用计数和GC垃圾回收',
       tools: true
     }
   </script>
@@ -573,7 +574,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#191-位1的个数-Number-of-1-Bits"><span class="toc-text">191. 位1的个数 Number of 1 Bits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#231-2的幂-Power-of-Two"><span class="toc-text">231. 2的幂 Power of Two</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#338-比特位计数-Counting-Bits"><span class="toc-text">338. 比特位计数 Counting Bits</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ARC-自动引用计数"><span class="toc-text">1. ARC 自动引用计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-GC-垃圾回收"><span class="toc-text">2. GC 垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#垃圾回收简介"><span class="toc-text">垃圾回收简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARC-相对于-GC-的优点："><span class="toc-text">ARC 相对于 GC 的优点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARC-相对于-GC-的缺点："><span class="toc-text">ARC 相对于 GC 的缺点：</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -649,7 +650,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-29-leetcode-stack-heap-queue/" title="LeetCode做题笔记—栈、堆、队列相关题目" rel="bookmark">LeetCode做题笔记—栈、堆、队列相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-01-leetcode-hashtable/" title="LeetCode做题笔记—哈希表相关题目" rel="bookmark">LeetCode做题笔记—哈希表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-07-leetcode-recursion-divide-conquer/" title="LeetCode做题笔记—递归、分治相关题目" rel="bookmark">LeetCode做题笔记—递归、分治相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-04-leetcode-tree/" title="LeetCode做题笔记—二叉树相关题目" rel="bookmark">LeetCode做题笔记—二叉树相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-24-leetcode-union-find/" title="LeetCode做题笔记—并查集相关题目" rel="bookmark">LeetCode做题笔记—并查集相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-28-leetcode-linklist/" title="LeetCode做题笔记--链表相关题目" rel="bookmark">LeetCode做题笔记--链表相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-09-leetcode-bfs-dfs-pruning/" title="LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目" rel="bookmark">LeetCode做题笔记—广度优先搜索、深度优先搜索、回溯、剪枝相关题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-18-leetcode-best-time-to-buy-and-sell-stock-series/" title="LeetCode做题笔记—买卖股票的最佳时机系列题目" rel="bookmark">LeetCode做题笔记—买卖股票的最佳时机系列题目</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-20-leetcode-dynamic-programming/" title="LeetCode做题笔记—DP动态规划相关题目" rel="bookmark">LeetCode做题笔记—DP动态规划相关题目</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-23-ios-block-and-mainqueue/" title="iOS处理多线程异步Block中的UI操作" rel="bookmark">iOS处理多线程异步Block中的UI操作</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-05-ios-object-struct-isa/" title="考察ObjC对象内存结构与isa指针" rel="bookmark">考察ObjC对象内存结构与isa指针</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -792,7 +793,7 @@
   <script>
     var disqus_shortname = 'paaatrick-com';
     
-      var disqus_url = 'https://paaatrick.com/2019-05-13-leetcode-bitwise/';
+      var disqus_url = 'https://paaatrick.com/2019-05-19-ios-arc-gc/';
     
     (function(){
       var dsq = document.createElement('script');
