@@ -12,6 +12,8 @@ categories:
 
 ## 0. 什么是循环引用，后果是什么
 
+<!-- more -->
+
 循环引用可以简单理解为`A`引用了`B`，而`B`又引用了`A`，双方都同时保持对方的一个引用，导致任何时候引用计数都不为`0`，始终无法释放。若当前对象是一个`ViewController`，则在`dismiss`或者`pop`之后其`dealloc`无法被调用，在频繁的`push`或者`present`之后内存暴增，就会Crash。
 
 [关于ARC的介绍](https://paaatrick.com/2019-05-19-ios-arc-gc/)

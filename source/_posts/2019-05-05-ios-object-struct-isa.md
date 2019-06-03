@@ -12,6 +12,8 @@ categories:
 
 #### 1. 一个 Objective-C 对象的内存结构是怎样的？
 
+<!-- more -->
+
 如果把类的实例看成一个C语言的结构体（`struct`），它首先包含的是一个 `isa` 指针，而类的其它成员变量依次排列在结构体中。排列顺序如下图所示：
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190603171627.png)
