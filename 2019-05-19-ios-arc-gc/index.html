@@ -318,9 +318,9 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           <p>粗谈ARC自动引用计数和GC垃圾回收</p>
-<a id="more"></a>
+<h2 id="1-ARC-自动引用计数"><a href="#1-ARC-自动引用计数" class="headerlink" title="1. ARC 自动引用计数"></a>1. ARC 自动引用计数</h2><a id="more"></a>
 
-<h2 id="1-ARC-自动引用计数"><a href="#1-ARC-自动引用计数" class="headerlink" title="1. ARC 自动引用计数"></a>1. ARC 自动引用计数</h2><p>自动引用计数（<code>Automatic Reference Count</code> 简称 <code>ARC</code>），是苹果在 WWDC 2011 年大会上提出的用于内存管理的技术。虽然 <code>ARC</code> 极大地简化了我们的内存管理工作，但是引用计数这种内存管理方案如果不被理解，那么就无法处理好那些棘手的循环引用问题。</p>
+<p>自动引用计数（<code>Automatic Reference Count</code> 简称 <code>ARC</code>），是苹果在 WWDC 2011 年大会上提出的用于内存管理的技术。虽然 <code>ARC</code> 极大地简化了我们的内存管理工作，但是引用计数这种内存管理方案如果不被理解，那么就无法处理好那些棘手的循环引用问题。</p>
 <p>引用计数（<code>Reference Count</code>）是一个简单而有效的管理对象生命周期的方式。当我们创建一个新对象的时候，它的引用计数为 <code>1</code>，当有一个新的指针指向这个对象时，我们将其引用计数加 <code>1</code>，当某个指针不再指向这个对象是，我们将其引用计数减 <code>1</code>，当对象的引用计数变为 <code>0</code> 时，说明这个对象不再被任何指针指向了，这个时候我们就可以将对象销毁，回收内存。由于引用计数简单有效，除了 <code>Objective-C</code> 语言外，微软的 COM（Component Object Model ）、C++11（C++11 提供了基于引用计数的智能指针 share_prt）等语言也提供了基于引用计数的内存管理方式。</p>
 <p>引用计数这种内存管理方式虽然简单，但是手工写大量的操作引用计数的代码不但繁琐，而且容易被遗漏。于是苹果在 2011 年引入了 <code>ARC</code>。<code>ARC</code> 顾名思义，是自动帮我们填写引用计数代码的一项功能。</p>
 <p><code>ARC</code> 的想法来源于苹果在早期设计 <code>Xcode</code> 的 <code>Analyzer</code> 的时候，发现编译器在编译时可以帮助大家发现很多内存管理中的问题。后来苹果就想，能不能干脆编译器在编译的时候，把内存管理的代码都自动补上，带着这种想法，苹果修改了一些内存管理代码的书写方式（例如引入了 <code>@autoreleasepool</code> 关键字）后，在 <code>Xcode</code> 中实现了这个想法。</p>
@@ -356,7 +356,7 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-03T18:22:49+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-03T18:30:46+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2019年6月3日</p>
@@ -379,7 +379,8 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收
+1. ARC 自动引用计数">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -387,7 +388,8 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收
+1. ARC 自动引用计数">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -403,7 +405,8 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-05-19-ios-arc-gc/&title=粗谈ARC自动引用计数和GC垃圾回收 | 派大星星星星&summary=粗谈ARC自动引用计数和GC垃圾回收
+1. ARC 自动引用计数">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -605,7 +608,7 @@
         
           <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(10)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(8)</div></a></li>
         
       </ul>
     </div>
@@ -630,7 +633,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Algorithm/" style="font-size: 20.67px; color: #6c6c6c">Algorithm</a> <a href="/tags/Food/" style="font-size: 17.33px; color: #828282">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 20.67px; color: #6c6c6c">LeetCode</a> <a href="/tags/Objective-C/" style="font-size: 24px; color: #555">Objective-C</a> <a href="/tags/Python/" style="font-size: 20.67px; color: #6c6c6c">Python</a> <a href="/tags/WordPress/" style="font-size: 17.33px; color: #828282">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
     </div>
   </section>
 
@@ -650,7 +653,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-23-ios-block-and-mainqueue/" title="iOS处理多线程异步Block中的UI操作" rel="bookmark">iOS处理多线程异步Block中的UI操作</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-05-ios-object-struct-isa/" title="考察ObjC对象内存结构与isa指针" rel="bookmark">考察ObjC对象内存结构与isa指针</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-23-ios-block-and-mainqueue/" title="iOS处理多线程异步Block中的UI操作" rel="bookmark">iOS处理多线程异步Block中的UI操作</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-05-ios-object-struct-isa/" title="考察ObjC对象内存结构与isa指针" rel="bookmark">考察ObjC对象内存结构与isa指针</a></h3></div></li></ul>
     </div>
   </section>
 
