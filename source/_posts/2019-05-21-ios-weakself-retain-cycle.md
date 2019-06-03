@@ -1,5 +1,5 @@
 ---
-title: 粗谈iOS中weak、self、循环引用的二三事
+title: 粗谈iOS中 weak、self、循环引用的二三事
 date: 2019-05-21 16:20:16
 tags:
   - iOS
