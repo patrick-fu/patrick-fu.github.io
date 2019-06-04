@@ -275,3 +275,105 @@ class Solution:
             node.next = ListNode(1)
         return dummy.next
 ```
+
+## 21. 合并两个有序链表 Merge Two Sorted Lists
+
+[LeetCodeCN 第21题](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+
+第一种方法：迭代，执行逻辑比较直观，由于每个节点仅访问一次，时间复杂度为`O(n+m)`，`n`、`m`分别为两个链表的长度，然后因为仅用到几个辅助变量，空间复杂度为`O(1)`
+
+```python
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1 and not l2:
+            return None
+        p = dummy = ListNode(None)
+        while l1 and l2:
+            if l1.val < l2.val:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        p.next = l1 if l1 else l2
+        return dummy.next
+```
+
+第二种方法：递归，需要递归`n`+`m`次，递归调用栈占用空间，空间复杂度为`O(n+m)`，因为每个节点也只访问一次，时间复杂度`O(n+m)`
+
+```python
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1:
+            return l2
+        elif not l2:
+            return l1
+        if l1.val < l2.val:
+            l1.next = self.mergeTwoLists(l1.next, l2)
+            return l1
+        else:
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
+```
+
+## 23. 合并K个排序链表 Merge k Sorted Lists
+
+[LeetCodeCN 第23题链接](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+第一种方法：分而治之，利用第21题合并两个有序链表的算法，逐个合并k个链表
+
+```python
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists:
+            return None
+        self.lists = lists
+        return self.divide(0, len(lists)-1)
+        
+    def divide(self, l, r):
+        if l == r:
+            return self.lists[l]
+        mid = r + (l - r) // 2
+        l1 = self.divide(l, mid)
+        l2 = self.divide(mid+1, r)
+        return self.mergeTwoLists(l1, l2)
+            
+    def mergeTwoLists(self, l1, l2):
+        if not l1 and not l2:
+            return None
+        p = dummy = ListNode(None)
+        while l1 and l2:
+            if l1.val < l2.val:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        p.next = l1 if l1 else l2
+        return dummy.next
+```
+
+第二种方法：优先级队列（小顶堆），`Python3`中`heapq`存储对象二元组会导致不可比较的错误，所以用存储三元组，中间用一个数值隔开
+
+```python
+import heapq
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists:
+            return None
+        heap = []
+        p = dummy = ListNode(None)
+        for i in range(len(lists)):
+            if lists[i]:
+                heapq.heappush(heap, (lists[i].val, i, lists[i]))
+        while heap:
+            node = heapq.heappop(heap)
+            i = node[1]
+            p.next = node[2]
+            p = p.next
+            if p.next:
+                heapq.heappush(heap, (p.next.val, i, p.next))
+        return dummy.next
+```
