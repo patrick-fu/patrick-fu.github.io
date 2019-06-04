@@ -247,3 +247,31 @@ class Solution:
             head = tmp
         return dummy.next
 ```
+
+## 2. 两数相加 Add Two Numbers
+
+[LeetCodeCN 第2题链接](https://leetcode-cn.com/problems/add-two-numbers/)
+
+解法很容易想到，但是代码实现不容易，需要小心处理进位
+
+```python
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy = ListNode(0)
+        node = dummy
+        carry = 0
+        while l1 or l2:
+            x = l1.val if l1 else 0
+            y = l2.val if l2 else 0
+            s = carry + x + y
+            carry = s//10
+            node.next = ListNode(s%10)
+            node = node.next
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
+        if carry:
+            node.next = ListNode(1)
+        return dummy.next
+```
