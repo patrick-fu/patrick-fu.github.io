@@ -239,6 +239,113 @@
       
         
   <h2 class="title">
+    <a href="/2019-05-05-ios-object-struct-isa/">
+      考察ObjC对象内存结构与isa指针
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-05</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Note/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Note</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>考察ObjC对象内存结构与isa指针</p>
+<h4 id="1-一个-Objective-C-对象的内存结构是怎样的？"><a href="#1-一个-Objective-C-对象的内存结构是怎样的？" class="headerlink" title="1. 一个 Objective-C 对象的内存结构是怎样的？"></a>1. 一个 Objective-C 对象的内存结构是怎样的？</h4>
+      
+        <div class="readmore">
+          <a href="/2019-05-05-ios-object-struct-isa/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/iOS/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
+        
+          <a href="/tags/Objective-C/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2019-05-04-leetcode-tree/">
       LeetCode做题笔记—二叉树相关题目
     </a>
@@ -1206,264 +1313,6 @@
           </div>
         
       
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019-03-05-iphone-pixel-point-size-scale/">
-      iPhone屏幕各种尺寸分辨率（更新至XS）
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="https://paaatrick.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>大星</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-03-05</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Note/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Note</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <table>
-<thead>
-<tr>
-<th>Device</th>
-<th>Logic Point</th>
-<th>Logic Pixel</th>
-<th>Size</th>
-<th>Scale</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>iPhone 2G</td>
-<td>480 × 320</td>
-<td>480 × 320</td>
-<td>3.5</td>
-<td>1x</td>
-</tr>
-<tr>
-<td>iPhone 3</td>
-<td>480 × 320</td>
-<td>480 × 320</td>
-<td>3.5</td>
-<td>1x</td>
-</tr>
-<tr>
-<td>iPhone 3GS</td>
-<td>480 × 320</td>
-<td>480 × 320</td>
-<td>3.5</td>
-<td>1x</td>
-</tr>
-<tr>
-<td>iPhone 4</td>
-<td>480 × 320</td>
-<td>960 × 640</td>
-<td>3.5</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 4S</td>
-<td>480 × 320</td>
-<td>960 × 640</td>
-<td>3.5</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 5</td>
-<td>568 × 320</td>
-<td>1136 × 640</td>
-<td>4.0</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 5S</td>
-<td>568 × 320</td>
-<td>1136 × 640</td>
-<td>4.0</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 5C</td>
-<td>568 × 320</td>
-<td>1136 × 640</td>
-<td>4.0</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 6</td>
-<td>667 × 375</td>
-<td>1334 × 750</td>
-<td>4.7</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 6 Plus</td>
-<td>736 × 414</td>
-<td>2208 × 1242</td>
-<td>5.5</td>
-<td>3x</td>
-</tr>
-<tr>
-<td>iPhone 6S</td>
-<td>667 × 375</td>
-<td>1334 × 750</td>
-<td>4.7</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 6S Plus</td>
-<td>736 × 414</td>
-<td>2208 × 1242</td>
-<td>5.5</td>
-<td>3x</td>
-</tr>
-<tr>
-<td>iPhone SE</td>
-<td>568 × 320</td>
-<td>1136 × 640</td>
-<td>4.0</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 7</td>
-<td>667 × 375</td>
-<td>1334 × 750</td>
-<td>4.7</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 7 Plus</td>
-<td>736 × 414</td>
-<td>2208 × 1242</td>
-<td>5.5</td>
-<td>3x</td>
-</tr>
-<tr>
-<td>iPhone 8</td>
-<td>667 × 375</td>
-<td>1334 × 750</td>
-<td>4.7</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone 8 Plus</td>
-<td>736 × 414</td>
-<td>2208 × 1242</td>
-<td>5.5</td>
-<td>3x</td>
-</tr>
-<tr>
-<td>iPhone X</td>
-<td>812 × 375</td>
-<td>2436 × 1125</td>
-<td>5.8</td>
-<td>3x</td>
-</tr>
-<tr>
-<td>iPhone XS</td>
-<td>812 × 375</td>
-<td>2436 × 1125</td>
-<td>5.8</td>
-<td>3x</td>
-</tr>
-<tr>
-<td>iPhone XR</td>
-<td>896 × 414</td>
-<td>1792 × 828</td>
-<td>6.1</td>
-<td>2x</td>
-</tr>
-<tr>
-<td>iPhone XS Max</td>
-<td>896 × 414</td>
-<td>2688 × 1242</td>
-<td>6.5</td>
-<td>3x</td>
-</tr>
-</tbody></table>
-<hr>
-
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/iOS/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>iOS</a>
-        
-          <a href="/tags/Objective-C/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Objective-C</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1479,7 +1328,7 @@
             </a>
           
           <p class="current">
-            2 / 3
+            2 / 4
           </p>
           
             <a class="next" rel="next" href="/archives/2019/page/3/">
@@ -1572,9 +1421,9 @@
         
           <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(11)</div></a></li>
+          <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(12)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(8)</div></a></li>
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(9)</div></a></li>
         
       </ul>
     </div>
@@ -1599,7 +1448,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/NetworkProtocol/" style="font-size: 14px; color: #999">NetworkProtocol</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
     </div>
   </section>
 
