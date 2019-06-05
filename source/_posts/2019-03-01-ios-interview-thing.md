@@ -8,21 +8,7 @@ categories:
   - Note
 ---
 
-## HTTP(S)/TCP/IP
-
 <!-- more -->
-
-- 分层：1-物理层 2-数据链路层(MAC层) 3-网络层(IP) 4-传输层(TCPUDP) 5-应用层(HTTP)
-- MAC有ARP协议用于已知IP请求MAC地址
-- ICMP协议可以实现ping（查询报文）和traceroute（差错报文）
-- DHCP请求IP地址，DHCP附送PXE协议安装OS
-- CIDR代替ABC类分配IP地址段，注意私有IP段
-- TCP的seq是32位的计数器，每4微秒加1，计算可知284分钟即4.73小时重置一次
-- HTTP即超文本传输协议 HyperTextTransferProtocol, 是一个在计算机世界里专门在两点之间传输文字、图片、音频、视频等超文本数据的约定和规范
-- HTTP没有实体，不是互联网，不是语言，不是HTML，不是孤立的协议
-- SPDY是谷歌推出的，HTTP2.0基于此制定
-- QUIC是谷歌基于UDP改进的应用层，未来HTTP3.0可能基于此实现
-- CA证书里有公钥，CA是递归的最后有几个大的rootCA，先用非对称加密获取密钥，然后用对称加密传输数据，TLS/SSL
 
 ## 多线程
 
@@ -148,9 +134,9 @@ objc_class中，除了isa，还有3个成员变量，一个是父类的指针，
 分为Input Source输入源和定时源Timer Source
 
 #### 五个Mode
-默认（主线程的）Mode：NSDefaultRunLoopMode
-界面追踪Mode：UITrackingRunLoopMode
-首次启动的第一个Mode：UIInitializationRunLoopMode
+1. 默认（主线程的）Mode：NSDefaultRunLoopMode
+2. 界面追踪Mode：UITrackingRunLoopMode
+3. 首次启动的第一个Mode：UIInitializationRunLoopMode
 
 #### 作用
 1. 保持程序持续运行，程序一启动就会开一个主线程，主线程一开起来就会跑一个主线程对应的RunLoop,RunLoop保证主线程不会被销毁，也就保证了程序的持续运行，对于子线程可以使用run来常驻线程。
@@ -223,13 +209,13 @@ iOS的可执行文件和动态库都是Mach-O格式，加载App实际就是加�
 
 ## 响应连和事件传递
 
-hitTest方法检测看是否返回
+1. hitTest方法检测看是否返回
 
-继承`UIResponder`的类才能响应，如`UIApplication`、`UIView`、`UIViewController`。而`CALayer`是继承自`NSObject`的，不能响应
+2. 继承`UIResponder`的类才能响应，如`UIApplication`、`UIView`、`UIViewController`。而`CALayer`是继承自`NSObject`的，不能响应
 
-事件首先传递给`UIApplication`，然后向下分发给`UIWindow`，然后分发给最下层的`UIView`，逐步调用`hitTest`从屏内向外找，当某个`UIView`返回YES时就递归对其`SubView`执行`hitTest`，直到找到最后一个
+3. 事件首先传递给`UIApplication`，然后向下分发给`UIWindow`，然后分发给最下层的`UIView`，逐步调用`hitTest`从屏内向外找，当某个`UIView`返回YES时就递归对其`SubView`执行`hitTest`，直到找到最后一个
 
-某`UIView`不接受事件的情况：
+- 某`UIView`不接受事件的情况：
 1. alpha < 0.01
 2. userInteractionEnabled = NO
 3. hidden = YES
@@ -286,29 +272,26 @@ UIKit和CoreAnimation相关操作必须在主线程中进行，其它的可以�
 
 
 5. 简化视图结构
-GPU在绘制图像前，会把重叠的视图进行混合，视图结构越复杂，这个操作就越耗时，如果存在透明视图，混合过程会更加复杂。
-所以，我们可以
+- GPU在绘制图像前，会把重叠的视图进行混合，视图结构越复杂，这个操作就越耗时，如果存在透明视图，混合过程会更加复杂。
+- 所以，我们可以：
 - 尽量避免复杂的图层结构
 - 少使用透明的视图
 - 不透明的视图，设置opaque = YES 
 
 6. 减少离屏渲染
 - 老生常谈之圆角问题
-圆角是开发中经常使用到的美化方式，但一般的设置cornerRadius时会配合masksToBounds属性，这就会造成离屏渲染。
-关于这种问题的处理，大致有两个思路
+- 圆角是开发中经常使用到的美化方式，但一般的设置cornerRadius时会配合masksToBounds属性，这就会造成离屏渲染。
+- 关于这种问题的处理，大致有两个思路
 - 异步绘制一张圆角的图片来显示；
 - 用一个圆角而中空的图来盖住。
 
 - tableview需要刷新数据时，使用
-[tableview beginUpdates];
-[tableview insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationNone];
-[tableview endUpdates];
-而非
-[tableview reloadData];
-从而刷新更少的行减少CPU压力
+[tableview beginUpdates]、[tableview insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationNone]、
+[tableview endUpdates];而非
+[tableview reloadData]从而刷新更少的行减少CPU压力
 
-8. NSDateFormatter这个对象的相关操作很费时，需要避免频繁的创建和计算 
-9. 对于固定行高，前一个设置属性比后一个实现代理方法效率高
+
+8. 对于固定行高，前一个设置属性比后一个实现代理方法效率高
 ```objc
 cell.tableview.rowHeight = 50.0;
 
@@ -317,3 +300,4 @@ cell.tableview.rowHeight = 50.0;
     return 50.0;
 }
 ```
+9. NSDateFormatter这个对象的相关操作很费时，需要避免频繁的创建和计算

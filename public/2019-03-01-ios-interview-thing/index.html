@@ -317,21 +317,8 @@
 
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
-          <h2 id="HTTP-S-TCP-IP"><a href="#HTTP-S-TCP-IP" class="headerlink" title="HTTP(S)/TCP/IP"></a>HTTP(S)/TCP/IP</h2><a id="more"></a>
+          <a id="more"></a>
 
-<ul>
-<li>分层：1-物理层 2-数据链路层(MAC层) 3-网络层(IP) 4-传输层(TCPUDP) 5-应用层(HTTP)</li>
-<li>MAC有ARP协议用于已知IP请求MAC地址</li>
-<li>ICMP协议可以实现ping（查询报文）和traceroute（差错报文）</li>
-<li>DHCP请求IP地址，DHCP附送PXE协议安装OS</li>
-<li>CIDR代替ABC类分配IP地址段，注意私有IP段</li>
-<li>TCP的seq是32位的计数器，每4微秒加1，计算可知284分钟即4.73小时重置一次</li>
-<li>HTTP即超文本传输协议 HyperTextTransferProtocol, 是一个在计算机世界里专门在两点之间传输文字、图片、音频、视频等超文本数据的约定和规范</li>
-<li>HTTP没有实体，不是互联网，不是语言，不是HTML，不是孤立的协议</li>
-<li>SPDY是谷歌推出的，HTTP2.0基于此制定</li>
-<li>QUIC是谷歌基于UDP改进的应用层，未来HTTP3.0可能基于此实现</li>
-<li>CA证书里有公钥，CA是递归的最后有几个大的rootCA，先用非对称加密获取密钥，然后用对称加密传输数据，TLS/SSL</li>
-</ul>
 <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h4 id="线程之间同步"><a href="#线程之间同步" class="headerlink" title="线程之间同步"></a>线程之间同步</h4><ol>
 <li>原子操作 Atomic</li>
 <li>加锁（互斥锁、递归锁、读写锁）NSLock，OSSpinLock</li>
@@ -435,7 +422,11 @@
 <p>元类中保存了创建类对象以及类方法所需的所有信息</p>
 <h2 id="Runloop"><a href="#Runloop" class="headerlink" title="Runloop"></a>Runloop</h2><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>运行循环，在程序运行过程中循环做一些事情，如果没有Runloop程序执行完毕就会立即退出，如果有Runloop程序会一直运行，并且时时刻刻在等待用户的输入操作。RunLoop可以在需要的时候自己跑起来运行，在没有操作的时候就停下来休息。充分节省CPU资源，提高程序性能。</p>
 <h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p>分为Input Source输入源和定时源Timer Source</p>
-<h4 id="五个Mode"><a href="#五个Mode" class="headerlink" title="五个Mode"></a>五个Mode</h4><p>默认（主线程的）Mode：NSDefaultRunLoopMode<br>界面追踪Mode：UITrackingRunLoopMode<br>首次启动的第一个Mode：UIInitializationRunLoopMode</p>
+<h4 id="五个Mode"><a href="#五个Mode" class="headerlink" title="五个Mode"></a>五个Mode</h4><ol>
+<li>默认（主线程的）Mode：NSDefaultRunLoopMode</li>
+<li>界面追踪Mode：UITrackingRunLoopMode</li>
+<li>首次启动的第一个Mode：UIInitializationRunLoopMode</li>
+</ol>
 <h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><ol>
 <li>保持程序持续运行，程序一启动就会开一个主线程，主线程一开起来就会跑一个主线程对应的RunLoop,RunLoop保证主线程不会被销毁，也就保证了程序的持续运行，对于子线程可以使用run来常驻线程。</li>
 <li>保证NSTimer正常运转</li>
@@ -510,10 +501,17 @@
 <li>滚动动画完成</li>
 <li>将要开始缩放、已经结束缩放</li>
 </ol>
-<h2 id="响应连和事件传递"><a href="#响应连和事件传递" class="headerlink" title="响应连和事件传递"></a>响应连和事件传递</h2><p>hitTest方法检测看是否返回</p>
-<p>继承<code>UIResponder</code>的类才能响应，如<code>UIApplication</code>、<code>UIView</code>、<code>UIViewController</code>。而<code>CALayer</code>是继承自<code>NSObject</code>的，不能响应</p>
-<p>事件首先传递给<code>UIApplication</code>，然后向下分发给<code>UIWindow</code>，然后分发给最下层的<code>UIView</code>，逐步调用<code>hitTest</code>从屏内向外找，当某个<code>UIView</code>返回YES时就递归对其<code>SubView</code>执行<code>hitTest</code>，直到找到最后一个</p>
-<p>某<code>UIView</code>不接受事件的情况：</p>
+<h2 id="响应连和事件传递"><a href="#响应连和事件传递" class="headerlink" title="响应连和事件传递"></a>响应连和事件传递</h2><ol>
+<li><p>hitTest方法检测看是否返回</p>
+</li>
+<li><p>继承<code>UIResponder</code>的类才能响应，如<code>UIApplication</code>、<code>UIView</code>、<code>UIViewController</code>。而<code>CALayer</code>是继承自<code>NSObject</code>的，不能响应</p>
+</li>
+<li><p>事件首先传递给<code>UIApplication</code>，然后向下分发给<code>UIWindow</code>，然后分发给最下层的<code>UIView</code>，逐步调用<code>hitTest</code>从屏内向外找，当某个<code>UIView</code>返回YES时就递归对其<code>SubView</code>执行<code>hitTest</code>，直到找到最后一个</p>
+</li>
+</ol>
+<ul>
+<li>某<code>UIView</code>不接受事件的情况：</li>
+</ul>
 <ol>
 <li>alpha &lt; 0.01</li>
 <li>userInteractionEnabled = NO</li>
@@ -557,9 +555,11 @@
 </li>
 </ol>
 <ol start="5">
-<li>简化视图结构<br>GPU在绘制图像前，会把重叠的视图进行混合，视图结构越复杂，这个操作就越耗时，如果存在透明视图，混合过程会更加复杂。<br>所以，我们可以</li>
+<li>简化视图结构</li>
 </ol>
 <ul>
+<li>GPU在绘制图像前，会把重叠的视图进行混合，视图结构越复杂，这个操作就越耗时，如果存在透明视图，混合过程会更加复杂。</li>
+<li>所以，我们可以：</li>
 <li>尽量避免复杂的图层结构</li>
 <li>少使用透明的视图</li>
 <li>不透明的视图，设置opaque = YES </li>
@@ -568,19 +568,24 @@
 <li>减少离屏渲染</li>
 </ol>
 <ul>
-<li><p>老生常谈之圆角问题<br>圆角是开发中经常使用到的美化方式，但一般的设置cornerRadius时会配合masksToBounds属性，这就会造成离屏渲染。<br>关于这种问题的处理，大致有两个思路</p>
+<li><p>老生常谈之圆角问题</p>
+</li>
+<li><p>圆角是开发中经常使用到的美化方式，但一般的设置cornerRadius时会配合masksToBounds属性，这就会造成离屏渲染。</p>
+</li>
+<li><p>关于这种问题的处理，大致有两个思路</p>
 </li>
 <li><p>异步绘制一张圆角的图片来显示；</p>
 </li>
 <li><p>用一个圆角而中空的图来盖住。</p>
 </li>
-<li><p>tableview需要刷新数据时，使用<br>[tableview beginUpdates];<br>[tableview insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationNone];<br>[tableview endUpdates];<br>而非<br>[tableview reloadData];<br>从而刷新更少的行减少CPU压力</p>
+<li><p>tableview需要刷新数据时，使用<br>[tableview beginUpdates]、[tableview insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationNone]、<br>[tableview endUpdates];而非<br>[tableview reloadData]从而刷新更少的行减少CPU压力</p>
 </li>
 </ul>
 <ol start="8">
-<li>NSDateFormatter这个对象的相关操作很费时，需要避免频繁的创建和计算 </li>
-<li>对于固定行高，前一个设置属性比后一个实现代理方法效率高<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cell.tableview.rowHeight = <span class="number">50.0</span>;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView heightForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">50.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li><p>对于固定行高，前一个设置属性比后一个实现代理方法效率高</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cell.tableview.rowHeight = <span class="number">50.0</span>;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView heightForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">50.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NSDateFormatter这个对象的相关操作很费时，需要避免频繁的创建和计算</p>
 </li>
 </ol>
 
@@ -594,10 +599,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-04T16:57:06+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-05T17:26:05+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年6月4日</p>
+    <p>最后更新于 2019年6月5日</p>
   </a>
 </div>
 
@@ -617,7 +622,7 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-03-01-ios-interview-thing/&title=一些iOS面试基础题总结 | 派大星星星星&summary=HTTP(S)/TCP/IP">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-03-01-ios-interview-thing/&title=一些iOS面试基础题总结 | 派大星星星星&summary=">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -625,7 +630,7 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-03-01-ios-interview-thing/&title=一些iOS面试基础题总结 | 派大星星星星&summary=HTTP(S)/TCP/IP">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-03-01-ios-interview-thing/&title=一些iOS面试基础题总结 | 派大星星星星&summary=">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -641,7 +646,7 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-03-01-ios-interview-thing/&title=一些iOS面试基础题总结 | 派大星星星星&summary=HTTP(S)/TCP/IP">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-03-01-ios-interview-thing/&title=一些iOS面试基础题总结 | 派大星星星星&summary=">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -812,7 +817,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-S-TCP-IP"><span class="toc-text">HTTP(S)/TCP/IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程之间同步"><span class="toc-text">线程之间同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程之间通信"><span class="toc-text">多线程之间通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何保证线程安全"><span class="toc-text">如何保证线程安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的坑"><span class="toc-text">多线程的坑</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout"><span class="toc-text">AutoLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#objc-msgSend"><span class="toc-text">objc_msgSend</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runtime"><span class="toc-text">Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Category"><span class="toc-text">Category</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSObject与objc-class"><span class="toc-text">NSObject与objc_class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runloop"><span class="toc-text">Runloop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source"><span class="toc-text">Source</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#五个Mode"><span class="toc-text">五个Mode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#作用"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监测卡顿的方法"><span class="toc-text">监测卡顿的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#autoreleasepool"><span class="toc-text">autoreleasepool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS系统架构"><span class="toc-text">iOS系统架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App启动过程与优化"><span class="toc-text">App启动过程与优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIScrollView-的代理方法"><span class="toc-text">UIScrollView 的代理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应连和事件传递"><span class="toc-text">响应连和事件传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView-和-CALayer-的区别和联系"><span class="toc-text">UIView 和 CALayer 的区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#轮播图朴素实现的集中方法"><span class="toc-text">轮播图朴素实现的集中方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TableView-和-CollectionView-必选的代理方法"><span class="toc-text">TableView 和 CollectionView 必选的代理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableView-的优化思路"><span class="toc-text">UITableView 的优化思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流程："><span class="toc-text">流程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化思路"><span class="toc-text">优化思路</span></a></li></ol></li>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程之间同步"><span class="toc-text">线程之间同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程之间通信"><span class="toc-text">多线程之间通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何保证线程安全"><span class="toc-text">如何保证线程安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的坑"><span class="toc-text">多线程的坑</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout"><span class="toc-text">AutoLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#objc-msgSend"><span class="toc-text">objc_msgSend</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runtime"><span class="toc-text">Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Category"><span class="toc-text">Category</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSObject与objc-class"><span class="toc-text">NSObject与objc_class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runloop"><span class="toc-text">Runloop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source"><span class="toc-text">Source</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#五个Mode"><span class="toc-text">五个Mode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#作用"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监测卡顿的方法"><span class="toc-text">监测卡顿的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#autoreleasepool"><span class="toc-text">autoreleasepool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS系统架构"><span class="toc-text">iOS系统架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App启动过程与优化"><span class="toc-text">App启动过程与优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIScrollView-的代理方法"><span class="toc-text">UIScrollView 的代理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应连和事件传递"><span class="toc-text">响应连和事件传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView-和-CALayer-的区别和联系"><span class="toc-text">UIView 和 CALayer 的区别和联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#轮播图朴素实现的集中方法"><span class="toc-text">轮播图朴素实现的集中方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TableView-和-CollectionView-必选的代理方法"><span class="toc-text">TableView 和 CollectionView 必选的代理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableView-的优化思路"><span class="toc-text">UITableView 的优化思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流程："><span class="toc-text">流程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化思路"><span class="toc-text">优化思路</span></a></li></ol></li>
     </div>
   </section>
 
@@ -843,7 +848,7 @@
         
           <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(12)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(8)</div></a></li>
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(9)</div></a></li>
         
       </ul>
     </div>
@@ -868,7 +873,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/NetworkProtocol/" style="font-size: 14px; color: #999">NetworkProtocol</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
     </div>
   </section>
 
@@ -888,7 +893,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-23-ios-block-and-mainqueue/" title="iOS处理多线程异步Block中的UI操作" rel="bookmark">iOS处理多线程异步Block中的UI操作</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-05-05-ios-object-struct-isa/" title="考察ObjC对象内存结构与isa指针" rel="bookmark">考察ObjC对象内存结构与isa指针</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-22-ios-alipay-h5-solution/" title="iOS集成支付宝H5支付实现跳转与回调的解决方案" rel="bookmark">iOS集成支付宝H5支付实现跳转与回调的解决方案</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uitabbar-touch-animation/" title="iOS UITabbar图标点击动画效果实现" rel="bookmark">iOS UITabbar图标点击动画效果实现</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-02-ios-uiscrollview-delegate-methods/" title="iOS UIScrollView的代理方法汇总" rel="bookmark">iOS UIScrollView的代理方法汇总</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-23-ios-block-and-mainqueue/" title="iOS处理多线程异步Block中的UI操作" rel="bookmark">iOS处理多线程异步Block中的UI操作</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-12-transfer-null-to-nsstring/" title="iOS 判断NSString值是否为空或null并转换为空字符串" rel="bookmark">iOS 判断NSString值是否为空或null并转换为空字符串</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-05-iphone-pixel-point-size-scale/" title="iPhone屏幕各种尺寸分辨率（更新至XS）" rel="bookmark">iPhone屏幕各种尺寸分辨率（更新至XS）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-03-12-if-nsarray-null/" title="判断一个 NSArray 是否为空" rel="bookmark">判断一个 NSArray 是否为空</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-04-23-nsuserdefaults-setbool-forkey/" title="关于 NSUserDefaults setBool 的值取出后if判断不了的问题" rel="bookmark">关于 NSUserDefaults setBool 的值取出后if判断不了的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uilabel-linebreakmode-setting/" title="iOS UILabel的lineBreakMode省略模式设置" rel="bookmark">iOS UILabel的lineBreakMode省略模式设置</a></h3></div></li></ul>
     </div>
   </section>
 
