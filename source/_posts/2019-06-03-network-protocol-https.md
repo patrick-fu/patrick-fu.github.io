@@ -1,6 +1,6 @@
 ---
 title: 杂谈网络协议之HTTP、HTTPS和TLS
-date: 2019-06-05 14:42:40
+date: 2019-06-03 14:42:40
 tags:
   - NetworkProtocol
 categories:
@@ -10,6 +10,8 @@ categories:
 最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。
 
 <!-- more -->
+
+[关于TCP/IP的内容链接](https://paaatrick.com/2019-06-06-network-protocol-ip-tcp-udp/)
 
 ## HTTP
 
@@ -36,13 +38,19 @@ categories:
 5. 强制要求`Host`头，让互联网主机托管成为可能
 
 ###### HTTP请求报文格式
-- 请求方法 URL 协议版本
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155246.jpg)
+
+- 请求方法 | URL | 协议版本
 - `Header`头部（一行一个字段，key-value，中间冒号分隔）
 - 空行
 - 请求包体(GET没有,POST用)(GET也可以填body,服务端不一定处理)
 
 ###### HTTP响应报文格式
-- 协议版本 状态码 状态码描述
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155333.jpg)
+
+- 协议版本 | 状态码 | 状态码描述
 - `Header`头部（一行一个字段，key-value，中间冒号分隔）
 - 空行
 - 响应包体
@@ -69,6 +77,9 @@ categories:
 
 #### HTTP/2.0
 - HTTP2.0通过头压缩、分帧、多路复用等技术提升性能
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155409.jpg)
+
 1. SPDY是谷歌推出的，HTTP2.0基于此制定
 2. HTTP2.0对header压缩，用索引表替代key-value，将一个TCP连接中切分多个流。
 - 每个流有自己ID，流是双向的虚拟通道，流有优先级。2.0还将所有信息分割为帧。
@@ -79,9 +90,13 @@ categories:
 - 这样2.0解决了1.1的队首阻塞问题。1.1通过pipeline用多条TCP实现并发，2.0只用1个TCP实现并发，提高性能。
 - 但HTTP2.0还是基于TCP的，TCP处理包时有严格顺序，前面流2的帧没收到，后面流1的帧也会阻塞
 
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155413.jpg)
+
 #### QUIC
 - QUIC是谷歌基于UDP改进的应用层，未来HTTP3.0可能基于此实现，解决HTTP2.0的问题，QUIC也是面向连接的。
 - QUIC自定义类似TCP的连接、重试、多路复用、流量控制技术，进一步提升性能
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155449.jpg)
 
 1. 机制1：自定义连接
 - 一条TCP连接是四元组（源IP和端口,目标IP和端口）标识的，一旦一个元素变化就需要断开重连
@@ -110,6 +125,8 @@ categories:
 - QUIC窗口的其实位置为当前收到的最大offset，从这个offset到当前流所能容纳的最大缓存才是真正的窗口
 - 另外还有整个连接的窗口，需要对所有流的窗口做一个统计
 
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155516.jpg)
+
 #### 关于HTTP的队首阻塞
 
 1. HTTP/1.0对于同一个tcp连接，所有的请求放入队列中，只有前一个请求的响应收到了，然后才能发送下一个请求。可见，HTTP/1.0的队首组塞发生在客户端。
@@ -121,6 +138,9 @@ categories:
 ## HTTPS
 
 #### 建立连接过程
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155548.jpg)
+
 1. 开始连接时，客户端用服务端的公钥加密发送，服务端用客户端的公钥加密回应
 2. CA证书里有公钥，CA是递归的最后有几个大的rootCA，先用非对称加密获取密钥，然后用对称加密传输数据，TLS/SSL
 3. HTTPS握手过程：（c是客户端，s是服务端）
@@ -144,9 +164,13 @@ categories:
 
 #### SSL/TLS
 1. TLS即SSL升级版，18年推出TLS1.3，目前(19年)用TLS1.2和1.3的都不少，SSL早就废弃了
+
 2. 对称加密算法有：`AES`、`DES`、`3DES`，非对称加密算法有：`RSA`、`ECDHE`
 3. TLS中上面将两个随机数和Premaster计算成对称加密主密钥的算法是PRF算法(SHA256)
 4. TLS是在传输层（TCPUDP层）之上，应用层（HTTP）之下的层，HTTPS其实就是在TCP和HTTP之间加了TLS层
+
+![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155834.PNG)
+
 5. 握手的加密套件：例子：`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`，`ECDHE`密钥交换、`RSA`身份验证、`AES`算法、`128`加密强度、`GCM`加密模式、`SHA256`是MAC或者PRF
 6. 目前主流HTTPS的流量是使用`ECDHE`进行密钥交换、用`RSA`进行身份验证
 
@@ -173,6 +197,9 @@ categories:
 5. key derivation function （密钥衍生算法)
 
 - TLS协议设计之初就考虑到了这每一类算法的演变，所以没有定死算法，而是设计了一个算法协商过程，来允许加入新的算法( 简直是软件可扩展性设计的典范！)，协商出的一个算法组合即一个`CipherSuite`
+
+- 常见加密套件
+   ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155835.JPG)
 
 #### 加密算法分类
 - 上述第二层中的密码学算法常见有下面几类
@@ -263,11 +290,3 @@ categories:
 1. HTTPS实际就是在TCP层与http层之间加入了TLS/SSL来解决安全问题的。
 2. 在进行应用数据传输之前，TLS需要通过握手过程来协商安全通信所需的相关参数。
 3. 整个通信过程中主要用到散列、对称加密、非对称加密和证书等相关技术，来解决客户端与服务器数据传输中各种安全风险问题，从而达到保证整个通信过程的安全。
-
-## 网络分层
-- 分层：1-物理层 2-数据链路层(MAC层) 3-网络层(IP) 4-传输层(TCPUDP) 5-应用层(HTTP)
-- MAC有ARP协议用于已知IP请求MAC地址
-- ICMP协议可以实现ping（查询报文）和traceroute（差错报文）
-- DHCP请求IP地址，DHCP附送PXE协议安装OS
-- CIDR代替ABC类分配IP地址段，注意私有IP段
-- TCP的seq是32位的计数器，每4微秒加1，计算可知284分钟即4.73小时重置一次
