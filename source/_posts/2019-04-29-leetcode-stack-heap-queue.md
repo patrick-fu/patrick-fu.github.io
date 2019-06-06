@@ -11,6 +11,8 @@ categories:
 
 有关栈、堆、队列的做题笔记，Python实现
 
+<!-- more -->
+
 # 栈 Stack
 
 ## 20. 有效的括号 Valid Parentheses
@@ -18,8 +20,6 @@ categories:
 [LeetCodeCN 第20题链接](https://leetcode-cn.com/problems/valid-parentheses/)
 
 使用 Stack 栈 来操作，用了一个技巧是先做一个字典，`key`为右括号，`value`为左括号。
-
-<!-- more -->
 
 ```python
 class Solution:

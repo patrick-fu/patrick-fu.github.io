@@ -11,13 +11,13 @@ categories:
 
 有关位运算的做题笔记，Python实现
 
+<!-- more -->
+
 ## 191. 位1的个数 Number of 1 Bits
 
 [LeetCodeCN 第191题链接](https://leetcode-cn.com/problems/number-of-1-bits/)
 
 第一种方法：遍历所有二进制位，通过取模`n%2`或者与运算`n&1`判断尾数是否为1，然后把n右移一位
-
-<!-- more -->
 
 ```python
 class Solution(object):

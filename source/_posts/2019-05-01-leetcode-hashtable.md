@@ -11,13 +11,13 @@ categories:
 
 有关哈希表的做题笔记，Python实现
 
+<!-- more -->
+
 ## 242. 有效的字母异位词 Valid Anagram
 
 [LeetCodeCN 第242题链接](https://leetcode-cn.com/problems/valid-anagram/)
 
 第一种方法：对两个字符串排序后对比
-
-<!-- more -->
 
 ```python
 class Solution:

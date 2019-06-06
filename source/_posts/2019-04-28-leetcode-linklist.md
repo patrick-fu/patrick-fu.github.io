@@ -11,6 +11,7 @@ categories:
 
 有关链表的做题笔记，Python实现
 
+<!-- more -->
 
 ## 链表定义
 ```python
@@ -26,8 +27,6 @@ class ListNode:
 [LeetCodeCN 第206题链接](https://leetcode-cn.com/problems/reverse-linked-list/)
 
 遍历链表，迭代前节点prev，缓存当前节点current的下一节点，然后把当前节点的next指针指向前节点prev
-
-<!-- more -->
 
 ```python
 class Solution:

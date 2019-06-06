@@ -11,6 +11,8 @@ categories:
 
 有关二叉树的做题笔记，Python实现
 
+<!-- more -->
+
 ## 二叉树的定义
 ```python
 # Definition for a binary tree node.
@@ -26,8 +28,6 @@ class TreeNode:
 [LeetCodeCN 第226题链接](https://leetcode-cn.com/problems/invert-binary-tree/)
 
 第一种方法：递归
-
-<!-- more -->
 
 ```python
 class Solution:

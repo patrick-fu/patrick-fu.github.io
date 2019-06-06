@@ -11,13 +11,13 @@ categories:
 
 有关并查集 Union Find Set 的做题笔记，Python实现
 
+<!-- more -->
+
 ## 200. 岛屿的个数 Number of Islands
 
 [LeetCodeCN 第200题链接](https://leetcode-cn.com/problems/number-of-islands/)
 
 第一种方法：构造一个简单的并查集，将输入的二维数组坐标一维化。
-
-<!-- more -->
 
 实例化并查集对象后，遍历二维数组，发现为`1`时对该节点上下左右都执行一次`union()`，将这上下左右的`1` （如果是的话）的`parent`指向当前节点
 

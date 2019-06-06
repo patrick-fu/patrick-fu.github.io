@@ -10,9 +10,9 @@ categories:
 
 多线程方法的`completionHandler`block可能运行在非主线程上。两种处理方法：
 
-1. 在block里手动加上`dispatch_async(dispatch_get_main_queue(), ^{});`
-
 <!-- more -->
+
+1. 在block里手动加上`dispatch_async(dispatch_get_main_queue(), ^{});`
 
 ```objc
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

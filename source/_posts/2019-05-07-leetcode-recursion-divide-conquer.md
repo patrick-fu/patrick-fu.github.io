@@ -11,13 +11,13 @@ categories:
 
 有关递归与分治的做题笔记，Python实现
 
+<!-- more -->
+
 ## 50. Pow(x, n)
 
 [LeetCodeCN 第50题链接](https://leetcode-cn.com/problems/powx-n/)
 
 第一种方法：暴力乘法，时间复杂度`O(n)`，LeetCode会超时
-
-<!-- more -->
 
 ```python
 class Solution:
