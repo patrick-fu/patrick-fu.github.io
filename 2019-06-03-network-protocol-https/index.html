@@ -235,7 +235,7 @@
         
   
     <h1 class="title">
-      <a href="/2019-06-05-network-protocol-https/">
+      <a href="/2019-06-03-network-protocol-https/">
         杂谈网络协议之HTTP、HTTPS和TLS
       </a>
     </h1>
@@ -265,7 +265,7 @@
             <div class="new-meta-item date">
   <a class="notlink">
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-05</p>
+    <p>2019-06-03</p>
   </a>
 </div>
 
@@ -320,6 +320,7 @@
           <p>最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。</p>
 <a id="more"></a>
 
+<p><a href="https://paaatrick.com/2019-06-06-network-protocol-ip-tcp-udp/">关于TCP/IP的内容链接</a></p>
 <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h4 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h4><ul>
 <li>这是后来回来定义的版本，这个初始版本采用纯文本格式</li>
 <li>只有GET动作，在响应请求后立即关闭连接，功能非常有限</li>
@@ -347,14 +348,16 @@
 <li>允许响应数据分块（<code>chunked</code>），利于传输大文件</li>
 <li>强制要求<code>Host</code>头，让互联网主机托管成为可能</li>
 </ol>
-<h6 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h6><ul>
-<li>请求方法 URL 协议版本</li>
+<h6 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h6><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155246.jpg" alt></p>
+<ul>
+<li>请求方法 | URL | 协议版本</li>
 <li><code>Header</code>头部（一行一个字段，key-value，中间冒号分隔）</li>
 <li>空行</li>
 <li>请求包体(GET没有,POST用)(GET也可以填body,服务端不一定处理)</li>
 </ul>
-<h6 id="HTTP响应报文格式"><a href="#HTTP响应报文格式" class="headerlink" title="HTTP响应报文格式"></a>HTTP响应报文格式</h6><ul>
-<li>协议版本 状态码 状态码描述</li>
+<h6 id="HTTP响应报文格式"><a href="#HTTP响应报文格式" class="headerlink" title="HTTP响应报文格式"></a>HTTP响应报文格式</h6><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155333.jpg" alt></p>
+<ul>
+<li>协议版本 | 状态码 | 状态码描述</li>
 <li><code>Header</code>头部（一行一个字段，key-value，中间冒号分隔）</li>
 <li>空行</li>
 <li>响应包体</li>
@@ -380,6 +383,7 @@
 <h4 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP/2.0"></a>HTTP/2.0</h4><ul>
 <li>HTTP2.0通过头压缩、分帧、多路复用等技术提升性能</li>
 </ul>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155409.jpg" alt></p>
 <ol>
 <li>SPDY是谷歌推出的，HTTP2.0基于此制定</li>
 <li>HTTP2.0对header压缩，用索引表替代key-value，将一个TCP连接中切分多个流。</li>
@@ -393,10 +397,12 @@
 <li>这样2.0解决了1.1的队首阻塞问题。1.1通过pipeline用多条TCP实现并发，2.0只用1个TCP实现并发，提高性能。</li>
 <li>但HTTP2.0还是基于TCP的，TCP处理包时有严格顺序，前面流2的帧没收到，后面流1的帧也会阻塞</li>
 </ul>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155413.jpg" alt></p>
 <h4 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h4><ul>
 <li>QUIC是谷歌基于UDP改进的应用层，未来HTTP3.0可能基于此实现，解决HTTP2.0的问题，QUIC也是面向连接的。</li>
 <li>QUIC自定义类似TCP的连接、重试、多路复用、流量控制技术，进一步提升性能</li>
 </ul>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155449.jpg" alt></p>
 <ol>
 <li>机制1：自定义连接</li>
 </ol>
@@ -436,6 +442,7 @@
 <li>QUIC窗口的其实位置为当前收到的最大offset，从这个offset到当前流所能容纳的最大缓存才是真正的窗口</li>
 <li>另外还有整个连接的窗口，需要对所有流的窗口做一个统计</li>
 </ul>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155516.jpg" alt></p>
 <h4 id="关于HTTP的队首阻塞"><a href="#关于HTTP的队首阻塞" class="headerlink" title="关于HTTP的队首阻塞"></a>关于HTTP的队首阻塞</h4><ol>
 <li><p>HTTP/1.0对于同一个tcp连接，所有的请求放入队列中，只有前一个请求的响应收到了，然后才能发送下一个请求。可见，HTTP/1.0的队首组塞发生在客户端。</p>
 </li>
@@ -444,7 +451,8 @@
 <li><p>HTTP/2.0无论在客户端还是在服务器端都不需要排队，在同一个TCP连接上，有多个stream，由各个stream发送和接收请求，各个steam相互独立，互不阻塞。只要TCO没有人在用那么就可以发送已经生成的requst或者reponse的数据，在两端都不用等，从而彻底解决了HTTP协议层面的队首阻塞问题。</p>
 </li>
 </ol>
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><h4 id="建立连接过程"><a href="#建立连接过程" class="headerlink" title="建立连接过程"></a>建立连接过程</h4><ol>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><h4 id="建立连接过程"><a href="#建立连接过程" class="headerlink" title="建立连接过程"></a>建立连接过程</h4><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155548.jpg" alt></p>
+<ol>
 <li>开始连接时，客户端用服务端的公钥加密发送，服务端用客户端的公钥加密回应</li>
 <li>CA证书里有公钥，CA是递归的最后有几个大的rootCA，先用非对称加密获取密钥，然后用对称加密传输数据，TLS/SSL</li>
 <li>HTTPS握手过程：（c是客户端，s是服务端）</li>
@@ -475,10 +483,17 @@
 <li>除了<code>Premaster</code>外还需要两个随机数的原因是<code>TLS</code>不信任每个客户端都能产生安全的随机数，所以引入多两个随机数</li>
 </ol>
 <h4 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h4><ol>
-<li>TLS即SSL升级版，18年推出TLS1.3，目前(19年)用TLS1.2和1.3的都不少，SSL早就废弃了</li>
-<li>对称加密算法有：<code>AES</code>、<code>DES</code>、<code>3DES</code>，非对称加密算法有：<code>RSA</code>、<code>ECDHE</code></li>
-<li>TLS中上面将两个随机数和Premaster计算成对称加密主密钥的算法是PRF算法(SHA256)</li>
-<li>TLS是在传输层（TCPUDP层）之上，应用层（HTTP）之下的层，HTTPS其实就是在TCP和HTTP之间加了TLS层</li>
+<li><p>TLS即SSL升级版，18年推出TLS1.3，目前(19年)用TLS1.2和1.3的都不少，SSL早就废弃了</p>
+</li>
+<li><p>对称加密算法有：<code>AES</code>、<code>DES</code>、<code>3DES</code>，非对称加密算法有：<code>RSA</code>、<code>ECDHE</code></p>
+</li>
+<li><p>TLS中上面将两个随机数和Premaster计算成对称加密主密钥的算法是PRF算法(SHA256)</p>
+</li>
+<li><p>TLS是在传输层（TCPUDP层）之上，应用层（HTTP）之下的层，HTTPS其实就是在TCP和HTTP之间加了TLS层</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155834.PNG" alt></p>
+<ol start="5">
 <li>握手的加密套件：例子：<code>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</code>，<code>ECDHE</code>密钥交换、<code>RSA</code>身份验证、<code>AES</code>算法、<code>128</code>加密强度、<code>GCM</code>加密模式、<code>SHA256</code>是MAC或者PRF</li>
 <li>目前主流HTTPS的流量是使用<code>ECDHE</code>进行密钥交换、用<code>RSA</code>进行身份验证</li>
 </ol>
@@ -513,7 +528,10 @@
 <li>key derivation function （密钥衍生算法)</li>
 </ol>
 <ul>
-<li>TLS协议设计之初就考虑到了这每一类算法的演变，所以没有定死算法，而是设计了一个算法协商过程，来允许加入新的算法( 简直是软件可扩展性设计的典范！)，协商出的一个算法组合即一个<code>CipherSuite</code></li>
+<li><p>TLS协议设计之初就考虑到了这每一类算法的演变，所以没有定死算法，而是设计了一个算法协商过程，来允许加入新的算法( 简直是软件可扩展性设计的典范！)，协商出的一个算法组合即一个<code>CipherSuite</code></p>
+</li>
+<li><p>常见加密套件<br> <img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155835.JPG" alt></p>
+</li>
 </ul>
 <h4 id="加密算法分类"><a href="#加密算法分类" class="headerlink" title="加密算法分类"></a>加密算法分类</h4><ul>
 <li>上述第二层中的密码学算法常见有下面几类</li>
@@ -625,14 +643,6 @@
 <li>在进行应用数据传输之前，TLS需要通过握手过程来协商安全通信所需的相关参数。</li>
 <li>整个通信过程中主要用到散列、对称加密、非对称加密和证书等相关技术，来解决客户端与服务器数据传输中各种安全风险问题，从而达到保证整个通信过程的安全。</li>
 </ol>
-<h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><ul>
-<li>分层：1-物理层 2-数据链路层(MAC层) 3-网络层(IP) 4-传输层(TCPUDP) 5-应用层(HTTP)</li>
-<li>MAC有ARP协议用于已知IP请求MAC地址</li>
-<li>ICMP协议可以实现ping（查询报文）和traceroute（差错报文）</li>
-<li>DHCP请求IP地址，DHCP附送PXE协议安装OS</li>
-<li>CIDR代替ABC类分配IP地址段，注意私有IP段</li>
-<li>TCP的seq是32位的计数器，每4微秒加1，计算可知284分钟即4.73小时重置一次</li>
-</ul>
 
         </div>
         
@@ -644,10 +654,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-05T17:22:43+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-06T16:01:49+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年6月5日</p>
+    <p>最后更新于 2019年6月6日</p>
   </a>
 </div>
 
@@ -667,7 +677,7 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-06-05-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -675,7 +685,7 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-06-05-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -683,7 +693,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3a0W7bMAwF0P7/T3fAngpsde4lpWYDjp8CI7F0VMBkSX58xNfn7+vr5693nr//fOfPK3/msQsPDw9vtPXnxZ438fyr5wN6Poh8P98eEB4eHt41Xh4MWkC+0dm6Lyx4eHh4b+W1yffZ7eLh4eH9v7wk+c4LEJuCCB4eHt57efmmk6R5c0CzVPtArQUPDw8v5m1eyu/6fL2/h4eHhzfqqs8KB/lzZo2xYhU8PDy8C7xNaTUvB7TjCPlOol3h4eHhXeBtShKbV/ys2ZYHGDw8PLzbvHz5zZ39oEBb/MXDw8O7wWsf1LayNkNaSWB48QQ8PDy8C7w2CW6LC20qnIec4kDx8PDwDvHyJtOmENAWJk79AfDw8PDu8ZLo0YaB5KWfH19eR3kxGYGHh4e35uUpb1KSyIPErPCxap7h4eHhHeLNBpvahZP7s9Lwi/t4eHh4F3htAGjbVHmi3Kbp+ep4eHh4t3ltITVPpmeDAm0i/qIYgYeHh3eId7YN1g4W5M9pBwvw8PDwbvBmLai2BNx+zifFXuwfDw8P7xqv/fGmNbUpc9QBCQ8PD+8CL29cJUntfqyqbZtFv8XDw8O7wNs072dliPYI2oBUdOTw8PDwSl5bqG2HBmYv+s1O/hLx8PDw8I7y8nR5P2TQwpJycFGMwMPDwzvEa1Pn2UDVnpEPWuHh4eH9JG829pS3tfIrgdXFCDw8PLxDvNmgQL5k0kJrm21two2Hh4d3lvdZXvvS6j5lL4ITHh4e3gXeLM0tKsRxqJil17NBBzw8PLw9rw0G+QDWLLs/tQc8PDy827xhDaMcHchHCmYR7NuhKzw8PLw38drXejtYsBk1wMPDw/uXefnW2+ZZHgbyojMeHh7ePd6s6TULD5tSb3IoeHh4eLd57T/57ejALC2ejXYNLzw8PLyU9wvVHzXK615YAwAAAABJRU5ErkJggg==">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3aQW7DMAwEwPz/0+m5aO3sUlKaAqNT4Do2RwFEltLjEY/nxbi6J3nC/ZOv7nycGHh4eHibQk+C+Pni5Ak/334V1dV3k5jx8PDwTvOSF9y/bPbd+9SSfH5hwcPDw/sYXhLuLP3khTgeHh7ef+HNWhUr3YO3JgY8PDy8mDdrNySBJs2INvQjvRY8PDy8mJcv1p/z+cj+Hh4eHt7yrnq+GXZ//fR212W0eHh4eAd4+YKbHAVY2dZqj2rlceLh4eHt5SUNgvaf/HwK8q2vvCXx7R48PDy8A7yVBsRs+79t784mbkN/BQ8PD++W124staVzklru78wn6MXJCDw8PLxl3qzZmoTSrs/1b9JmNjw8PLwDvNl216xoztPA7Dnfei14eHh4W3ltCzVPIbsObM3e8ki6Gnh4eHijSNrSuW22riSGvLCO8h4eHh7eVl7eop0dk2qfn6euF3/Fw8PDO8DLH70S6DMYbZopjh3g4eHhbeW1Z7JWDg20ZfGGpgkeHh7eYV6++D7j0S7l+XQkqQsPDw/vBG/WDmg39dsr7doepQo8PDy8Tby22F0pkWfle5KQLtMDHh4e3h/x8tzSTlNeTC8dusLDw8M7wGuvzBbulSnII/klMeDh4eG9hZe/ICma149hzd6Lh4eHd4LXNm3b0rYtjvPyOr+Oh4eHd4I3awHsWuhXklDxW+Hh4eEd4M0W6PWkkqeBNp3g4eHh/RVvfTt/1viYjWIbDA8PD2/Ee5ZjlgbabbB8Kl+U7Hh4eHgHeO2C2wadp4o26CUMHh4e3jKvbT3Mmgt5OT7bwbuMCg8PD+8Yr92yaovgYaek/BYeHh7eJ/OSzf72qMF66wEPDw/vk3nrSWLlgNfSoSs8PDy8TbxZ4yBJG+2xqtnnDb0WPDw8vJg3axPkKSGfxFkhvmHg4eHhpbwvu7MDJ7EnJtYAAAAASUVORK5CYII=">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
         
@@ -691,7 +701,7 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-06-05-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -699,7 +709,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3a0W7bMAwF0P7/T3fAngpsde4lpWYDjp8CI7F0VMBkSX58xNfn7+vr5693nr//fOfPK3/msQsPDw9vtPXnxZ438fyr5wN6Poh8P98eEB4eHt41Xh4MWkC+0dm6Lyx4eHh4b+W1yffZ7eLh4eH9v7wk+c4LEJuCCB4eHt57efmmk6R5c0CzVPtArQUPDw8v5m1eyu/6fL2/h4eHhzfqqs8KB/lzZo2xYhU8PDy8C7xNaTUvB7TjCPlOol3h4eHhXeBtShKbV/ys2ZYHGDw8PLzbvHz5zZ39oEBb/MXDw8O7wWsf1LayNkNaSWB48QQ8PDy8C7w2CW6LC20qnIec4kDx8PDwDvHyJtOmENAWJk79AfDw8PDu8ZLo0YaB5KWfH19eR3kxGYGHh4e35uUpb1KSyIPErPCxap7h4eHhHeLNBpvahZP7s9Lwi/t4eHh4F3htAGjbVHmi3Kbp+ep4eHh4t3ltITVPpmeDAm0i/qIYgYeHh3eId7YN1g4W5M9pBwvw8PDwbvBmLai2BNx+zifFXuwfDw8P7xqv/fGmNbUpc9QBCQ8PD+8CL29cJUntfqyqbZtFv8XDw8O7wNs072dliPYI2oBUdOTw8PDwSl5bqG2HBmYv+s1O/hLx8PDw8I7y8nR5P2TQwpJycFGMwMPDwzvEa1Pn2UDVnpEPWuHh4eH9JG829pS3tfIrgdXFCDw8PLxDvNmgQL5k0kJrm21two2Hh4d3lvdZXvvS6j5lL4ITHh4e3gXeLM0tKsRxqJil17NBBzw8PLw9rw0G+QDWLLs/tQc8PDy827xhDaMcHchHCmYR7NuhKzw8PLw38drXejtYsBk1wMPDw/uXefnW2+ZZHgbyojMeHh7ePd6s6TULD5tSb3IoeHh4eLd57T/57ejALC2ejXYNLzw8PLyU9wvVHzXK615YAwAAAABJRU5ErkJggg==">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3aQW7DMAwEwPz/0+m5aO3sUlKaAqNT4Do2RwFEltLjEY/nxbi6J3nC/ZOv7nycGHh4eHibQk+C+Pni5Ak/334V1dV3k5jx8PDwTvOSF9y/bPbd+9SSfH5hwcPDw/sYXhLuLP3khTgeHh7ef+HNWhUr3YO3JgY8PDy8mDdrNySBJs2INvQjvRY8PDy8mJcv1p/z+cj+Hh4eHt7yrnq+GXZ//fR212W0eHh4eAd4+YKbHAVY2dZqj2rlceLh4eHt5SUNgvaf/HwK8q2vvCXx7R48PDy8A7yVBsRs+79t784mbkN/BQ8PD++W124staVzklru78wn6MXJCDw8PLxl3qzZmoTSrs/1b9JmNjw8PLwDvNl216xoztPA7Dnfei14eHh4W3ltCzVPIbsObM3e8ki6Gnh4eHijSNrSuW22riSGvLCO8h4eHh7eVl7eop0dk2qfn6euF3/Fw8PDO8DLH70S6DMYbZopjh3g4eHhbeW1Z7JWDg20ZfGGpgkeHh7eYV6++D7j0S7l+XQkqQsPDw/vBG/WDmg39dsr7doepQo8PDy8Tby22F0pkWfle5KQLtMDHh4e3h/x8tzSTlNeTC8dusLDw8M7wGuvzBbulSnII/klMeDh4eG9hZe/ICma149hzd6Lh4eHd4LXNm3b0rYtjvPyOr+Oh4eHd4I3awHsWuhXklDxW+Hh4eEd4M0W6PWkkqeBNp3g4eHh/RVvfTt/1viYjWIbDA8PD2/Ee5ZjlgbabbB8Kl+U7Hh4eHgHeO2C2wadp4o26CUMHh4e3jKvbT3Mmgt5OT7bwbuMCg8PD+8Yr92yaovgYaek/BYeHh7eJ/OSzf72qMF66wEPDw/vk3nrSWLlgNfSoSs8PDy8TbxZ4yBJG+2xqtnnDb0WPDw8vJg3axPkKSGfxFkhvmHg4eHhpbwvu7MDJ7EnJtYAAAAASUVORK5CYII=">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
         
@@ -720,6 +730,25 @@
         
         
             <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/2019-06-06-network-protocol-ip-tcp-udp/" rel="prev" title="杂谈网络协议之TCP/IP">
+                                  
+                                      杂谈网络协议之TCP/IP
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/NetworkProtocol/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>NetworkProtocol</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
                 
                     <section class="next">
@@ -843,7 +872,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-0-9"><span class="toc-text">HTTP/0.9</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-1-0"><span class="toc-text">HTTP/1.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-1-1"><span class="toc-text">HTTP/1.1</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTP请求报文格式"><span class="toc-text">HTTP请求报文格式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTP响应报文格式"><span class="toc-text">HTTP响应报文格式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#常见的Header"><span class="toc-text">常见的Header</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#一些特点"><span class="toc-text">一些特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-2-0"><span class="toc-text">HTTP/2.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#QUIC"><span class="toc-text">QUIC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于HTTP的队首阻塞"><span class="toc-text">关于HTTP的队首阻塞</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#建立连接过程"><span class="toc-text">建立连接过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSL-TLS"><span class="toc-text">SSL/TLS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TLS协议原理"><span class="toc-text">TLS协议原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#TLS加密套件-CipherSuite"><span class="toc-text">TLS加密套件 (CipherSuite)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加密算法分类"><span class="toc-text">加密算法分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AES加密算法"><span class="toc-text">AES加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DES、3DES加密算法"><span class="toc-text">DES、3DES加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA加密算法"><span class="toc-text">RSA加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ECDHE加密算法"><span class="toc-text">ECDHE加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络分层"><span class="toc-text">网络分层</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-0-9"><span class="toc-text">HTTP/0.9</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-1-0"><span class="toc-text">HTTP/1.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-1-1"><span class="toc-text">HTTP/1.1</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTP请求报文格式"><span class="toc-text">HTTP请求报文格式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTP响应报文格式"><span class="toc-text">HTTP响应报文格式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#常见的Header"><span class="toc-text">常见的Header</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#一些特点"><span class="toc-text">一些特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-2-0"><span class="toc-text">HTTP/2.0</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#QUIC"><span class="toc-text">QUIC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于HTTP的队首阻塞"><span class="toc-text">关于HTTP的队首阻塞</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#建立连接过程"><span class="toc-text">建立连接过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSL-TLS"><span class="toc-text">SSL/TLS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TLS协议原理"><span class="toc-text">TLS协议原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#TLS加密套件-CipherSuite"><span class="toc-text">TLS加密套件 (CipherSuite)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加密算法分类"><span class="toc-text">加密算法分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AES加密算法"><span class="toc-text">AES加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DES、3DES加密算法"><span class="toc-text">DES、3DES加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA加密算法"><span class="toc-text">RSA加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ECDHE加密算法"><span class="toc-text">ECDHE加密算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li>
     </div>
   </section>
 
@@ -874,7 +903,7 @@
         
           <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(12)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(9)</div></a></li>
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(10)</div></a></li>
         
       </ul>
     </div>
@@ -899,7 +928,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/NetworkProtocol/" style="font-size: 14px; color: #999">NetworkProtocol</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+      <a href="/tags/Algorithm/" style="font-size: 19px; color: #777">Algorithm</a> <a href="/tags/Food/" style="font-size: 16.5px; color: #888">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 19px; color: #777">LeetCode</a> <a href="/tags/NetworkProtocol/" style="font-size: 16.5px; color: #888">NetworkProtocol</a> <a href="/tags/Objective-C/" style="font-size: 21.5px; color: #666">Objective-C</a> <a href="/tags/Python/" style="font-size: 19px; color: #777">Python</a> <a href="/tags/WordPress/" style="font-size: 16.5px; color: #888">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
     </div>
   </section>
 
@@ -919,7 +948,7 @@
 </header>
 
     <div class="content pure">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-01-31-wp-real-media-library/" title="亲测真正好用的WordPress媒体库图片分类插件" rel="bookmark">亲测真正好用的WordPress媒体库图片分类插件</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-06-06-network-protocol-ip-tcp-udp/" title="杂谈网络协议之TCP/IP" rel="bookmark">杂谈网络协议之TCP/IP</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-01-31-wp-real-media-library/" title="亲测真正好用的WordPress媒体库图片分类插件" rel="bookmark">亲测真正好用的WordPress媒体库图片分类插件</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019-02-01-ios-uiimage-resize/" title="iOS修改UIImage图片尺寸大小逻辑分辨率" rel="bookmark">iOS修改UIImage图片尺寸大小逻辑分辨率</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -1062,7 +1091,7 @@
   <script>
     var disqus_shortname = 'paaatrick-com';
     
-      var disqus_url = 'https://paaatrick.com/2019-06-05-network-protocol-https/';
+      var disqus_url = 'https://paaatrick.com/2019-06-03-network-protocol-https/';
     
     (function(){
       var dsq = document.createElement('script');
