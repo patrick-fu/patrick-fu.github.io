@@ -328,9 +328,6 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>多线程方法的<code>completionHandler</code>block可能运行在非主线程上。两种处理方法：</p>
-<ol>
-<li>在block里手动加上<code>dispatch_async(dispatch_get_main_queue(), ^{});</code></li>
-</ol>
       
         <div class="readmore">
           <a href="/2019-02-23-ios-block-and-mainqueue/" class="flat-box">
