@@ -1,5 +1,5 @@
 ---
-title: LeetCode做题笔记--链表相关题目
+title: LeetCode做题笔记-链表相关题目
 date: 2019-04-28 16:52:35
 tags: 
   - LeetCode

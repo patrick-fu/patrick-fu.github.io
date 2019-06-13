@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星</title>
+  <title>杂谈网络协议之 HTTP、HTTPS 和 TLS | 派大星星星星</title>
   
   <meta name="keywords" content="iOS">
   
@@ -236,7 +236,7 @@
   
     <h1 class="title">
       <a href="/2019-06-03-network-protocol-https/">
-        杂谈网络协议之HTTP、HTTPS和TLS
+        杂谈网络协议之 HTTP、HTTPS 和 TLS
       </a>
     </h1>
   
@@ -326,28 +326,26 @@
 <li>只有GET动作，在响应请求后立即关闭连接，功能非常有限</li>
 </ul>
 <h4 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h4><ul>
-<li>1996年发布，与1.1差不了多少了</li>
-</ul>
-<ol>
+<li>1996年发布，与1.1差不了多少了<ol>
 <li>增加了<code>HEAD</code>、<code>POST</code>等方法</li>
 <li>增加响应状态码，标记可能的错误原因</li>
 <li>引入协议版本号概念</li>
 <li>引入了<code>Header</code>头部的概念</li>
 <li>传输的数据不再仅限于文本</li>
 </ol>
-<ul>
+</li>
 <li>但是1.0并不是一个标准，只相当于一个备忘录（参考文档）</li>
 </ul>
 <h4 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h4><ul>
-<li>1999年，发布RFC文档编号2616，是个正式的标准</li>
-</ul>
-<ol>
+<li>1999年，发布RFC文档编号2616，是个正式的标准<ol>
 <li>增加了<code>PUT</code>、<code>DELETE</code>等方法</li>
 <li>增加了缓存管理和控制</li>
 <li>明确了连接管理，允许持久连接</li>
 <li>允许响应数据分块（<code>chunked</code>），利于传输大文件</li>
 <li>强制要求<code>Host</code>头，让互联网主机托管成为可能</li>
 </ol>
+</li>
+</ul>
 <h6 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h6><p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155246.jpg" alt></p>
 <ul>
 <li>请求方法 | URL | 协议版本</li>
@@ -386,9 +384,7 @@
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155409.jpg" alt></p>
 <ol>
 <li>SPDY是谷歌推出的，HTTP2.0基于此制定</li>
-<li>HTTP2.0对header压缩，用索引表替代key-value，将一个TCP连接中切分多个流。</li>
-</ol>
-<ul>
+<li>HTTP2.0对header压缩，用索引表替代key-value，将一个TCP连接中切分多个流。<ul>
 <li>每个流有自己ID，流是双向的虚拟通道，流有优先级。2.0还将所有信息分割为帧。</li>
 <li>有header帧和data帧，用二进制编码，多个data帧属于同一个流。</li>
 <li>这样可以将多个请求分到不同的流中，将请求内容拆成帧，进行二进制传输。</li>
@@ -397,6 +393,8 @@
 <li>这样2.0解决了1.1的队首阻塞问题。1.1通过pipeline用多条TCP实现并发，2.0只用1个TCP实现并发，提高性能。</li>
 <li>但HTTP2.0还是基于TCP的，TCP处理包时有严格顺序，前面流2的帧没收到，后面流1的帧也会阻塞</li>
 </ul>
+</li>
+</ol>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155413.jpg" alt></p>
 <h4 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h4><ul>
 <li>QUIC是谷歌基于UDP改进的应用层，未来HTTP3.0可能基于此实现，解决HTTP2.0的问题，QUIC也是面向连接的。</li>
@@ -404,17 +402,15 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155449.jpg" alt></p>
 <ol>
-<li>机制1：自定义连接</li>
-</ol>
+<li><p>机制1：自定义连接</p>
 <ul>
 <li>一条TCP连接是四元组（源IP和端口,目标IP和端口）标识的，一旦一个元素变化就需要断开重连</li>
 <li>移动互联经常不稳定、切换，都会导致重连，又三次握手，时延高</li>
 <li>而基于UDP的QUIC自己用64位随机数作为标识替代四元组，而且UDP是无连接的</li>
 <li>当前述的四个元素变化时，不用重新建立连接</li>
 </ul>
-<ol start="2">
-<li>机制2：自定义重传机制</li>
-</ol>
+</li>
+<li><p>机制2：自定义重传机制</p>
 <ul>
 <li>TCP有通过采样往返时间RTT的自适应重传算法，但是这种采样不准确。</li>
 <li>QUIC也有递增序列号，任何一个包重发序列号都+1，不像TCP重发包还是原来的序号。</li>
@@ -422,17 +418,15 @@
 <li>QUIC在数据流里定义了<code>offset</code>，可以通过<code>offset</code>查看数据发送到了哪里</li>
 <li>只要某个<code>offset</code>没到就重发，按照<code>offset</code>拼接成一个流，相当于多设一个参数处理流的顺序。</li>
 </ul>
-<ol start="3">
-<li>机制3：无阻塞的多路复用</li>
-</ol>
+</li>
+<li><p>机制3：无阻塞的多路复用</p>
 <ul>
 <li>跟2.0一样，同一条QUIC上可以创建多个流来发送HTTP请求</li>
 <li>但因为基于UDP，一个连接上的多个流之间没有依赖</li>
 <li>假如流2丢了一个UDP包，后面跟着流3的一个UDP包，虽然流2的包需要重传，但流3的包无需等待，而TCP就会阻塞</li>
 </ul>
-<ol start="4">
-<li>机制4：自定义流量控制</li>
-</ol>
+</li>
+<li><p>机制4：自定义流量控制</p>
 <ul>
 <li>TCP的流量控制是通过滑动窗口协议，QUIC也是通过window_update来告诉对方自己可接受的字节数</li>
 <li>但QUIC的窗口是适应自己的多路复用机制的，不但在一个连接上控制窗口，每个流也有控制窗口</li>
@@ -442,6 +436,8 @@
 <li>QUIC窗口的其实位置为当前收到的最大offset，从这个offset到当前流所能容纳的最大缓存才是真正的窗口</li>
 <li>另外还有整个连接的窗口，需要对所有流的窗口做一个统计</li>
 </ul>
+</li>
+</ol>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155516.jpg" alt></p>
 <h4 id="关于HTTP的队首阻塞"><a href="#关于HTTP的队首阻塞" class="headerlink" title="关于HTTP的队首阻塞"></a>关于HTTP的队首阻塞</h4><ol>
 <li><p>HTTP/1.0对于同一个tcp连接，所有的请求放入队列中，只有前一个请求的响应收到了，然后才能发送下一个请求。可见，HTTP/1.0的队首组塞发生在客户端。</p>
@@ -455,9 +451,7 @@
 <ol>
 <li>开始连接时，客户端用服务端的公钥加密发送，服务端用客户端的公钥加密回应</li>
 <li>CA证书里有公钥，CA是递归的最后有几个大的rootCA，先用非对称加密获取密钥，然后用对称加密传输数据，TLS/SSL</li>
-<li>HTTPS握手过程：（c是客户端，s是服务端）</li>
-</ol>
-<ul>
+<li>HTTPS握手过程：（c是客户端，s是服务端）<ul>
 <li>c发送 <code>Client Hello</code> 给s，明文传输TLS版本、加密套件候选列表、压缩算法候选列表等以及一个随机数A</li>
 <li>s返回 <code>Server Hello</code> 给c，声明选择使用的协议版本、加密套件、压缩算法等以及一个随机数B</li>
 <li>s发送 <code>Server Certificate</code> 给c，然后再发送 Server Hello Done，说明发送信息就这么多了，结束</li>
@@ -470,27 +464,21 @@
 <li>s发送 <code>Encrypted Handshake Message</code> 将先前商定好的参数采用协商密钥加密，发送给c用于数据与握手验证</li>
 <li>双方转而使用对称加密通信，握手完成，除了以上过程，其余过程与HTTP一样</li>
 </ul>
-<ol start="4">
+</li>
 <li>上面是HTTPS单向验证，只是c验证了s的证书，是大部分的场景，也可以在更加严格安全要求的情况下，启用双向验证，互验证书</li>
 <li>重放与篡改攻击：自定义的：通过Timestamp和Nonce随机数联合起来做不可逆签名来保证。</li>
-<li>为什么不直接用非对称加密通信？</li>
-</ol>
-<ul>
+<li>为什么不直接用非对称加密通信？<ul>
 <li>非对称加密的加密的内容不能超过公钥长度，所以只能用来作密钥交换或者内容签名</li>
 <li>性能问题，对称加密是毫秒级，非对称是秒级，<code>HTTPS</code>握手过程的<code>90%</code>时间都在解密<code>RSA</code></li>
 </ul>
-<ol start="7">
+</li>
 <li>除了<code>Premaster</code>外还需要两个随机数的原因是<code>TLS</code>不信任每个客户端都能产生安全的随机数，所以引入多两个随机数</li>
 </ol>
 <h4 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h4><ol>
-<li><p>TLS即SSL升级版，18年推出TLS1.3，目前(19年)用TLS1.2和1.3的都不少，SSL早就废弃了</p>
-</li>
-<li><p>对称加密算法有：<code>AES</code>、<code>DES</code>、<code>3DES</code>，非对称加密算法有：<code>RSA</code>、<code>ECDHE</code></p>
-</li>
-<li><p>TLS中上面将两个随机数和Premaster计算成对称加密主密钥的算法是PRF算法(SHA256)</p>
-</li>
-<li><p>TLS是在传输层（TCPUDP层）之上，应用层（HTTP）之下的层，HTTPS其实就是在TCP和HTTP之间加了TLS层</p>
-</li>
+<li>TLS即SSL升级版，18年推出TLS1.3，目前(19年)用TLS1.2和1.3的都不少，SSL早就废弃了</li>
+<li>对称加密算法有：<code>AES</code>、<code>DES</code>、<code>3DES</code>，非对称加密算法有：<code>RSA</code>、<code>ECDHE</code></li>
+<li>TLS中上面将两个随机数和Premaster计算成对称加密主密钥的算法是PRF算法(SHA256)</li>
+<li>TLS是在传输层（TCPUDP层）之上，应用层（HTTP）之下的层，HTTPS其实就是在TCP和HTTP之间加了TLS层</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155834.PNG" alt></p>
 <ol start="5">
@@ -498,28 +486,26 @@
 <li>目前主流HTTPS的流量是使用<code>ECDHE</code>进行密钥交换、用<code>RSA</code>进行身份验证</li>
 </ol>
 <h4 id="TLS协议原理"><a href="#TLS协议原理" class="headerlink" title="TLS协议原理"></a>TLS协议原理</h4><ul>
-<li>自顶向下、分层抽象，TLS大致在四层</li>
-</ul>
+<li><p>自顶向下、分层抽象，TLS大致在四层</p>
 <ol>
 <li>最底层是基础算法原语的实现如<code>AES</code>、<code>RSA</code>、<code>MD5</code>、<code>SHA256</code>、<code>ECDH</code>等</li>
 <li>第二层是选定参数后，符合密码学里标准分类的算法，包括块加密算法，签名算法，非对称加密算法，MAC算法等，例如： <code>aes-128-cbc-pkcs7</code>，<code>rsaes-oaep</code> ，<code>rsassa-pkcs1-v1_5</code>, <code>hmac-sha256</code>，<code>ecdsa-p256</code>，<code>curve25519</code> 等</li>
 <li>第三层是把多种标准算法组合而成的半成品组件，例如：对称传输组件例如 <code>aes-128-cbc + hmac-sha256，aes-128-gcm</code>，认证密钥协商算法: <code>rsassa-OAEP + ecdh-secp256r1</code>，数字信封：<code>rsaes-oaep + aes-cbc-128 + hmac-sha256</code> ，文件密码加密存储组件：<code>pbkdf2+aes-128-cbc-hmac-sha256</code>，密钥扩展算法 <code>PRF-sha256</code> 等</li>
 <li>第四层是用各种组件拼装而成的各种成品密码学协议/软件，例如：TLS协议，SSH协议，SRP协议，gnupg文件格式，iMessage协议，bitcoin协议等等</li>
 </ol>
-<ul>
-<li>很多程序员自己造的轮子，往往说白了就是想重复实现第3层的某个组件而已。</li>
+</li>
+<li><p>很多程序员自己造的轮子，往往说白了就是想重复实现第3层的某个组件而已。</p>
+</li>
 </ul>
 <h5 id="TLS加密套件-CipherSuite"><a href="#TLS加密套件-CipherSuite" class="headerlink" title="TLS加密套件 (CipherSuite)"></a>TLS加密套件 (CipherSuite)</h5><ul>
-<li>从上述分层的角度看，<code>TLS</code>大致是由三个组件拼成的：</li>
-</ul>
+<li><p>从上述分层的角度看，<code>TLS</code>大致是由三个组件拼成的：</p>
 <ol>
 <li>对称加密传输组件，例如<code>aes-128-gcm</code>;</li>
 <li>认证密钥协商组件，例如<code>rsa-ecdhe</code>;</li>
 <li>密钥扩展组件，例如<code>TLS-PRF-sha256</code></li>
 </ol>
-<ul>
-<li>这些组件可以再拆分为5类算法，在<code>TLS</code>中，这5类算法组合在一起，称为一个<code>CipherSuite</code>：</li>
-</ul>
+</li>
+<li><p>这些组件可以再拆分为5类算法，在<code>TLS</code>中，这5类算法组合在一起，称为一个<code>CipherSuite</code>：</p>
 <ol>
 <li>authentication (认证算法)</li>
 <li>encryption (加密算法 )</li>
@@ -527,15 +513,14 @@
 <li>key exchange (密钥交换算法)</li>
 <li>key derivation function （密钥衍生算法)</li>
 </ol>
-<ul>
+</li>
 <li><p>TLS协议设计之初就考虑到了这每一类算法的演变，所以没有定死算法，而是设计了一个算法协商过程，来允许加入新的算法( 简直是软件可扩展性设计的典范！)，协商出的一个算法组合即一个<code>CipherSuite</code></p>
 </li>
 <li><p>常见加密套件<br> <img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190606155835.JPG" alt></p>
 </li>
 </ul>
 <h4 id="加密算法分类"><a href="#加密算法分类" class="headerlink" title="加密算法分类"></a>加密算法分类</h4><ul>
-<li>上述第二层中的密码学算法常见有下面几类</li>
-</ul>
+<li><p>上述第二层中的密码学算法常见有下面几类</p>
 <ol>
 <li>块加密算法：<code>AES</code>（AES_128_GCM等）、<code>Serpent</code>等</li>
 <li>流加密算法：<code>RC4</code>、<code>ChaCha20</code>等</li>
@@ -545,8 +530,9 @@
 <li>公钥加密算法：<code>RSA</code></li>
 <li>数字签名算法：<code>RSA</code>、<code>DSA</code>、<code>ECDSA</code></li>
 </ol>
-<ul>
-<li>设计一个加密通信协议的过程，就是自顶向下，逐步细化，挑选各类组件，拼装成完整协议的过程</li>
+</li>
+<li><p>设计一个加密通信协议的过程，就是自顶向下，逐步细化，挑选各类组件，拼装成完整协议的过程</p>
+</li>
 </ul>
 <h4 id="AES加密算法"><a href="#AES加密算法" class="headerlink" title="AES加密算法"></a>AES加密算法</h4><ol>
 <li>每个加密数据块大小固定为128位（16个字节），最后一块不满16字节的话需要用填充算法补齐</li>
@@ -554,27 +540,24 @@
 <li>多种工作模式：<code>ECB</code>、<code>CBC</code>、<code>CFB</code>等，这块内容很多，后续补充</li>
 </ol>
 <h4 id="DES、3DES加密算法"><a href="#DES、3DES加密算法" class="headerlink" title="DES、3DES加密算法"></a>DES、3DES加密算法</h4><ol>
-<li>DES:</li>
-</ol>
+<li><p>DES:</p>
 <ul>
 <li>每个加密数据块大小固定为64位（8个字节）</li>
 <li>生成的密钥长度为64位（其中8位用于校验（每个字节的第8位）），所以AES比DES安全</li>
 </ul>
-<ol start="2">
-<li>3DES:</li>
-</ol>
+</li>
+<li><p>3DES:</p>
 <ul>
 <li>还是64位的加密数据块大小</li>
 <li>简单粗暴的 <code>Triple DES</code>，使用3个<code>DES</code>密钥（所以共192位，其中24位校验），对数据块（还是64位的小块）应用三次<code>DES</code>算法进行三次加密</li>
 <li>使用的3个密钥不是合并成1个密钥，而还是分成3个用，<code>3DES</code>加密时依次使用密钥1、密钥2、密钥3对明文数据块进行加密，解密过程反之亦然。</li>
 <li>每次加解密原理与<code>DES</code>一样</li>
 </ul>
-<h4 id="RSA加密算法"><a href="#RSA加密算法" class="headerlink" title="RSA加密算法"></a>RSA加密算法</h4><ul>
-<li>1977年，三位数学家Rivest、Shamir 和 Adleman 设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字命名，叫做<code>RSA</code>算法。从那时直到现在，<code>RSA</code>算法一直是最广为使用的“非对称加密算法”。</li>
-</ul>
-<ol>
-<li>公钥与私钥的产生</li>
+</li>
 </ol>
+<h4 id="RSA加密算法"><a href="#RSA加密算法" class="headerlink" title="RSA加密算法"></a>RSA加密算法</h4><p>1977年，三位数学家Rivest、Shamir 和 Adleman 设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字命名，叫做<code>RSA</code>算法。从那时直到现在，<code>RSA</code>算法一直是最广为使用的“非对称加密算法”。</p>
+<ol>
+<li><p>公钥与私钥的产生</p>
 <ul>
 <li>假设Alice想要通过一个不可靠的媒体接收Bob的一条私人讯息。</li>
 <li>她可以用以下的方式来产生一个公钥和一个私钥：</li>
@@ -584,9 +567,8 @@
 <li>将 p 和 q 的记录销毁。    </li>
 <li>(N,e)是公钥，(N,d)是私钥。Alice将她的公钥(N,e)传给Bob，而将她的私钥(N,d)藏起来。 </li>
 </ul>
-<ol start="2">
-<li>加密消息</li>
-</ol>
+</li>
+<li><p>加密消息</p>
 <ul>
 <li>假设Bob想给Alice送一个消息m，他知道Alice产生的N和e。</li>
 <li>他使用起先与Alice约好的格式将m转换为一个小于N，且与N互质的整数n</li>
@@ -596,9 +578,8 @@
 <li>n^e ≡ c (mod N)</li>
 <li>计算c并不复杂。Bob算出c后就可以将它传递给Alice。</li>
 </ul>
-<ol start="3">
-<li>解密消息</li>
-</ol>
+</li>
+<li><p>解密消息</p>
 <ul>
 <li>Alice得到Bob的消息c后就可以利用她的密钥d来解码。她可以用以下这个公式来将c转换为n：</li>
 <li>c^d ≡ n (mod N)</li>
@@ -607,9 +588,8 @@
 <li>已知e·d ≡ 1 (mod r)，即e·d =1 +hφ(N)。由欧拉定理可得：</li>
 <li>n ^(e·d) =n^ (1 +hφ(N))=n·((n^φ(N))^h)≡(n(1)^h)(modN) ≡ n (mod N)</li>
 </ul>
-<ol start="4">
-<li>签名消息</li>
-</ol>
+</li>
+<li><p>签名消息</p>
 <ul>
 <li>RSA也可以用来为一个消息署名。</li>
 <li>假如Alice想给Bob传递一个署名的消息的话，那么她可以为她的消息计算一个散列值（Message digest）</li>
@@ -619,9 +599,8 @@
 <li>然后将这个数据与他自己为这个消息计算的散列值相比较。</li>
 <li>假如两者相符的话，那么他就可以知道发信人持有甲的密钥，以及这个消息在传播路径上没有被篡改过。</li>
 </ul>
-<ol start="5">
-<li>实战例子</li>
-</ol>
+</li>
+<li><p>实战例子</p>
 <ul>
 <li>通过一次简单实践更好的了解RSA</li>
 <li>假设p = 2，q = 5（p，q都是素数即可），则N = pq = 10；</li>
@@ -632,6 +611,8 @@
 <li>假设要传输的数字为2，通过公钥加密后为：(2^7)(mod 10) = 8；</li>
 <li>通过密钥解密：(8^3)(mod 10) = 512(mod 10) = 2，即获得结果；</li>
 </ul>
+</li>
+</ol>
 <h4 id="ECDHE加密算法"><a href="#ECDHE加密算法" class="headerlink" title="ECDHE加密算法"></a>ECDHE加密算法</h4><ul>
 <li>主要用于HTTPS中的密钥交换</li>
 <li><code>ECDHE</code>源自<code>ECDH</code>，<code>ECDH</code>即使用椭圆曲线加密技术（ECC）的 DH密钥交换（Diffie-Hellman）算法.</li>
@@ -654,10 +635,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-06T16:01:49+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-11T17:32:13+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年6月6日</p>
+    <p>最后更新于 2019年6月11日</p>
   </a>
 </div>
 
@@ -677,7 +658,7 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之 HTTP、HTTPS 和 TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -685,7 +666,7 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之 HTTP、HTTPS 和 TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -701,7 +682,7 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之HTTP、HTTPS和TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2019-06-03-network-protocol-https/&title=杂谈网络协议之 HTTP、HTTPS 和 TLS | 派大星星星星&summary=最近学了些HTTP相关的内容，做了些笔记，深入了解TLS后感觉密码学挺有意思。">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -735,9 +716,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/2019-06-06-network-protocol-ip-tcp-udp/" rel="prev" title="杂谈网络协议之TCP/IP">
+                                <a href="/2019-06-06-network-protocol-ip-tcp-udp/" rel="prev" title="杂谈网络协议之 TCP/IP">
                                   
-                                      杂谈网络协议之TCP/IP
+                                      杂谈网络协议之 TCP/IP
                                   
                                 </a>
                             </h4>
@@ -809,7 +790,7 @@
 
   <script>
     window.subData = {
-      title: '杂谈网络协议之HTTP、HTTPS和TLS',
+      title: '杂谈网络协议之 HTTP、HTTPS 和 TLS',
       tools: true
     }
   </script>
