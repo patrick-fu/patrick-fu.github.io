@@ -118,6 +118,71 @@ C语言中，编译期函数的调用就决定调用哪个函数，而OC只有�
 
 - SEL其本身是一个Int类型的地址，地址中存放着方法的名字。
 
+## Method Swizzling
+
+#### 几个常见方法
+
+1. method_setImplementation
+
+为一个方法名设置IMP(实现)
+
+2. method_exchangeImplementations
+
+交换两个方法名的实现，即执行两次 method_setImplementation
+
+3. class_addMethod
+
+根据官方注释解释，这个方法用于给指定的类增加方法名和IMP(实现)，如果该已经存在这个方法名，不做事，返回NO，如果该类不存在这个方法名（即使父类存在），添加这个方法，返回YES
+
+4. class_replaceMethod
+
+根据官方注释解释，它有两种不同的行为。当类中没有想替换的原方法时，该方法会调用 class_addMethod 来为该类增加一个新方法。若已存在，则等同于 method_setImplementation 为该方法名替换IMP(实现)
+
+#### Swizzling 模板
+
+```objc
++ (void)hookClass:(Class)classObject fromSelector:(SEL)fromSelector toSelector:(SEL)toSelector {
+    Class class = classObject;
+    Method fromMethod = class_getInstanceMethod(class, fromSelector); // 得到被交换类的实例方法
+    Method toMethod = class_getInstanceMethod(class, toSelector); // 得到交换类的实例方法
+    if(class_addMethod(class, fromSelector, method_getImplementation(toMethod), method_getTypeEncoding(toMethod))) {
+        class_replaceMethod(class, toSelector, method_getImplementation(fromMethod), method_getTypeEncoding(fromMethod)); // 进行方法的交换
+    } else {
+        method_exchangeImplementations(fromMethod, toMethod); // 交换 IMP 指针
+    }
+}
+```
+
+```objc
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class aClass = [self class];
+        
+        SEL originalSelector = @selector(viewWillAppear:);
+        SEL swizzledSelector = @selector(xxx_viewWillAppear:);
+        
+        Method originalMethod = class_getInstanceMethod(aClass, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(aClass, swizzledSelector);
+        
+        BOOL didAddMethod =
+        class_addMethod(aClass,
+                        originalSelector,
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod(aClass,
+                                swizzledSelector,
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
+}
+```
+
 ## 消息转发
 
 什么时候会报unrecognized selector的异常？

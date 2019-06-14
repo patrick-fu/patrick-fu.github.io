@@ -148,7 +148,7 @@ class Solution(object):
 
 利用 Python collections 库内的顺序哈希表 OrderedDict() 类可以很方便地实现
 
-> 一般LRU缓存是通过哈希表配合双向链表实现的。哈希表使访问查找的时间复杂度为O(1)，双向链表可以获得前驱节点使删除操作也是O(1)
+> 一般LRU缓存是通过哈希表配合双向链表实现的。如图所示，哈希表使访问查找的时间复杂度为O(1)，双向链表可以获得前驱节点使删除操作也是O(1)
 
 ![](https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190611173846.jpg)
 
