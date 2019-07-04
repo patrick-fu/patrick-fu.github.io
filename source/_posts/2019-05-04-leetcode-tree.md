@@ -161,7 +161,7 @@ class Solution:
                 return root
 ```
 
-## 112. 路径总和
+## 112. 路径总和 Path Sum
 
 [LeetCodeCN 第112题链接](https://leetcode-cn.com/problems/path-sum/)
 

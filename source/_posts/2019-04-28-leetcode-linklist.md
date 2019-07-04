@@ -1,5 +1,5 @@
 ---
-title: LeetCode做题笔记-链表相关题目
+title: LeetCode做题笔记—链表相关题目
 date: 2019-04-28 16:52:35
 tags: 
   - LeetCode
@@ -245,6 +245,33 @@ class Solution:
             p.next = tmp
             head = tmp
         return dummy.next
+```
+
+第三种方法：递归，利用206题反转链表的函数稍加改造，添加一个count参数提前结束反转。每次递归主函数时即处理当前k个的反转然后链表尾端接上下一个递归的值，注意其中第12行的`head.next`，因为经过上一行的反转后，`head`就成了本次处理k个的末尾节点，`prev`成了本次的头节点，而`new_head`为`head`的下一个节点也即下一个递归的头节点
+
+```python
+class Solution:
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        if not head:
+            return head
+        p, count = head, k
+        while p and count:
+            p = p.next
+            count -= 1
+        if count > 0:
+            return head
+        prev, new_head = self.reverse(head, k)
+        head.next = self.reverseKGroup(new_head, k)
+        return prev
+        
+    def reverse(self, node, count):
+        if not node:
+            return node
+        prev, curr = None, node
+        while curr and count:
+            curr.next, prev, curr = prev, curr, curr.next
+            count -= 1
+        return (prev, curr)
 ```
 
 ## 2. 两数相加 Add Two Numbers
