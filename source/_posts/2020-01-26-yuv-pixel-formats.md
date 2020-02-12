@@ -38,7 +38,7 @@ YUV 在存储上通常分为平面格式（`Planar`），半平面格式（`Semi
 
 - 4:2:0 Formats, 12 Bits per Pixel, 3 Planars
 
-[FOURCC I420](http://www.fourcc.org/pixel-format/yuv-i420/)
+> [FOURCC I420](http://www.fourcc.org/pixel-format/yuv-i420/)
 
 `YU12` 即 `I420`，也叫 `IYUV`，属于 `YUV420P` 格式。三个平面，分别存储 Y U V 分量。每四个 Y 分量共享一组 UV 分量。U、V 平面的 strides, width 和 height 都是 Y 平面的一半，因此一个像素 12 bits，内存排列如下图所示：
 
@@ -52,7 +52,7 @@ YUV 在存储上通常分为平面格式（`Planar`），半平面格式（`Semi
 
 - 4:2:0 Formats, 12 Bits per Pixel, 3 Planars
 
-[FOURCC YV12](http://www.fourcc.org/pixel-format/yuv-yv12/)
+> [FOURCC YV12](http://www.fourcc.org/pixel-format/yuv-yv12/)
 
 `YV12` 与 `I420` 几乎一样，仅改变了 U, V 平面的顺序。内存排列如下图所示：
 
@@ -68,7 +68,7 @@ YUV 在存储上通常分为平面格式（`Planar`），半平面格式（`Semi
 
 - 4:2:0 Formats, 16 Bits per Pixel, 3 Planars
 
-[FOURCC IMC1](http://www.fourcc.org/pixel-format/yuv-imc1/)
+> [FOURCC IMC1](http://www.fourcc.org/pixel-format/yuv-imc1/)
 
 `IMC1` 与 `I420` 类似，U, V 平面的宽（width）、高（height）是 Y 平面的一半，但是每行字节数（strides）与 Y 平面一致，因此 U, V 平面在内存上会有留空（padding），因此一个像素 16 bits，如图所示：
 
@@ -106,7 +106,7 @@ YUV 在存储上通常分为平面格式（`Planar`），半平面格式（`Semi
 
 - 4:2:0 Formats, 12 Bits per Pixel, 2 Planars
 
-[FOURCC NV12](http://www.fourcc.org/pixel-format/yuv-nv12/)
+> [FOURCC NV12](http://www.fourcc.org/pixel-format/yuv-nv12/)
 
 `NV12` 属于 `YUV420SP` 格式。两个平面，分别存储 Y 分量 和 UV 分量。其中 UV 分量共用一个平面并且以 U, V, U, V 的顺序交错排列。每四个 Y 分量共享一组 UV 分量。
 
@@ -124,7 +124,7 @@ UV 平面的 strides, width 与 Y 平面一样长，但 height 仅为 Y 平面�
 
 - 4:2:0 Formats, 12 Bits per Pixel, 2 Planars
 
-[FOURCC NV21](http://www.fourcc.org/pixel-format/yuv-nv21/)
+> [FOURCC NV21](http://www.fourcc.org/pixel-format/yuv-nv21/)
 
 `NV21` 属于 `YUV420SP`，与 `NV12` 几乎一致，区别是 UV 平面中 U 与 V 的排列顺序颠倒，以 V, U, V, U 的顺序交错排列，内存排列如图所示：
 
@@ -152,7 +152,7 @@ AYUV 是 Packed 打包格式，其中每个像素编码为四个连续字节，�
 
 - 4:2:2 Formats, 16 Bits per Pixel
 
-[FOURCC YUY2](http://www.fourcc.org/pixel-format/yuv-yuy2/)
+> [FOURCC YUY2](http://www.fourcc.org/pixel-format/yuv-yuy2/)
 
 `YUYV` 通常也称作 `V422`、`YUY2`、`YUNV`
 
@@ -164,7 +164,7 @@ YUY2 是 Packed 打包格式，其中两个像素共用一组 UV 分量，内存
 
 - 4:2:2 Formats, 16 Bits per Pixel
 
-[FOURCC UYVY](https://www.fourcc.org/pixel-format/yuv-uyvy/)
+> [FOURCC UYVY](https://www.fourcc.org/pixel-format/yuv-uyvy/)
 
 `UYVY` 通常也称作 `Y422`、`UYNV`
 
