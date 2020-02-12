@@ -335,7 +335,9 @@
 <h4 id="YU12-I420"><a href="#YU12-I420" class="headerlink" title="YU12 (I420)"></a>YU12 (I420)</h4><ul>
 <li>4:2:0 Formats, 12 Bits per Pixel, 3 Planars</li>
 </ul>
+<blockquote>
 <p><a href="http://www.fourcc.org/pixel-format/yuv-i420/" target="_blank" rel="noopener">FOURCC I420</a></p>
+</blockquote>
 <p><code>YU12</code> 即 <code>I420</code>，也叫 <code>IYUV</code>，属于 <code>YUV420P</code> 格式。三个平面，分别存储 Y U V 分量。每四个 Y 分量共享一组 UV 分量。U、V 平面的 strides, width 和 height 都是 Y 平面的一半，因此一个像素 12 bits，内存排列如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212182646.png" alt="YU12 Format"></p>
 <p>从图中可看出，U、V 平面的每行字节数（strides）、高（height）都是 Y 平面的一半。</p>
@@ -343,7 +345,9 @@
 <h4 id="YV12"><a href="#YV12" class="headerlink" title="YV12"></a>YV12</h4><ul>
 <li>4:2:0 Formats, 12 Bits per Pixel, 3 Planars</li>
 </ul>
+<blockquote>
 <p><a href="http://www.fourcc.org/pixel-format/yuv-yv12/" target="_blank" rel="noopener">FOURCC YV12</a></p>
+</blockquote>
 <p><code>YV12</code> 与 <code>I420</code> 几乎一样，仅改变了 U, V 平面的顺序。内存排列如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212181507.png" alt="YU12 Format"></p>
 <h4 id="J420"><a href="#J420" class="headerlink" title="J420"></a>J420</h4><ul>
@@ -353,7 +357,9 @@
 <h4 id="IMC1"><a href="#IMC1" class="headerlink" title="IMC1"></a>IMC1</h4><ul>
 <li>4:2:0 Formats, 16 Bits per Pixel, 3 Planars</li>
 </ul>
+<blockquote>
 <p><a href="http://www.fourcc.org/pixel-format/yuv-imc1/" target="_blank" rel="noopener">FOURCC IMC1</a></p>
+</blockquote>
 <p><code>IMC1</code> 与 <code>I420</code> 类似，U, V 平面的宽（width）、高（height）是 Y 平面的一半，但是每行字节数（strides）与 Y 平面一致，因此 U, V 平面在内存上会有留空（padding），因此一个像素 16 bits，如图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212193133.png" alt="IMC1 Format"></p>
 <h4 id="IMC3"><a href="#IMC3" class="headerlink" title="IMC3"></a>IMC3</h4><ul>
@@ -375,7 +381,9 @@
 <h4 id="NV12"><a href="#NV12" class="headerlink" title="NV12"></a>NV12</h4><ul>
 <li>4:2:0 Formats, 12 Bits per Pixel, 2 Planars</li>
 </ul>
+<blockquote>
 <p><a href="http://www.fourcc.org/pixel-format/yuv-nv12/" target="_blank" rel="noopener">FOURCC NV12</a></p>
+</blockquote>
 <p><code>NV12</code> 属于 <code>YUV420SP</code> 格式。两个平面，分别存储 Y 分量 和 UV 分量。其中 UV 分量共用一个平面并且以 U, V, U, V 的顺序交错排列。每四个 Y 分量共享一组 UV 分量。</p>
 <p>UV 平面的 strides, width 与 Y 平面一样长，但 height 仅为 Y 平面的一半。因此一个像素 12 bits，内存排列如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212234845.png" alt="NV12 Format"></p>
@@ -385,7 +393,9 @@
 <h4 id="NV21"><a href="#NV21" class="headerlink" title="NV21"></a>NV21</h4><ul>
 <li>4:2:0 Formats, 12 Bits per Pixel, 2 Planars</li>
 </ul>
+<blockquote>
 <p><a href="http://www.fourcc.org/pixel-format/yuv-nv21/" target="_blank" rel="noopener">FOURCC NV21</a></p>
+</blockquote>
 <p><code>NV21</code> 属于 <code>YUV420SP</code>，与 <code>NV12</code> 几乎一致，区别是 UV 平面中 U 与 V 的排列顺序颠倒，以 V, U, V, U 的顺序交错排列，内存排列如图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212235436.png" alt="NV21 Format"></p>
 <p><code>NV21</code> 是 Android 相机（<code>Camera</code>）默认的输出格式。</p>
@@ -402,14 +412,18 @@
 <h4 id="YUYV-V422-YUY2-YUNV"><a href="#YUYV-V422-YUY2-YUNV" class="headerlink" title="YUYV (V422 / YUY2 / YUNV)"></a>YUYV (V422 / YUY2 / YUNV)</h4><ul>
 <li>4:2:2 Formats, 16 Bits per Pixel</li>
 </ul>
+<blockquote>
 <p><a href="http://www.fourcc.org/pixel-format/yuv-yuy2/" target="_blank" rel="noopener">FOURCC YUY2</a></p>
+</blockquote>
 <p><code>YUYV</code> 通常也称作 <code>V422</code>、<code>YUY2</code>、<code>YUNV</code></p>
 <p>YUY2 是 Packed 打包格式，其中两个像素共用一组 UV 分量，内存中按照 Y U Y V 的顺序排列，如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212171116.png" alt="YUYV Format"></p>
 <h4 id="UYVY-Y422-UYNV"><a href="#UYVY-Y422-UYNV" class="headerlink" title="UYVY (Y422 / UYNV)"></a>UYVY (Y422 / UYNV)</h4><ul>
 <li>4:2:2 Formats, 16 Bits per Pixel</li>
 </ul>
+<blockquote>
 <p><a href="https://www.fourcc.org/pixel-format/yuv-uyvy/" target="_blank" rel="noopener">FOURCC UYVY</a></p>
+</blockquote>
 <p><code>UYVY</code> 通常也称作 <code>Y422</code>、<code>UYNV</code></p>
 <p><code>UYVY</code> 与 <code>YUYV</code> 类似，只是亮度（Y）分量与色度（UV）分量排列顺序颠倒，如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20200212172050.png" alt="UYVY Format"></p>
@@ -434,7 +448,7 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-13T01:12:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-13T01:38:50+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2020年2月13日</p>
