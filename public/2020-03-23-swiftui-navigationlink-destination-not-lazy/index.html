@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载） | 派大星星星星</title>
+  
+  <meta name="keywords" content="iOS">
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+  
+
+  
+    <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+    <!-- ba -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?420331e790ec3f2c56b1660b4958f8c3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class="cover post half">
+      
+        
+  <img class="logo" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/fat_cat_header_small.png">
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder>
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class="menu navgation">
+  <ul class="h-list">
+    
+      
+        <li>
+          <a class="nav home" href="/" id="home">
+            <i class="fas fa-beer fa-fw"></i>&nbsp;博客
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/categories/" id="categories">
+            <i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/tags/" id="tags">
+            <i class="fas fa-tags fa-fw"></i>&nbsp;标签
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/archives/" id="archives">
+            <i class="fas fa-archive fa-fw"></i>&nbsp;归档
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href="/">
+        
+          派大星星星星
+        
+      </a>
+			<div class="menu navgation">
+				<ul class="h-list">
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/" id="home">
+									<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/" id="categories">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/" id="tags">
+									<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/" id="archives">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索">
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+        
+          <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/" id="home">
+								<i class="fas fa-beer fa-fw"></i>&nbsp;博客
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/categories/" id="categories">
+								<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/tags/" id="tags">
+								<i class="fas fa-tags fa-fw"></i>&nbsp;标签
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/" id="archives">
+								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class="l_main">
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2020-03-23-swiftui-navigationlink-destination-not-lazy/">
+        【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载）
+      </a>
+    </h1>
+  
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="https://paaatrick.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>大星</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-03-23</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Tech/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Tech</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class="notlink">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <p>在 SwiftUI 中，一般通过 <code>NavigationView</code> 配合 <code>NavigationLinks</code> 来实现页面间的跳转，可类比为 UIKit 中的 <code>UINavigationController</code> 与 <code>segue</code>（或者 push/present 语句）。熟悉 UIKit 的开发者刚接触 SwiftUI 时可能会遇到一个小坑：<code>NavigationLinks</code> 的 <code>destination</code> 并不是懒加载的。</p>
+<a id="more"></a>
+
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p><code>NavigationLinks</code> 与 UIKit 中 push/present 之间的行为差异导致刚上手 SwiftUI 时，由于不知道目标 View 会被提前加载，使得目标 View 里的业务逻辑时序上出现问题。</p>
+<p>我们都知道，<code>UINavigationController</code> 的目标 ViewController 只在调用了 push/present 后才会触发常用的加载方法 <code>viewDidLoad()</code>。</p>
+<p>然而在 SwiftUI 中，<code>NavigationLinks</code> 的目标 View 会立即加载，这意味着假设有一个包含 100 个 cell 的 <code>List</code>/<code>ForEach</code>，其中每个 cell 都是用 <code>NavigationLinks</code> 来跳转新页面的话，那当加载显示这个 <code>List</code> 时，内存中会马上创建 100 个对应的 View 结构体。</p>
+<p>如果这些 View 的构造函数中还做了些开销大的操作比如网络请求、加载资源等。。。可以想象将导致什么后果🤣</p>
+<blockquote>
+<p>例：</p>
+</blockquote>
+<p>如下所示，<code>MyRootView</code> 是首页 View，通过 <code>NavigationView</code> 来实现路由导航功能，其中是一个包含了三个 cell 的 <code>List</code>，每个 cell 是一个 <code>NavigationLinks</code>，分别导航至 <code>FirstView</code>、<code>SecondView</code>、<code>ThirdView</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MyRootView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> myViews = [</span><br><span class="line">        <span class="string">"FirstView"</span>,</span><br><span class="line">        <span class="string">"SecondView"</span>,</span><br><span class="line">        <span class="string">"ThirdView"</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">containedView</span><span class="params">(viewName: String)</span></span> -&gt; <span class="type">AnyView</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> viewName &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"FirstView"</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="type">AnyView</span>(<span class="type">FirstView</span>())</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"SecondView"</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="type">AnyView</span>(<span class="type">SecondView</span>())</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"ThirdView"</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="type">AnyView</span>(<span class="type">ThirdView</span>())</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="type">AnyView</span>(<span class="type">Text</span>(<span class="string">"None"</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">NavigationView</span> &#123;</span><br><span class="line">            <span class="type">List</span>(myViews, id: \.<span class="keyword">self</span>) &#123; viewName <span class="keyword">in</span></span><br><span class="line">                <span class="type">NavigationLink</span>(destination: <span class="keyword">self</span>.containedView(viewName: viewName)) &#123;</span><br><span class="line">                    <span class="type">Text</span>(viewName)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            .navigationBarTitle(<span class="type">Text</span>(<span class="string">"ZegoExpressExample"</span>), displayMode: .automatic)</span><br><span class="line">            .onAppear &#123;</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"🚩 MyRootView appear"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，在 <code>FirstView</code>、<code>SecondView</code>、<code>ThirdView</code> 的实现中，View 结构体里包含一个 class 实例属性，如下所示：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FirstView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> firstCoordinator = <span class="type">FirstCoordinator</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="type">NSLog</span>(<span class="string">"1️⃣ FirstView init 🟢"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"I'm FirstView created by Patrick Fu"</span>)</span><br><span class="line">            .onAppear &#123;</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"---------1️⃣ FirstView appear-------"</span>)</span><br><span class="line">            &#125;.onDisappear &#123;</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"---------1️⃣ FirstView disappear-------"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">FirstCoordinator</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"1️⃣ FirstCoordinator init 🟢"</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">deinit</span> &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"1️⃣ FirstCoordinator deinit 🔴"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SecondView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> secondCoordinator = <span class="type">SecondCoordinator</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="type">NSLog</span>(<span class="string">"2️⃣ SecondView init 🟢"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"I'm SecondView created by Patrick Fu"</span>)</span><br><span class="line">            .onAppear &#123;</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"---------2️⃣ SecondView appear-------"</span>)</span><br><span class="line">            &#125;.onDisappear &#123;</span><br><span class="line">                <span class="type">NSLog</span>(<span class="string">"---------2️⃣ SecondView disappear-------"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">SecondCoordinator</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"2️⃣ SecondCoordinator init 🟢"</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">deinit</span> &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"2️⃣ SecondCoordinator deinit 🔴"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ThirdView 的实现完全一致，就不贴出来了</p>
+</blockquote>
+<p>测试一下，通过日志可以发现，当加载显示 <code>MyRootView</code> 的时候，通过 <code>NavigationLinks</code> 导航的目标 View 全部被提前立即初始化了，并且其属性 Coordinator 类也被实例化了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2020-03-23 01:10:46.546218+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:10:46.553204+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 1️⃣ FirstCoordinator init 🟢</span><br><span class="line">2020-03-23 01:10:46.553234+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 1️⃣ FirstView init 🟢</span><br><span class="line">2020-03-23 01:10:46.558073+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 2️⃣ SecondCoordinator init 🟢</span><br><span class="line">2020-03-23 01:10:46.558104+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 2️⃣ SecondView init 🟢</span><br><span class="line">2020-03-23 01:10:46.559791+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 3️⃣ ThirdCoordinator init 🟢</span><br><span class="line">2020-03-23 01:10:46.559808+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 3️⃣ ThirdView init 🟢</span><br><span class="line">2020-03-23 01:11:03.746197+0800 ZegoExpressExample-iOS-Swift[76375:18919854] ---------1️⃣ FirstView appear-------</span><br><span class="line">2020-03-23 01:11:06.641696+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:11:06.892756+0800 ZegoExpressExample-iOS-Swift[76375:18919854] ---------1️⃣ FirstView disappear-------</span><br><span class="line">2020-03-23 01:11:08.618983+0800 ZegoExpressExample-iOS-Swift[76375:18919854] ---------2️⃣ SecondView appear-------</span><br><span class="line">2020-03-23 01:11:11.507952+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:11:11.680365+0800 ZegoExpressExample-iOS-Swift[76375:18919854] ---------2️⃣ SecondView disappear-------</span><br><span class="line">2020-03-23 01:11:13.138151+0800 ZegoExpressExample-iOS-Swift[76375:18919854] ---------3️⃣ ThirdView appear-------</span><br><span class="line">2020-03-23 01:11:15.317203+0800 ZegoExpressExample-iOS-Swift[76375:18919854] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:11:15.488869+0800 ZegoExpressExample-iOS-Swift[76375:18919854] ---------3️⃣ ThirdView disappear-------</span><br></pre></td></tr></table></figure>
+
+<p>并且在右滑返回主页面时，View 和其 Coordinator 类实例也并没有被释放，GG~</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>首先，<code>NavigationLinks</code> 立即加载 <code>destination</code> 的现象应该是 SwiftUI 的 Feature。因为在 SwiftUI 中，View 是非常轻量化的结构体，类似于 Flutter 中的 <code>Widget</code>，创建、销毁的开销非常低。</p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>因此，其中一种解决方案就是充分利用 View 的 <code>onAppear()</code> 和 <code>onDisappear()</code> 作为依赖注入来实现自己的业务逻辑和一些开销大的操作，避免在 View 初始化的时机做业务逻辑。也就是说，把 View 的 <code>onAppear()</code> 当做 UIKit 中的 <code>viewDidLoad()</code> 来使用，并且避免在 View 的属性中直接初始化开销大的对象。</p>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>当然了，作为老 UIKit/AppKit 开发者，大量的对象瞬间全部加载实在难顶，还是得懒加载才行。</p>
+<p>那另一种解决方案就是通过给 <code>destination</code> 的 View 包裹一层自定义的 View 来实现懒加载功能。</p>
+<ul>
+<li>LazyView.swift</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">LazyView</span>&lt;<span class="title">Content</span>: <span class="title">View</span>&gt;: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">let</span> build: () -&gt; <span class="type">Content</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(<span class="number">_</span> build: <span class="meta">@autoclosure</span> @escaping () -&gt; <span class="type">Content</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.build = build</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> body: <span class="type">Content</span> &#123;</span><br><span class="line">        build()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个 View 的 body 属性只在这个 View 被显示出来的时候才会被执行，也就是说，当 body 中的 <code>NavigationLinks</code> 的 <code>destination</code> 是另一个 ViewB 时，这个 <code>destination</code> 的 ViewB 会被马上初始化，但是 ViewB 的 body 属性不会被执行。</p>
+<p>换句话说，SwiftUI 会立刻加载<strong>当前层级</strong>以及<strong>下一层级</strong>的 View，但<strong>不会</strong>加载第三层级的 View。</p>
+<p>因此，用一个自定义 View 来包裹住真正想要跳转的目标 View，就可以变相的实现懒加载。</p>
+<p>实际上，此方案只是“懒加载”了目标 View，在一个拥有大量 cell 的 <code>List</code>/<code>ForEach</code> 中，还是会有等同数量的 <code>LazyView</code> 被创建。</p>
+<p>这种方式并不 Swifty，目前看来，最好还是按照 SwiftUI 的设计理念来做业务逻辑，也就是上面的方案一。</p>
+<ul>
+<li>用法示例</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">NavigationView</span> &#123;</span><br><span class="line">            <span class="type">NavigationLink</span>(destination: <span class="type">LazyView</span>(<span class="type">Text</span>(<span class="string">"My details page"</span>))) &#123;</span><br><span class="line">                <span class="type">Text</span>(<span class="string">"Go to details"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改后的 <code>MyRootView</code> 的 body 如下所示</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">NavigationView</span> &#123;</span><br><span class="line">        <span class="type">List</span>(myViews, id: \.<span class="keyword">self</span>) &#123; viewName <span class="keyword">in</span></span><br><span class="line">            <span class="type">NavigationLink</span>(destination: <span class="type">LazyView</span>(<span class="keyword">self</span>.containedView(viewName: viewName))) &#123;</span><br><span class="line">                <span class="type">Text</span>(viewName)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .navigationBarTitle(<span class="type">Text</span>(<span class="string">"ZegoExpressExample"</span>), displayMode: .automatic)</span><br><span class="line">        .onAppear &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"🚩 MyRootView appear"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试一下，当加载显示 <code>MyRootView</code> 时，通过 <code>NavigationLinks</code> 导航的目标 View 都实现了懒加载，并且在返回 <code>MyRootView</code> 并进入其他新的 View 时，上一个老 View 也能被释放，这就非常舒服了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2020-03-23 01:32:12.577138+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:32:26.788288+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 1️⃣ FirstCoordinator init 🟢</span><br><span class="line">2020-03-23 01:32:26.788380+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 1️⃣ FirstView init 🟢</span><br><span class="line">2020-03-23 01:32:26.811396+0800 ZegoExpressExample-iOS-Swift[76407:18927258] ---------1️⃣ FirstView appear-------</span><br><span class="line">2020-03-23 01:32:57.753106+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:32:57.969867+0800 ZegoExpressExample-iOS-Swift[76407:18927258] ---------1️⃣ FirstView disappear-------</span><br><span class="line">2020-03-23 01:33:00.826847+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 2️⃣ SecondCoordinator init 🟢</span><br><span class="line">2020-03-23 01:33:00.826983+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 2️⃣ SecondView init 🟢</span><br><span class="line">2020-03-23 01:33:00.831038+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 1️⃣ FirstCoordinator deinit 🔴</span><br><span class="line">2020-03-23 01:33:00.850590+0800 ZegoExpressExample-iOS-Swift[76407:18927258] ---------2️⃣ SecondView appear-------</span><br><span class="line">2020-03-23 01:33:04.745348+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 🚩 MyRootView appear</span><br><span class="line">2020-03-23 01:33:05.011015+0800 ZegoExpressExample-iOS-Swift[76407:18927258] ---------2️⃣ SecondView disappear-------</span><br><span class="line">2020-03-23 01:33:06.126583+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 3️⃣ ThirdCoordinator init 🟢</span><br><span class="line">2020-03-23 01:33:06.126716+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 3️⃣ ThirdView init 🟢</span><br><span class="line">2020-03-23 01:33:06.130353+0800 ZegoExpressExample-iOS-Swift[76407:18927258] 2️⃣ SecondCoordinator deinit 🔴</span><br><span class="line">2020-03-23 01:33:06.149465+0800 ZegoExpressExample-iOS-Swift[76407:18927258] ---------3️⃣ ThirdView appear-------</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><p><a href="https://twitter.com/chriseidhof/status/1144242544680849410" target="_blank" rel="noopener">https://twitter.com/chriseidhof/status/1144242544680849410</a></p>
+</li>
+<li><p><a href="https://stackoverflow.com/questions/57594159/swiftui-navigationlink-loads-destination-view-immediately-without-clicking" target="_blank" rel="noopener">https://stackoverflow.com/questions/57594159/swiftui-navigationlink-loads-destination-view-immediately-without-clicking</a></p>
+</li>
+</ul>
+
+        </div>
+        
+          
+
+
+  <section class="meta" id="footer-meta">
+    <hr>
+    <div class="new-meta-box">
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-23T02:28:19+08:00">
+  <a class="notlink">
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2020年3月23日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>iOS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Swift/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Swift</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/SwiftUI/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>SwiftUI</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=https://paaatrick.com/2020-03-23-swiftui-navigationlink-destination-not-lazy/&title=【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载） | 派大星星星星&summary=在 SwiftUI 中，一般通过 NavigationView 配合 NavigationLinks 来实现页面间的跳转，可类比为 UIKit 中的 UINavigationController 与 segue（或者 push/present 语句）。熟悉 UIKit 的开发者刚接触 SwiftUI 时可能会遇到一个小坑：NavigationLinks 的 destination 并不是懒加载的。">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://paaatrick.com/2020-03-23-swiftui-navigationlink-destination-not-lazy/&title=【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载） | 派大星星星星&summary=在 SwiftUI 中，一般通过 NavigationView 配合 NavigationLinks 来实现页面间的跳转，可类比为 UIKit 中的 UINavigationController 与 segue（或者 push/present 语句）。熟悉 UIKit 的开发者刚接触 SwiftUI 时可能会遇到一个小坑：NavigationLinks 的 destination 并不是懒加载的。">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNklEQVR42u3awZLaQAwE0Pz/T5NrqhKgW4KUPfvmRK0X4zccGknz61e8Hn+sv//y7Gp+52evn93/2R0+vLCxsbFvwn68XM/+5/WDJldf37nd9NyCjY2NfSo7j5bkgWYxlmzis43LLdjY2NjYSfhttiYJquTO2NjY2NjD28UFRtvnuVyAYWNjY1+Mnbf7Z8HWDgBy3td7adjY2NiXZ+/Hsdd5/ZX5NjY2NvaF2Y9yvf5xvwmP2WBgqMDGxsY+iJ0HQF4wJC2n9nNnI4HX78LGxsY+gz1r5bSRtnk925o35Qo2Njb2cew3+ZYnYRAz7fgh+XqSAz3/CDBsbGzsI9j7oGrx+Xh4drU+PISNjY19BHvTuMn/PmsG5YOENgKxsbGxz2C3xyjzltBsGJwXG3kjKcpqbGxs7NuyN+ExKwA+1e5Pwmx2eAgbGxv7Xuxh/+lDj7Jp9Ofj5De5jY2NjX1zdj7EbQNpOHaNG0n7oggbGxv7PPb+AM2sWb+Jq7bBhI2NjX0eO/ngvMD41GhhcwwoKpywsbGxD2In1cm+xTNb+/HDm68HGxsb+yB2Ua98rcXTblZ7WKeuwLCxsbFvwn7895UXKu2XkR/9wcbGxj6VvQ+ez4ZfuwXF0AIbGxv7IHZ7vGY2DN63/hNY/uTY2NjYJ7Hzx9o0dNowS941GzO8yW1sbGzsm7O/VyS0w4O25dQOqrGxsbFPYidD1rZcaSuhZIg76+0XTSVsbGzsI9hJOM3iZzag/WwrKjq4g42NjX1bdvLzPY+fvFzJh8R5RG2KFmxsbOyT2PkYNT+sk8Nmxc9mUIGNjY19d3YSAO0RmXwk0LacZkVOcXAHGxsb+7bsfe61zaDN1DUZ7tZTEWxsbOzj2MOmTNyaz9tMRYs/L42wsbGxj2A/yjUrXTbbtC9msLGxsc9mf2NUMBvKJg89O5QzCz9sbGzse7Hz0BrWOmtAO0LAxsbG/pnsWTDk721DLh8V55uLjY2NjR3drhw5JE2u/GrxJWFjY2P/YHYbNknsJXdLtrsYJGNjY2Mfx27DY9P6abc4x3+ll4aNjY19efbsME0yAE7KjHbE2250sunY2NjYt2X/BnjUFhEYtjhBAAAAAElFTkSuQmCC">
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=https://paaatrick.com/2020-03-23-swiftui-navigationlink-destination-not-lazy/&title=【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载） | 派大星星星星&summary=在 SwiftUI 中，一般通过 NavigationView 配合 NavigationLinks 来实现页面间的跳转，可类比为 UIKit 中的 UINavigationController 与 segue（或者 push/present 语句）。熟悉 UIKit 的开发者刚接触 SwiftUI 时可能会遇到一个小坑：NavigationLinks 的 destination 并不是懒加载的。">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNklEQVR42u3awZLaQAwE0Pz/T5NrqhKgW4KUPfvmRK0X4zccGknz61e8Hn+sv//y7Gp+52evn93/2R0+vLCxsbFvwn68XM/+5/WDJldf37nd9NyCjY2NfSo7j5bkgWYxlmzis43LLdjY2NjYSfhttiYJquTO2NjY2NjD28UFRtvnuVyAYWNjY1+Mnbf7Z8HWDgBy3td7adjY2NiXZ+/Hsdd5/ZX5NjY2NvaF2Y9yvf5xvwmP2WBgqMDGxsY+iJ0HQF4wJC2n9nNnI4HX78LGxsY+gz1r5bSRtnk925o35Qo2Njb2cew3+ZYnYRAz7fgh+XqSAz3/CDBsbGzsI9j7oGrx+Xh4drU+PISNjY19BHvTuMn/PmsG5YOENgKxsbGxz2C3xyjzltBsGJwXG3kjKcpqbGxs7NuyN+ExKwA+1e5Pwmx2eAgbGxv7Xuxh/+lDj7Jp9Ofj5De5jY2NjX1zdj7EbQNpOHaNG0n7oggbGxv7PPb+AM2sWb+Jq7bBhI2NjX0eO/ngvMD41GhhcwwoKpywsbGxD2In1cm+xTNb+/HDm68HGxsb+yB2Ua98rcXTblZ7WKeuwLCxsbFvwn7895UXKu2XkR/9wcbGxj6VvQ+ez4ZfuwXF0AIbGxv7IHZ7vGY2DN63/hNY/uTY2NjYJ7Hzx9o0dNowS941GzO8yW1sbGzsm7O/VyS0w4O25dQOqrGxsbFPYidD1rZcaSuhZIg76+0XTSVsbGzsI9hJOM3iZzag/WwrKjq4g42NjX1bdvLzPY+fvFzJh8R5RG2KFmxsbOyT2PkYNT+sk8Nmxc9mUIGNjY19d3YSAO0RmXwk0LacZkVOcXAHGxsb+7bsfe61zaDN1DUZ7tZTEWxsbOzj2MOmTNyaz9tMRYs/L42wsbGxj2A/yjUrXTbbtC9msLGxsc9mf2NUMBvKJg89O5QzCz9sbGzse7Hz0BrWOmtAO0LAxsbG/pnsWTDk721DLh8V55uLjY2NjR3drhw5JE2u/GrxJWFjY2P/YHYbNknsJXdLtrsYJGNjY2Mfx27DY9P6abc4x3+ll4aNjY19efbsME0yAE7KjHbE2250sunY2NjYt2X/BnjUFhEYtjhBAAAAAElFTkSuQmCC">
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2020-01-26-yuv-pixel-formats/" rel="prev" title="详解 YUV 格式（I420/YUV420/NV12/NV12/YUV422）">
+                                    
+                                        详解 YUV 格式（I420/YUV420/NV12/NV12/YUV422）
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Audio-Video/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Audio/Video</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+        <section id="comments">
+          <div id="disqus_thread">
+            <div><i class="fas fa-exclamation-triangle">&nbsp;无法加载Disqus评论系统，请确保您的网络能够正常访问。</i></div>
+          </div>
+        </section>
+      
+      
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载）',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class="l_side">
+  
+    
+    
+      
+        
+          
+          
+            <section class="widget author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516125601.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:me@paaatrick.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#遇到的问题"><span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案一"><span class="toc-text">方案一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案二"><span class="toc-text">方案二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/categories/" title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Life/" href="/categories/Life/"><div class="name">Life</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Note/" href="/categories/Note/"><div class="name">Note</div><div class="badge">(12)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Tech/" href="/categories/Tech/"><div class="name">Tech</div><div class="badge">(13)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/tags/" title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Algorithm/" style="font-size: 20px; color: #707070">Algorithm</a> <a href="/tags/Audio-Video/" style="font-size: 14px; color: #999">Audio/Video</a> <a href="/tags/Food/" style="font-size: 16px; color: #8b8b8b">Food</a> <a href="/tags/Hotel/" style="font-size: 14px; color: #999">Hotel</a> <a href="/tags/LeetCode/" style="font-size: 20px; color: #707070">LeetCode</a> <a href="/tags/NetworkProtocol/" style="font-size: 18px; color: #7e7e7e">NetworkProtocol</a> <a href="/tags/Objective-C/" style="font-size: 22px; color: #636363">Objective-C</a> <a href="/tags/Python/" style="font-size: 20px; color: #707070">Python</a> <a href="/tags/Swift/" style="font-size: 14px; color: #999">Swift</a> <a href="/tags/SwiftUI/" style="font-size: 14px; color: #999">SwiftUI</a> <a href="/tags/WordPress/" style="font-size: 16px; color: #8b8b8b">WordPress</a> <a href="/tags/iOS/" style="font-size: 24px; color: #555">iOS</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Fongim" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:me@paaatrick.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://me.csdn.net/fongim" class="social fab fa-contao flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>©2019 派大星星星星</p>
+</div>
+  <div>
+    本站使用
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    作为主题
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        const images = ["https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120523.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120522.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120521.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120520.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120519.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120518.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120517.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120516.jpeg", "https://raw.githubusercontent.com/Fongim/personal_blog_image/master/image/20190516120515.jpeg"];
+        for (let i = 1; i < images.length; i++) {
+          const random = Math.floor(Math.random() * (i + 1));
+          [images[i], images[random]] = [images[random], images[i]];
+        }
+        if ('') {
+          $('').backstretch(images, 
+          {
+            duration: "40000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(images, 
+          {
+            duration: "40000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+  <script>
+    var disqus_shortname = 'paaatrick-com';
+    
+      var disqus_url = 'https://paaatrick.com/2020-03-23-swiftui-navigationlink-destination-not-lazy/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <script src="/js/app.js"></script>
+
+
+  <script src="/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
