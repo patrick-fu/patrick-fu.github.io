@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>macOS 使用 QuickLook 预览高亮查看任意代码源文件</title>
+      <link href="/2020-04-05-make-mac-quicklook-any-code-source-file/"/>
+      <url>/2020-04-05-make-mac-quicklook-any-code-source-file/</url>
+      
+        <content type="html"><![CDATA[<p>很多源码文件 macOS 默认不支持通过空格快速查看，比如 Flutter 的 <code>.dart</code> 文件、YAML 的 <code>.yaml</code>、<code>.yml</code>、CocoaPods 的 <code>Podfile</code>、<code>Podfile.lock</code> 等等。</p><a id="more"></a><p><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20200405170111.png" alt="dart"></p><p>就算通过右键文件，<code>显示简介</code> -&gt; <code>打开方式</code> 将其设置为全部通过 VSCode、Android Studio 等应用打开，解决了能双击文件打开的问题，也还是不能 QuickLook 快速预览。</p><p><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20200405170604.png" alt="vscode_dart"></p><p>普通的 <code>.h</code>、<code>.cpp</code> 等源码文件虽然系统是认识了，但没有代码高亮，看瞎眼。</p><p><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20200405170330.png" alt="h_file"></p><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>幸好有成吨的开源插件做了这些事，不用重复造轮子。</p><p>GitHub 项目链接：<a href="https://github.com/sindresorhus/quick-look-plugins" target="_blank" rel="noopener">https://github.com/sindresorhus/quick-look-plugins</a></p><p>其他关于 QuickLook Plugin 的介绍：</p><ul><li><p><a href="https://sspai.com/post/31927" target="_blank" rel="noopener">https://sspai.com/post/31927</a></p></li><li><p><a href="https://zhuanlan.zhihu.com/p/57203915" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/57203915</a></p></li></ul><p>关于 QuickLook 的介绍参考以上两个链接，就不再啰嗦了。</p><p>对于本文讨论的高亮预览源码文件的需求，我们可以安装 <a href="https://github.com/anthonygelibert/QLColorCode" target="_blank" rel="noopener">QLColorCode</a> 用于代码高亮、<a href="https://github.com/whomwah/qlstephen" target="_blank" rel="noopener">QLStephen</a> 用于预览无后缀名的文件。</p><p>推荐通过 Homebrew 来安装，以便集中管理。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew cask install qlcolorcode</span><br><span class="line"></span><br><span class="line">brew cask install qlstephen</span><br></pre></td></tr></table></figure><blockquote><p>需要注意的是如果 macOS 系统版本是 10.15 Catalina 及以上，安装完插件后需要额外执行一下</p><p><code>xattr -r ~/Library/QuickLook</code></p><p><code>xattr -d -r com.apple.quarantine ~/Library/QuickLook</code></p><p>以解决运行不了 QuickLook 插件的问题</p></blockquote><h2 id="添加扩展文件"><a href="#添加扩展文件" class="headerlink" title="添加扩展文件"></a>添加扩展文件</h2><p>然而即便安装了里面的 <a href="https://github.com/anthonygelibert/QLColorCode" target="_blank" rel="noopener">QLColorCode</a> 也还是没法查看这些系统不认识的文件比如 <code>.dart</code>，此时可修改一下这个插件的配置文件使其支持</p><p>打开 <code>~/Library/QuickLook/QLColorCode.qlgenerator/Contents/Info.plist</code> 文件</p><p>找到 <code>Document types &gt; Item 0 &gt; Document Content Type UTIs (CFBundleDocumentTypes &gt; Item 0 &gt; LSItemContentTypes</code></p><p><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20200405172403.png" alt="plist"></p><p>点击➕添加一行 <code>.dart</code> 文件格式，如上图所示</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.apple.disk-image-dart</span><br></pre></td></tr></table></figure><p>保存后即生效，其他类型文件也可通过这个方法来快速预览。</p><p>然而如何查看具体某种文件格式的类型呢？</p><p>通过这条命令</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdls -name kMDItemContentType ./main.dart</span><br></pre></td></tr></table></figure><p>就能得到传入的文件类型了</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kMDItemContentType = <span class="string">"com.apple.disk-image-dart"</span></span><br></pre></td></tr></table></figure><p>把常见的源码文件都添加进 <code>~/Library/QuickLook/QLColorCode.qlgenerator/Contents/Info.plist</code>，生产效率大大提高💪</p><p><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20200405173836.png" alt="dart"></p><p><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20200405173841.png" alt="h"></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol><li><p><a href="https://medium.com/@claudmarotta/how-to-preview-dart-files-with-macos-quick-look-54779340811f" target="_blank" rel="noopener">https://medium.com/@claudmarotta/how-to-preview-dart-files-with-macos-quick-look-54779340811f</a></p></li><li><p><a href="https://github.com/anthonygelibert/QLColorCode" target="_blank" rel="noopener">https://github.com/anthonygelibert/QLColorCode</a></p></li><li><p><a href="https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549" target="_blank" rel="noopener">https://github.com/whomwah/qlstephen/issues/81#issuecomment-582365549</a></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> macOS </tag>
+            
+            <tag> QuickLook </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【SwiftUI】解决 NavigationLink 立即加载 destination View 的问题（实现懒加载）</title>
       <link href="/2020-03-23-swiftui-navigationlink-destination-not-lazy/"/>
       <url>/2020-03-23-swiftui-navigationlink-destination-not-lazy/</url>
