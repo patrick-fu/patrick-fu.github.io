@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>解决 CocoaPods trunk CDN 连接不上的问题</title>
+      <link href="/2020-04-10-cocoapods-trunk-cdn-issue/"/>
+      <url>/2020-04-10-cocoapods-trunk-cdn-issue/</url>
+      
+        <content type="html"><![CDATA[<p>CocoaPods 自 1.8 版本开始默认使用 trunk CDN (<a href="https://cdn.cocoapods.org/" target="_blank" rel="noopener">https://cdn.cocoapods.org/</a>) 作为 spec 的源，本意是非常好的，避免了需要本地 clone 一份庞大的 <a href="https://github.com/CocoaPods/Specs.git" target="_blank" rel="noopener">Specs</a> 仓库导致每次 update 都要全量更新的问题。然而不知为何国内连 trunk CDN 都被限制访问了。</p><p>常见的问题是 <code>pod install</code> 时报错 <code>CDN: trunk URL couldn&#39;t be downloaded</code> 以及 <code>pod repo update</code> 时 <code>CDN: trunk Repo update failed</code></p><p>以下是几种解决方案。</p><a id="more"></a><h2 id="安装-CocoaPods"><a href="#安装-CocoaPods" class="headerlink" title="安装 CocoaPods"></a>安装 CocoaPods</h2><p>在执行以下步骤之前，请确保已安装 CocoaPods。</p><blockquote><p>可执行 <code>pod --version</code> 检查是否有安装 CocoaPods 并查看版本号。</p></blockquote><p>安装 CocoaPods：打开终端 Terminal，执行：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure><p>请参阅 <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started" target="_blank" rel="noopener">CocoaPods入门</a></p><blockquote><p>注：若根据以上入门指引，因网络问题无法下载安装 CocoaPods，可考虑使用 Ruby Gems 镜像源：</p><ul><li><p>清华 Gems 镜像站: <a href="https://mirror.tuna.tsinghua.edu.cn/help/rubygems/" target="_blank" rel="noopener">https://mirror.tuna.tsinghua.edu.cn/help/rubygems/</a></p></li><li><p>Ruby China 镜像站: <a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a></p></li></ul></blockquote><h2 id="解决连接不上-trunk-CDN-的问题"><a href="#解决连接不上-trunk-CDN-的问题" class="headerlink" title="解决连接不上 trunk CDN 的问题"></a>解决连接不上 trunk CDN 的问题</h2><h3 id="方案一：使用代理"><a href="#方案一：使用代理" class="headerlink" title="方案一：使用代理"></a>方案一：使用代理</h3><p>不管是使用旧版 CocoaPods 还是使用镜像源，都不是最优解，为了充分使用 CocoaPods 的特性，最推荐的还是使用代理来解决无法连接 trunk CDN 的问题。</p><h3 id="方案二：使用旧版-CocoaPods"><a href="#方案二：使用旧版-CocoaPods" class="headerlink" title="方案二：使用旧版 CocoaPods"></a>方案二：使用旧版 CocoaPods</h3><p>1.7.5 版本的 CocoaPods 默认使用 <a href="https://github.com/CocoaPods/Specs.git" target="_blank" rel="noopener">Specs</a> 作为 repo 源，可以卸载后重新安装旧版 CocoaPods。</p><ul><li>卸载：</li></ul><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem uninstall cocoapods</span><br></pre></td></tr></table></figure><ul><li>安装 CocoaPods 1.7.5：</li></ul><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods -v 1.7.5</span><br></pre></td></tr></table></figure><h3 id="方案三：手动切换使用官方-Git-源-镜像源"><a href="#方案三：手动切换使用官方-Git-源-镜像源" class="headerlink" title="方案三：手动切换使用官方 Git 源 / 镜像源"></a>方案三：手动切换使用官方 Git 源 / 镜像源</h3><blockquote><p>不推荐此方案，比较繁琐。</p></blockquote><ol><li><p>检查当前使用的源</p><p> 先执行 <code>pod repo list</code> 查看本机的源有哪些，如果存在一个 master 源 (<code>URL: https://github.com/CocoaPods/Specs.git</code>) 以及一个 trunk 源 (<code>URL: https://cdn.cocoapods.org/</code>)，则无需操作下面的第二步，可直接执行 <code>pod repo remove trunk</code> 删除 trunk CDN 源。</p><p> 若使用 1.9.1 或以上版本，应该只存在一个 trunk CDN 源，此时需要手动添加 Git 源</p></li><li><p>添加源</p><ul><li><p>添加 <a href="https://github.com/CocoaPods/Specs.git" target="_blank" rel="noopener">官方 CocoaPods Git 源</a></p><p>  执行 <code>pod repo add cocoapods https://github.com/CocoaPods/Specs.git</code></p></li><li><p>添加 <a href="https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/" target="_blank" rel="noopener">清华 CocoaPods 镜像源</a></p><p>  执行 <code>pod repo add tuna https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git</code></p></li></ul></li><li><p>执行 <code>pod repo update --verbose</code></p></li><li><p>在 iOS 项目根目录下的 <code>Podfile</code> 文件里指定源</p><blockquote><p>若找不到 <code>Podfile</code>，请先 <code>cd</code> 进 iOS 项目的根目录，执行 <code>pod init</code></p></blockquote><p> 往 <code>Podfile</code> 的第一行添加一句 <code>source https://xxxxx.git</code> （其中的 URL 为上一步添加的源的 URL）</p><p> 例：使用清华源</p> <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span></span><br><span class="line"></span><br><span class="line">target <span class="string">'MyProject'</span> <span class="keyword">do</span></span><br><span class="line">  use_frameworks!</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><p> 如果没有在 Podfile 里指定 source 的话，1.8 版本以上的 CocoaPods 会自动重新添加并使用 trunk CDN 源，因此每个项目的 Podfile 都需要显式指定 source，非常麻烦。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iOS </tag>
+            
+            <tag> CocoaPods </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>macOS 使用 QuickLook 预览高亮查看任意代码源文件</title>
       <link href="/2020-04-05-make-mac-quicklook-any-code-source-file/"/>
       <url>/2020-04-05-make-mac-quicklook-any-code-source-file/</url>
