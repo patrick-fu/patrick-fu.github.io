@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Flutter 移动端屏幕采集方案分享</title>
+      <link href="/2020-11-20-flutter-screen-capture/"/>
+      <url>/2020-11-20-flutter-screen-capture/</url>
+      
+        <content type="html"><![CDATA[<p>现如今随着 Flutter 的应用越来越广泛，纯 Flutter 项目也越来越多，本篇内容主要分享的是 Flutter 移动端（iOS + Android）的屏幕采集的实现。</p><a id="more"></a><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在视频会议、线上课堂、游戏直播等场景，屏幕共享是一个最常见的功能。屏幕共享就是对屏幕画面的实时共享，端到端主要有几个步骤：录屏采集、视频编码及封装、实时传输、视频解封装及解码、视频渲染。</p><p>一般来说，实时屏幕共享时，共享发起端以固定采样频率（一般 8 - 15帧足够）抓取到屏幕中指定源的画面（包括指定屏幕、指定区域、指定程序等），经过视频编码压缩（应选择保持文本/图形边缘信息不失真的方案）后，在实时网络上以相应的帧率分发。</p><p>因此，屏幕采集是实现实时屏幕共享的基础，它的应用场景也是非常广泛的。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>首先我们看看原生系统提供了哪些能力来进行屏幕录制。</p><ol><li><p>iOS 11.0 提供了 <code>ReplayKit 2</code> 用于采集跨 App 的全局屏幕内容，但仅能通过控制中心启动；iOS 12.0 则在此基础上提供了从 App 内启动 ReplayKit 的能力。</p></li><li><p>Android 5.0 系统提供了 <code>MediaProjection</code> 功能，只需弹窗获取用户的同意即可采集到全局屏幕内容。</p></li></ol><p>我们再看一下 Android / iOS 的屏幕采集能力有哪些区别。</p><ol><li><p>iOS 的 <code>ReplayKit</code> 是通过启动一个 <code>Broadcast Upload Extension</code> 子进程来采集屏幕数据，需要解决主 App 进程与屏幕采集子进程之间的通信交互问题，同时，子进程还有诸如运行时内存最大不能超过 50M 的限制。</p></li><li><p>Android 的 <code>MediaProjection</code> 是直接在 App 主进程内运行的，可以很容易获取到屏幕数据的 <code>Surface</code>。</p></li></ol><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>虽然无法避免原生代码，但我们可以尽量以最少的原生代码来实现 Flutter 屏幕采集。将两端的屏幕采集能力抽象封装为通用的 Dart 层接口，只需一次部署完成后，就能开心地在 Dart 层启动、停止屏幕采集了。</p><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a><strong>iOS</strong></h4><p>打开 <code>Runner</code> Xcode Project，新建一个 <code>Broadcast Upload Extension</code> Target，在此处理 ReplayKit 子进程的业务逻辑。</p><p>首先需要处理主 App 进程与 ReplayKit 子进程的跨进程通信问题，由于屏幕采集的 audio/video buffer 回调非常频繁，出于性能与 Flutter 插件生态考虑，在原生侧处理音视频 buffer 显然是目前最靠谱的方案，那剩下要解决的就是启动、停止信令以及必要的配置信息的传输了。</p><p>对于启动 <code>ReplayKit</code> 的操作，可以通过 Flutter 的 MethodChannel 在原生侧 new 一个 <code>RPSystemBroadcastPickerView</code>，这是一个系统提供的 View，包含一个点击后直接弹出启动屏幕采集窗口的 Button。通过遍历 Sub View 的方式找到 Button 并触发点击操作，便解决了启动 <code>ReplayKit</code> 的问题。</p><p>然后是配置信息的同步问题。</p><ul><li><p>一是使用 iOS 的 <code>App Group</code> 能力，通过 NSUserDefaults 持久化配置在进程间共享配置信息，分别在 <code>Runner</code> Target 和 <code>Broadcast Upload Extension</code> Target 内开启 App Group 能力并设置同一个 App Group ID，然后就能通过 <code>-[NSUserDefaults initWithSuiteName]</code> 读写此 App Group 内的配置了。</p></li><li><p>二是使用跨进程通知 <code>CFNotificationCenterGetDarwinNotifyCenter</code> 携带配置信息来实现进程间通信。</p></li></ul><p>接下来是停止 ReplayKit 的操作。也是使用上述的 CFNotification 跨进程通知，在 Flutter 主 App 发起结束屏幕采集的通知，ReplayKit 子进程接收到通知后调用 <code>-[RPBroadcastSampleHandler finishBroadcastWithError:]</code> 来结束屏幕采集。</p><center><img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/20201120152638.png" width="80%"></center><h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a><strong>Android</strong></h4><p>启动屏幕采集时，直接通过 Flutter 的 MethodChannel 在原生侧通过 <code>MediaProjectionManager</code> 弹出一个向用户请求屏幕采集权限的弹窗，收到确认后即可调用 <code>MediaProjectionManager.getMediaProjection()</code> 函数拿到 <code>MediaProjection</code> 对象。</p><p>然后根据业务场景需求从屏幕采集 buffer 的消费者拿到 <code>Surface</code>，例如，要保存屏幕录制的话，从 <code>MediaRecoder</code> 拿到 Surface，要录屏直播的话，可调用音视频直播 SDK 的接口获取 Surface。</p><p>有了 <code>MediaProjection</code> 和消费者的 <code>Surface</code>，接下来就是调用 <code>MediaProjection.createVirtualDisplay()</code> 函数传入 Surface 来创建 <code>VirtualDisplay</code> 实例，从而获取到屏幕采集 buffer。</p><p>最后是结束屏幕采集，相比 iOS 复杂的操作，Android 仅需要将 <code>VirtualDisplay</code> 和 <code>MediaProjection</code> 实例对象释放即可。</p><h2 id="实战示例"><a href="#实战示例" class="headerlink" title="实战示例"></a>实战示例</h2><p>一个实现了 iOS/Android 屏幕采集并使用 <strong><a href="https://pub.dev/packages/zego_express_engine" target="_blank" rel="noopener">ZEGO Express Audio and Video Flutter SDK</a></strong> 进行推流直播的示例 Demo。</p><p><strong><a href="https://github.com/zegoim/zego-express-example-screen-capture-flutter" target="_blank" rel="noopener">https://github.com/zegoim/zego-express-example-screen-capture-flutter</a></strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Tech </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iOS </tag>
+            
+            <tag> Flutter </tag>
+            
+            <tag> Android </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决 CocoaPods trunk CDN 连接不上的问题</title>
       <link href="/2020-04-10-cocoapods-trunk-cdn-issue/"/>
       <url>/2020-04-10-cocoapods-trunk-cdn-issue/</url>
