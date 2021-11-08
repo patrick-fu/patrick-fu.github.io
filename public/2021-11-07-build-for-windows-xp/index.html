@@ -385,8 +385,8 @@
 </li>
 <li><p>为你的 <code>shared_library</code> 或 <code>executable</code> Target 添加 <code>/SUBSYSTEM:WINDOWS,&quot;5.02&quot;</code> 这个 <code>ldflags</code> （链接器参数） ，即为 <code>link.exe</code> 指定构建目标为 5.02 (Windows XP SP2)，参考 <a href="https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem?view=msvc-160" target="_blank" rel="noopener">链接器选项 /SUBSYSTEM（指定子系统）</a></p>
 </li>
-<li><p>如果你使用的是 Google Chromium 的 <a href="https://github.com/chromium/chromium/tree/master/build" target="_blank" rel="noopener"><code>build</code></a> 作为你的 GN 工程的工具链，你可以直接为你的 <code>shared_library</code> 或 <code>executable</code> Target 添加如下 config:</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configs += [ &quot;//build/config/win:windowed&quot; ]</span><br></pre></td></tr></table></figure>
+<li><p>如果你使用的是 Google Chromium 的 <a href="https://github.com/chromium/chromium/tree/master/build" target="_blank" rel="noopener"><code>build</code></a> 作为你的 GN 工程的工具链，那你的 <code>shared_library</code> 或 <code>executable</code> Target 就已经带了上述的配置，默认是用 <code>//build/config/win:console</code>，你也可以手动替换为 <code>windowed</code>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 仅当你的构建目标是一个带 GUI 的可执行二进制时才需要这样操作</span><br><span class="line"># 对于 DLL 来说，二者没有区别，因为函数入口不是 DLL 决定的</span><br><span class="line">configs -= [ &quot;//build/config/win:console&quot; ]</span><br><span class="line">configs += [ &quot;//build/config/win:windowed&quot; ]</span><br></pre></td></tr></table></figure>
 
 <p> <img src="https://raw.githubusercontent.com/patrick-fu/personal_blog_image/master/image/chromium_build_win_config_windowed.png" alt="Chromium build win config windowed"></p>
 <p> 参考：<a href="https://github.com/patrick-fu/gn_build/blob/48ac640820/config/win/BUILD.gn#L570" target="_blank" rel="noopener">GN build toolchain, //build/config/win:windowed</a></p>
@@ -406,10 +406,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-07T20:02:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-08T17:36:56+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2021年11月7日</p>
+    <p>最后更新于 2021年11月8日</p>
   </a>
 </div>
 

@@ -50,9 +50,12 @@ categories:
 
 2. 为你的 `shared_library` 或 `executable` Target 添加 `/SUBSYSTEM:WINDOWS,"5.02"` 这个 `ldflags` （链接器参数） ，即为 `link.exe` 指定构建目标为 5.02 (Windows XP SP2)，参考 [链接器选项 /SUBSYSTEM（指定子系统）](https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem?view=msvc-160)
 
-3. 如果你使用的是 Google Chromium 的 [`build`](https://github.com/chromium/chromium/tree/master/build) 作为你的 GN 工程的工具链，你可以直接为你的 `shared_library` 或 `executable` Target 添加如下 config:
+3. 如果你使用的是 Google Chromium 的 [`build`](https://github.com/chromium/chromium/tree/master/build) 作为你的 GN 工程的工具链，那你的 `shared_library` 或 `executable` Target 就已经带了上述的配置，默认是用 `//build/config/win:console`，你也可以手动替换为 `windowed`:
 
     ```gn
+    # 仅当你的构建目标是一个带 GUI 的可执行二进制时才需要这样操作
+    # 对于 DLL 来说，二者没有区别，因为函数入口不是 DLL 决定的
+    configs -= [ "//build/config/win:console" ]
     configs += [ "//build/config/win:windowed" ]
     ```
 
