@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../../site.config.mjs';
+---
+
+<BaseLayout title="关于">
+  <div class="page-header">
+    <div class="page-heading">
+      <h1 class="page-title">关于</h1>
+      <span class="page-subtitle">{site.author}</span>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>
+      这里是 <strong>{site.title}</strong>，主要记录 iOS、算法、网络协议与工程实践相关内容。
+    </p>
+
+    <h2>联系我</h2>
+    <ul>
+      <li>GitHub: <a href="https://github.com/Fongim" target="_blank" rel="noopener noreferrer">https://github.com/Fongim</a></li>
+      <li>Email: <a href="mailto:lemonjush@gmail.com">lemonjush@gmail.com</a></li>
+      <li>CSDN: <a href="https://me.csdn.net/fongim" target="_blank" rel="noopener noreferrer">https://me.csdn.net/fongim</a></li>
+    </ul>
+
+    <h2>说明</h2>
+    <p>
+      本站基于 Astro 构建，文章地址保持为历史格式：<code>/YYYY-MM-DD-title/</code>。
+    </p>
+  </div>
+</BaseLayout>
