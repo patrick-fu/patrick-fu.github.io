@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branches: [hexo]
+    branches: [main]
   pull_request:
-    branches: [hexo]
+    branches: [main]
 
 jobs:
   ci:

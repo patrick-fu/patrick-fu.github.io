@@ -4,7 +4,7 @@
 
 ## 分支与发布
 
-- 源码分支：`hexo`
+- 源码分支：`main`
 - 发布方式：GitHub Actions（`.github/workflows/deploy.yml`）
 - GitHub Pages Source：`GitHub Actions`
 
