@@ -17,8 +17,8 @@ export async function GET(context) {
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
   return rss({
-    title: `${site.title} · 归档`,
-    description: '归档更新',
+    title: `${site.title} · Archive`,
+    description: 'Archive updates',
     site: context.site,
     items: archiveItems.map((entry) => ({
       title: entry.data.title,

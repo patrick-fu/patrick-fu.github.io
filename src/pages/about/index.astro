@@ -1,31 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { site } from '../../../site.config.mjs';
 ---
 
-<BaseLayout title="关于">
+<BaseLayout title="About">
   <div class="page-header">
     <div class="page-heading">
-      <h1 class="page-title">关于</h1>
-      <span class="page-subtitle">{site.author}</span>
+      <h1 class="page-title">About</h1>
     </div>
   </div>
 
   <div class="prose">
+    <h2>About Me</h2>
+    <p>Hi, I'm Patrick. This is where I write.</p>
     <p>
-      这里是 <strong>{site.title}</strong>，主要记录 iOS、算法、网络协议与工程实践相关内容。
+      I'm a mobile engineer working around RTC, TikTok creative tools, and AI Coding. I like building tools, testing workflows, and figuring out which parts of software engineering still matter when AI gets better.
+    </p>
+    <p>
+      Most posts here come from real work, half-baked thoughts, and experiments that were interesting enough to write down. I usually draft in Feishu and share some of the notes on RedNote.
     </p>
 
-    <h2>联系我</h2>
+    <h2>Contact</h2>
     <ul>
-      <li>GitHub: <a href="https://github.com/Fongim" target="_blank" rel="noopener noreferrer">https://github.com/Fongim</a></li>
-      <li>Email: <a href="mailto:lemonjush@gmail.com">lemonjush@gmail.com</a></li>
-      <li>CSDN: <a href="https://me.csdn.net/fongim" target="_blank" rel="noopener noreferrer">https://me.csdn.net/fongim</a></li>
+      <li>GitHub: <a href="http://github.com/patrick-fu/" target="_blank" rel="noopener noreferrer">http://github.com/patrick-fu/</a></li>
+      <li>Email: <a href="mailto:paaatrickfu@gmail.com">paaatrickfu@gmail.com</a></li>
+      <li>RedNote: <a href="https://www.xiaohongshu.com/user/profile/55c2e0bb41a2b30962132f2e" target="_blank" rel="noopener noreferrer">https://www.xiaohongshu.com/user/profile/55c2e0bb41a2b30962132f2e</a></li>
     </ul>
-
-    <h2>说明</h2>
-    <p>
-      本站基于 Astro 构建，文章地址保持为历史格式：<code>/YYYY-MM-DD-title/</code>。
-    </p>
   </div>
 </BaseLayout>

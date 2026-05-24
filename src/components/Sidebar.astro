@@ -2,75 +2,85 @@
 import Icon from './Icon.astro';
 import { createWithBase } from '../utils/format';
 
-const { siteTitle = '派大星星星星' } = Astro.props;
+const { siteTitle = "Patrick's Blog" } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const base = import.meta.env.BASE_URL ?? '/';
 const withBase = createWithBase(base);
 const homeHref = withBase('/');
+const logoSrc = withBase('/author/avatar.jpg');
 
 const nav = [
-  { label: '博客', href: withBase('/') },
-  { label: '随笔', href: withBase('/essay/') },
-  { label: '归档', href: withBase('/archive/') },
-  { label: '关于', href: withBase('/about/') }
+  { label: 'Blog', href: withBase('/') },
+  { label: 'Archive', href: withBase('/archive/') },
+  { label: 'About', href: withBase('/about/') }
 ];
 
-const quote = '技术、生活与一些随想。\n保持记录，保持思考。';
 ---
 
-<aside class="sidebar">
-  <a class="sidebar__title" href={homeHref} aria-label={`${siteTitle} 首页`}>{siteTitle}</a>
-
-  <div class="sidebar__quote">
-    {quote.split('\n').map((line) => (
-      <>
-        {line}<br />
-      </>
-    ))}
-  </div>
-
-  <ul class="nav">
-    {nav.map((item) => {
-      const isActive = pathname === item.href || (item.href !== homeHref && pathname.startsWith(item.href));
-      return (
-        <li>
-          <a href={item.href} aria-current={isActive ? 'page' : undefined}>
-            <span>{item.label}</span>
-            <span class="dot" aria-hidden="true"></span>
-          </a>
-        </li>
-      );
-    })}
-  </ul>
-
-  <div class="sidebar-actions">
-    <button
-      id="reader-toggle"
-      class="icon-button reader-toggle"
-      type="button"
-      aria-label="阅读模式"
-      aria-pressed="false"
-      title="阅读模式"
-    >
-      <Icon name="book-open" class="icon icon-book-open" />
-      <Icon name="book-closed" class="icon icon-book-closed" />
-    </button>
-
-    <a class="icon-button rss-link" href={withBase('/archive/rss.xml')} aria-label="RSS 订阅" title="RSS 订阅">
-      <Icon name="rss" class="icon" />
+<header class="site-header">
+  <nav class="navbar" aria-label="Primary navigation">
+    <a class="navbar-brand" href={homeHref} aria-label={`${siteTitle} home`}>
+      <img class="navbar-brand__mark" src={logoSrc} alt="" width="38" height="38" decoding="async" />
+      <span class="navbar-brand__text">{siteTitle}</span>
     </a>
 
-    <button
-      id="theme-toggle"
-      class="icon-button theme-toggle"
-      type="button"
-      aria-label="夜间模式"
-      aria-pressed="false"
-      title="夜间模式"
-    >
-      <Icon name="moon" class="icon icon-moon" />
-      <Icon name="sun" class="icon icon-sun" />
-    </button>
-  </div>
-</aside>
+    <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true" tabindex="-1" />
+    <label class="nav-toggle-button nav-toggle-button--open" for="nav-toggle" aria-label="Open navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <label class="nav-toggle-button nav-toggle-button--close" for="nav-toggle" aria-label="Close navigation">
+      <span></span>
+      <span></span>
+    </label>
+
+    <ul class="nav" id="nav-menu">
+      {nav.map((item) => {
+        const isActive = pathname === item.href || (item.href !== homeHref && pathname.startsWith(item.href));
+        return (
+          <li>
+            <a href={item.href} aria-current={isActive ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+
+    <div class="navbar-actions">
+      <a class="icon-button search-link" href={withBase('/essay/')} aria-label="Search posts" title="Search posts">
+        <Icon name="search" class="icon" />
+      </a>
+
+      <button
+        id="reader-toggle"
+        class="icon-button reader-toggle"
+        type="button"
+        aria-label="Reading mode"
+        aria-pressed="false"
+        title="Reading mode"
+      >
+        <Icon name="book-open" class="icon icon-book-open" />
+        <Icon name="book-closed" class="icon icon-book-closed" />
+      </button>
+
+      <a class="icon-button rss-link" href={withBase('/archive/rss.xml')} aria-label="RSS feed" title="RSS feed">
+        <Icon name="rss" class="icon" />
+      </a>
+
+      <button
+        id="theme-toggle"
+        class="icon-button theme-toggle"
+        type="button"
+        aria-label="Dark mode"
+        aria-pressed="false"
+        title="Dark mode"
+      >
+        <Icon name="moon" class="icon icon-moon" />
+        <Icon name="sun" class="icon icon-sun" />
+      </button>
+    </div>
+  </nav>
+</header>

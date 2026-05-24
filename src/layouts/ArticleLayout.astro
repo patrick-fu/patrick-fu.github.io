@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import Lightbox from '../components/Lightbox.astro';
 import { formatISODate } from '../utils/format';
 import { getMetaDescription } from '../utils/excerpt';
+import { site } from '../../site.config.mjs';
 
 const {
   entry,
@@ -41,51 +42,58 @@ const description = getMetaDescription(entry);
       id="reader-exit"
       class="icon-button reader-exit"
       type="button"
-      aria-label="退出阅读"
-      title="退出阅读"
+      aria-label="Exit reading mode"
+      title="Exit reading mode"
       aria-hidden="true"
       tabindex="-1"
     >
       <Icon name="reader-exit" class="icon" />
     </button>
     <div class="meta-line">
-      发布于：{formatISODate(entry.data.date)}
+      <span>{site.author}</span>
+      <span aria-hidden="true">·</span>
+      <span>{formatISODate(entry.data.date)}</span>
       {typeLabel ? <> · <span class="tag">{typeLabel}</span></> : null}
       {firstTag ? <> · <span class="tag">#{firstTag}</span></> : null}
     </div>
   </div>
 
+  {coverImage ? (
+    <figure class="article-cover">
+      <img src={coverImage} alt="" loading="eager" decoding="async" />
+    </figure>
+  ) : null}
+
   <div class="prose">
     <Content />
   </div>
   {(prev || next) ? (
-    <nav class="prev-next" aria-label="上一篇/下一篇">
-      <div class="prev-next__item">
-        {prev ? (
-          <a class="prev-next__link prev-next__link--prev" href={prev.href} rel="prev">
-            <span class="prev-next__label">上一篇</span>
-            <span class="prev-next__title">{prev.title}</span>
-          </a>
-        ) : (
-          <span class="prev-next__placeholder" aria-hidden="true"></span>
-        )}
-      </div>
-      <div class="prev-next__item">
-        {next ? (
-          <a class="prev-next__link prev-next__link--next" href={next.href} rel="next">
-            <span class="prev-next__label">下一篇</span>
-            <span class="prev-next__title">{next.title}</span>
-          </a>
-        ) : (
-          <span class="prev-next__placeholder" aria-hidden="true"></span>
-        )}
-      </div>
+    <nav
+      class:list={[
+        'prev-next',
+        !prev && next && 'prev-next--only-next',
+        prev && !next && 'prev-next--only-prev'
+      ]}
+      aria-label="Previous and next posts"
+    >
+      {prev ? (
+        <a class="prev-next__link prev-next__link--prev" href={prev.href} rel="prev">
+          <span class="prev-next__label">Previous post</span>
+          <span class="prev-next__title">{prev.title}</span>
+        </a>
+      ) : null}
+      {next ? (
+        <a class="prev-next__link prev-next__link--next" href={next.href} rel="next">
+          <span class="prev-next__label">Next post</span>
+          <span class="prev-next__title">{next.title}</span>
+        </a>
+      ) : null}
     </nav>
   ) : null}
 
   <Lightbox
     id="lightbox"
-    label="图片预览"
+    label="Image preview"
     enableZoom={false}
     enablePan={false}
     enableSwipeDownClose={false}

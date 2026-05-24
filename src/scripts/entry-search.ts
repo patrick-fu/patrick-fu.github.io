@@ -79,7 +79,7 @@ if (!searchRoot) {
 
   const setDegradedMode = () => {
     if (input) {
-      input.placeholder = '索引加载失败';
+      input.placeholder = 'Index failed to load';
       input.disabled = true;
       input.setAttribute('aria-disabled', 'true');
     }
@@ -87,7 +87,7 @@ if (!searchRoot) {
       toggleBtn.disabled = true;
       toggleBtn.setAttribute('aria-disabled', 'true');
     }
-    setStatus('索引加载失败，已禁用搜索');
+    setStatus('Index failed to load. Search is disabled.');
     showAll();
     syncSections(false);
   };
@@ -97,7 +97,7 @@ if (!searchRoot) {
     if (indexCache) return indexCache;
     if (indexFailed) return null;
     if (!indexPromise) {
-      setStatus('正在加载索引...');
+      setStatus('Loading index...');
       indexPromise = fetch(indexUrl)
         .then((r) => {
           if (!r.ok) throw new Error('index fetch failed');
@@ -153,18 +153,18 @@ if (!searchRoot) {
 
     const totalMatches = matchedSlugs.size;
     if (totalMatches === 0) {
-      setStatus('未找到匹配内容');
+      setStatus('No matches found');
       return;
     }
     if (visibleMatches === totalMatches) {
-      setStatus(`命中 ${totalMatches} 条`);
+      setStatus(`${totalMatches} matches`);
       return;
     }
     if (visibleMatches === 0) {
-      setStatus(`共命中 ${totalMatches} 条（当前页无结果，可翻页继续查看）`);
+      setStatus(`${totalMatches} matches in total. No results on this page.`);
       return;
     }
-    setStatus(`共命中 ${totalMatches} 条（当前页 ${visibleMatches} 条，可翻页查看更多）`);
+    setStatus(`${totalMatches} matches in total. ${visibleMatches} on this page.`);
   };
 
   const resetFilter = () => {

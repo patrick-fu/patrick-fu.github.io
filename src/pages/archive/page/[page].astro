@@ -32,14 +32,14 @@ const prevHref = currentPage === 2
   ? withBase('/archive/')
   : withBase(`/archive/page/${currentPage - 1}/`);
 const nextHref = currentPage < totalPages ? withBase(`/archive/page/${currentPage + 1}/`) : null;
-const pageTitle = `归档 · 第 ${currentPage} 页`;
+const pageTitle = `Archive · Page ${currentPage}`;
 ---
 
 <BaseLayout title={pageTitle}>
   <div class="page-header page-header--with-search">
     <div class="page-heading">
-      <h1 class="page-title">归档</h1>
-      <span class="page-subtitle">共 {archiveItems.length} 篇内容 · 第 {currentPage} / {totalPages} 页 · <a href={withBase('/archive/rss.xml')}>RSS</a></span>
+      <h1 class="page-title">Archive</h1>
+      <span class="page-subtitle">{archiveItems.length} posts · Page {currentPage} / {totalPages} · <a href={withBase('/archive/rss.xml')}>RSS</a></span>
     </div>
     <div class="page-actions">
       <div
@@ -52,17 +52,17 @@ const pageTitle = `归档 · 第 ${currentPage} 页`;
           <input
             data-entry-search-input
             type="search"
-            placeholder="搜索：标题 / 摘要 / 标签"
+            placeholder="Search title / excerpt / tags"
             autocomplete="off"
-            aria-label="搜索归档"
+            aria-label="Search archive"
           />
         </div>
         <button
           class="entry-search-toggle"
           data-entry-search-toggle
           type="button"
-          aria-label="搜索归档"
-          title="搜索"
+          aria-label="Search archive"
+          title="Search"
           aria-expanded="false"
         >
           <Icon name="search" class="icon" />
@@ -102,11 +102,11 @@ const pageTitle = `归档 · 第 ${currentPage} 页`;
   ))}
 
   {showPagination && (
-    <nav class="pagination" aria-label="归档分页">
+    <nav class="pagination" aria-label="Archive pagination">
       <div class="pagination__inner">
-        <a class="pagination__link" rel="prev" href={prevHref}>上一页</a>
+        <a class="pagination__link" rel="prev" href={prevHref}>Previous</a>
         {nextHref ? (
-          <a class="pagination__link pagination__link--next" rel="next" href={nextHref}>下一页</a>
+          <a class="pagination__link pagination__link--next" rel="next" href={nextHref}>Next</a>
         ) : null}
       </div>
     </nav>

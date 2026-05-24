@@ -1,49 +1,63 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroImage from '../components/HeroImage.astro';
-import EntryListItem from '../components/EntryListItem.astro';
-import { getPublished, isReservedSlug } from '../lib/content';
-import { getListExcerpt } from '../utils/excerpt';
-import { createWithBase } from '../utils/format';
+import Icon from '../components/Icon.astro';
+import EssayCard from '../components/EssayCard.astro';
+import { createWithBase, getEssaySlug, getVisibleEssays } from '../lib/content';
+import { getFirstImage, getListExcerpt } from '../utils/excerpt';
 
 const base = import.meta.env.BASE_URL ?? '/';
 const withBase = createWithBase(base);
-
-const essays = await getPublished('essay', {
-  orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-});
-
-const visibleEssays = essays.filter((entry) => !isReservedSlug(entry.data.slug ?? entry.id));
-const latest = visibleEssays.slice(0, 12);
+const visibleEssays = await getVisibleEssays();
 ---
 
-<BaseLayout bodyClass="home">
-  <h1 class="sr-only">派大星星星星</h1>
-  <div class="hero">
-    <HeroImage isLCP />
+<BaseLayout title="Blog" bodyClass="essay-page">
+  <div class="page-header page-header--essay page-header--with-search">
+    <div class="page-heading">
+      <h1 class="page-title">Blog</h1>
+      <span class="page-subtitle">All posts, {visibleEssays.length} articles · <a href={withBase('/essay/rss.xml')}>RSS</a></span>
+    </div>
+    <div class="page-actions">
+      <div class="entry-search" data-entry-search data-index-url={withBase('/essay/index.json')}>
+        <div class="entry-search-panel" data-entry-search-panel aria-hidden="true">
+          <input
+            data-entry-search-input
+            type="search"
+            placeholder="Search title / excerpt / tags"
+            autocomplete="off"
+            aria-label="Search posts"
+          />
+        </div>
+        <button
+          class="entry-search-toggle"
+          data-entry-search-toggle
+          type="button"
+          aria-label="Search posts"
+          title="Search"
+          aria-expanded="false"
+        >
+          <Icon name="search" class="icon" />
+        </button>
+      </div>
+    </div>
   </div>
-
-  <div class="intro intro--serif">
-    <span class="intro__lead">记录 iOS、算法、网络与工程实践中的思考。</span>
-    <span class="intro__more">更多内容请访问 <a href={withBase('/archive/')}>归档</a> 或 <a href={withBase('/essay/')}>随笔</a>。</span>
-  </div>
-
-  <h2 class="section-title section-title--index">索引</h2>
+  <div class="entry-status" data-entry-search-status role="status" aria-live="polite"></div>
 
   <div class="list">
-    {latest.map((entry) => {
-      const slug = entry.data.slug ?? entry.id;
-      const href = withBase(`/${slug}/`);
-      const tag = entry.data.tags?.[0];
-      return (
-        <EntryListItem
-          href={href}
-          title={entry.data.title}
-          date={entry.data.date}
-          tag={tag}
-          excerpt={getListExcerpt(entry)}
-        />
-      );
-    })}
+    {visibleEssays.map((entry) => (
+      <EssayCard
+        href={withBase(`/${getEssaySlug(entry)}/`)}
+        slug={getEssaySlug(entry)}
+        title={entry.data.title}
+        excerpt={getListExcerpt(entry)}
+        date={entry.data.date}
+        tag={entry.data.tags?.[0]}
+        badge={entry.data.badge}
+        cover={entry.data.cover ?? getFirstImage(entry)}
+      />
+    ))}
   </div>
+
+  <script>
+    import '../scripts/entry-search.ts';
+  </script>
 </BaseLayout>

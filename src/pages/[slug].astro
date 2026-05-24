@@ -13,8 +13,8 @@ export async function getStaticPaths() {
   const visibleEssays = essays.filter((entry) => !isReservedSlug(entry.data.slug ?? entry.id));
 
   return visibleEssays.map((entry, index) => {
-    const prevEntry = visibleEssays.at(index - 1);
-    const nextEntry = visibleEssays.at(index + 1);
+    const prevEntry = index > 0 ? visibleEssays[index - 1] : null;
+    const nextEntry = index < visibleEssays.length - 1 ? visibleEssays[index + 1] : null;
 
     return {
       params: { slug: entry.data.slug ?? entry.id },

@@ -1,4 +1,5 @@
 const MORE_REGEX = /<!--\s*more\s*-->/i;
+const FIRST_IMAGE_REGEX = /!\[[^\]]*]\(\s*<?([^)\s>]+)>?(?:\s+["'][^"']*["'])?\s*\)/;
 
 export function splitMore(md: string): string {
   if (!md) return '';
@@ -39,6 +40,11 @@ export function excerptFromMarkdown(md: string, maxChars = 120): string {
 
 export function getListExcerpt(entry: { body?: string }): string {
   return excerptFromMarkdown(entry?.body ?? '', 120);
+}
+
+export function getFirstImage(entry: { body?: string }): string {
+  const match = (entry?.body ?? '').match(FIRST_IMAGE_REGEX);
+  return match?.[1]?.trim() ?? '';
 }
 
 export function getBitsExcerpt(entry: { body?: string }): string {

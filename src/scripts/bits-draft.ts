@@ -319,12 +319,12 @@ const resolveAuthorAvatarUrl = (value: string) => resolveImageUrl(value);
 
 const setAuthorPlaceholders = () => {
   if (authorNameEl) {
-    authorNameEl.placeholder = defaultAuthorName ? `默认：${defaultAuthorName}` : '默认：匿名';
+    authorNameEl.placeholder = defaultAuthorName ? `Default: ${defaultAuthorName}` : 'Default: Anonymous';
   }
   if (authorAvatarEl) {
     authorAvatarEl.placeholder = defaultAuthorAvatar
-      ? `默认：${defaultAuthorAvatar}`
-      : '可填相对路径或绝对 URL（留空用默认头像）';
+      ? `Default: ${defaultAuthorAvatar}`
+      : 'Relative path or absolute URL. Leave blank for the default avatar.';
   }
 };
 
@@ -351,12 +351,12 @@ const renderIdentityAvatar = (avatarSrc: string, letter: string) => {
 const updateIdentityPill = () => {
   const overrideName = normalizeAuthorName(authorNameEl?.value ?? '');
   const overrideAvatar = normalizeAuthorAvatar(authorAvatarEl?.value ?? '');
-  const nameForPill = overrideName || defaultAuthorName || '匿名';
+  const nameForPill = overrideName || defaultAuthorName || 'Anonymous';
   const isDefault = !overrideName && !overrideAvatar;
-  const displayName = isDefault ? `${nameForPill}（当前）` : nameForPill;
+  const displayName = isDefault ? `${nameForPill} (current)` : nameForPill;
   if (identityNameEl) identityNameEl.textContent = displayName;
   const avatarForPill = overrideAvatar || defaultAuthorAvatar;
-  const letter = Array.from(nameForPill)[0] ?? '匿';
+  const letter = Array.from(nameForPill)[0] ?? 'A';
   renderIdentityAvatar(avatarForPill, letter);
 };
 
@@ -437,16 +437,16 @@ const fillImageRowDimensions = (row: HTMLElement) => {
     const width = img.naturalWidth;
     const height = img.naturalHeight;
     if (!width || !height) {
-      setStatus('无法自动读取，请手动填写。');
+      setStatus('Could not read dimensions automatically. Please fill them in manually.');
       return;
     }
     els.widthEl.value = String(width);
     els.heightEl.value = String(height);
-    setStatus(`已自动读取：${width}×${height}`);
+    setStatus(`Read dimensions automatically: ${width}x${height}`);
   };
   img.onerror = () => {
     if (requestId !== state.requestId) return;
-    setStatus('无法自动读取，请手动填写。');
+    setStatus('Could not read dimensions automatically. Please fill them in manually.');
   };
   img.src = resolved;
 };
@@ -521,7 +521,7 @@ const collectImages = () => {
     const widthValue = els.widthEl.value.trim();
     const heightValue = els.heightEl.value.trim();
     if (!widthValue || !heightValue) {
-      setStatus('图片已填写，请补全宽高。', 'error');
+      setStatus('Image path is filled. Please complete width and height.', 'error');
       if (!widthValue) els.widthEl.focus();
       else els.heightEl.focus();
       return null;
@@ -529,12 +529,12 @@ const collectImages = () => {
     const widthNumber = Number(widthValue);
     const heightNumber = Number(heightValue);
     if (!Number.isFinite(widthNumber) || widthNumber <= 0) {
-      setStatus('图片宽度需为正数。', 'error');
+      setStatus('Image width must be a positive number.', 'error');
       els.widthEl.focus();
       return null;
     }
     if (!Number.isFinite(heightNumber) || heightNumber <= 0) {
-      setStatus('图片高度需为正数。', 'error');
+      setStatus('Image height must be a positive number.', 'error');
       els.heightEl.focus();
       return null;
     }
@@ -547,7 +547,7 @@ const buildMarkdown = () => {
   if (!contentEl) return null;
   const content = contentEl.value.trim();
   if (!content) {
-    setStatus('请先填写内容。', 'error');
+    setStatus('Please write some content first.', 'error');
     contentEl.focus();
     return null;
   }
@@ -742,7 +742,7 @@ manualCopyBtn?.addEventListener('click', async () => {
   manualTextarea.select();
   const ok = await tryClipboardCopy(manualTextarea.value);
   if (manualNote) {
-    manualNote.textContent = ok ? '已复制草稿。' : '已为你选中文本，按 ⌘C / Ctrl+C 复制。';
+    manualNote.textContent = ok ? 'Draft copied.' : 'Text selected. Press Cmd+C / Ctrl+C to copy.';
   }
 });
 
@@ -762,11 +762,11 @@ manualOpenBtn?.addEventListener('click', () => {
   } else if (hasGenerated && lastMarkdown) {
     markdown = lastMarkdown;
   } else {
-    setStatus('请先填写内容。', 'error');
+    setStatus('Please write some content first.', 'error');
     contentEl?.focus();
     return;
   }
-  showManualCopy(markdown, '已生成草稿。');
+  showManualCopy(markdown, 'Draft generated.');
 });
 
 toolbar?.addEventListener('click', (event) => {
@@ -813,16 +813,16 @@ generateBtn?.addEventListener('click', async () => {
   if (!window.isSecureContext || !navigator.clipboard?.writeText) {
     showManualCopy(
       markdown,
-      '已生成草稿。'
+      'Draft generated.'
     );
     return;
   }
   const ok = await tryClipboardCopy(markdown);
-  if (ok) setStatus('已复制草稿。', 'success');
+  if (ok) setStatus('Draft copied.', 'success');
   else {
     showManualCopy(
       markdown,
-      '已生成草稿。'
+      'Draft generated.'
     );
   }
 });
@@ -841,5 +841,5 @@ downloadBtn?.addEventListener('click', () => {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
-  setStatus('已下载草稿。', 'success');
+  setStatus('Draft downloaded.', 'success');
 });

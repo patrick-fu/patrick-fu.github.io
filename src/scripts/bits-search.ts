@@ -46,7 +46,7 @@ let indexFailed = false;
 
 const setDegradedMode = () => {
   if (input) {
-    input.placeholder = '索引加载失败';
+    input.placeholder = 'Index failed to load';
     input.disabled = true;
     input.setAttribute('aria-disabled', 'true');
   }
@@ -54,7 +54,7 @@ const setDegradedMode = () => {
     btn.disabled = true;
     btn.setAttribute('aria-disabled', 'true');
   }
-  setStatus('索引加载失败，已禁用搜索');
+  setStatus('Index failed to load. Search is disabled.');
   showAll();
 };
 
@@ -62,7 +62,7 @@ const loadIndex = async () => {
   if (indexCache) return indexCache;
   if (indexFailed) return null;
   if (!indexPromise) {
-    setStatus('正在加载索引...');
+    setStatus('Loading index...');
     indexPromise = fetch(indexUrl)
       .then((r) => {
         if (!r.ok) throw new Error('index fetch failed');

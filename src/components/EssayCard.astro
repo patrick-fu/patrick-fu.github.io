@@ -7,23 +7,42 @@ const {
   excerpt,
   date,
   tag,
-  badge = '随笔',
-  slug = ''
+  badge = 'Post',
+  slug = '',
+  cover,
+  featured = false
 } = Astro.props;
 
-const displayBadge = badge?.trim() ? badge : '随笔';
+const displayBadge = badge?.trim() ? badge : 'Post';
 ---
 
-<a class="list-item list-item--link" href={href} data-entry-item data-slug={slug || undefined}>
-  <div class="list-item__row">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <span class="badge">{displayBadge}</span>
-      <h3 class="list-item__title" style="margin:0;">{title}</h3>
+<article
+  class:list={['post-card', featured && 'post-card--featured']}
+  data-entry-item
+  data-slug={slug || undefined}
+>
+  <a class="post-card__link" href={href}>
+    <div class="post-card__media" aria-hidden="true">
+      {cover ? (
+        <img src={cover} alt="" loading="lazy" decoding="async" />
+      ) : (
+        <div class="post-card__placeholder">
+          <span>{displayBadge}</span>
+        </div>
+      )}
     </div>
-  </div>
-  {excerpt ? <p class="list-item__excerpt">{excerpt}</p> : null}
-  <div class="meta-line">
-    发布于：{formatISODate(date)}
-    {tag ? <> · <span class="tag">#{tag}</span></> : null}
-  </div>
-</a>
+    <div class="post-card__body">
+      <div class="post-card__meta">
+        <span>{formatISODate(date)}</span>
+        {tag ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <span class="tag">#{tag}</span>
+          </>
+        ) : null}
+      </div>
+      <h3 class="post-card__title">{title}</h3>
+      {excerpt ? <p class="post-card__excerpt">{excerpt}</p> : null}
+    </div>
+  </a>
+</article>
