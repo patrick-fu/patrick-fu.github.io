@@ -1,5 +1,6 @@
 ---
 import { formatISODate } from '../utils/format';
+import TagLink from './TagLink.astro';
 
 const {
   href,
@@ -21,7 +22,7 @@ const displayBadge = badge?.trim() ? badge : 'Post';
   data-entry-item
   data-slug={slug || undefined}
 >
-  <a class="post-card__link" href={href}>
+  <a class="post-card__media-link" href={href} aria-label={title}>
     <div class="post-card__media" aria-hidden="true">
       {cover ? (
         <img src={cover} alt="" loading="lazy" decoding="async" />
@@ -31,18 +32,20 @@ const displayBadge = badge?.trim() ? badge : 'Post';
         </div>
       )}
     </div>
-    <div class="post-card__body">
-      <div class="post-card__meta">
-        <span>{formatISODate(date)}</span>
-        {tag ? (
-          <>
-            <span aria-hidden="true">·</span>
-            <span class="tag">#{tag}</span>
-          </>
-        ) : null}
-      </div>
-      <h3 class="post-card__title">{title}</h3>
-      {excerpt ? <p class="post-card__excerpt">{excerpt}</p> : null}
-    </div>
   </a>
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <span>{formatISODate(date)}</span>
+      {tag ? (
+        <>
+          <span aria-hidden="true">·</span>
+          <TagLink tag={tag} />
+        </>
+      ) : null}
+    </div>
+    <h3 class="post-card__title">
+      <a class="post-card__title-link" href={href}>{title}</a>
+    </h3>
+    {excerpt ? <p class="post-card__excerpt">{excerpt}</p> : null}
+  </div>
 </article>

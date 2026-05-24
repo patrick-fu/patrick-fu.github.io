@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EssayCard from '../../components/EssayCard.astro';
+import { createWithBase, getEssaySlug, getVisibleEssays } from '../../lib/content';
+import { getFirstImage, getListExcerpt } from '../../utils/excerpt';
+import { getTagSummaries, type TagSummary } from '../../lib/tags';
+
+const base = import.meta.env.BASE_URL ?? '/';
+const withBase = createWithBase(base);
+
+export async function getStaticPaths() {
+  const visibleEssays = await getVisibleEssays();
+  const tags = getTagSummaries(visibleEssays);
+
+  return tags.map((tag) => ({
+    params: { tag: tag.slug },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props as { tag: TagSummary };
+---
+
+<BaseLayout title={`#${tag.name}`}>
+  <div class="page-header page-header--with-search">
+    <div class="page-heading">
+      <h1 class="page-title">#{tag.name}</h1>
+      <span class="page-subtitle">
+        {tag.count} {tag.count === 1 ? 'post' : 'posts'} · <a href={withBase('/tags/')}>All tags</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="list">
+    {tag.entries.map((entry) => (
+      <EssayCard
+        href={withBase(`/${getEssaySlug(entry)}/`)}
+        slug={getEssaySlug(entry)}
+        title={entry.data.title}
+        excerpt={getListExcerpt(entry)}
+        date={entry.data.date}
+        tag={entry.data.tags?.[0]}
+        badge={entry.data.badge}
+        cover={entry.data.cover ?? getFirstImage(entry)}
+      />
+    ))}
+  </div>
+</BaseLayout>

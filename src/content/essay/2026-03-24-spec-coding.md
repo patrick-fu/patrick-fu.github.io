@@ -4,6 +4,8 @@ description: '强模型时代，很多日常研发任务已经不再适合厚重
 date: '2026-03-24 00:00:00'
 tags:
   - 'AI Coding'
+  - 'AI'
+  - 'AI Agent'
   - 'Spec Coding'
   - 'Plan Mode'
   - 'Voice Coding'

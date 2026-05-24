@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { createWithBase, getVisibleEssays } from '../../lib/content';
+import { getTagSummaries } from '../../lib/tags';
+
+const base = import.meta.env.BASE_URL ?? '/';
+const withBase = createWithBase(base);
+const visibleEssays = await getVisibleEssays();
+const tags = getTagSummaries(visibleEssays);
+---
+
+<BaseLayout title="Tags">
+  <div class="page-header">
+    <div class="page-heading">
+      <h1 class="page-title">Tags</h1>
+      <span class="page-subtitle">{tags.length} hashtags across {visibleEssays.length} posts</span>
+    </div>
+  </div>
+
+  <div class="tag-cloud" aria-label="All hashtags">
+    {tags.map((tag) => (
+      <a class="tag-card" href={withBase(`/tags/${tag.slug}/`)}>
+        <span class="tag-card__name">#{tag.name}</span>
+        <span class="tag-card__count">{tag.count} {tag.count === 1 ? 'post' : 'posts'}</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

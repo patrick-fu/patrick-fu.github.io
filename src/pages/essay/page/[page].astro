@@ -39,7 +39,9 @@ const pageTitle = `Posts · Page ${currentPage}`;
   <div class="page-header page-header--essay page-header--with-search">
     <div class="page-heading">
       <h1 class="page-title">Posts</h1>
-      <span class="page-subtitle">{visibleEssays.length} posts · Page {currentPage} / {totalPages} · <a href={withBase('/essay/rss.xml')}>RSS</a></span>
+      <span class="page-subtitle">
+        {visibleEssays.length} posts · Page {currentPage} / {totalPages} · <a href={withBase('/tags/')}>Tags</a> · <a href={withBase('/essay/rss.xml')}>RSS</a>
+      </span>
     </div>
     <div class="page-actions">
       <div class="entry-search" data-entry-search data-index-url={withBase('/essay/index.json')}>

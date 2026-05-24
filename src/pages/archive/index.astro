@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import TagLink from '../../components/TagLink.astro';
 import { createWithBase, getArchiveEssays, getEssaySlug, getPageSlice, getTotalPages } from '../../lib/content';
 import { groupByYear, formatMonthDay, formatISODate } from '../../utils/format';
 import { PAGE_SIZE_ARCHIVE } from '../../../site.config.mjs';
@@ -22,7 +23,9 @@ const nextHref = currentPage < totalPages ? withBase(`/archive/page/${currentPag
   <div class="page-header page-header--with-search">
     <div class="page-heading">
       <h1 class="page-title">Archive</h1>
-      <span class="page-subtitle">{archiveItems.length} posts · <a href={withBase('/archive/rss.xml')}>RSS</a></span>
+      <span class="page-subtitle">
+        {archiveItems.length} posts · <a href={withBase('/tags/')}>Tags</a> · <a href={withBase('/archive/rss.xml')}>RSS</a>
+      </span>
     </div>
     <div class="page-actions">
       <div
@@ -74,7 +77,7 @@ const nextHref = currentPage < totalPages ? withBase(`/archive/page/${currentPag
                 <span class="archive-date-full">{formatISODate(entry.data.date)}</span>
               </div>
               {tag ? (
-                <div class="archive-tag">#{tag}</div>
+                <TagLink tag={tag} className="archive-tag" />
               ) : null}
             </div>
           </div>

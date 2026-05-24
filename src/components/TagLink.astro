@@ -1,0 +1,15 @@
+---
+import { createWithBase } from '../lib/content';
+import { getTagPath } from '../lib/tags';
+
+const {
+  tag,
+  className = '',
+  showHash = true
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL ?? '/';
+const withBase = createWithBase(base);
+---
+
+<a class:list={['tag-link', className]} href={withBase(getTagPath(tag))}>{showHash ? `#${tag}` : tag}</a>
