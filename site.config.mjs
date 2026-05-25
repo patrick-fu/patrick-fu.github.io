@@ -11,7 +11,6 @@ export const site = {
   description: 'Notes on RTC, TikTok creative tools, and AI Coding.'
 };
 
-export const PAGE_SIZE_ARCHIVE = 10;
-export const PAGE_SIZE_ESSAY = 10;
+export const PAGE_SIZE_ARCHIVE = 20;
 
 export { hasSiteUrl, siteUrl };

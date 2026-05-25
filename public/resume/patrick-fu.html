@@ -1,0 +1,1240 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>符方剑 Patrick Fu | 多媒体客户端 / RTC SDK / 创作工具</title>
+    <meta
+      name="description"
+      content="符方剑 Patrick Fu 的 HTML 简历：多媒体客户端、RTC SDK、创作工具与 AI Coding。"
+    />
+    <style>
+      :root {
+        --amg-bg: #f5f9f7;
+        --amg-mint: #42d55c;
+        --amg-aqua: #2fb8ff;
+        --amg-amber: #ffb84a;
+        --amg-ink: #11231d;
+        --amg-muted: #5e726c;
+        --amg-soft: #dff4ec;
+        --amg-panel: rgba(255, 255, 255, 0.84);
+        --amg-panel-strong: rgba(255, 255, 255, 0.94);
+        --amg-line: rgba(120, 180, 160, 0.22);
+        --amg-shadow: 0 16px 40px rgba(34, 78, 63, 0.08);
+        --amg-shadow-xl: 0 28px 80px rgba(34, 78, 63, 0.12);
+        --amg-radius-lg: 24px;
+        --amg-radius-xl: 32px;
+        --container: min(1180px, calc(100% - 32px));
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--amg-ink);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(66, 213, 92, 0.18), transparent 30%),
+          radial-gradient(circle at 86% 6%, rgba(47, 184, 255, 0.16), transparent 28%),
+          linear-gradient(135deg, #f5f9f7 0%, #eef8ff 100%);
+        font-family:
+          "Noto Sans SC",
+          "PingFang SC",
+          "Hiragino Sans GB",
+          "Microsoft YaHei",
+          system-ui,
+          sans-serif;
+        line-height: 1.75;
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(17, 35, 29, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 35, 29, 0.035) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 80%);
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: auto 7vw 12vh auto;
+        z-index: -1;
+        width: 300px;
+        height: 300px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(255, 184, 74, 0.16), transparent 66%);
+        filter: blur(10px);
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration-color: rgba(47, 184, 255, 0.45);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .page {
+        width: var(--container);
+        margin: 0 auto;
+        padding: 28px 0 72px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(17, 35, 29, 0.74);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .brand-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--amg-mint), var(--amg-aqua));
+        box-shadow: 0 0 0 8px rgba(66, 213, 92, 0.12);
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .nav a,
+      .pill,
+      .button {
+        border: 1px solid var(--amg-line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.68);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav a {
+        padding: 8px 12px;
+        color: rgba(17, 35, 29, 0.72);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .amg-panel {
+        border: 1px solid var(--amg-line);
+        border-radius: var(--amg-radius-xl);
+        background: var(--amg-panel);
+        box-shadow: var(--amg-shadow);
+        backdrop-filter: blur(22px);
+      }
+
+      .hero-main {
+        padding: clamp(28px, 5vw, 54px);
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-main::after {
+        content: "";
+        position: absolute;
+        right: -90px;
+        bottom: -120px;
+        width: 310px;
+        height: 310px;
+        border-radius: 50%;
+        border: 1px solid rgba(47, 184, 255, 0.18);
+        background:
+          radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.86), transparent 32%),
+          radial-gradient(circle at 55% 62%, rgba(66, 213, 92, 0.2), transparent 44%),
+          radial-gradient(circle at 72% 30%, rgba(47, 184, 255, 0.18), transparent 40%);
+        box-shadow: inset 0 0 42px rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 12px;
+        color: rgba(17, 35, 29, 0.78);
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 18px;
+        max-width: 850px;
+        font-size: clamp(42px, 7vw, 80px);
+        line-height: 1.04;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        margin-bottom: 24px;
+        max-width: 760px;
+        color: var(--amg-muted);
+        font-size: clamp(17px, 2vw, 21px);
+        line-height: 1.75;
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 10px 14px;
+        color: rgba(17, 35, 29, 0.82);
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      }
+
+      .button.primary {
+        border: 0;
+        color: #062017;
+        background: linear-gradient(135deg, var(--amg-mint), var(--amg-aqua));
+        box-shadow: 0 14px 30px rgba(47, 184, 255, 0.22);
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(34, 78, 63, 0.1);
+      }
+
+      .hero-side {
+        display: grid;
+        gap: 18px;
+      }
+
+      .profile-card {
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .profile-top {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .avatar {
+        width: 78px;
+        height: 78px;
+        border: 4px solid rgba(255, 255, 255, 0.88);
+        border-radius: 26px;
+        object-fit: cover;
+        box-shadow: 0 16px 30px rgba(34, 78, 63, 0.12);
+      }
+
+      .name-block h2 {
+        margin-bottom: 4px;
+        font-size: 24px;
+        line-height: 1.2;
+      }
+
+      .name-block p {
+        margin-bottom: 0;
+        color: var(--amg-muted);
+        font-size: 14px;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .metric {
+        min-height: 106px;
+        padding: 16px;
+        border: 1px solid rgba(120, 180, 160, 0.2);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.56);
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 27px;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .metric span {
+        color: var(--amg-muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .summary-list,
+      .result-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .summary-row,
+      .result-item {
+        padding: 14px 16px;
+        border: 1px solid rgba(120, 180, 160, 0.2);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.56);
+      }
+
+      .summary-row strong,
+      .result-item strong {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--amg-ink);
+        font-size: 14px;
+      }
+
+      .summary-row span,
+      .result-item span {
+        color: var(--amg-muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .result-card {
+        padding: 24px;
+      }
+
+      .result-card h3 {
+        margin-bottom: 4px;
+        font-size: 20px;
+      }
+
+      .result-card > p {
+        color: var(--amg-muted);
+        font-size: 14px;
+      }
+
+      .focal {
+        min-height: 250px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .glass-stack {
+        position: relative;
+        width: min(330px, 100%);
+        height: 210px;
+      }
+
+      .stack-card,
+      .stack-chip,
+      .stack-node {
+        position: absolute;
+        border: 1px solid rgba(120, 180, 160, 0.22);
+        background: rgba(255, 255, 255, 0.58);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 22px 48px rgba(34, 78, 63, 0.1);
+      }
+
+      .stack-card {
+        border-radius: 28px;
+      }
+
+      .stack-card.one {
+        inset: 26px 36px 14px 22px;
+        transform: rotate(-4deg);
+      }
+
+      .stack-card.two {
+        inset: 4px 14px 44px 54px;
+        transform: rotate(5deg);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .stack-card.three {
+        inset: 56px 74px 58px 0;
+        transform: rotate(-1deg);
+        background: linear-gradient(135deg, rgba(66, 213, 92, 0.22), rgba(47, 184, 255, 0.16));
+      }
+
+      .stack-chip {
+        right: 18px;
+        bottom: 16px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .stack-node {
+        left: 44px;
+        top: 40px;
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--amg-mint), var(--amg-aqua));
+      }
+
+      section {
+        margin-top: 24px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin: 44px 0 16px;
+      }
+
+      .section-head h2 {
+        margin-bottom: 0;
+        font-size: clamp(28px, 4vw, 40px);
+        line-height: 1.15;
+        letter-spacing: 0;
+      }
+
+      .section-head p {
+        margin-bottom: 0;
+        max-width: 580px;
+        color: var(--amg-muted);
+        font-size: 15px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        padding: 24px;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--amg-shadow-xl);
+      }
+
+      .card h3 {
+        margin-bottom: 12px;
+        font-size: 20px;
+        line-height: 1.35;
+      }
+
+      .card p,
+      .card li {
+        color: rgba(17, 35, 29, 0.75);
+        font-size: 15px;
+      }
+
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .tagline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        display: inline-flex;
+        padding: 6px 10px;
+        border: 1px solid rgba(120, 180, 160, 0.2);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.54);
+        color: rgba(17, 35, 29, 0.72);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .role {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: 24px;
+        padding: 24px;
+      }
+
+      .role-meta {
+        color: var(--amg-muted);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .role-meta strong {
+        display: block;
+        color: var(--amg-ink);
+        font-size: 18px;
+      }
+
+      .role h3 {
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+
+      .role ul,
+      .card ul {
+        margin: 0;
+        padding-left: 1.15em;
+      }
+
+      .role li {
+        margin: 0 0 8px;
+        color: rgba(17, 35, 29, 0.76);
+      }
+
+      .role li:last-child {
+        margin-bottom: 0;
+      }
+
+      .role-media {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .role-media.single {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .media-card {
+        overflow: hidden;
+        border: 1px solid rgba(120, 180, 160, 0.18);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .media-card img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+
+      .media-card span {
+        display: block;
+        padding: 10px 12px 12px;
+        color: var(--amg-muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .quote {
+        padding: 24px;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .quote-mark {
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(66, 213, 92, 0.24), rgba(47, 184, 255, 0.18));
+        font-size: 28px;
+      }
+
+      .quote p {
+        margin-bottom: 8px;
+        color: rgba(17, 35, 29, 0.78);
+        font-size: 17px;
+      }
+
+      .quote small {
+        color: var(--amg-muted);
+        font-weight: 800;
+      }
+
+      .shot-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .shot {
+        grid-column: span 4;
+        overflow: hidden;
+      }
+
+      .shot.wide {
+        grid-column: span 8;
+      }
+
+      .shot figure {
+        margin: 0;
+      }
+
+      .shot img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        border-radius: 26px 26px 0 0;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .shot figcaption {
+        padding: 14px 16px 16px;
+        color: var(--amg-muted);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .writing-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .writing-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 16px;
+        border: 1px solid rgba(120, 180, 160, 0.18);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.54);
+      }
+
+      .writing-item span {
+        color: var(--amg-muted);
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .interests {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .footer {
+        margin-top: 32px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--amg-muted);
+        font-size: 13px;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .page {
+          animation: page-in 620ms ease both;
+        }
+
+        .amg-float {
+          animation: amg-float 8s ease-in-out infinite;
+        }
+
+        @keyframes page-in {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes amg-float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      }
+
+      @media (max-width: 920px) {
+        .hero,
+        .grid.two,
+        .grid.three,
+        .role,
+        .role-media {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-main {
+          min-height: auto;
+        }
+
+        .section-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .shot,
+        .shot.wide {
+          grid-column: span 12;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100% - 22px, 1180px);
+          padding-top: 16px;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav {
+          justify-content: flex-start;
+        }
+
+        .metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-main,
+        .profile-card,
+        .focal,
+        .card,
+        .role,
+        .quote,
+        .footer {
+          border-radius: 24px;
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 38px;
+        }
+
+        .writing-item,
+        .footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        body::before,
+        body::after,
+        .topbar,
+        .focal,
+        .shot-grid {
+          display: none;
+        }
+
+        .page {
+          width: 100%;
+          padding: 0;
+        }
+
+        .amg-panel,
+        .card,
+        .role,
+        .quote {
+          box-shadow: none;
+          border-color: #d5e4dc;
+          background: #fff;
+          break-inside: avoid;
+        }
+
+        section {
+          margin-top: 14px;
+        }
+
+        .hero {
+          display: block;
+        }
+
+        .hero-main {
+          min-height: auto;
+        }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero" aria-labelledby="title">
+        <div class="hero-main amg-panel">
+          <div>
+            <div class="eyebrow">
+              <span class="pill">RTC SDK</span>
+              <span class="pill">直播多媒体</span>
+              <span class="pill">主播创作工具</span>
+              <span class="pill">AI 创作玩法</span>
+            </div>
+            <h1 id="title">符方剑 Patrick Fu</h1>
+            <p class="subtitle">
+              多媒体客户端工程师，经历覆盖实时音视频 SDK、跨平台 SDK 工程化、C++ 音视频剪辑 SDK、
+              TikTok 创作工具与 AI Coding。曾在即构参与 ExpressSDK、Flutter RTC、CocosCreator RTC、
+              多语言 API 接入层与全平台构建体系建设；后续在字节参与 TikTok 智能创作和 AI 跟拍相关能力开发。
+            </p>
+          </div>
+          <div class="contact-row">
+            <a class="button primary" href="mailto:paaatrickfu@gmail.com">Email</a>
+            <a class="button" href="https://github.com/patrick-fu/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button" href="https://paaatrick.com/" target="_blank" rel="noreferrer">Blog</a>
+            <a
+              class="button"
+              href="https://www.xiaohongshu.com/user/profile/55c2e0bb41a2b30962132f2e"
+              target="_blank"
+              rel="noreferrer"
+              >RedNote</a
+            >
+          </div>
+        </div>
+
+        <aside class="hero-side" aria-label="个人概览">
+          <div class="profile-card amg-panel">
+            <div class="profile-top">
+              <img class="avatar" src="../author/avatar.webp" alt="Patrick Fu avatar" />
+              <div class="name-block">
+                <h2>多媒体客户端工程师</h2>
+                <p>深圳大学 · 电子科学与技术 · 2014-2018</p>
+              </div>
+            </div>
+            <div class="summary-list">
+              <div class="summary-row">
+                <strong>核心方向</strong>
+                <span>RTC SDK、直播互动、多端 SDK、移动端创作工具</span>
+              </div>
+              <div class="summary-row">
+                <strong>主要语言 / 平台</strong>
+                <span>C++、Objective-C、iOS、Flutter、CocosCreator、GN / Ninja</span>
+              </div>
+              <div class="summary-row">
+                <strong>公开沉淀</strong>
+                <span>个人博客记录音视频、网络协议、创作工具与 AI Coding 实践</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-card amg-panel">
+            <h3>核心成果</h3>
+            <p>可量化的项目经历摘要</p>
+            <div class="result-list">
+              <div class="result-item">
+                <strong>10+ 客户上线</strong>
+                <span>支持直播连麦、语聊房、视频通话等 RTC 场景接入</span>
+              </div>
+              <div class="result-item">
+                <strong>20+ 问题定位</strong>
+                <span>协助排查黑屏、花屏、延迟、卡顿等典型音视频问题</span>
+              </div>
+              <div class="result-item">
+                <strong>40%+ 构建优化</strong>
+                <span>重构 CI 和构建脚本，缩短全平台 SDK 产物构建总耗时</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="skills">
+        <div class="section-head">
+          <h2>技术栈与能力摘要</h2>
+          <p>围绕实时音视频、多端 SDK、移动端创作工具和工程效率展开。</p>
+        </div>
+        <div class="grid three">
+          <article class="card amg-panel">
+            <h3>实时音视频 SDK</h3>
+            <p>
+              参与 ExpressSDK、Flutter RTC、CocosCreator RTC 等多端 SDK 能力建设，覆盖 API 接入层、
+              原生能力封装、接口一致性、客户接入测试与升级迁移。
+            </p>
+            <div class="tagline">
+              <span class="tag">C++</span>
+              <span class="tag">Objective-C</span>
+              <span class="tag">Java</span>
+              <span class="tag">Flutter</span>
+              <span class="tag">CocosCreator</span>
+            </div>
+          </article>
+          <article class="card amg-panel">
+            <h3>直播互动与问题定位</h3>
+            <p>
+              支持直播连麦、语聊房、视频通话等实时互动场景上线，并协助定位黑屏、花屏、延迟、卡顿、
+              设备兼容等典型音视频问题。
+            </p>
+            <div class="tagline">
+              <span class="tag">连麦互动</span>
+              <span class="tag">采集 / 渲染</span>
+              <span class="tag">弱网体验</span>
+              <span class="tag">QoE 排查</span>
+            </div>
+          </article>
+          <article class="card amg-panel">
+            <h3>创作工具与 AI Coding</h3>
+            <p>
+              在字节参与 C++ 音视频剪辑 SDK、TikTok 智能创作、AI 跟拍 MVP 与 Agent/LLM 创作场景探索，
+              同时持续实践 AI Coding 在研发流程中的应用。
+            </p>
+            <div class="tagline">
+              <span class="tag">剪辑 SDK</span>
+              <span class="tag">AI Remix</span>
+              <span class="tag">AI 跟拍</span>
+              <span class="tag">Agent / LLM</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="rtc">
+        <div class="section-head">
+          <h2>工作经历：RTC SDK 与多端工程化</h2>
+          <p>2019-2023 年在即构科技参与实时音视频 SDK、跨平台封装、SDK 工程化与客户场景落地。</p>
+        </div>
+        <div class="timeline">
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>即构科技</strong>
+              2020-2021 · SDK 接入组
+            </div>
+            <div>
+              <h3>新一代 RTC SDK ExpressSDK</h3>
+              <ul>
+                <li>
+                  基于底层核心 RTC 引擎开发新一代实时音视频 SDK，参与设计和实现 C++ / Objective-C /
+                  Java 接口层。
+                </li>
+                <li>
+                  参与 80%+ API 技术方案评审，组织 alpha 版本公司范围接入测试并收集反馈，一年内推动新
+                  SDK 上线与老客户升级替换。
+                </li>
+                <li>
+                  设计客户端 API 管理工具，用配置文件管理对外 API、参数、结构体、闭包、枚举与中英文注释，
+                  通过脚本自动生成多语言接口文件，实现一次修改、全平台同步。
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>即构科技</strong>
+              2020-2021 · Flutter RTC
+            </div>
+            <div>
+              <h3>Flutter RTC SDK 与 OpenGLES 视频渲染</h3>
+              <ul>
+                <li>
+                  主导 Flutter 封装层 SDK，针对 Android / iOS 原生 View 在 Flutter 上渲染效果不佳的问题，
+                  接入原生 SDK 自定义视频渲染能力获取视频帧数据。
+                </li>
+                <li>
+                  通过 OpenGLES 对图像进行缩放、镜像、旋转后传给 Flutter 外接纹理模块，实现高性能跨端视频渲染。
+                </li>
+                <li>后续扩展接入 Windows、Linux、macOS，提升 Flutter 业务接入实时音视频能力的一致性。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>即构科技</strong>
+              2021-2023 · SDK 开发组
+            </div>
+            <div>
+              <h3>SDK 构建体系、IM SDK 架构与 CocosCreator RTC</h3>
+              <ul>
+                <li>
+                  参与新老 SDK 代码仓库合并，负责工程构建融合，引入 Chromium GN Build / Ninja 替代历史 CMake
+                  工具链，使构建耗时缩减 20%+。
+                </li>
+                <li>
+                  重搭 CI 流水线和构建脚本，将构建步骤细分、并行化利用多台构建机器，使全平台 SDK 产物构建总耗时缩减
+                  40%+。
+                </li>
+                <li>
+                  设计第一版 IM SDK ZIM 工程架构和 API 接口，抽取 RTC SDK 网络、信令等基础组件，并参与会话管理、
+                  群管理等关键模块实现。
+                </li>
+                <li>
+                  主导 CocosCreator RTC SDK，一个月内完成方案调研、评审和开发，对接 Android / iOS / Windows /
+                  macOS 原生 SDK，初版对齐 70% 原生 SDK 能力，上线首月获取 3 家客户。
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>即构科技</strong>
+              2019-2020 · 客户成功组
+            </div>
+            <div>
+              <h3>直播连麦、语聊房、视频通话场景接入与问题排查</h3>
+              <ul>
+                <li>
+                  帮助 10+ 客户完成 iOS RTC SDK 接入并上线直播连麦、语聊房、视频通话等互娱业务。
+                </li>
+                <li>
+                  协助 20+ 客户解决黑屏、花屏、延迟、卡顿等上线问题，积累采集、渲染、传输、编解码等音视频基础链路经验。
+                </li>
+                <li>
+                  编写 iOS 示例 Demo，覆盖多人视频通话、直播连麦、第三方美颜 SDK、自定义视频采集、视频渲染与视频前处理。
+                </li>
+              </ul>
+              <div class="role-media single">
+                <figure class="media-card">
+                  <img src="assets/resume-shot-06.webp" alt="ZEGO RTC SDK 示例材料" />
+                  <span>ZEGO RTC SDK 示例与文档材料</span>
+                </figure>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="creative">
+        <div class="section-head">
+          <h2>工作经历：字节跳动 / TikTok</h2>
+          <p>2023 年至今参与 TikTok 智能创作、C++ 音视频剪辑 SDK、AI 跟拍与客户端工程效率相关工作。</p>
+        </div>
+        <div class="timeline">
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>ByteDance / TikTok</strong>
+              2026.03-Now · 智能创作 - 创新
+            </div>
+            <div>
+              <h3>TikTok AI 跟拍 MVP</h3>
+              <ul>
+                <li>
+                  封闭开发 TikTok AI 跟拍 MVP 项目，作为 Seedance 2.0 在 TikTok 的落地方向之一，负责 iOS
+                  对话式 UI 创作部分。
+                </li>
+                <li>
+                  将视频生成能力与创作者输入流程结合，探索 AI 玩法在移动端创作链路中的可体验形态。
+                </li>
+              </ul>
+              <div class="role-media single">
+                <figure class="media-card">
+                  <img src="assets/resume-shot-01.webp" alt="TikTok 智能创作相关材料" />
+                  <span>TikTok 智能创作相关材料</span>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>ByteDance / TikTok</strong>
+              2025.04-2026.02 · 移动端特效创作工具
+            </div>
+            <div>
+              <h3>智能创作、Tech Owner 与 Agent / LLM 探索</h3>
+              <ul>
+                <li>主导的技术需求中有 3 个取得关键业务指标显著正向收益，并拿到超出预期 Spot Bonus。</li>
+                <li>
+                  负责 9 个产品需求和 5 个技术需求，均无延期，bug 估分比均不高于 0.36；期间担任 4 次 Tech Owner，
+                  高频主导跨时区 sync meeting，提前发现卡点，确保需求如白开水一般交付。
+                </li>
+                <li>
+                  Q4 探索在特效创作业务场景中接入 Agent 和 LLM 能力，与 PM 共同讨论方案、制作 demo、
+                  分析线上数据并初步验证可行性。
+                </li>
+              </ul>
+              <div class="role-media">
+                <figure class="media-card">
+                  <img src="assets/resume-shot-02.webp" alt="业务指标和交付材料" />
+                  <span>业务指标与交付材料</span>
+                </figure>
+                <figure class="media-card">
+                  <img src="assets/resume-shot-04.webp" alt="移动端特效创作工具材料" />
+                  <span>移动端特效创作工具材料</span>
+                </figure>
+                <figure class="media-card">
+                  <img src="assets/resume-shot-03.webp" alt="项目成果材料" />
+                  <span>项目成果材料</span>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>ByteDance / TikTok</strong>
+              2023.08-2024.10 · 智能创作
+            </div>
+            <div>
+              <h3>C++ 音视频剪辑 SDK</h3>
+              <ul>
+                <li>封闭开发 C++ 音视频剪辑 SDK，完成时间特效、曲线变速、倒放转码功能的方案设计和开发测试。</li>
+                <li>
+                  搭建内部 CI/CD、自动化测试工具、Android 分布式用例测试平台，提升封闭开发期间的验证效率与交付稳定性。
+                </li>
+              </ul>
+              <div class="role-media single">
+                <figure class="media-card">
+                  <img src="assets/resume-shot-05.webp" alt="C++ 音视频剪辑 SDK 相关材料" />
+                  <span>C++ 音视频剪辑 SDK 相关材料</span>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="role amg-panel">
+            <div class="role-meta">
+              <strong>ByteDance / TikTok</strong>
+              2024.11-2025.03 · Product Infra - Account
+            </div>
+            <div>
+              <h3>TTAccountSDK 与多账号串号治理</h3>
+              <ul>
+                <li>参与维护 iOS TTAccountSDK 并承担 oncall，系统性参与 TikTok 多账号登录串号治理专项一期与二期。</li>
+                <li>积累 SDK 稳定性治理、线上问题定位与跨团队推动经验。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="writing">
+        <div class="section-head">
+          <h2>技术写作与公开沉淀</h2>
+          <p>长期记录音视频、网络协议、创作工具与 AI Coding 工程化相关实践。</p>
+        </div>
+        <div class="grid two">
+          <article class="card amg-panel">
+            <h3>精选文章</h3>
+            <div class="writing-list">
+              <a class="writing-item" href="https://paaatrick.com/2020-11-20-flutter-screen-capture/" target="_blank" rel="noreferrer">
+                Flutter 移动端屏幕采集方案分享 <span>采集 / 推流</span>
+              </a>
+              <a class="writing-item" href="https://paaatrick.com/2020-01-26-yuv-pixel-formats/" target="_blank" rel="noreferrer">
+                详解 YUV 格式 <span>像素格式</span>
+              </a>
+              <a class="writing-item" href="https://paaatrick.com/2019-06-06-network-protocol-ip-tcp-udp/" target="_blank" rel="noreferrer">
+                杂谈网络协议之 TCP/IP <span>网络基础</span>
+              </a>
+              <a class="writing-item" href="https://paaatrick.com/2019-07-07-network-protocol-p2p/" target="_blank" rel="noreferrer">
+                杂谈网络协议之种子与 P2P <span>P2P</span>
+              </a>
+              <a class="writing-item" href="https://paaatrick.com/2026-05-06-openai-codex-ai-native-engineering-team/" target="_blank" rel="noreferrer">
+                OpenAI Codex: 如何打造一个 AI Native 工程团队 <span>AI Coding</span>
+              </a>
+              <a class="writing-item" href="https://paaatrick.com/2026-05-25-swe-ci-code-maintainability/" target="_blank" rel="noreferrer">
+                SWE-CI：用 CI 评估 Agent 维护代码库的能力 <span>工程质量</span>
+              </a>
+            </div>
+            <div class="role-media single">
+              <figure class="media-card">
+                <img src="assets/resume-shot-07.webp" alt="ByteTech 技术写作材料" />
+                <span>ByteTech / 技术写作材料</span>
+              </figure>
+            </div>
+          </article>
+
+          <article class="card amg-panel">
+            <h3>More about me</h3>
+            <p>
+              Born in Guangzhou. INTP. 工作外保持高频力量训练，也喜欢桌游、麻将、卡丁车。保留这部分是为了让简历不要只有项目清单，
+              也能呈现一点真实的人。
+            </p>
+            <div class="interests">
+              <span class="pill">🏋️ Strength training</span>
+              <span class="pill">🎲 Board games</span>
+              <span class="pill">🀄 Mahjong</span>
+              <span class="pill">🏎️ Karts</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer amg-panel">
+        <span>Patrick Fu · RTC SDK / Creative Tools / AI Coding</span>
+        <span>HTML Resume · 2026</span>
+      </footer>
+    </main>
+  </body>
+</html>

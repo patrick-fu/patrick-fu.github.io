@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Icon from '../components/Icon.astro';
 import EssayCard from '../components/EssayCard.astro';
 import { createWithBase, getEssaySlug, getVisibleEssays } from '../lib/content';
 import { getFirstImage, getListExcerpt } from '../utils/excerpt';
@@ -8,44 +7,34 @@ import { getFirstImage, getListExcerpt } from '../utils/excerpt';
 const base = import.meta.env.BASE_URL ?? '/';
 const withBase = createWithBase(base);
 const visibleEssays = await getVisibleEssays();
+
+const featuredSlugs = [
+  '2026-03-24-spec-coding',
+  '2026-03-01-voice-coding-ai-input',
+  '2020-11-20-flutter-screen-capture',
+  '2020-01-26-yuv-pixel-formats'
+];
+
+const essaysBySlug = new Map(visibleEssays.map((entry) => [getEssaySlug(entry), entry]));
+const featuredEssays = featuredSlugs.map((slug) => {
+  const entry = essaysBySlug.get(slug);
+  if (!entry) {
+    throw new Error(`Featured essay not found: ${slug}`);
+  }
+  return entry;
+});
 ---
 
-<BaseLayout title="Blog" bodyClass="essay-page">
-  <div class="page-header page-header--essay page-header--with-search">
+<BaseLayout title="Featured" bodyClass="essay-page">
+  <div class="page-header page-header--essay">
     <div class="page-heading">
-      <h1 class="page-title">Blog</h1>
-      <span class="page-subtitle">
-        All posts, {visibleEssays.length} articles · <a href={withBase('/tags/')}>Tags</a> · <a href={withBase('/essay/rss.xml')}>RSS</a>
-      </span>
-    </div>
-    <div class="page-actions">
-      <div class="entry-search" data-entry-search data-index-url={withBase('/essay/index.json')}>
-        <div class="entry-search-panel" data-entry-search-panel aria-hidden="true">
-          <input
-            data-entry-search-input
-            type="search"
-            placeholder="Search title / excerpt / tags"
-            autocomplete="off"
-            aria-label="Search posts"
-          />
-        </div>
-        <button
-          class="entry-search-toggle"
-          data-entry-search-toggle
-          type="button"
-          aria-label="Search posts"
-          title="Search"
-          aria-expanded="false"
-        >
-          <Icon name="search" class="icon" />
-        </button>
-      </div>
+      <h1 class="page-title">Featured</h1>
+      <span class="page-subtitle">Selected posts from Patrick's Blog</span>
     </div>
   </div>
-  <div class="entry-status" data-entry-search-status role="status" aria-live="polite"></div>
 
   <div class="list">
-    {visibleEssays.map((entry) => (
+    {featuredEssays.map((entry) => (
       <EssayCard
         href={withBase(`/${getEssaySlug(entry)}/`)}
         slug={getEssaySlug(entry)}
@@ -59,7 +48,9 @@ const visibleEssays = await getVisibleEssays();
     ))}
   </div>
 
-  <script>
-    import '../scripts/entry-search.ts';
-  </script>
+  <nav class="pagination featured-more" aria-label="Featured posts">
+    <div class="pagination__inner">
+      <a class="pagination__link pagination__link--next" href={withBase('/essay/')}>View all posts</a>
+    </div>
+  </nav>
 </BaseLayout>
